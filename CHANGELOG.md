@@ -6,7 +6,9 @@ All important changes to this project are listed here.
 
 ### Bugfix
 
-- Fixing "relative_url" error for url with baseurl
+- CRUCIAL! Fixing "relative_url" error for url with baseurl.
+  When using site with baseurl in _config.yml, all menu URLs and other files pointed to the wrong
+  location. This release fixed this crucial bug.
 
 ## [0.1.0] - 2025-09-12
 
