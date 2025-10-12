@@ -58,13 +58,7 @@ iwr -useb https://raw.githubusercontent.com/williamcanin/rawfeed/refs/heads/main
 
 # Usage
 
-**(1)** - Install dependencies:
-
-```shell
-npm install
-```
-
-**(2)** - For **rawfeed** manipulation commands, use:
+After installation, run the command below to see the **rawfeed** command menu:
 
 ```shell
 npm run help
