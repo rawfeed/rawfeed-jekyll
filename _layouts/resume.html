@@ -213,27 +213,6 @@
                 {%- endfor -%}
               </section>
               {%- endif -%}
-              {% comment %} {%- if resume.body.volunteering.enable -%}
-              <section class="row section volunteering">
-                <h2 class="section-title">{{ resume.body.volunteering.caption }}</h2>
-                {%- for vol in resume.body.volunteering.section -%}
-                  <div class="section-item">
-                    <div class="row">
-                      <div class="role"><p><span class="marker">•&nbsp;</span>{{ vol.role }}</p></div>
-                    </div>
-                    <div class="row">
-                      {%- if vol.link -%}
-                        <div class="col-sm link"><p>-&nbsp;<a href="{{ vol.link }}" target="_blank">{{ vol.company }}</a></p></div>
-                      {%- else -%}
-                        <div class="col-sm company"><p>-&nbsp;{{ vol.company }}</p></div>
-                      {%- endif -%}
-                      <span class="col-sm d-flex justify-content-end time">{{ vol.time }}</span>
-                    </div>
-                    <div class="row details"><p>-&nbsp;{{ vol.details }}</p></div>
-                  </div>
-                {%- endfor -%}
-              </section>
-              {%- endif -%} {% endcomment %}
             </div>
           </div>
         </div>
