@@ -1,0 +1,5 @@
+@use "../components/index";
+
+.page {
+  @extend %markdown;
+}

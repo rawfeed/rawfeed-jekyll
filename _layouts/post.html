@@ -1,0 +1,103 @@
+---
+layout: default
+---
+
+<article class="container post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="row">
+
+    <header class="post-header">
+      <h1 class="post-title p-name" itemprop="name headline">»&nbsp;{{ page.title | escape }}</h1>
+
+      <div class="row post-meta">
+        <div class="col-sm d-flex justify-content-start">
+          <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          {{ page.date | date: "%b %-d, %Y" }}
+          </time>
+        </div>
+        <div class="col-sm d-flex justify-content-end">
+          {%- if page.author -%}
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">
+              {{ site.text.post.author | default: "author" }}:&nbsp;{{ page.author }}
+            </span>
+          </span>
+          {%- endif -%}
+        </div>
+      </div>
+
+    </header>
+
+    <div class="post-content e-content" itemprop="articleBody">
+      {{ content }}
+    </div>
+
+    {%- if page.update_date -%}
+    <div class="row post-modified">
+      <div class="col-sm d-flex justify-content-start">
+        <time class="dt-modified" datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateModified">
+          <strong>{{ site.text.post.updated_on | default: "Post updated on" }}:</strong>&nbsp;{{ page.update_date | date: "%b %-d, %Y" }}
+        </time>
+      </div>
+    </div>
+    {%- endif -%}
+
+    <div class="row post-tags">
+      <ul class="tag-list">
+      {%- assign tags = page.tags | sort -%}
+      <strong>[ tags ]:</strong>&nbsp;&nbsp;
+      {%- for tag in tags -%}
+        <li class="tag-list__item">
+          <a class="tag-list__link" href="{{ '/blog/tags/' | append: tag | relative_url }}">
+            {{ tag }}
+          </a>
+        </li><strong>&nbsp;&nbsp;.&nbsp;&nbsp;</strong>
+      {%- endfor -%}
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="post-end text-center">/&nbsp;/&nbsp;/&nbsp;/&nbsp;&nbsp;end of post&nbsp;&nbsp;/&nbsp;/&nbsp;/&nbsp;/</div>
+
+  {%- if page.comments != false and site.blog.post.comments.provider == 'giscus' and jekyll.environment == 'production' -%}
+    {%- include layout/giscus.html -%}
+  {%- endif -%}
+
+  {%- if page.comments != false and site.blog.post.comments.provider == 'disqus' and jekyll.environment == 'production' -%}
+    {%- include layout/disqus.html -%}
+  {%- endif -%}
+
+  {%- if site.blog.post.related_posts.enable -%}
+    {%- assign related_posts_found = "" | split: "," -%}
+
+    {%- for tag in page.tags -%}
+      {%- for post in site.tags[tag] -%}
+        {%- assign related_posts_found = related_posts_found | push: post -%}
+      {%- endfor -%}
+    {%- endfor -%}
+
+    {%- assign related_posts = related_posts_found | uniq | where_exp: "item", "item.url != page.url" -%}
+
+    {%- if related_posts.size > 0 -%}
+      <div class="row related-posts">
+        <h3 class="related-posts-title">[&nbsp;{{ site.text.post.related_posts | default: "related posts" }}&nbsp;]</h3>
+
+        <ul class="related-posts-list">
+          {%- for post in related_posts limit:5 -%}
+            <li class="related-posts-list__item">
+              {%- assign date_format = "%b %-d,%Y" -%}
+              <span class="related-posts-list__meta">{{ post.date | date: date_format }}</span>&nbsp;»&nbsp;
+              <a class="related-posts-list__link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              {%- if post.draft -%}
+                <span class="draft-badge">[&nbsp;this is a draft&nbsp;]</span>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+
+</article>
+
+<script src="{{ '/assets/js/toc.js' | relative_url }}"></script>

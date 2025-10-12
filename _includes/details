@@ -1,0 +1,57 @@
+<div class="details-start" data-summary="{{ include.summary | escape }}"></div>
+
+<script>
+(function(){
+  if (window.__jekyll_details_setup) return;
+  window.__jekyll_details_setup = true;
+
+  function initDetails(){
+    const starts = document.querySelectorAll('.details-start');
+    starts.forEach(start => {
+      const summary = start.getAttribute('data-summary') || 'Detalhes';
+
+      let end = start.nextSibling;
+      while(end && !(end.nodeType === 1 && end.classList.contains('details-end'))){
+        end = end.nextSibling;
+      }
+      if(!end) return;
+
+      let node = start.nextSibling;
+      const content = [];
+      while(node && node !== end){
+        const next = node.nextSibling;
+        if(node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent.trim())){
+          content.push(node.cloneNode(true));
+        }
+        node = next;
+      }
+
+      const details = document.createElement('details');
+      const sum = document.createElement('summary');
+      sum.textContent = summary;
+      details.appendChild(sum);
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'details-content-wrapper';
+
+      content.forEach(el => wrapper.appendChild(el));
+
+      details.appendChild(wrapper);
+
+      start.parentNode.insertBefore(details, start);
+      let cur = start;
+      while(cur){
+        const next = cur.nextSibling;
+        cur.remove();
+        if(cur === end) break;
+        cur = next;
+      }
+    });
+  }
+
+  if(document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', initDetails);
+  else
+    initDetails();
+})();
+</script>

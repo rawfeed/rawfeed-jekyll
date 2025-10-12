@@ -1,0 +1,42 @@
+@use "button";
+
+%form {
+
+  input,
+  textarea {
+    color: var(--text-color) !important;
+    border-radius: 0px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid var(--primary-color);
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--text-color) !important;
+      background-color: transparent;
+      box-shadow: none !important;
+      outline: 0 !important;
+    }
+
+    &:focus,
+    &:active {
+      border-bottom: 2px solid var(--text-color);
+    }
+  }
+
+  textarea {
+    border-bottom: none;
+    border-left: 2px solid var(--primary-color);
+
+    &:focus,
+    &:active {
+      border: none;
+      border-left: 2px solid var(--text-color) !important;
+    }
+  }
+
+  button {
+    @extend %button;
+  }
+}

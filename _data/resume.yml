@@ -1,0 +1,184 @@
+# --------------------------------------------------------------------------------------------------
+# Note: Two pages is acceptable for experienced professionals. Stick to the one-page rule if you
+# have less than 10 years of experience, or two pages if you're senior/academic.
+# Do not put exaggerated information.
+# --------------------------------------------------------------------------------------------------
+
+# section: [Full name]
+full_name: John A. Doe
+
+# section: [Photo]
+photo:
+  space: false
+
+# section: [Buttons]
+buttons:
+  print:
+    enable: true
+    text: print
+
+# ---------------------------------------- SIDEBAR -------------------------------------------------
+sidebar:
+  # section: [Contact]
+  contact:
+    enable: true
+    caption: Contact
+    items:
+      - key: Email
+        value: contact@johndoe.com
+        link: #
+      - key: Site
+        value: johndoe.com
+        link: https://github.com/williamcanin/rawfeed
+      - key: Phone
+        value: +1 9 99999-9999
+        link: #
+      - key: GitHub
+        value: "@rawfeed"
+        link: https://github.com/williamcanin/rawfeed
+
+  # section: [Personal Details]
+  # IMPORTANT!!!: "Personal details" are sensitive data. For security reasons, enable it ONLY if
+  #                you're printing it; never leave it exposed online.
+  personal_details:
+    enable: false
+    caption: Personal Details
+    items:
+      - title: DOB
+        value: 1901/01/01
+      - title: City
+        value: Boston
+      - title: State
+        value: Massachusetts
+      - title: Nationality
+        value: American
+      - title:
+        value: Valid Driver's License
+
+  # section: [Languages]
+  languages:
+    enable: true
+    caption: Languages
+    names:
+      - value: English
+      - value: Portuguese
+      - value: Spanish
+
+  # section: [Education]
+  education:
+    enable: true
+    caption: Education
+    section:
+      - degree: MSc in Informatics
+        time: 2014-2016
+        university: Ionian University
+        link: https://github.com/williamcanin/rawfeed
+
+      - degree: BSc in Computer Science
+        time: 2010-2014
+        university: XYZ University
+        link: #
+
+  # section: [Skills]
+  skills:
+    enable: true
+    caption: Skills
+    section:
+      - group: OS
+        tools: [Linux, Windows]
+      - group: Programming
+        tools: [C, Rust, Python, Javascript]
+      - group: Frameworks
+        tools: [React, Node.js]
+      - group: DevOps
+        tools: [Docker, Kubernetes]
+      - group: Others
+        tools: [Git, AWS]
+
+# ---------------------------------------- BODY ----------------------------------------------------
+body:
+  # section: [Sumary]
+  # Note: The "Sumary" should be a concise paragraph (3-4 lines) that presents your profile,
+  # your main expertise, and your greatest impact. It is your initial "advertisement."
+  sumary:
+    enable: true
+    caption: Sumary
+    content: |
+      Senior Software Engineer and Researcher with **8 years of experience** in the full systems
+      development lifecycle. Proficient in high-performance languages (**Rust**, **C++**, **Python**) and
+      front-end frameworks (**React**). Focused on systems optimization, having **reduced latency by
+      20%** in new modules and worked in applied research at Microsoft.
+
+  # section: [Experience]
+  # Always start the bullet point with a past tense verb.
+  experience:
+    enable: true
+    caption: Experience
+    section:
+      - role: Software Engineer
+        description: Backend Optimization & Infrastructure
+        company: Google
+        link: https://about.google
+        time: 2020-Present
+        details: |
+          - I developed and launched **Module X**, reducing **latency by 20%** on the backend and
+          increasing **user satisfaction (KPIs)**.
+          - I improved the **CI/CD pipeline** for **Go** and **C++** by integrating **Kubernetes**
+          and **Docker**, speeding up deployments by **15%**.
+          - I led the migration of **legacy microservices** to **TypeScript** and **Angular**,
+          resulting in a more scalable and maintainable architecture.
+
+      - role: Researcher
+        description:
+        company: Microsoft
+        link: https://microsoft.com
+        time: 2016-2020
+        details: |
+          - I conducted research and development of **algorithm Y** (using **Python** and **TensorFlow**),
+          reducing the error **rate by 10%** compared to the previous solution.
+          - I have published two conference papers on **Machine Learning** models, contributing to the
+          advancement of the field of Natural Language Processing (NLP).
+          - I collaborated with engineering teams to deploy **Keras** and **Matlab** models in production
+          environments, impacting **millions of platform** users.
+
+  # section: [Publications]
+  # Full links will only appear in print mode. Online and PDF modes are clickable.
+  publications:
+    enable: true
+    caption: Publications
+    section:
+      - title: Presentation of the functionality of F47X1 chip
+        link: https://github.com/williamcanin/rawfeed
+        authors: John A. Doe, Jane Doe
+        conference: Conference Tech Central Park, 2016
+
+  # section: [Projects]
+  # Full links will only appear in print mode. Online and PDF modes are clickable.
+  projects:
+    enable: true
+    caption: Projects
+    section:
+      - title: Support for the F47X1 chip in the Linux kernel
+        link: https://github.com/williamcanin/rawfeed
+        details: |
+          - I implemented the F47X1 chip to recognize macOS applications with plug-play on USB 3.1
+
+      - title: Facial Functionality Tool in Gemini
+        link: #
+        details: |
+          - Together with a group of 4 people, **I conducted** research on the new version of **Gemini** in
+          Gemini's facial recognition on mobile.
+
+  # section: [Volunteering]
+  # Full links will only appear in print mode. Online and PDF modes are clickable.
+  volunteering:
+    enable: true
+    caption: Volunteering
+    section:
+      - role: AI Professor
+        company: Seeds of Tomorrow Engineering School
+        link: https://github.com/williamcanin/rawfeed
+        time: 2020-2022
+        details: |
+          - I led a class of **Computer Engineering** students in the modern **AI course**.
+          It was over **170 hours** of classes.

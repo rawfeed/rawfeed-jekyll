@@ -1,0 +1,10 @@
+*{
+  input, a, button {
+    &:focus, &:hover, &:active {
+      outline:0 !important;
+    }
+  }
+  li {
+    list-style: none;
+  }
+}

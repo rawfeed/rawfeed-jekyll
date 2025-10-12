@@ -1,0 +1,16 @@
+@use "../components/index";
+
+.maintenance {
+  &-gif {
+    @extend %gif_border;
+  }
+
+  &-title {
+    color: black;
+  }
+
+  &-subtitle {
+    color: #595959;
+    font-family: "Inconsolata", monospace !important;
+  }
+}

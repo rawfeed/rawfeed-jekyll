@@ -1,0 +1,17 @@
+%button {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: underline;
+  }
+}

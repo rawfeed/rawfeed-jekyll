@@ -1,0 +1,55 @@
+@use "../components/index";
+
+#contactMessageModal {
+
+  .modal-content,
+  .modal-header,
+  .modal-body {
+    border-radius: .1em !important;
+  }
+
+  .modal-content {
+    border: 1px solid var(--text-color);
+
+    .modal-body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+  }
+}
+
+.contact {
+  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  // border: 1px solid #ddd;
+  // background-color: white;
+  // padding: 20px 40px;
+
+  @extend %markdown;
+
+  &-message-error .modal-header {
+    background-color: #f8d7da;
+    color: #842029;
+    border-bottom: 1px solid #f5c2c7;
+  }
+
+  &-message-warning .modal-header {
+    background-color: #e7e7d1;
+    color: #7e760d;
+    border-bottom: 1px solid #e7e7d1;
+  }
+
+  &-message-success .modal-header {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border-bottom: 1px solid #badbcc;
+  }
+
+  &-form {
+    @extend %form;
+
+    &__name,
+    &__help {
+      margin-bottom: 50px;
+    }
+  }
+}

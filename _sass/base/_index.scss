@@ -1,0 +1,63 @@
+@use "reset";
+@use "typography";
+
+body {
+  transition: background-color 0.2s ease, color 0.2s ease;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+  font: 15.34px helvetica, arial, clean, sans-serif !important;
+  user-select: none;
+
+  /* impede selecionar texto no site */
+  code,
+  pre,
+  .highlight,
+  .code-block-container {
+    user-select: text !important;
+  }
+
+  .lineno {
+    user-select: none !important;
+    margin-top: -10px !important;
+  }
+
+  a {
+    color: var(--primary-color);
+    font-weight: bold;
+
+    &:hover {
+      color: var(--text-color);
+    }
+  }
+
+  .btn-close {
+
+    &:active,
+    &:focus {
+      box-shadow: none !important;
+      outline: none !important;
+    }
+  }
+}
+
+/* Switch between terminal and simple mode on the home screen */
+body[data-terminal-enabled="false"] .home-terminal {
+  display: none !important;
+}
+
+body[data-terminal-enabled="false"] .home-simple {
+  display: block !important;
+}
+
+body[data-layout="mobile"] .home-terminal {
+  display: none !important;
+}
+
+body[data-layout="mobile"] .home-simple {
+  display: block !important;
+}
+
+.disabled {
+  display: none !important;
+}

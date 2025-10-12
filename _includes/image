@@ -1,0 +1,61 @@
+{%- assign right_style = "float: right; margin-left: 10px;" -%}
+{%- assign left_style  = "float: left; margin-right: 10px;" -%}
+{%- assign bottom_style = "margin-bottom: 15px;" -%}
+
+{%- assign w = include.width | default: "" -%}
+{%- if w != "" -%}
+  {%- if w contains '%' -%}
+    {%- assign wrapper_width = w -%}
+  {%- elsif w contains 'px' -%}
+    {%- assign wrapper_width = w -%}
+  {%- else -%}
+    {%- assign wrapper_width = w | append: 'px' -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign wrapper_width = 'auto' -%}
+{%- endif -%}
+
+{%- if include.align == "center" -%}
+  <figure class="img-include-wrapper img-include-align-center" style="width: {{ wrapper_width }};">
+    <img
+      src="{{ include.src }}"
+      alt="{{ include.title | default: include.caption | escape }}"
+      style="display:block; width:100%; height: {{ include.height | default: 'auto' }}; border-radius: {{ include.border-radius | default: 0 }}px; border: 2px solid {{ include.border-color | default: '#ddd' }};" />
+    {%- if include.caption -%}
+      <figcaption class="img-include-caption">{{ include.caption }}</figcaption>
+    {%- endif -%}
+  </figure>
+
+{%- elsif include.align == "right" -%}
+  <figure class="img-include-wrapper img-include-align-right" style="{{ right_style }} width: {{ wrapper_width }};">
+    <img
+      src="{{ include.src }}"
+      alt="{{ include.title | default: include.caption | escape }}"
+      style="display:block; width:100%; height: {{ include.height | default: 'auto' }}; border-radius: {{ include.border-radius | default: 0 }}px; border: 2px solid {{ include.border-color | default: '#ddd' }};" />
+    {%- if include.caption -%}
+      <figcaption class="img-include-caption">{{ include.caption }}</figcaption>
+    {%- endif -%}
+  </figure>
+
+{%- elsif include.align == "left" -%}
+  <figure class="img-include-wrapper img-include-align-left" style="{{ left_style }} width: {{ wrapper_width }};">
+    <img
+      src="{{ include.src }}"
+      alt="{{ include.title | default: include.caption | escape }}"
+      style="display:block; width:100%; height: {{ include.height | default: 'auto' }}; border-radius: {{ include.border-radius | default: 0 }}px; border: 2px solid {{ include.border-color | default: '#ddd' }};" />
+    {%- if include.caption -%}
+      <figcaption class="img-include-caption">{{ include.caption }}</figcaption>
+    {%- endif -%}
+  </figure>
+
+{%- else -%}
+  <figure class="img-include-wrapper" style="width: {{ wrapper_width }};">
+    <img
+      src="{{ include.src }}"
+      alt="{{ include.title | default: include.caption | escape }}"
+      style="display:block; width:100%; height: {{ include.height | default: 'auto' }}; border-radius: {{ include.border-radius | default: 0 }}px; border: 2px solid {{ include.border-color | default: '#ddd' }};" />
+    {%- if include.caption -%}
+      <figcaption class="img-include-caption">{{ include.caption }}</figcaption>
+    {%- endif -%}
+  </figure>
+{%- endif -%}

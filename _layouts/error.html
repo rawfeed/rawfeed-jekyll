@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<div class="container error">
+  <div class="row">
+    <div class="col-sm text-center">
+       {%- if site.text.error.image -%}
+          <img class="error-image" src="{{ site.text.error.image }}" alt="error 404">
+       {%- endif -%}
+      <h1 class="error-title">{{ site.text.error.title | escape }}</h1>
+      <h2 class="error-description">{{ site.text.error.message | markdownify }}</h2>
+    </div>
+  </div>
+</div>

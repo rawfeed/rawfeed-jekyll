@@ -1,0 +1,34 @@
+<canvas class="chart" id="chart-{{ include.label | slugify }}"> </canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const ctx = document.getElementById("chart-{{ include.label | slugify }}");
+    if (!ctx) return;
+    new Chart(ctx, {
+      type: "{{ include.type | default: 'line' }}",
+      data: {
+        labels: "{{ include.labels }}".split(","),
+        datasets: [{
+          label: "{{ include.label | default: 'Dataset' }}",
+          data: "{{ include.data }}".split(",").map(Number),
+          borderColor: "{{ include.color | default: '#00bfff' }}",
+          backgroundColor: "{{ include.color | default: '#00bfff' }}33",
+          fill: true,
+          tension: 0.3,
+          borderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: true, labels: { color: '#444444' } } },
+        scales: {
+          x: { ticks: { color: '#131313' }, grid: { color: '#111111' } },
+          y: { ticks: { color: '#131313' }, grid: { color: '#111111' } }
+        }
+      }
+    });
+  });
+</script>

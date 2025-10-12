@@ -1,0 +1,59 @@
+{
+  // === TODO ===
+  "todo-tree.general.tags": [
+    "TODO",
+    "FIXME"
+  ],
+  "todo-tree.filtering.excludeGlobs": [
+    "node_modules",
+    "tmp",
+    "dist",
+    "vendor**"
+  ],
+  // === Files and languages ===
+  "files.associations": {
+    "**/_includes/**": "liquid",
+    "**/_layouts/**": "liquid",
+    "blog_search.json": "liquid",
+    "*.gs": "javascript",
+  },
+  // Emmet working within Liquid and Markdown
+  "emmet.includeLanguages": {
+    "liquid": "html",
+    "markdown": "html"
+  },
+  // === Formatting ===
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  // Formatting by language
+  "[liquid]": {
+    "editor.defaultFormatter": "sissel.shopify-liquid"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // === HTML & Liquid ===
+  "html.validate.scripts": true,
+  "html.validate.styles": true,
+  "html.format.indentInnerHtml": true,
+  // === YAML (Jekyll front matter) ===
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*"
+  },
+  "yaml.customTags": [
+    "!reference sequence",
+    "!variable scalar"
+  ],
+  // === Markdown ===
+  "markdown.preview.breaks": true,
+  // === Several ===
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true
+}

@@ -1,0 +1,330 @@
+@use "../components/index";
+
+// mode print
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 1.5cm;
+  }
+
+  #btn-print,
+  .resume-header__btn-print,
+  button {
+    display: none !important;
+  }
+
+  body,
+  .resume,
+  .container-fluid {
+    background: #fff !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #print-this,
+  #print-this * {
+    visibility: visible;
+  }
+
+  #print-this {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .resume {
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #000;
+
+    a {
+      small {
+        display: block !important;
+      }
+    }
+
+    .section {
+      page-break-inside: avoid;
+
+      &-title {
+        font-size: 12pt;
+        font-weight: 700;
+      }
+
+      &-item {
+        font-size: 10.5pt;
+        margin-bottom: 0.4em;
+        page-break-inside: avoid;
+
+        a {
+          color: black;
+          text-decoration: none;
+          font-weight: normal;
+        }
+      }
+    }
+
+    &-content {
+
+      .title {
+        a {
+          color: black;
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
+
+      // TWO-COLUMN LAYOUT
+      &__sidebar {
+        display: inline-block;
+        vertical-align: top;
+        width: 35%;
+        padding-right: 1cm;
+        box-sizing: border-box;
+        // border-right: 1px solid #ddd;
+      }
+
+      &__body {
+        display: inline-block;
+        vertical-align: top;
+        width: 65%;
+        padding-left: 1cm;
+        box-sizing: border-box;
+      }
+
+      &__name {
+        font-size: 20pt;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// page resume
+.resume {
+  font-family: "Helvetica", Arial, sans-serif !important;
+  color: var(--resume-content-text-color);
+  background-color: var(--resume-bg-color);
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-size: 11pt;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--resume-border-color);
+  margin-bottom: 50px;
+
+  .role-company {
+
+    .role,
+    .company {
+      font-weight: 600;
+    }
+
+    .description {
+      font-style: italic;
+      font-size: 12px;
+      margin-left: 12px;
+    }
+  }
+
+  .details {
+    margin-top: 15px;
+    margin-left: 12px;
+
+    ul {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
+  .section-title {
+    color: var(--resume-title-text-color);
+    font-weight: 700;
+    margin: 0 !important;
+    font-size: 12pt !important;
+    text-transform: uppercase;
+    // border-bottom: 1px solid #ccc !important;
+    text-decoration: underline;
+    margin-bottom: 12px !important;
+    padding-bottom: 0.2em;
+  }
+
+  .section-item {
+    font-size: 10.5pt;
+    margin-bottom: 0.3em;
+
+    &__title {
+      font-weight: 600;
+    }
+  }
+
+  .time {
+    font-size: 9.5pt;
+    color: var(--resume-text-muted-color);
+  }
+
+  &-header {
+    margin-bottom: 1rem;
+
+    &__btn-print {
+      @extend %button;
+      width: 100px;
+      min-width: 80px;
+      margin-right: 15px;
+    }
+  }
+
+  &-content {
+
+    &__name {
+      font-size: 20pt !important;
+      font-weight: 700 !important;
+      margin-bottom: 1em !important;
+    }
+
+    &__sidebar {
+      .photo {
+        width: 110px;
+        height: 140px;
+        border-radius: .5rem;
+        margin-bottom: 1em;
+        // border: 1px solid black;
+        // float: right;
+      }
+
+      .section {
+        margin-bottom: 1.5em;
+
+        &-title {
+          width: 180px;
+        }
+      }
+
+
+      .personal_details {
+        .section-item__title {
+          font-weight: 600;
+        }
+      }
+
+      .skills {
+        .section-item {
+          .group {
+            font-weight: 600;
+          }
+
+          .tools {
+            margin-left: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 250px;
+            gap: 4px;
+
+            .tool {
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+
+    &__body {
+      .section {
+
+        &-item {
+          margin-bottom: 12px;
+        }
+      }
+
+      .sumary {
+        text-align: justify !important;
+
+      }
+
+      .publications {
+        .section-item {
+          .row {
+            p {
+              margin: 0 !important;
+            }
+          }
+
+          .authors {
+            margin-left: 12px;
+          }
+        }
+
+        .conference {
+          font-size: 9.5pt;
+          margin-left: 12px;
+          color: var(--resume-text-muted-color);
+        }
+      }
+
+      .projects {
+        margin-top: 12px;
+
+        .section-item {
+          margin-bottom: 0 !important;
+        }
+
+        .details {
+          margin-top: 8px;
+        }
+
+        .row {
+          p {
+            margin: 0 !important;
+          }
+        }
+      }
+
+      .volunteering {
+        margin-top: 12px;
+
+        .details {
+          margin-top: 12px;
+        }
+      }
+    }
+
+    a {
+      small {
+        font-size: 8pt;
+        display: block;
+        color: var(--resume-text-muted-color);
+        text-decoration: none !important;
+        font-weight: normal;
+        margin-left: 15px;
+        margin-top: -2px;
+        display: none;
+      }
+    }
+
+    .section-item {
+      .title {
+        p {
+          span {
+            font-weight: 600 !important;
+          }
+        }
+      }
+    }
+  }
+
+  .marker {
+    font-size: 1.3rem !important;
+    font-weight: bold;
+  }
+}

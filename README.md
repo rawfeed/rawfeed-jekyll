@@ -1,0 +1,150 @@
+<p align="center">
+  <img src=".github/logo.png" alt="Rawfeed" width="150">
+  <br>
+  <small>Rawfeed — A raw Jekyll theme for minimalists</small>
+  <br>
+  <a href="https://williamcanin.github.io/rawfeed" target="_blank">Theme Preview</a>
+</p>
+
+# Requirements
+
+| Required | Version | How to verify | How to install                    |
+| -------- | ------- | ------------- | --------------------------------- |
+| Git      | >= 2    | `git -v`      | [Git](http://git-scm.com/)        |
+| Ruby     | >= 3.0  | `ruby -v`     | [Ruby](https://www.ruby-lang.org) |
+| Gem      | >= 3.0  | `gem -v`      | **Ruby** contains **Gem**         |
+| Bundler  | >= 2.0  | `bundler -v`  | `gem install bundler`             |
+| NodeJs   | >= 20   | `node -v`     | [NodeJS](https://nodejs.org)      |
+| Npm      | >= 9    | `npm -v`      | **NodeJS** contains **Npm**       |
+
+# Features
+
+- [x] One-command installation (via Unix|PowerShell);
+- [x] A terminal emulator on the home page with commands;
+- [x] Commands for manipulating page headers, posts and drafts in markdown;
+- [x] Smart floating TOC in posts;
+- [x] Theme change: light/dark;
+- [x] Chart in posts;
+- [x] Stylized Markdown;
+- [x] Avatar opens in modal with inversion animation for each different theme (light/dark);
+- [x] Enables and Disables weblog;
+- [x] Home page with about or blog, you decide with one command;
+- [x] A quick search field on the weblog using keyword and date;
+- [x] Weblog pagination;
+- [x] YouTube video in weblog posts;
+- [x] Social network link on the home page or by command in the terminal;
+- [x] Feed in weblog;
+- [x] SEO-rich website;
+- [x] Entire site minified in build: html, images, css and javascript.
+- [x] Maintenance page;
+- [x] Comments on blog posts with Giscus or Disqus (only in production [jekyll build]);
+- [x] Google Analytics (only in production [jekyll build]);
+
+# Installation
+
+In the terminal/Command Prompt, run the commands below according to the OS.
+
+**Unix:**
+
+```shell
+curl -fsSL https://williamcanin.github.io/install/rawfeed | sh
+```
+
+**Windows:**
+
+```shell
+iwr -useb https://williamcanin.github.io/install/rawfeed | iex
+```
+
+# Usage
+
+**(1)** - Install dependencies:
+
+```shell
+npm install
+```
+
+**(2)** - For **rawfeed** manipulation commands, use:
+
+```shell
+npm run help
+```
+
+# Settings
+
+## Avatar
+
+**(1)** - Create the folder directory: `assets/images`.
+
+**(2)** - Place your website's images (.jpg|.png) inside this `assets/images` directory.
+
+> Recommendation: Use a 4x4 image.
+
+**(3)** - In the `_config.yml` file, in the `section: [avatar]`, change the value of "`avatar.image`"
+to the name of your images. For example:
+
+```yml
+avatar:
+  open: true
+  image:
+    light: your_image_light.png
+    dark: your_image_dark.png
+```
+
+## Posts
+
+Creating a blog post is very easy, first you create a draft (`npm run draft`) and after you finish
+the draft, you move it to the post with the command `npm run post`.
+
+> Note: If you start the server (`npm run serve`), drafts will appear in posts, but they will not
+go into production mode (`npm run build`).
+
+**Comments:**
+
+Post comments use [Giscus](https://giscus.app) or [Disqus](https://disqus.com),
+configurable in the `_config.yml` file under `section: [blog]`. Whichever one you choose,
+you must set the appropriate settings in the `_config.yml` file under `section: [blog]`, and
+each post must have `comments: true` set.
+
+To learn more about both, such as how to set them up, visit [Giscus](https://giscus.app) or
+[Disqus](https://disqus.com).
+
+# For developer
+
+**Clone and install:**
+
+```shell
+git clone https://github.com/williamcanin/rawfeed.git; cd rawfeed; npm install
+```
+
+**Manage gem:**
+
+**(1)** - Compile the gem:
+
+```shell
+npm run gem
+```
+
+**(2)** - Publish the gem:
+
+```shell
+npm run publish
+```
+
+For more tasks, see: `bundle exec rake --tasks`
+
+## Donation
+
+Click on the image below to be redirected the donation forms:
+
+<div class="donate">
+  <a href="https://github.com/williamcanin/donations/blob/main/README.md">
+    <img width="160" height="100" src="https://raw.githubusercontent.com/williamcanin/donations/main/svg/donate/donate-hand.svg" alt="Donations"/>
+  </a>
+</div>
+
+See the list of our [CONTRIBUTORS](CONTRIBUTING.md).
+
+# License
+
+The theme is available as open source under the terms of [this License](https://github.com/williamcanin/rawfeed/blob/dev/LICENSE.txt).

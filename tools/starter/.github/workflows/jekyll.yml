@@ -1,0 +1,46 @@
+# .github/workflows/jekyll.yml
+name: GitHub Pages
+
+# Controls when the action will run.
+on:
+  push:
+    branches:
+      - main
+
+# Sets permissions for the GITHUB_TOKEN token
+permissions:
+  contents: write
+
+# A single job that builds and deploys the site
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          bundle install
+          npm install
+
+      - name: Build site
+        run: |
+          npm run build
+
+      - name: Deploy GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site

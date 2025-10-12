@@ -1,0 +1,58 @@
+---
+layout: default
+---
+
+{%- if site.home.terminal.enable and page.url == "/" -%}
+<div class="d-flex justify-content-center align-items-center mb-5 home home-terminal">
+  <div id="terminal" class="terminal">
+    <div class="terminal-header">
+      <div class="terminal-header__btn terminal-header__close" title="close"></div>
+      <div class="terminal-header__btn terminal-header__min" title="minimize"></div>
+      <div class="terminal-header__btn terminal-header__max" title="maximize"></div>
+      <div class="terminal-header__title">{{ site.text.home.terminal.user }}@{{ site.text.home.terminal.hostname }}</div>
+    </div>
+
+    <div id="screen" class="terminal-screen">
+      <div id="home-content" style="display:none !important;">
+        {{ content }}
+      </div>
+
+      <div id="terminal-screen--socials" style="display:none">
+        {% assign links = site.socials.links %}<strong>.&nbsp;</strong>
+        {% for item in links %}
+          <a class="socials-link" title="{{ item.title }}" href="{{ item.url }}" target="_blank">
+            {{ item.title }}
+          </a><strong>&nbsp;.&nbsp;</strong>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="home-text">
+  <div class="container home">
+    <div class="row">
+      <div class="content" style="{%- if page.text_center -%} text-align: center; {%- endif -%}">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+  {%- include socials pos="center" -%}
+</div>
+
+{%- else -%}
+<div class="container home">
+  <div class="row">
+    <div class="content" style="{%- if page.text_center -%} text-align: center; {%- endif -%}">
+      {{ content }}
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+{%- if site.home.terminal.enable == false -%}
+  {%- if page.url == "/" and site.socials.enable -%}
+    {%- include socials pos="center" -%}
+  {%- endif -%}
+{%- endif -%}

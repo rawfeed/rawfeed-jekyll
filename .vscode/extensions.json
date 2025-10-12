@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "sissel.shopify-liquid", // Full Liquid support
+    "shopify.theme-check-vscode", // Liquid/Shopify/Jekyll Linter and Validation
+    "neilding.language-liquid", // Syntax Extra Liquid
+    "shortall.html-liquid-preview", // HTML+Liquid Preview
+    "redhat.vscode-yaml", // Front Matter YAML
+    "yzhang.markdown-all-in-one", // Markdown with shortcuts and preview
+    "davidanson.vscode-markdownlint", // Markdown Linter
+    "esbenp.prettier-vscode", // Consistent formatting
+    "shopify.ruby-lsp", // Ruby Language Server (suporte Ruby)
+    "castwide.solargraph", // Ruby autocompletion, goto definition
+    "syler.sass-indented", // Sass
+    "xabikos.javascriptsnippets", // Code snippets for JavaScript in ES6 syntax
+    "gruntfuggly.todo-tree", // --TODO--
+    "zainchen.json", // Json
+  ]
+}

@@ -1,0 +1,128 @@
+/* by: William C. Canin */
+
+@use "theme" as theme;
+@use "base";
+@use "components";
+@use "layouts";
+@use "includes";
+
+/* TODO: version 0.2.0:
+1 - create other dark and light themes for compilation, and have the option in
+"_config.yml" for example:
+layout:
+     # Available dark themes: default | hacking | grovbox
+     # Available light themes: default | cloud | grovbox
+     theme:
+       light: "cloud"
+       dark: "hacking"
+*/
+:root[data-theme="light"] {
+  --bg-color: #{theme.theme-color(bg, light)};
+  --text-color: #{theme.theme-color(text, light)};
+  --text-muted-color: #{theme.theme-color(text-muted, light)};
+  --primary-color: #{theme.theme-color(primary, light)};
+  --shadow-color: #{theme.theme-color(shadow-color, light)};
+  --code-block-header-color: #{theme.theme-color(code-block-header-color, light)};
+  --code-color: #{theme.theme-color(code-color, light)};
+  --border-color: #{theme.theme-color(border-color, light)};
+  --scrollbar-color: #{theme.theme-color(scrollbar-color, light)};
+  --blockquote-bg-color: #{theme.theme-color(blockquote-bg-color, light)};
+  --footer-border-color: #{theme.theme-color(footer-border-color, light)};
+  --footer-bg-color: #{theme.theme-color(footer-bg-color, light)};
+  --terminal-shadow: #{theme.theme-color(terminal-shadow, light)};
+  --sumary-bg-color: #{theme.theme-color(sumary-bg-color, light)};
+  --checkbox-border-color: #{theme.theme-color(checkbox-border-color, light)};
+  --checkbox-border-color-after: #{theme.theme-color(checkbox-border-color-after, light)};
+  --table-border-color: #{theme.theme-color(table-border-color, light)};
+  --table-color: #{theme.theme-color(table-color, light)};
+  --table-tr-bg-color: #{theme.theme-color(table-tr-bg-color, light)};
+  --table-tr-border-color: #{theme.theme-color(table-tr-border-color, light)};
+  --table-td-border-color: #{theme.theme-color(table-td-border-color, light)};
+  --table-tr-odd-bg-color: #{theme.theme-color(table-tr-odd-bg-color, light)};
+  --table-tr-even-bg-color: #{theme.theme-color(table-tr-even-bg-color, light)};
+  --terminal-color: #{theme.theme-color(terminal-color, light)};
+  --terminal-bg-color: #{theme.theme-color(terminal-bg-color, light)};
+  --terminal-border-color: #{theme.theme-color(terminal-border-color, light)};
+  --terminal-btn-close-bg-color: #{theme.theme-color(terminal-btn-close-bg-color, light)};
+  --terminal-btn-min-bg-color: #{theme.theme-color(terminal-btn-min-bg-color, light)};
+  --terminal-btn-max-bg-color: #{theme.theme-color(terminal-btn-max-bg-color, light)};
+  --terminal-title-color: #{theme.theme-color(terminal-title-color, light)};
+  --terminal-screen-text-shadow: #{theme.theme-color(terminal-screen-text-shadow, light)};
+  --terminal-screen-after-bg-color: #{theme.theme-color(terminal-screen-after-bg-color, light)};
+  --terminal-header-border-bottom-color: #{theme.theme-color(terminal-header-border-bottom-color, light)};
+  --terminal-prompt-text-color: #{theme.theme-color(terminal-prompt-text-color, light)};
+  --terminal-screen-text-transform: #{theme.theme-color(terminal-screen-text-transform, light)};
+  --terminal-cursor-color: #{theme.theme-color(terminal-cursor-color, light)};
+  --terminal-screen-link-color: #{theme.theme-color(terminal-screen-link-color, light)};
+  --details-bg-color: #{theme.theme-color(details-bg-color, light)};
+  --video-border-color: #{theme.theme-color(video-border-color, light)};
+  --chart-bg-color: #{theme.theme-color(chart-bg-color, light)};
+  --chart-box-shadow-color: #{theme.theme-color(chart-box-shadow-color, light)};
+  --tabs-bg-color: #{theme.theme-color(tabs-bg-color, light)};
+  --tabs-color: #{theme.theme-color(tabs-color, light)};
+  --tabs-border-color: #{theme.theme-color(tabs-border-color, light)};
+  --tabs-nav-border-color: #{theme.theme-color(tabs-nav-border-color, light)};
+  --tab-btn-color: #{theme.theme-color(tab-btn-color, light)};
+  --tab-btn-color-hover: #{theme.theme-color(tab-btn-color-hover, light)};
+  --tab-btn-color-active: #{theme.theme-color(tab-btn-color-active, light)};
+  --resume-bg-color: #{theme.theme-color(resume-bg-color, light)};
+  --resume-title-text-color: #{theme.theme-color(resume-title-text-color, light)};
+  --resume-content-text-color: #{theme.theme-color(resume-content-text-color, light)};
+  --resume-text-muted-color: #{theme.theme-color(resume-text-muted-color, light)};
+  --resume-border-color: #{theme.theme-color(resume-border-color, light)};
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #{theme.theme-color(bg, dark)};
+  --text-color: #{theme.theme-color(text, dark)};
+  --text-muted-color: #{theme.theme-color(text-muted, dark)};
+  --primary-color: #{theme.theme-color(primary, dark)};
+  --shadow-color: #{theme.theme-color(shadow-color, dark)};
+  --code-color: #{theme.theme-color(code-color, dark)};
+  --code-block-header-color: #{theme.theme-color(code-block-header-color, dark)};
+  --border-color: #{theme.theme-color(border-color, dark)};
+  --scrollbar-color: #{theme.theme-color(scrollbar-color, dark)};
+  --blockquote-bg-color: #{theme.theme-color(blockquote-bg-color, dark)};
+  --footer-border-color: #{theme.theme-color(footer-border-color, dark)};
+  --footer-bg-color: #{theme.theme-color(footer-bg-color, dark)};
+  --terminal-shadow: #{theme.theme-color(terminal-shadow, dark)};
+  --sumary-bg-color: #{theme.theme-color(sumary-bg-color, dark)};
+  --checkbox-border-color: #{theme.theme-color(checkbox-border-color, dark)};
+  --checkbox-border-color-after: #{theme.theme-color(checkbox-border-color-after, dark)};
+  --table-color: #{theme.theme-color(table-color, dark)};
+  --table-tr-bg-color: #{theme.theme-color(table-tr-bg-color, dark)};
+  --table-tr-border-color: #{theme.theme-color(table-tr-border-color, dark)};
+  --table-td-border-color: #{theme.theme-color(table-td-border-color, dark)};
+  --table-tr-odd-bg-color: #{theme.theme-color(table-tr-odd-bg-color, dark)};
+  --table-tr-even-bg-color: #{theme.theme-color(table-tr-even-bg-color, dark)};
+  --terminal-color: #{theme.theme-color(terminal-color, dark)};
+  --terminal-bg-color: #{theme.theme-color(terminal-bg-color, dark)};
+  --terminal-border-color: #{theme.theme-color(terminal-border-color, dark)};
+  --terminal-btn-close-bg-color: #{theme.theme-color(terminal-btn-close-bg-color, dark)};
+  --terminal-btn-min-bg-color: #{theme.theme-color(terminal-btn-min-bg-color, dark)};
+  --terminal-btn-max-bg-color: #{theme.theme-color(terminal-btn-max-bg-color, dark)};
+  --terminal-title-color: #{theme.theme-color(terminal-title-color, dark)};
+  --terminal-screen-text-shadow: #{theme.theme-color(terminal-screen-text-shadow, dark)};
+  --terminal-screen-after-bg-color: #{theme.theme-color(terminal-screen-after-bg-color, dark)};
+  --terminal-header-border-bottom-color: #{theme.theme-color(terminal-header-border-bottom-color, dark)};
+  --terminal-prompt-text-color: #{theme.theme-color(terminal-prompt-text-color, dark)};
+  --terminal-screen-text-transform: #{theme.theme-color(terminal-screen-text-transform, dark)};
+  --terminal-cursor-color: #{theme.theme-color(terminal-cursor-color, dark)};
+  --terminal-screen-link-color: #{theme.theme-color(terminal-screen-link-color, dark)};
+  --details-bg-color: #{theme.theme-color(details-bg-color, dark)};
+  --video-border-color: #{theme.theme-color(video-border-color, dark)};
+  --chart-bg-color: #{theme.theme-color(chart-bg-color, dark)};
+  --chart-box-shadow-color: #{theme.theme-color(chart-box-shadow-color, dark)};
+  --tabs-bg-color: #{theme.theme-color(tabs-bg-color, dark)};
+  --tabs-color: #{theme.theme-color(tabs-color, dark)};
+  --tabs-border-color: #{theme.theme-color(tabs-border-color, dark)};
+  --tabs-nav-border-color: #{theme.theme-color(tabs-nav-border-color, dark)};
+  --tab-btn-color: #{theme.theme-color(tab-btn-color, dark)};
+  --tab-btn-color-hover: #{theme.theme-color(tab-btn-color-hover, dark)};
+  --tab-btn-color-active: #{theme.theme-color(tab-btn-color-active, dark)};
+  --resume-bg-color: #{theme.theme-color(resume-bg-color, dark)};
+  --resume-title-text-color: #{theme.theme-color(resume-title-text-color, dark)};
+  --resume-content-text-color: #{theme.theme-color(resume-content-text-color, dark)};
+  --resume-text-muted-color: #{theme.theme-color(resume-text-muted-color, dark)};
+  --resume-border-color: #{theme.theme-color(resume-border-color, dark)};
+}

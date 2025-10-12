@@ -1,0 +1,159 @@
+{
+  // Jekyll
+  "Jekyll Post Front Matter": {
+    "prefix": "jekyll-post",
+    "body": [
+      "---",
+      "layout: post",
+      "title: \"$1\"",
+      "description: \"$2\"",
+      "author: \"$3\"",
+      "date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND} -0300",
+      "update_date: $4",
+      "published: false",
+      "comments: false",
+      "tags: [$5]",
+      "---",
+      "",
+      "$0"
+    ],
+    "description": "Front matter template for Jekyll posts"
+  },
+
+  "Jekyll Include": {
+    "prefix": "jekyll-include",
+    "body": [
+      "{%- include $1.html -%}"
+    ],
+    "description": "Include file from _includes directory"
+  },
+
+  "Jekyll Loop": {
+    "prefix": "jekyll-loop",
+    "body": [
+      "{%- for item in $1 -%}",
+      "$2",
+      "{%- endfor -%}"
+    ],
+    "description": "Default loop"
+  },
+    "Jekyll Loop Posts": {
+    "prefix": "jekyll-loop-posts",
+    "body": [
+      "{%- for post in site.posts -%}",
+      "  <article>",
+      "    <h2><a href=\"{{ post.url }}\">{{ post.title }}</a></h2>",
+      "    <time datetime=\"{{ post.date | date_to_xmlschema }}\">{{ post.date | date: \"%d %b %Y\" }}</time>",
+      "  </article>",
+      "{%- endfor -%}"
+    ],
+    "description": "Default loop to list posts"
+  },
+
+  "Jekyll If Condition": {
+    "prefix": "jekyll-if",
+    "body": [
+      "{%- if $1 -%}",
+      "  $2",
+      "{%- endif -%}"
+    ],
+    "description": "Simple condition in Liquid"
+  },
+
+  "Jekyll Variable": {
+    "prefix": "jekyll-var",
+    "body": [
+      "{{ $1 }}"
+    ],
+    "description": "Liquid variable interpolation"
+  },
+
+  "Jekyll Layout Base": {
+    "prefix": "jekyll-layout",
+    "body": [
+      "---",
+      "layout: $1",
+      "---",
+      "",
+      "<div class=\"$2\">",
+      "  $3",
+      "</div>"
+    ],
+    "description": "HTML + Liquid base layout structure"
+  },
+
+  // Ruby
+  "Jekyll Plugin Basic": {
+    "prefix": "jekyll-plugin",
+    "body": [
+      "# _plugins/${1:my_plugin}.rb",
+      "",
+      "module Jekyll",
+      "  class ${2:MyPlugin} < Generator",
+      "    safe true",
+      "    priority :normal",
+      "",
+      "    def generate(site)",
+      "      # Your code here",
+      "      puts 'Plugin ${2:MyPlugin} executed!'",
+      "    end",
+      "  end",
+      "end"
+    ],
+    "description": "Basic Jekyll Plugin in Ruby"
+  },
+
+  "Jekyll Generator Plugin": {
+    "prefix": "jekyll-generator",
+    "body": [
+      "# _plugins/${1:generator}.rb",
+      "",
+      "module Jekyll",
+      "  class ${2:CustomGenerator} < Generator",
+      "    priority :low",
+      "    def generate(site)",
+      "      site.pages.each do |page|",
+      "        # Manipulate pages",
+      "      end",
+      "    end",
+      "  end",
+      "end"
+    ],
+    "description": "Jekyll Custom Generator"
+  },
+
+  "Jekyll Hook": {
+    "prefix": "jekyll-hook",
+    "body": [
+      "# _plugins/hooks.rb",
+      "",
+      "Jekyll::Hooks.register :posts, :post_write do |post|",
+      "  puts \"Generated post: #{post.path}\"",
+      "end"
+    ],
+    "description": "Simple hook executed after generating posts"
+  },
+
+  "Jekyll Tag Plugin": {
+    "prefix": "jekyll-tag",
+    "body": [
+      "# _plugins/${1:custom_tag}.rb",
+      "",
+      "module Jekyll",
+      "  class ${2:CustomTag} < Liquid::Tag",
+      "    def initialize(tag_name, text, tokens)",
+      "      super",
+      "      @text = text.strip",
+      "    end",
+      "",
+      "    def render(context)",
+      "      \"<strong>#{@text}</strong>\"",
+      "    end",
+      "  end",
+      "end",
+      "",
+      "Liquid::Template.register_tag('${3:custom}', Jekyll::${2:CustomTag})"
+    ],
+    "description": "Create a new tag plugin in Liquid/Ruby"
+  }
+}

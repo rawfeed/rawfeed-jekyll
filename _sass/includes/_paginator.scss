@@ -1,0 +1,22 @@
+.blog-pagination {
+  margin-top: 50px;
+  .page-link {
+    border-radius: 0px;
+    border: none;
+    background-color: transparent;
+    color: var(--text-color);
+    &:hover, &:focus, &:active {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+  &__newer, &__older {
+    color: var(--primary-color) !important;
+    &:hover {
+      color: var(--text-color) !important;
+    }
+  }
+  &__counter {
+    font-weight: bold;
+  }
+}

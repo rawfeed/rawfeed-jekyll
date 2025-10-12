@@ -1,0 +1,143 @@
+{%- include layout/data.liquid -%}
+
+{%- assign index = site.pages | where: "path", "index.md" | first -%}
+
+{%- for item in site.defaults -%}
+  {%- if item.scope.path == "_posts" -%}
+    {%- assign blog_page = item.values.published -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="modal fade" id="avatarModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-transparent border-0 shadow-none">
+      <div class="modal-body d-flex justify-content-center">
+        <img id="modalAvatar" class="avatar-img" src="" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="container header">
+  <div class="header-wrapper">
+    <div class="row ">
+      <div class="col-sm-2 d-flex flex-column justify-content-end">
+        <div class="container">
+          <div class="row">
+            {%- if index.layout == "blog" -%}
+              <span>[&nbsp;<a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="/">{{ site.text.menu.blog | default: "blog" | downcase }}</a>&nbsp;]</span>
+            {%- else -%}
+              <span>[&nbsp;<a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="/">{{ site.text.menu.home | default: "home" | downcase }}</a>&nbsp;]</span>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8 d-flex flex-column justify-content-end">
+        <div class="container">
+        <div class="row">
+          <span class="title">{{ site.title | default: theme_name }}</span>
+        </div>
+        <div class="row">
+          <small class="description">
+            {{ site.description | default: "A raw Jekyll theme for minimalists" }}
+          </small>
+        </div>
+        </div>
+      </div>
+      <div class="col-sm-2 d-flex justify-content-end avatar">
+        {%- assign images_ = site.static_files | map: "path" -%}
+        {%- assign avatar_path_light = "/assets/images/" | append: site.avatar.image.front.light -%}
+        {%- assign avatar_path_dark = "/assets/images/" | append: site.avatar.image.front.dark -%}
+        {%- assign avatar_path_back = "/assets/images/" | append: site.avatar.image.back -%}
+
+        {%- if images_ contains avatar_path_light and images_ contains avatar_path_dark and images_ contains avatar_path_back -%}
+          <div class="avatar-wrapper">
+
+            <div class="avatar-flipper light-theme {% if site.avatar.open %}avatar-flipper__open-true{% endif %}{% if site.avatar.flip %} can-flip{% endif %}">
+              <div class="avatar-card">
+                <div class="avatar-front">
+                  <img id="avatarImgLight" class="avatar-img" src="{{ avatar_path_light | relative_url }}" alt="{{ site.title }}" width="70">
+                </div>
+                <div class="avatar-back">
+                  <img class="avatar-img" src="{{ avatar_path_back | relative_url }}" alt="{{ site.title }} - Verso" width="70">
+                </div>
+              </div>
+            </div>
+
+            <div class="avatar-flipper dark-theme {% if site.avatar.open %} avatar-flipper__open-true{% endif %}{% if site.avatar.flip %} can-flip{% endif %}">
+              <div class="avatar-card">
+                <div class="avatar-front">
+                  <img id="avatarImgDark" class="avatar-img" src="{{ avatar_path_dark | relative_url }}" alt="{{ site.title }}" width="70">
+                </div>
+                <div class="avatar-back">
+                  <img class="avatar-img" src="{{ avatar_path_back | relative_url }}" alt="{{ site.title }} - Verso" width="70">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="menu-separator"></div>
+
+    <div class="row">
+      <div class="col-sm d-flex justify-content-center column-bottom">
+      {%- if index.layout == "blog" -%}
+        <span class="blog-menu">menu&nbsp;»
+          &nbsp;{%- if site.blog.search.enable -%}<a id="blog-search__btn" class="blog-menu__link" href="/blog/?search=open">{{ site.text.menu.search | default: "search" }}</a><strong>&nbsp;.&nbsp;</strong>{%- endif -%}<a class="blog-menu__link{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="/blog/tags/">{{ site.text.menu.tags | default: "tags" }}</a><strong>&nbsp;.&nbsp;</strong>
+        </span>
+        {% assign sorted_pages = site.pages | sort: 'order' %}
+          {%- for item in sorted_pages -%}
+            {%- if item.path contains '_pages/' and item.published != false -%}
+              {%- unless item.url contains "/tags/" or item.url contains "404.html" -%}
+                <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title | downcase }}</a><strong>&nbsp;.&nbsp;</strong>
+              {%- endunless -%}
+            {%- endif -%}
+          {%- endfor -%}
+          <a class="blog-menu__link" href="/feed.xml">{{ site.text.menu.feed | default: "feed" }}</a><strong>&nbsp;.&nbsp;</strong>
+      {%- else index.layout == "home" -%}
+        {%- if page.url contains "/blog/" -%}
+          <span class="blog-menu">{{ site.text.menu.blog }}&nbsp;»
+            <a class="blog-menu__link{% if page.url == "/blog/" or page.url == "/blog/index.html" or page.url contains "/blog/page/" %} menu-active{% endif %}" href="/blog/">posts</a><strong>&nbsp;.&nbsp;</strong>{%- if site.blog.search.enable -%}<a id="blog-search__btn" class="blog-menu__link" href="/blog/?search=open">{{ site.text.menu.search | default: "search" }}</a><strong>&nbsp;.&nbsp;</strong>{%- endif -%}<a class="blog-menu__link{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="/blog/tags/">{{ site.text.menu.tags | default: "tags" }}</a><strong>&nbsp;.&nbsp;</strong><a class="blog-menu__link" href="/feed.xml">{{ site.text.menu.feed | default: "feed" }}</a><strong>&nbsp;.&nbsp;</strong>
+          </span>
+        {%- else -%}
+          {%- assign published_pages = site.pages | where_exp:"p","p.path contains '_pages/' and p.published" -%}
+          {%- if published_pages.size > 0 -%}
+            <span class="blog-menu">menu&nbsp;»</span>&nbsp;
+          {%- endif -%}
+          {%- if site.pagination.enabled == true -%}
+            {%- if blog_page -%}
+              <a href="/blog/">{{ site.text.menu.blog }}</a><strong>&nbsp;.&nbsp;</strong>
+            {%- endif -%}
+            {% assign sorted_pages = site.pages | sort: 'order' %}
+            {%- for item in sorted_pages -%}
+              {%- if item.path contains '_pages/' -%}
+                {%- unless item.url contains "blog" or item.url contains "404.html" -%}
+                  <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title | downcase }}</a><strong>&nbsp;.&nbsp;</strong>
+                {%- endunless -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- else -%}
+            {% assign sorted_pages = site.pages | sort: 'order' %}
+            {%- for item in sorted_pages -%}
+              {%- if item.path contains '_pages/' and item.published != false -%}
+                {%- unless item.url contains "/tags/" or item.url contains "404.html" -%}
+                  <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title | downcase }}</a><strong>&nbsp;.&nbsp;</strong>
+                {%- endunless -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+      </div>
+    </div>
+
+    <div class="row justify-content-end">
+      <div class="col-sm-2 d-flex justify-content-end">
+        <span id="toggle-theme"><i class="fa-solid fa-moon"></i></span>
+      </div>
+    </div>
+  </div>
+</header>

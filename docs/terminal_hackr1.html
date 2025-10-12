@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Terminal Hackr — Retro</title>
+  <style>
+    :root{
+      --bg:#050504; /* quase preto */
+      --glass: rgba(255,255,255,0.03);
+      --scan: rgba(0,255,0,0.03);
+      --text:#7cff6b; /* verde hacker */
+      --muted:#4b8f3e;
+      --accent:#00ff6a;
+      --shadow: 0 10px 30px rgba(0,0,0,0.7);
+      --mono: 'SFMono-Regular', Menlo, Monaco, 'Courier New', monospace;
+    }
+
+    /* Reset simples */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--mono);
+      background: radial-gradient(1200px 800px at 10% 10%, #081008 0%, var(--bg) 30%);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    /* Janela do terminal */
+    .terminal{
+      width:min(960px,96%);
+      max-width:1100px;
+      border-radius:10px;
+      overflow:hidden;
+      background:linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35));
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+
+    /* Header com botões estilo mac (mas em verde) */
+    .term-header{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:12px 16px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(2px);
+    }
+
+    .btn{
+      width:12px;height:12px;border-radius:50%;
+      box-shadow:0 0 0 2px rgba(0,0,0,0.5) inset;
+    }
+    .btn.close{background: #0bff55}
+    .btn.min{background: #0b9e3a}
+    .btn.max{background: #0b6b2a}
+
+    .title{flex:1;text-align:center;font-size:13px;color:var(--muted);}
+
+    .screen{
+      padding:20px 22px;
+      min-height:420px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      position:relative;
+      background-image:
+        linear-gradient(transparent 92%, rgba(0,0,0,0.05) 92%),
+        linear-gradient(90deg, transparent 97%, rgba(0,255,0,0.02) 97%);
+      background-size:100% 3px, 3px 100%;
+    }
+
+    /* histórico de saída */
+    .output{
+      flex:1;overflow:auto;padding-right:8px;line-height:1.5;white-space:pre-wrap;font-size:15px;
+    }
+
+    /* prompt & input */
+    .cmdline{display:flex;gap:10px;align-items:flex-start}
+    .prompt{min-width:140px;color:var(--muted);font-size:14px}
+    .input-wrap{flex:1;position:relative}
+    .input{
+      width:100%;border:0;background:transparent;font-family:var(--mono);font-size:15px;color:var(--text);
+      outline:none;padding:2px 0; caret-color:var(--accent);
+    }
+
+    /* cursor animado */
+    .cursor{
+      display:inline-block; width:10px; height:18px; margin-left:4px; vertical-align:bottom;
+      background:var(--text);
+      animation:blink 1s steps(2,end) infinite;
+      opacity:0.85;border-radius:2px;
+    }
+    @keyframes blink{50%{opacity:0}}
+
+    /* efeitos de scanline e ruído */
+    .terminal::before{
+      content:'';position:absolute;inset:0;pointer-events:none;
+      background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.08));
+      mix-blend-mode:overlay;opacity:0.5;
+    }
+
+    .scanlines{
+      position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(180deg, rgba(0,255,0,0.01) 0 1px, transparent 1px 3px);
+      mix-blend-mode:overlay;opacity:0.45;z-index:5
+    }
+
+    /* leve efeito de tremor - como se fosse tubo velho */
+    @keyframes flicker {
+      0%{transform:translateY(0px)}
+      20%{transform:translateY(-0.6px)}
+      40%{transform:translateY(0.6px)}
+      60%{transform:translateY(-0.4px)}
+      80%{transform:translateY(0.3px)}
+      100%{transform:translateY(0px)}
+    }
+    .screen{animation:flicker 6s infinite}
+
+    /* estilo para o 'hackr' look */
+    .tag{color:var(--muted)}
+    .success{color:var(--accent)}
+    .error{color:#ff5b5b}
+
+    /* scrollbar estilizada sutil */\    
+    .output::-webkit-scrollbar{width:8px}
+    .output::-webkit-scrollbar-thumb{background:rgba(0,255,0,0.08);border-radius:8px}
+
+    /* responsivo */
+    @media (max-width:520px){
+      .prompt{min-width:90px;font-size:13px}
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal" role="application" aria-label="Terminal retro">
+    <div class="term-header">
+      <div class="btn close" title="close"></div>
+      <div class="btn min" title="minimize"></div>
+      <div class="btn max" title="maximize"></div>
+      <div class="title">user@hackr — retro-shell</div>
+    </div>
+
+    <div class="screen">
+      <div class="output" id="output" aria-live="polite"></div>
+
+      <div class="cmdline">
+        <div class="prompt">guest@hackr:~$</div>
+        <div class="input-wrap">
+          <div contenteditable="true" id="cli" class="input" spellcheck="false" aria-label="Prompt de comando"></div>
+        </div>
+        <div class="cursor" id="cursor"></div>
+      </div>
+
+      <div class="scanlines"></div>
+    </div>
+  </div>
+
+  <script>
+    // terminal simples com history e comandos básicos
+    const cli = document.getElementById('cli');
+    const output = document.getElementById('output');
+    const cursor = document.getElementById('cursor');
+
+    const commands = {
+      help: 'comandos: help, echo, date, clear, about',
+      about: 'Terminal Hackr — estilo antigo. Criado com HTML/CSS/JS.',
+    };
+
+    // inserir uma linha no histórico
+    function writeLine(text, cls=''){
+      const el = document.createElement('div');
+      if(cls) el.className = cls;
+      el.textContent = text;
+      output.appendChild(el);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    // welcome
+    writeLine('Bem-vindo ao terminal — digite "help" para começar.');
+
+    // foco no prompt ao clicar na tela
+    document.querySelector('.screen').addEventListener('click', ()=> cli.focus());
+
+    // fake cursor position animation (move com foco)
+    cli.addEventListener('focus', ()=> cursor.style.opacity = 1);
+    cli.addEventListener('blur', ()=> cursor.style.opacity = 0.25);
+
+    // handle enter
+    cli.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        const raw = cli.textContent.trim();
+        process(raw);
+        cli.textContent = '';
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown'){
+        // poderia navegar no history
+        e.preventDefault();
+      }
+    });
+
+    function process(input){
+      if(!input){ writeLine('guest@hackr:~$'); return; }
+      writeLine('guest@hackr:~$ ' + input, 'tag');
+
+      const [cmd, ...rest] = input.split(/\s+/);
+      const arg = rest.join(' ');
+
+      switch(cmd){
+        case 'help':
+          writeLine(commands.help,'tag');
+          break;
+        case 'date':
+          writeLine(new Date().toString(),'tag');
+          break;
+        case 'echo':
+          writeLine(arg || '', 'tag');
+          break;
+        case 'clear':
+          output.innerHTML = '';
+          break;
+        case 'about':
+          writeLine(commands.about,'tag');
+          break;
+        default:
+          if(cmd) writeLine(cmd + ': comando não encontrado.','error');
+      }
+    }
+
+    // cursor blink follow input width
+    const obs = new MutationObserver(()=>{
+      const rect = cli.getBoundingClientRect();
+      // ajusta cursor vertical
+      const screenRect = document.querySelector('.screen').getBoundingClientRect();
+      // small tweak: keep cursor aligned with the input
+      cursor.style.transform = 'translateY(0)';
+    });
+    obs.observe(cli, {childList:true,subtree:true,characterData:true});
+
+    // acessibilidade: foco inicial
+    cli.setAttribute('tabindex','0');
+    setTimeout(()=>cli.focus(), 400);
+  </script>
+</body>
+</html>

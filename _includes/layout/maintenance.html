@@ -1,0 +1,30 @@
+{% include layout/data.liquid %}
+
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+  {%- include head.html -%}
+  <body>
+    <div class="mt-4 maintenance">
+      <div class="container">
+        {%- if site.maintenance.gif != "" -%}
+        <div class="row">
+          <div class="col-sm text-center">
+            {%- if site.maintenance.gif == "local" -%}
+              <img class="maintenance-gif" src="{{ '/assets/gifs/under_maintenance.gif' | relative_url }}" alt="under maintenance">
+            {%- else -%}
+              <img class="maintenance-gif" src="{{ site.maintenance.gif }}" alt="under maintenance">
+            {%- endif -%}
+          </div>
+        </div>
+        {%- endif -%}
+        <div class="row mt-5 text-center">
+          <h1 class="maintenance-title">[&nbsp;{{ site.maintenance.title }}&nbsp;]</h1>
+        </div>
+        <div class="row text-center">
+          <h3 class="maintenance-subtitle">{{ site.maintenance.subtitle }}</h3>
+        </div>
+      </div>
+    </div>
+    {%- include footer.html -%}
+  </body>
+</html>

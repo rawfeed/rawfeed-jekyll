@@ -1,0 +1,19 @@
+.home {
+  &-terminal {
+    display: block;
+  }
+
+  &-text {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    &-terminal {
+      display: none !important;
+    }
+
+    &-text {
+      display: block !important;
+    }
+  }
+}

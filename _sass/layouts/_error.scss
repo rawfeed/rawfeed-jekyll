@@ -1,0 +1,18 @@
+@use "../components/index";
+
+.error {
+  &-image {
+    @extend %gif_border;
+    margin-bottom: 50px;
+  }
+
+  &-title {
+    color: red;
+    font-weight: bold;
+  }
+
+  &-description {
+    font-size: 1.3rem;
+    opacity: .6;
+  }
+}

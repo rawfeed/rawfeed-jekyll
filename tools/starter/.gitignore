@@ -1,0 +1,12 @@
+# by rawfeed theme
+
+_site/
+.bundle-cache/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata/
+node_modules/
+
+~*
+*.Identifier
+.bak

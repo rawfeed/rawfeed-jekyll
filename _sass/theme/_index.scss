@@ -1,0 +1,13 @@
+@use "sass:map";
+@use "light" as light;
+@use "dark" as dark;
+
+@function theme-color($key, $mode: light) {
+  @if $mode == light {
+    @return map.get(light.$theme-colors, $key);
+  }
+  @else if $mode == dark {
+    @return map.get(dark.$theme-colors, $key);
+  }
+  @return null;
+}

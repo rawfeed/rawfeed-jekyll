@@ -1,0 +1,22 @@
+<div class="container socials">
+  <div class="row">
+
+    {%- assign pos = "justify-content-center" -%}
+
+    {%- if include.pos == "left" -%}
+      {%- assign pos = "justify-content-start" -%}
+    {%- elsif include.pos == "right" -%}
+      {%- assign pos = "justify-content-end" -%}
+    {%- endif -%}
+
+    <div class="col-sm d-flex {{pos}}"><strong>.&nbsp;</strong>
+      {% assign links = site.socials.links %}
+      {% for item in links %}
+        <a class="socials-link" title="{{ item.title }}" href="{{ item.url }}" target="_blank">
+          {{ item.title }}
+        </a><strong>&nbsp;.&nbsp;</strong>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>

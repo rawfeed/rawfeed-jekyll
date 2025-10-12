@@ -1,0 +1,24 @@
+%draft-badge {
+  font-size: .8rem;
+  background-color: #fcff3b;
+  color: #000000;
+  font-weight: bold;
+  padding: 3px 6px 0px 12px !important;
+  border-radius: 0.1em;
+  margin-left: 5px;
+  position: relative;
+  // display: inline-block;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 6px solid #000000;
+  }
+}

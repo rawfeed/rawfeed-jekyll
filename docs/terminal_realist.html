@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hackr Terminal Realista</title>
+<style>
+body {
+  background: #000;
+  color: #33ff33;
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.terminal {
+  background: #111;
+  border: 2px solid #33ff33;
+  border-radius: 8px;
+  width: 700px;
+  height: 450px;
+  padding: 10px;
+  overflow-y: auto;
+  box-shadow: 0 0 20px #33ff33;
+  display: flex;
+  flex-direction: column;
+}
+.line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+}
+.prompt {
+  margin-right: 5px;
+}
+.input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #33ff33;
+  flex: 1;
+  font-family: monospace;
+  font-size: 1rem;
+  caret-color: #33ff33;
+}
+.cursor {
+  width: 10px;
+  height: 1.2em;
+  background: #33ff33;
+  animation: blink 1s step-start infinite;
+  margin-left: 2px;
+}
+@keyframes blink {
+  50% { background: transparent; }
+}
+</style>
+</head>
+<body>
+<div class="terminal" id="terminal">
+  <!-- Linhas serão adicionadas dinamicamente -->
+</div>
+<script>
+const terminal = document.getElementById('terminal');
+
+function createInputLine() {
+  const line = document.createElement('div');
+  line.className = 'line';
+
+  const prompt = document.createElement('span');
+  prompt.className = 'prompt';
+  prompt.textContent = 'user@hackr:~$';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'input';
+  input.placeholder = 'Digite um comando...';
+  input.spellcheck = false;
+  input.autocomplete = 'off';
+  input.autocorrect = 'off';
+  input.autocapitalize = 'off';
+
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor';
+
+  line.appendChild(prompt);
+  line.appendChild(input);
+  line.appendChild(cursor);
+  terminal.appendChild(line);
+
+  input.focus();
+
+  // Scroll automático
+  terminal.scrollTop = terminal.scrollHeight;
+
+  input.addEventListener('keydown', e => {
+    if(e.key === 'Enter') {
+      e.preventDefault();
+      const cmd = input.value.trim();
+      if(cmd) {
+        // Remover input e cursor da linha atual
+        line.removeChild(input);
+        line.removeChild(cursor);
+
+        // Exibir comando digitado
+        const cmdText = document.createElement('span');
+        cmdText.textContent = cmd;
+        line.appendChild(cmdText);
+
+        // Processar comando
+        processCommand(cmd);
+      }
+      createInputLine();
+    }
+  });
+}
+
+// Processa comandos simples
+function processCommand(cmd) {
+  switch(cmd) {
+    case 'help':
+      writeLine('Comandos: help, echo, date, clear, about');
+      break;
+    case 'date':
+      writeLine(new Date().toString());
+      break;
+    case 'about':
+      writeLine('Terminal Hackr Realista. Criado com HTML/CSS/JS.');
+      break;
+    case 'clear':
+      terminal.innerHTML = '';
+      break;
+    default:
+      if(cmd) writeLine(`${cmd}: comando não encontrado`);
+  }
+}
+
+function writeLine(text) {
+  const line = document.createElement('div');
+  line.className = 'line';
+  line.textContent = text;
+  terminal.appendChild(line);
+  terminal.scrollTop = terminal.scrollHeight;
+}
+
+// Inicializa o terminal com a primeira linha de input
+createInputLine();
+</script>
+</body>
+</html>

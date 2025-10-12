@@ -1,0 +1,260 @@
+{%- assign resume = site.data.resume -%}
+
+{%- if site.maintenance.enable -%}
+  {%- include layout/maintenance.html -%}
+{%- else -%}
+<!DOCTYPE html>
+<html id="top" lang="{{ site.lang | default: 'en-US' }}" data-theme="light">
+  {%- include layout/head.html -%}
+  <body>
+    <div class="default" style="max-width: {{ site.layout.width | default: '780px' }} !important;">
+      {%- include layout/header.html -%}
+    </div>
+    {%- if resume.full_name == "John A. Doe" -%}
+    <div class="container-fluid">
+      <div class="row">
+        <p style="text-align: center;
+        background-color: yellow;
+        color: black;
+        padding: 10px;
+        max-width: 780px;
+        margin: 0 auto;
+        margin-bottom: 20px">
+          WARNING: This is sample data. Edit the <strong>_data/resume.yml</strong> file with your information.
+        </p>
+      </div>
+    </div>
+    {%- endif -%}
+      <main class="resume">
+        {%- if resume.buttons.print.enable -%}
+          <div class="container-fluid resume-header">
+            <div class="row d-flex justify-content-end">
+              <button id="btn-print" class="resume-header__btn-print">{{ resume.buttons.print.text }}</button>
+            </div>
+          </div>
+        {%- endif -%}
+        <div id="print-this" class="container-fluid resume-content">
+          <div class="row resume-content__name-wrap">
+            <div class="col-sm"><h1 class="resume-content__name">{{ resume.full_name }}</h1></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 resume-content__sidebar">
+              {%- if resume.photo.space -%}
+                <div class="photo"></div>
+              {%- endif -%}
+              {%- if resume.sidebar.contact.enable -%}
+              <section class="section contact">
+                <h2 class="section-title">{{ resume.sidebar.contact.caption }}</h2>
+                {%- for item in resume.sidebar.contact.items -%}
+                  <div class="section-item">
+                    {%- if item.key -%}<span class="section-item__title">{{ item.key }}:&nbsp;</span>{%- endif -%}
+                    {%- if item.link -%}
+                      <a href="{{ item.link }}" target="_blank">{{ item.value }}</a>
+                    {%- else -%}
+                      {{ item.value }}
+                    {%- endif -%}
+                  </div>
+                {%- endfor -%}
+              </section>
+              {%- endif -%}
+              {%- if resume.sidebar.personal_details.enable -%}
+              <section class="section personal_details">
+                <h2 class="section-title">{{ resume.sidebar.personal_details.caption }}</h2>
+                {%- for item in resume.sidebar.personal_details.items -%}
+                  <div class="section-item">
+                    {%- if item.title -%}<span class="section-item__title">{{ item.title }}:&nbsp;</span>{%- endif -%}
+                    {{ item.value }}
+                  </div>
+                {%- endfor -%}
+              </section>
+              {%- endif -%}
+              {%- if resume.sidebar.languages.enable -%}
+              <section class="section languages">
+                <h2 class="section-title">{{ resume.sidebar.languages.caption }}</h2>
+                {%- for lang in resume.sidebar.languages.names -%}
+                    <div class="section-item">-&nbsp;{{ lang.value }}</div>
+                {%- endfor -%}
+              </section>
+              {%- endif -%}
+              {%- if resume.sidebar.education.enable -%}
+              <section class="section education">
+                  <h2 class="section-title">{{ resume.sidebar.education.caption }}</h2>
+                  {%- for education in resume.sidebar.education.section -%}
+                    <div class="section-item">
+                      <div class="item degree"><span class="marker">•&nbsp;</span>{{ education.degree }}</div>
+                      {%- if education.link -%}
+                        <div class="item link">-&nbsp;<a href="{{ education.link }}" target="_blank">{{ education.university }}</a></div>
+                      {%- else -%}
+                        <div class="item university">-&nbsp;{{ education.university }}</div>
+                      {%- endif -%}
+                      <span class="item time">-&nbsp;{{ education.time }}</span>
+                    </div>
+                  {%- endfor -%}
+              </section>
+              {%- endif -%}
+              {%- if resume.sidebar.skills.enable -%}
+              <section class="section skills">
+                  <h2 class="section-title">{{ resume.sidebar.skills.caption }}</h2>
+                  {%- for item in resume.sidebar.skills.section -%}
+                    <div class="section-item">
+                      <div class="group"><span class="marker">•&nbsp;</span>{{ item.group }}:</div>
+                      <div class="tools">
+                      {%- for tool in item.tools -%}
+                        <span class="tool">{{ tool }}{% unless forloop.last %},{% endunless %}</span>
+                      {%- endfor -%}
+                      </div>
+                    </div>
+                  {%- endfor -%}
+              </section>
+              {%- endif -%}
+            </div>
+            <div class="col-sm-8 resume-content__body">
+              {%- if resume.body.sumary.enable -%}
+              <section class="row section sumary">
+                <h2 class="section-title">{{ resume.body.sumary.caption }}</h2>
+                <div class="section-content">{{ resume.body.sumary.content | markdownify }}</div>
+              </section>
+              {%- endif -%}
+              {%- if resume.body.experience.enable -%}
+              <section class="row section experience">
+                <h2 class="section-title">{{ resume.body.experience.caption }}</h2>
+                {%- for exp in resume.body.experience.section -%}
+                  <div class="section-item">
+                    <div class="row">
+                      <div class="role-company">
+                          <span class="marker">•&nbsp;</span><span class="role">{{ exp.role }}</span>&nbsp;—&nbsp;
+                          {%- if exp.link -%}
+                            <a class="company" href="{{ exp.link }}" target="_blank">{{ exp.company }}</a>&nbsp;
+                          {%- else -%}
+                            <span class="company">{{ exp.company }}</span>&nbsp;
+                          {%- endif -%}
+                          |&nbsp;<span class="time">{{ exp.time }}</span>
+                          {%- if exp.description -%}<div class="description">{{ exp.description }}</div>{%- endif -%}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="details">{{ exp.details | markdownify }}</div>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </section>
+              {%- endif -%}
+              {%- if resume.body.publications.enable -%}
+              <section class="row section publications">
+                <h2 class="section-title">{{ resume.body.publications.caption }}</h2>
+                {%- for pub in resume.body.publications.section -%}
+                  <div class="section-item">
+                    <div class="row">
+                      <div class="title"><p><span class="marker">•&nbsp;</span>
+                      {%- if pub.link -%}
+                        <a href="{{ pub.link }}" target="_blank">{{ pub.title }}
+                          <small>{{ pub.link }}</small>
+                        </a>
+                      {%- else -%}
+                        <span>{{ pub.title }}</span>
+                      {%- endif -%}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="authors"><p>-&nbsp;{{ pub.authors }}</p></div>
+                    </div>
+                    <div class="row">
+                      <div class="conference"><p>-&nbsp;{{ pub.conference }}</p></div>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </section>
+              {%- endif -%}
+              {%- if resume.body.projects.enable -%}
+              <section class="row section projects">
+                <h2 class="section-title">{{ resume.body.projects.caption }}</h2>
+                {%- for proj in resume.body.projects.section -%}
+                  <div class="section-item">
+                    <div class="row">
+                      <div class="title">
+                      <p><span class="marker">•&nbsp;</span>
+                      {%- if proj.link -%}
+                        <a href="{{ proj.link }}" target="_blank">{{ proj.title }}
+                          <small>{{ proj.link }}</small>
+                        </a>
+                      {%- else -%}
+                        <span>{{ proj.title }}</span>
+                      {%- endif -%}
+                      </p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="details">{{ proj.details | markdownify }}</div>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </section>
+              {%- endif -%}
+              {%- if resume.body.volunteering.enable -%}
+              <section class="row section volunteering">
+                <h2 class="section-title">{{ resume.body.volunteering.caption }}</h2>
+                {%- for vol in resume.body.volunteering.section -%}
+                  <div class="section-item">
+                    <div class="row">
+                      <div class="role-company">
+                          <span class="marker">•&nbsp;</span><span class="role">{{ vol.role }}</span>&nbsp;—&nbsp;
+                          {%- if vol.link -%}
+                            <a class="company" href="{{ vol.link }}" target="_blank">{{ vol.company }}</a>&nbsp;
+                          {%- else -%}
+                            <span class="company">{{ vol.company }}</span>&nbsp;
+                          {%- endif -%}
+                          |&nbsp;<span class="time">{{ vol.time }}</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="details">{{ vol.details | markdownify }}</div>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </section>
+              {%- endif -%}
+              {% comment %} {%- if resume.body.volunteering.enable -%}
+              <section class="row section volunteering">
+                <h2 class="section-title">{{ resume.body.volunteering.caption }}</h2>
+                {%- for vol in resume.body.volunteering.section -%}
+                  <div class="section-item">
+                    <div class="row">
+                      <div class="role"><p><span class="marker">•&nbsp;</span>{{ vol.role }}</p></div>
+                    </div>
+                    <div class="row">
+                      {%- if vol.link -%}
+                        <div class="col-sm link"><p>-&nbsp;<a href="{{ vol.link }}" target="_blank">{{ vol.company }}</a></p></div>
+                      {%- else -%}
+                        <div class="col-sm company"><p>-&nbsp;{{ vol.company }}</p></div>
+                      {%- endif -%}
+                      <span class="col-sm d-flex justify-content-end time">{{ vol.time }}</span>
+                    </div>
+                    <div class="row details"><p>-&nbsp;{{ vol.details }}</p></div>
+                  </div>
+                {%- endfor -%}
+              </section>
+              {%- endif -%} {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </main>
+    {%- include layout/footer.html -%}
+  </body>
+
+  <!-- Scripts -->
+  <script src="{{ '/assets/vendor/bootstrap/js/bootstrap.bundle.js' | relative_url }}"></script>
+
+  <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
+
+  {%- if site.avatar.open -%}
+    <script src="{{ '/assets/js/avatar.js' | relative_url }}"></script>
+  {%- endif -%}
+
+  <script>
+    document.getElementById('btn-print').addEventListener('click', function() {
+      window.print();
+    });
+  </script>
+  </html>
+{%- endif -%}
+

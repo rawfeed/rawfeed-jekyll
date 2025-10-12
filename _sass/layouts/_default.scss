@@ -1,0 +1,14 @@
+.default {
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+
+  .content {
+    margin-bottom: 30px !important;
+  }
+
+  .content code,
+  .content pre {
+    text-transform: none !important;
+  }
+
+}

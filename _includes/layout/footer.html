@@ -1,0 +1,34 @@
+{%- include layout/data.liquid -%}
+
+<footer class="container-fluid fixed-bottom footer">
+  {%- if site.footer.top_button.enable -%}
+  <div class="row top">
+    <div class="col-sm d-flex justify-content-end">
+      <!-- old: <a id="top-link" class="top-link" href="#top"><i class="fa-regular fa-square-caret-up"></i></a> -->
+       <a id="top-link" class="top-link" href="#top">^</a>
+    </div>
+  </div>
+  {%- endif -%}
+
+  <div class="row footer-wrapper">
+
+    {%- if site.text.footer.copyright -%}
+    <div class="col-sm">
+      <div class="footer-copyright">{{ site.title | default: theme_name }}&nbsp;{{ site.text.footer.copyright }}</div>
+    </div>
+    {%- endif -%}
+
+    {%- if site.text.footer.message -%}
+    <div class="col-sm">
+        <div class="footer-message">{{ site.text.footer.message }}</div>
+    </div>
+    {%- endif -%}
+
+    <div class="col-sm">
+      <div class="footer-made-by">
+        Using the <a href="{{ project_url }}" target="_blank" rel="noopener noreferrer">{{ theme_name }}</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener noreferrer">Jekyll</a>.
+      </div>
+    </div>
+
+  </div>
+</footer>

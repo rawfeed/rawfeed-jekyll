@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<div class="container tag">
+  <div class="row">
+    <h1 class="tag-title">[&nbsp;tags&nbsp;]</h1>
+
+    <ul class="tag-list">
+      {%- assign tags = site.tags | sort -%}
+      {%- for tag in tags -%}
+        {%- assign tag_name = tag[0] -%}
+        <li class="tag-list__item">
+          <a class="tag-list__link" href="{{ '/blog/tags/' | append: tag_name | relative_url }}">
+            {{ tag_name }} [{{ tag[1].size }}]
+          </a>
+        </li><strong>&nbsp;&nbsp;.&nbsp;&nbsp;</strong>
+      {%- endfor -%}
+    </ul>
+
+  </div>
+</div>

@@ -1,0 +1,48 @@
+@use "../components/index";
+
+.tag-posts {
+  margin-top: -.1rem !important;
+
+  &-title {
+    font-size: 1.05rem !important;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0px 0px 10px 0px !important;
+
+    span {
+      font-style: normal !important;
+    }
+  }
+
+  &-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    &__item {
+      .draft-badge {
+        @extend %draft-badge;
+      }
+    }
+
+    li {
+      margin: 5px 0px;
+    }
+
+    &__meta {
+      display: inline-block;
+      min-width: 100px;
+      font-family: "SUSE Mono", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+      line-height: 1rem;
+      color: var(--text-muted-color);
+    }
+
+    &__link {
+      text-transform: none !important;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}

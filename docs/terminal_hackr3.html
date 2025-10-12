@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Terminal Hackr — Realista</title>
+  <style>
+    :root{
+      --bg:#050504;
+      --glass: rgba(255,255,255,0.03);
+      --scan: rgba(0,255,0,0.03);
+      --text:#7cff6b;
+      --muted:#4b8f3e;
+      --accent:#00ff6a;
+      --shadow: 0 10px 30px rgba(0,0,0,0.7);
+      --mono: 'SFMono-Regular', Menlo, Monaco, 'Courier New', monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--mono);
+      background: radial-gradient(1200px 800px at 10% 10%, #081008 0%, var(--bg) 30%);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+    .terminal{
+      width:min(960px,96%);
+      max-width:1100px;
+      border-radius:10px;
+      box-shadow:var(--shadow);
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      min-height: 550px;
+      max-height: 550px;
+      background-color: #0f0f0f;
+      overflow-y: hidden; /* o scroll fica na .screen */
+    }
+    .term-header{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:12px 16px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(2px);
+    }
+    .btn{width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 2px rgba(0,0,0,0.5) inset}
+    .btn.close{background: #0bff55}
+    .btn.min{background: #0b9e3a}
+    .btn.max{background: #0b6b2a}
+    .title{flex:1;text-align:center;font-size:13px;color:var(--muted);}
+
+    .screen{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      position:relative;
+      overflow-y:auto;
+      background-image:
+        linear-gradient(transparent 92%, rgba(0,0,0,0.05) 92%),
+        linear-gradient(90deg, transparent 97%, rgba(0,255,0,0.02) 97%);
+      background-size:100% 3px, 3px 100%;
+      padding:10px;
+    }
+    .line{white-space: pre;display:flex;align-items:center;font-size:15px;line-height:1.4}
+    .prompt{margin-top: .2em;color:var(--muted);font-size:14px;margin-right:8px}
+    /* wrapper que segura o input + cursor + measure */
+    .input-wrapper{position:relative; display:inline-block; flex:1; min-width:50px}
+    .input{
+      background:transparent;
+      border:none;
+      outline:none;
+      font-family:var(--mono);
+      font-size:15px;
+      color: #999;
+      caret-color: transparent; /* esconder caret real */
+      width:100%;
+      padding:0;
+      margin:0;
+      line-height:1.4;
+      white-space:nowrap;
+    }
+    /* span invisível usado apenas para medir a largura do texto até selectionStart */
+    .measure{
+      position:absolute;
+      top:0;
+      left:0;
+      visibility:hidden;
+      white-space:pre;
+      font-family:var(--mono);
+      font-size:15px;
+      line-height:1.4;
+      pointer-events:none;
+    }
+    /* cursor fake (dentro do input) */
+    .cursor{
+      position:absolute;
+      top:3px; /* ajuste visual */
+      left:0;
+      width:9px;
+      height:18px;
+      background:var(--text);
+      border-radius:2px;
+      animation:blink 1s steps(2,end) infinite;
+      pointer-events:none;
+      transform:translateY(0.2px);
+    }
+    @keyframes blink{50%{opacity:0}}
+    .scanlines{position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(180deg, rgba(0,255,0,0.01) 0 1px, transparent 1px 3px);mix-blend-mode:overlay;opacity:0.45;z-index:5}
+  </style>
+</head>
+<body>
+<div id="terminal" class="terminal">
+  <div class="term-header">
+    <div class="btn close" title="close"></div>
+    <div class="btn min" title="minimize"></div>
+    <div class="btn max" title="maximize"></div>
+    <div class="title">user@hackr — realista-shell</div>
+  </div>
+  <div class="screen" id="screen">
+    <!-- Linhas dinâmicas -->
+  </div>
+</div>
+
+<script>
+const screen = document.getElementById('screen');
+const terminal = document.getElementById("terminal");
+const commands = {
+  help: `Commands:\n - help ------------- Print this menu\n - about ------------- About 'rawfeed'\n`,
+  about: `Terminal Hackr — realista. Criado com HTML/CSS/JS.`
+};
+
+function createInputLine() {
+  const line = document.createElement('div');
+  line.className = 'line';
+
+  const prompt = document.createElement('span');
+  prompt.className = 'prompt';
+  prompt.textContent = 'guest@hackr:~$';
+
+  // wrapper para conter input, cursor e measure
+  const wrapper = document.createElement('span');
+  wrapper.className = 'input-wrapper';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'input';
+  input.placeholder = 'type "help" to begin.';
+  input.spellcheck = false;
+  input.autocomplete = 'off';
+  input.autocorrect = 'off';
+  input.autocapitalize = 'off';
+
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+
+  const measure = document.createElement('span');
+  measure.className = 'measure';
+
+  wrapper.appendChild(input);
+  wrapper.appendChild(cursor);
+  wrapper.appendChild(measure);
+
+  line.appendChild(prompt);
+  line.appendChild(wrapper);
+  screen.appendChild(line);
+
+  input.focus();
+  screen.scrollTop = screen.scrollHeight;
+
+  // Atualiza a posição do cursor fake com base no selectionStart do input
+  function updateCursor() {
+    const sel = input.selectionStart || 0;
+    // medir o texto até a posição do caret
+    measure.textContent = input.value.slice(0, sel);
+    const textWidth = measure.offsetWidth; // largura do texto sem scroll
+    // ajustar pela rolagem horizontal do input
+    const visibleLeft = textWidth - input.scrollLeft;
+    cursor.style.left = visibleLeft + 'px';
+
+    // garantir que o caret esteja visível (para textos longos): ajustar scrollLeft do input
+    const paddingRight = 10; // margem visual
+    if (textWidth - input.scrollLeft > input.clientWidth - paddingRight) {
+      input.scrollLeft = textWidth - input.clientWidth + paddingRight;
+      // recalc posição visível
+      cursor.style.left = (textWidth - input.scrollLeft) + 'px';
+    } else if (textWidth < input.scrollLeft) {
+      input.scrollLeft = textWidth;
+      cursor.style.left = (textWidth - input.scrollLeft) + 'px';
+    }
+  }
+
+  // mostrar/ocultar animação do cursor conforme foco
+  function onFocus() { cursor.style.opacity = '1'; updateCursor(); }
+  function onBlur()  { cursor.style.opacity = '0'; }
+
+  input.addEventListener('input', updateCursor);
+  input.addEventListener('keydown', (e) => {
+    // Atualiza posição em teclas que não disparam input imediatamente (setas, delete, etc.)
+    setTimeout(updateCursor, 0);
+
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const cmd = input.value.trim();
+      // transformamos o wrapper em texto estático (como se o user tivesse digitado)
+      if (cmd) {
+        // remove input/cursor/measure e coloca texto fixo
+        wrapper.removeChild(input);
+        wrapper.removeChild(cursor);
+        wrapper.removeChild(measure);
+        const cmdText = document.createElement('span');
+        cmdText.textContent = cmd;
+        wrapper.appendChild(cmdText);
+        processCommand(cmd);
+      } else {
+        // se enter sem comando, apenas cria nova linha vazia (com prompt)
+        wrapper.removeChild(input);
+        wrapper.removeChild(cursor);
+        wrapper.removeChild(measure);
+        const blank = document.createElement('span');
+        blank.textContent = '';
+        wrapper.appendChild(blank);
+      }
+      // Nova linha de input
+      createInputLine();
+    }
+  });
+
+  // setas, clique do mouse, mouseup (posicionar caret), etc.
+  input.addEventListener('keyup', updateCursor);
+  input.addEventListener('click', () => {
+    // atualiza após clique (selectionStart já definido)
+    setTimeout(updateCursor, 0);
+  });
+  input.addEventListener('mouseup', () => setTimeout(updateCursor, 0));
+  input.addEventListener('focus', onFocus);
+  input.addEventListener('blur', onBlur);
+
+  // inicializa
+  updateCursor();
+}
+
+// processa comandos
+function processCommand(cmd){
+  switch(true){
+    case cmd === 'help': writeLine(commands.help); break;
+    case cmd === 'date': writeLine(new Date().toString()); break;
+    case cmd.startsWith('echo '): writeLine(cmd.split(' ').slice(1).join(' ')); break;
+    case cmd === 'about': writeLine(commands.about); break;
+    case cmd === 'clear': screen.innerHTML=''; break;
+    default: if(cmd) writeLine(cmd + ': comando não encontrado');
+  }
+}
+
+function writeLine(text){
+  const line = document.createElement('div');
+  line.className = 'line';
+  // se o texto contém quebras (multi-line), cria múltiplas linhas
+  text.split('\n').forEach((t, i) => {
+    if (i > 0) {
+      const br = document.createElement('div');
+      br.className = 'line';
+      br.textContent = t;
+      screen.appendChild(br);
+    } else {
+      line.textContent = t;
+      screen.appendChild(line);
+    }
+  });
+  screen.scrollTop = screen.scrollHeight;
+}
+
+// inicia terminal
+createInputLine();
+
+// ao clicar no terminal, foca sempre no último input existente
+terminal.addEventListener("click", (e) => {
+  // evita focar quando clica em um botão da header, etc.
+  const lastInput = screen.querySelector('.input:last-of-type');
+  if (lastInput) lastInput.focus();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+@use "../components/index";
+
+.tag {
+  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  // border: 1px solid #ddd;
+  // background-color: white;
+  // padding: 20px;
+  @extend %markdown;
+
+  &-title {
+    font-size: 1.05rem !important;
+    font-weight: bold;
+    margin: 0px 0px 10px 0px !important;
+  }
+
+  &-list {
+    &__item {
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+  }
+}
