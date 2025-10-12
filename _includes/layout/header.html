@@ -25,9 +25,9 @@
         <div class="container">
           <div class="row">
             {%- if index.layout == "blog" -%}
-              <span>[&nbsp;<a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="/">{{ site.text.menu.blog | default: "blog" | downcase }}</a>&nbsp;]</span>
+              <span>[&nbsp;<a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="{{home_url}}">{{ site.text.menu.blog | default: "blog" | downcase }}</a>&nbsp;]</span>
             {%- else -%}
-              <span>[&nbsp;<a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="/">{{ site.text.menu.home | default: "home" | downcase }}</a>&nbsp;]</span>
+              <span>[&nbsp;<a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="{{home_url}}">{{ site.text.menu.home | default: "home" | downcase }}</a>&nbsp;]</span>
             {%- endif -%}
           </div>
         </div>
@@ -86,7 +86,7 @@
       <div class="col-sm d-flex justify-content-center column-bottom">
       {%- if index.layout == "blog" -%}
         <span class="blog-menu">menu&nbsp;»
-          &nbsp;{%- if site.blog.search.enable -%}<a id="blog-search__btn" class="blog-menu__link" href="/blog/?search=open">{{ site.text.menu.search | default: "search" }}</a><strong>&nbsp;.&nbsp;</strong>{%- endif -%}<a class="blog-menu__link{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="/blog/tags/">{{ site.text.menu.tags | default: "tags" }}</a><strong>&nbsp;.&nbsp;</strong>
+          &nbsp;{%- if site.blog.search.enable -%}<a id="blog-search__btn" class="blog-menu__link" href="{{search_url}}">{{ site.text.menu.search | default: "search" }}</a><strong>&nbsp;.&nbsp;</strong>{%- endif -%}<a class="blog-menu__link{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">{{ site.text.menu.tags | default: "tags" }}</a><strong>&nbsp;.&nbsp;</strong>
         </span>
         {% assign sorted_pages = site.pages | sort: 'order' %}
           {%- for item in sorted_pages -%}
@@ -96,11 +96,11 @@
               {%- endunless -%}
             {%- endif -%}
           {%- endfor -%}
-          <a class="blog-menu__link" href="/feed.xml">{{ site.text.menu.feed | default: "feed" }}</a><strong>&nbsp;.&nbsp;</strong>
+          <a class="blog-menu__link" href="{{feed_url}}">{{ site.text.menu.feed | default: "feed" }}</a><strong>&nbsp;.&nbsp;</strong>
       {%- else index.layout == "home" -%}
         {%- if page.url contains "/blog/" -%}
           <span class="blog-menu">{{ site.text.menu.blog }}&nbsp;»
-            <a class="blog-menu__link{% if page.url == "/blog/" or page.url == "/blog/index.html" or page.url contains "/blog/page/" %} menu-active{% endif %}" href="/blog/">posts</a><strong>&nbsp;.&nbsp;</strong>{%- if site.blog.search.enable -%}<a id="blog-search__btn" class="blog-menu__link" href="/blog/?search=open">{{ site.text.menu.search | default: "search" }}</a><strong>&nbsp;.&nbsp;</strong>{%- endif -%}<a class="blog-menu__link{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="/blog/tags/">{{ site.text.menu.tags | default: "tags" }}</a><strong>&nbsp;.&nbsp;</strong><a class="blog-menu__link" href="/feed.xml">{{ site.text.menu.feed | default: "feed" }}</a><strong>&nbsp;.&nbsp;</strong>
+            <a class="blog-menu__link{% if page.url == "/blog/" or page.url == "/blog/index.html" or page.url contains "/blog/page/" %} menu-active{% endif %}" href="{{blog_url}}">posts</a><strong>&nbsp;.&nbsp;</strong>{%- if site.blog.search.enable -%}<a id="blog-search__btn" class="blog-menu__link" href="{{search_url}}">{{ site.text.menu.search | default: "search" }}</a><strong>&nbsp;.&nbsp;</strong>{%- endif -%}<a class="blog-menu__link{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">{{ site.text.menu.tags | default: "tags" }}</a><strong>&nbsp;.&nbsp;</strong><a class="blog-menu__link" href="{{feed_url}}">{{ site.text.menu.feed | default: "feed" }}</a><strong>&nbsp;.&nbsp;</strong>
           </span>
         {%- else -%}
           {%- assign published_pages = site.pages | where_exp:"p","p.path contains '_pages/' and p.published" -%}
@@ -109,7 +109,7 @@
           {%- endif -%}
           {%- if site.pagination.enabled == true -%}
             {%- if blog_page -%}
-              <a href="/blog/">{{ site.text.menu.blog }}</a><strong>&nbsp;.&nbsp;</strong>
+              <a href="{{blog_url}}">{{ site.text.menu.blog }}</a><strong>&nbsp;.&nbsp;</strong>
             {%- endif -%}
             {% assign sorted_pages = site.pages | sort: 'order' %}
             {%- for item in sorted_pages -%}
