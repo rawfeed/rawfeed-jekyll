@@ -86,15 +86,19 @@ to the name of your images. For example:
 ```yml
 avatar:
   open: true
+  flip: true
+  # note: the image (.jpg|.png) will be searched in the directory: assets/images/
   image:
-    light: your_image_light.png
-    dark: your_image_dark.png
+    front:
+      light: your_image_light.png
+      dark: your_image_dark.png
+    back: your_image_back.png
 ```
 
 ## Posts
 
 Creating a blog post is very easy, first you create a draft (`npm run draft`) and after you finish
-the draft, you move it to the post with the command `npm run post`.
+the draft, you move it to the post with the command `npm run posts`.
 
 > Note: If you start the server (`npm run serve`), drafts will appear in posts, but they will not
 go into production mode (`npm run build`).
