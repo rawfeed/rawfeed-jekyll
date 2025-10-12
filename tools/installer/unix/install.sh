@@ -144,12 +144,6 @@ choice_ci() {
 
 show_menu() {
   echo
-  msg_header "Commands:" "\n"
-  echo "npm run build - Compile the website for PRODUCTION"
-  echo "npm run serve - Run the site on a server"
-  echo "npm run draft - Create a draft for the website"
-  echo "npm run post  - Create a post for the website"
-  echo "npm run page  - Create a page for the website"
   msg_warning "For more information, read: README.md"
 }
 

@@ -111,12 +111,6 @@ function Choice-CI {
 }
 
 function Show-Menu {
-    Msg-Header "Commands:`n"
-    Write-Host "npm run build - Compile the website for PRODUCTION"
-    Write-Host "npm run serve - Run the site on a server"
-    Write-Host "npm run draft - Create a draft for the website"
-    Write-Host "npm run post  - Create a post for the website"
-    Write-Host "npm run page  - Create a page for the website"
     Msg-Warning "For more information, read: README.md"
 }
 
