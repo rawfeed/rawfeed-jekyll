@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /* TOC in top */
   const toc = document.getElementById('toc');
 
+  if (!toc) return;
+
   const sentinel = document.createElement('div');
   toc.parentNode.insertBefore(sentinel, toc);
 

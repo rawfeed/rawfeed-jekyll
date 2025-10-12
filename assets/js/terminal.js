@@ -3,7 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   --------------------------------------------------------------------------------------------------
   */
   const terminal = document.getElementById("terminal");
-  const btnMax   = terminal.querySelector(".terminal-header__max");
+
+  if (!terminal) return;
+
+  const btnMax = terminal.querySelector(".terminal-header__max");
 
   let isFullscreen = false;
 
