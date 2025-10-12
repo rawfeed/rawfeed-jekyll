@@ -47,13 +47,13 @@ In the terminal/Command Prompt, run the commands below according to the OS.
 **Unix:**
 
 ```shell
-curl -fsSL https://williamcanin.github.io/install/rawfeed | sh
+curl -fsSL https://raw.githubusercontent.com/williamcanin/rawfeed/refs/heads/main/tools/installer/unix/install.sh | sh
 ```
 
 **Windows:**
 
 ```shell
-iwr -useb https://williamcanin.github.io/install/rawfeed | iex
+iwr -useb https://raw.githubusercontent.com/williamcanin/rawfeed/refs/heads/main/tools/installer/win/install.ps1 | iex
 ```
 
 # Usage
