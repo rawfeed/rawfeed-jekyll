@@ -2,6 +2,12 @@
 
 All important changes to this project are listed here.
 
+## [0.1.1] - 2025-09-12
+
+### Bugfix
+
+- Fixing "relative_url" error for url with baseurl
+
 ## [0.1.0] - 2025-09-12
 
 ### Added
