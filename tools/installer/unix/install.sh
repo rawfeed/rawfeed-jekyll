@@ -100,9 +100,9 @@ starter() {
   msg_reply "Enter your website's hostname and protocol [E.g.: https://yoursite.com]:" "\n> "
   read -r url </dev/tty
 
-  sed -i "$sed_inplace_extension" "s|^url: .*|url: \"$url\"|g" _config.yml
-  sed -i "$sed_inplace_extension" "s|site|$url|g" CNAME
-  sed -i "$sed_inplace_extension" "s|# site|# $url|g" README.md
+  sed -i $sed_inplace_extension "s|^url: .*|url: \"$url\"|g" _config.yml
+  sed -i $sed_inplace_extension "s|site|$url|g" CNAME
+  sed -i $sed_inplace_extension "s|# site|# $url|g" README.md
 
   msg_finish "$THEME_NAME template created!"
 }
@@ -144,6 +144,8 @@ choice_ci() {
 
 show_menu() {
   echo
+  npm run help
+  msg_warning "Configure the \"_config.yml\" file as you like."
   msg_warning "For more information, read: README.md"
 }
 
@@ -156,7 +158,6 @@ main() {
   choice_ci
   npm_install
   show_menu
-  msg_warning "Configure the \"_config.yml\" file as you like."
 }
 
 case "$1" in

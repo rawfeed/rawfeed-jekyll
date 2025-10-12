@@ -111,6 +111,8 @@ function Choice-CI {
 }
 
 function Show-Menu {
+    npm run help
+    Msg-Warning "Configure the '_config.yml' file as you like."
     Msg-Warning "For more information, read: README.md"
 }
 
@@ -123,7 +125,6 @@ function Main {
     Choice-CI
     Npm-Install
     Show-Menu
-    Msg-Warning "Configure the '_config.yml' file as you like."
 }
 
 param(
