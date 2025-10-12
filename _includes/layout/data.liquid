@@ -1,3 +1,8 @@
 {%- assign project_url = "https://github.com/williamcanin/rawfeed" -%}
 {%- assign theme_name = "rawfeed" -%}
-{% assign data_cv = site.data.cv %}
+{%- assign data_cv = site.data.cv -%}
+{%- assign home_url = "/" | relative_url -%}
+{%- assign blog_url = "/blog/" | relative_url -%}
+{%- assign search_url = "/blog/?search=open" | relative_url -%}
+{%- assign tags_url = "/blog/tags/" | relative_url -%}
+{%- assign feed_url = "/feed.xml" | relative_url -%}
