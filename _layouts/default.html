@@ -55,7 +55,7 @@
         var sjs = SimpleJekyllSearch({
           searchInput: document.getElementById('blog-search__input'),
           resultsContainer: document.getElementById('blog-search__results'),
-          searchResultTemplate: '<li><span class="blog-list__meta"><time datetime="{date}">{date}</time></span>&nbsp;»&nbsp; <a class="blog-list__link" href="{{ site.url }}{url}">{title}</a></li>',
+          searchResultTemplate: '<li><span class="blog-list__meta"><time datetime="{date}">{date}</time></span>&nbsp;»&nbsp; <a class="blog-list__link" href="{{ site.baseurl | prepend: site.url }}{url}">{title}</a></li>',
           noResultsText: '<p>{{ site.text.blog.no_results | default: "No results found" }}</p>',
           json: '/assets/json/blog_search.json'
         })
