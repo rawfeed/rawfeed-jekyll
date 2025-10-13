@@ -1,7 +1,6 @@
-{% assign video_id = include.url | split: "v=" | last | split: "&" | first %}
 <div class="video-wrapper">
-  <iframe src="https://www.youtube.com/embed/{{ video_id }}" title="{{ include.title | default: 'Video' }}"
-    frameborder="0" allowfullscreen>
+  <iframe src="{{ include.url }}" title="{{ include.title | default: 'Video' }}"
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
   </iframe>
   <noscript>
     <p>The video is not available for embedding. Watch it on <a href="{{ include.url }}" target="_blank">YouTube</a>.
