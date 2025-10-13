@@ -250,6 +250,12 @@
                 {%- endfor -%}
               </section>
               {%- endif -%}
+              {%- if resume.body.markdown.enable -%}
+              <section class="row section markdown">
+                <h2 class="section-title">{{ resume.body.markdown.caption }}</h2>
+                <div class="section-content">{{ resume.body.markdown.content | markdownify }}</div>
+              </section>
+              {%- endif -%}
             </div>
           </div>
         </div>

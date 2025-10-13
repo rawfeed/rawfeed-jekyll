@@ -318,6 +318,16 @@
           margin-top: 12px;
         }
       }
+
+      .markdown {
+        margin-bottom: 12px;
+
+        .section-content {
+          ul {
+            padding: 0 !important;
+          }
+        }
+      }
     }
 
     a {

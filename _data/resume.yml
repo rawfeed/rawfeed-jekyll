@@ -208,11 +208,11 @@ body:
           - I led a class of **Computer Engineering** students in the modern **AI course**.
           It was over **170 hours** of classes.
 
-  # section: [Notes]
+  # section: [Markdown]
   # Here you can put text in markdown formatting
-  notes:
+  markdown:
     enable: true
     caption: Notes
-    details: |
+    content: |
       - I led a class of **Computer Engineering** students in the modern **AI course**.
       It was over **170 hours** of classes.
