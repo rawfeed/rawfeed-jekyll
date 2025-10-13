@@ -21,7 +21,7 @@
   }
 
   function buildTOC(tocEl) {
-    const selector = tocEl.dataset.tocSelector || '.post-content';
+    const selector = tocEl.dataset.tocSelector || '.post-content' || '.page-content';
     const maxLevel = parseInt(tocEl.dataset.tocMaxLevel || '3', 10);
     const offset = parseInt(tocEl.dataset.tocScrollOffset || '20', 10);
     const root = document.querySelector(selector);
