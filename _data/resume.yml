@@ -141,6 +141,9 @@ body:
           - I collaborated with engineering teams to deploy **Keras** and **Matlab** models in production
           environments, impacting **millions of platform** users.
 
+  # section: [Certificates]
+  # TODO: version: 0.1.2 - Adding Certificates
+
   # section: [Publications]
   # Full links will only appear in print mode. Online and PDF modes are clickable.
   publications:
