@@ -123,7 +123,9 @@ Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum e
 
 # Video YouTube
 
-{% include video title="Video" url="https://www.youtube.com/watch?v=IcICF_YF_tI" %}
+> Note: You must copy the embed link
+
+{% include video title="Video" url="https://www.youtube.com/embed/IcICF_YF_tI?si=2n30rpxhzdEpZH4Y" %}
 
 # Tabs example
 
