@@ -8,7 +8,7 @@
 npm install
 ```
 
-**(2)** - For **rawfeed** manipulation commands, use:
+**(2)** - For manipulation commands, use:
 
 ```shell
 npm run help
