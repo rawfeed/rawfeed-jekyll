@@ -86,28 +86,6 @@
     }
   }
 
-  /* reset table values in <pre> */
-  pre {
-    code {
-
-      table,
-      tbody {
-        all: unset !important;
-      }
-
-      table {
-        tbody {
-
-          td,
-          tr {
-            border: none !important;
-            background-color: transparent !important;
-          }
-        }
-      }
-    }
-  }
-
   &-end {
     margin: 40px 0px;
     font-size: 1.2rem;
