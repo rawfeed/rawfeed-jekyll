@@ -8,6 +8,10 @@ All important changes to this project are listed here.
 
 - Fixing video include url bug
 
+### Added
+
+- Adding two more sections to the Resume: Certificate add Notes
+
 ## [0.1.1] - 2025-10-12
 
 ### Bugfix
