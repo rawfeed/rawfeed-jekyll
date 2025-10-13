@@ -14,6 +14,12 @@
     list-style: disc;
   }
 
+  .comments {
+    &-title {
+      font-size: 1rem !important;
+    }
+  }
+
   &-title {
     font-size: 1.3rem !important;
     font-weight: bold;
