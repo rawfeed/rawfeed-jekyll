@@ -1,10 +1,39 @@
-*{
-  input, a, button {
-    &:focus, &:hover, &:active {
-      outline:0 !important;
+* {
+
+  input,
+  a,
+  button {
+
+    &:focus,
+    &:hover,
+    &:active {
+      outline: 0 !important;
     }
   }
+
   li {
     list-style: none;
+  }
+
+  /* reset table values in <pre> */
+  pre {
+    code {
+
+      table,
+      tbody {
+        all: unset !important;
+      }
+
+      table {
+        tbody {
+
+          td,
+          tr {
+            border: none !important;
+            background-color: transparent !important;
+          }
+        }
+      }
+    }
   }
 }
