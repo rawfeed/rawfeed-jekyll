@@ -17,7 +17,7 @@ module Rawfeed
         file.puts("order: #number")
         file.puts("title: \"#{array[0]}\"")
         file.puts("author: \"Your Name\"")
-        file.puts("date: #{array[2]}")
+        file.puts("date: #{array[2]} -0300")
         file.puts("update_date: ")
         file.puts("published: false")
         file.puts("permalink: /#{permalink}/")

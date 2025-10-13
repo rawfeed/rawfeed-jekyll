@@ -16,7 +16,7 @@ module Rawfeed
         file.puts("title: \"#{array[0]}\"")
         file.puts("description: \"Description of your post\"")
         file.puts("author: \"Your Name\"")
-        file.puts("date: #{array[2]}")
+        file.puts("date: #{array[2]} -0300")
         file.puts("update_date: ")
         file.puts("comments: false")
         file.puts("tags: [tag1, tag2]")
