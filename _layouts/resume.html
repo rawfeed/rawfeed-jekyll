@@ -139,6 +139,43 @@
                 {%- endfor -%}
               </section>
               {%- endif -%}
+              {%- if resume.body.certificates.enable -%}
+              <section class="row section certificate">
+                <h2 class="section-title">{{ resume.body.certificates.caption }}</h2>
+                {%- for cert in resume.body.certificates.section -%}
+                  <div class="section-item">
+                    <div class="row">
+                      <div class="title"><span class="marker">•&nbsp;</span>
+                      {%- if cert.certificate -%}
+                        <a href="{{ cert.certificate }}" target="_blank">{{ cert.course }}
+                          <small>{{ cert.certificate }}</small>
+                        </a>
+                      {%- else -%}
+                        <span>{{ cert.course }}</span>
+                      {%- endif -%}
+                      </div>
+                    </div>
+                      <div class="row">
+                        <div class="period">
+                          -&nbsp;
+                          {%- if cert.period.year-%}&nbsp;<span class="time">{{ cert.period.year }}</span>{%- endif-%}
+                          {%- if cert.period.hours-%}&nbsp;—&nbsp;<span class="hours">{{ cert.period.hours }}</span>{%- endif-%}
+                        </div>
+                      </div>
+                    <div class="row">
+                      <div class="company">
+                        {%- if cert.company.site -%}
+                          -&nbsp;&nbsp;<a href="{{ cert.company.site }}" target="_blank">{{ cert.company.name }}
+                          </a>
+                        {%- else -%}
+                          -&nbsp;<span>{{ cert.company.name }}</span>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </section>
+              {%- endif -%}
               {%- if resume.body.publications.enable -%}
               <section class="row section publications">
                 <h2 class="section-title">{{ resume.body.publications.caption }}</h2>

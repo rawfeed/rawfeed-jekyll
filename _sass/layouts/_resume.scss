@@ -169,7 +169,8 @@
     }
   }
 
-  .time {
+  .time,
+  .hours {
     font-size: 9.5pt;
     color: var(--resume-text-muted-color);
   }
@@ -250,6 +251,26 @@
       .sumary {
         text-align: justify !important;
 
+      }
+
+      .certificate {
+        margin-bottom: 12px;
+
+        .company {
+          margin-left: 12px;
+
+          .caption {
+            font-weight: bold;
+          }
+        }
+
+        .period {
+          margin-left: 12px;
+
+          .caption {
+            font-weight: bold;
+          }
+        }
       }
 
       .publications {
