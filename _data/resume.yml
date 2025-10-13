@@ -142,7 +142,29 @@ body:
           environments, impacting **millions of platform** users.
 
   # section: [Certificates]
-  # TODO: version: 0.1.2 - Adding Certificates
+  # Full links will only appear in print mode. Online and PDF modes are clickable.
+  certificates:
+    enable: true
+    caption: Certificates
+    section:
+      - course: LPIC-2
+        certificate: https://github.com/williamcanin/rawfeed
+        period:
+          year: 2020
+          hours: 20 hours
+        company:
+          name: Linux Professional Institute
+          site: https://www.lpi.org
+
+      - course: LPIC-1
+        certificate: https://github.com/williamcanin/rawfeed
+        period:
+          year: 2018
+          hours: 19 hours
+        company:
+          caption:
+          name: Linux Professional Institute
+          site: https://www.lpi.org
 
   # section: [Publications]
   # Full links will only appear in print mode. Online and PDF modes are clickable.
@@ -185,3 +207,12 @@ body:
         details: |
           - I led a class of **Computer Engineering** students in the modern **AI course**.
           It was over **170 hours** of classes.
+
+  # section: [Notes]
+  # Here you can put text in markdown formatting
+  notes:
+    enable: true
+    caption: Notes
+    details: |
+      - I led a class of **Computer Engineering** students in the modern **AI course**.
+      It was over **170 hours** of classes.
