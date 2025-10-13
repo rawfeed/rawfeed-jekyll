@@ -2,13 +2,13 @@
 
 All important changes to this project are listed here.
 
-## [0.1.2] - 2025-09-15
+## [0.1.2] - 2025-11-13
 
 ### Bugfix
 
 - Fixing video include url bug
 
-## [0.1.1] - 2025-09-12
+## [0.1.1] - 2025-10-12
 
 ### Bugfix
 
@@ -16,7 +16,7 @@ All important changes to this project are listed here.
   When using site with baseurl in _config.yml, all menu URLs and other files pointed to the wrong
   location. This release fixed this crucial bug.
 
-## [0.1.0] - 2025-09-12
+## [0.1.0] - 2025-10-12
 
 ### Added
 
