@@ -7,10 +7,11 @@ All important changes to this project are listed here.
 ### Bugfix
 
 - Fixing video include url bug
+- Markdown errors on pages have been fixed. Some styles were missing.
 
 ### Added
 
-- Adding two more sections to the Resume: Certificate add Notes
+- Adding two more sections to the Resume: "Certificate" add "Markdown text"
 
 ## [0.1.1] - 2025-10-12
 
