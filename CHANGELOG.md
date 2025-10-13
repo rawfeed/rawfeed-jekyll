@@ -2,6 +2,12 @@
 
 All important changes to this project are listed here.
 
+## [0.1.2] - 2025-09-15
+
+### Bugfix
+
+- Fixing video include url bug
+
 ## [0.1.1] - 2025-09-12
 
 ### Bugfix
