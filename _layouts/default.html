@@ -8,7 +8,7 @@
 {%- assign index = site.pages | where: "path", "index.md" | first -%}
 
 <!DOCTYPE html>
-<html id="top" lang="{{ site.lang | default: 'en-US' }}" data-theme="light">
+<html id="top" lang="{{ site.lang | default: 'en' }}" data-theme="light">
   {%- include layout/head.html -%}
   <body data-layout="{{ page.layout | default: '' }}" data-terminal-enabled="{{ site.home.terminal.enable | default: false }}">
     {%- if site.home.terminal.enable and page.url == "/" and index.layout == "home" -%}
@@ -71,6 +71,7 @@
 
           const openSearch = () => {
             box.classList.add('is-open');
+            box.removeAttribute('inert');
             box.style.maxHeight = box.scrollHeight + 'px';
             box.style.opacity = '1';
             box.addEventListener('transitionend', function onOpened(e) {
@@ -89,6 +90,7 @@
               box.style.maxHeight = '0';
               box.style.opacity = '0';
             });
+            box.setAttribute('inert', '');
             box.classList.remove('is-open');
           };
 
