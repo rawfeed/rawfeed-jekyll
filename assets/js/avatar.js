@@ -1,3 +1,12 @@
+/* TODO: Colocar cada script para página ideal, por exemplo:
+  home: home.js [terminal]
+  blog: blog.js
+  tag: tag.js
+  default.js será script que contem em todas páginas. [botão de top]
+  post: post.js [toc]
+  page: page.js
+*/
+
 document.addEventListener("DOMContentLoaded", () => {
   // O alvo do clique agora é o contêiner INTERATIVO
   const flipperAvatars = document.querySelectorAll('.avatar-flipper__open-true');
