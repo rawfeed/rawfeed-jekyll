@@ -437,22 +437,22 @@
         transition: transform .2s ease;
       }
     }
+
+    &[open] summary::before {
+      transform: rotate(90deg) !important;
+    }
+
+    &[open] {
+      background: var(--details-bg-color);
+      border-color: var(--border-color);
+    }
+
+    p:last-child {
+      margin-bottom: 0px;
+    }
   }
 
   .details-content-wrapper {
     margin-top: 30px;
-  }
-
-  details details summary details[open] summary::before {
-    transform: rotate(90deg);
-  }
-
-  details[open] {
-    background: var(--details-bg-color);
-    border-color: var(--border-color);
-  }
-
-  details p:last-child {
-    margin-bottom: 0px;
   }
 }
