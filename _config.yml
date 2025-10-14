@@ -160,7 +160,9 @@ text:
       fail: "Verification failed. Please reload the page and try again."
       error: "An error occurred while sending the message. Please try again."
   footer:
-    copyright: "© 2025 - All right reserved."
+    copyright:
+      since: 2015
+      message: "All rights reserved."
     message: "Created by: William C. Canin"
   error:
     image: https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXlxYzc5eXp1Nm01cmtldzM5bHhwdzJ2Njk2c2E4b2RkdTBkeGs5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c20UV66B7zCWA/giphy.gif
