@@ -171,8 +171,8 @@ text:
       It appears this content does not exist or has been removed by the author.
 
 # section: [lang]
-# locality, e.g: en_US, pt_BR
-lang: en_US
+# locality, e.g: en, pt, fr, etc...
+lang: en
 
 # section: [layout]
 layout:
