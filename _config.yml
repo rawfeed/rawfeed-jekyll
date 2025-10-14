@@ -78,7 +78,7 @@ blog:
 # section: [datelang]
 # Here you change the language of the months of the date
 datelang:
-  format: "%b %d, %Y" # TODO: Colocar datas com uma casa, com zero. Ex: 01,02,03,04
+  format: "%b %d, %Y"
   lang: "en_US" # en_US | pt_PT | jp_JP | ch_CH | es_ES | fr_FR | it_IT | de_DE | ru_RU
 
 # section: [Reading time]
