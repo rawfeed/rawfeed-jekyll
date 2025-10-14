@@ -2,11 +2,22 @@
 
 All important changes to this project are listed here.
 
-## [0.1.3] - 2025-10-xx
+## [0.1.4] - 2025-10-xx
+
+### Added
+
+- Adding copyright since and current date (year) automatically
 
 ### Bugfix
 
--
+- Bug fixes in the website style.
+- Correction on the resume page in print mode.
+
+## [0.1.3] - 2025-10-14
+
+### Bugfix
+
+- Bug fixes in the website style.
 
 ## [0.1.2] - 2025-10-14
 
