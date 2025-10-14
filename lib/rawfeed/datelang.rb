@@ -36,7 +36,13 @@ module Rawfeed
         return "[datelang: invalid date '#{date_input}']" unless date
 
         formatted = date.strftime(format)
-        replace_months(formatted, data)
+
+        # 👇 Detecta automaticamente o tipo de mês com base no formato
+        if format.include?("%B")
+          replace_months(formatted, data, :full)
+        else
+          replace_months(formatted, data, :short)
+        end
       end
 
       private
@@ -44,23 +50,18 @@ module Rawfeed
       def parse_args(text, context)
         args = {}
 
-        # captures tokens respecting quoted strings
         tokens = text.scan(/"[^"]*"|\S+/).map { |t| t.strip }
 
         tokens.each do |tok|
           if tok.include?(':')
             key, raw_val = tok.split(':', 2)
-            # value in quotes -> literal
             if raw_val.start_with?('"') && raw_val.end_with?('"')
               val = raw_val[1..-2]
             else
-              # unquoted value -> can be a Liquid variable (e.g., site.date.format)
-              # we render "{{ value }}" in the context to get its actual content
               val = Liquid::Template.parse("{{ #{raw_val} }}").render(context).strip
             end
             args[key.to_sym] = val
           else
-            # standalone token (e.g: page.date)
             rendered = Liquid::Template.parse("{{ #{tok} }}").render(context).strip
             args[:date] = rendered unless rendered.empty?
           end
@@ -74,7 +75,6 @@ module Rawfeed
         when Date then input
         when Time then input.to_date
         else
-          # if it is string like "2025-10-13 12:34:00 -0300" etc, Date.parse works
           begin
             Date.parse(input.to_s)
           rescue ArgumentError
@@ -83,13 +83,13 @@ module Rawfeed
         end
       end
 
-      def replace_months(str, data)
-        data["months_full"].each_with_index do |m, i|
+      def replace_months(str, data, type)
+        months_key = (type == :full ? "months_full" : "months_short")
+        months = data[months_key] || []
+
+        months.each_with_index do |m, i|
           next if i.zero?
           str = str.gsub(Date::MONTHNAMES[i], m)
-        end
-        data["months_short"].each_with_index do |m, i|
-          next if i.zero?
           str = str.gsub(Date::ABBR_MONTHNAMES[i], m)
         end
         str
