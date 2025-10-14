@@ -106,6 +106,7 @@ reading_time:
 - Theme change: light/dark;
 - Chart in posts;
 - Stylized Markdown;
+- Bootstrap 5
 - Avatar opens in modal with inversion animation for each different theme (light/dark);
 - Enables and Disables weblog;
 - Home page with about or blog, you decide with one command;
