@@ -1,8 +1,8 @@
 {% include layout/data.liquid %}
 
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: 'en-US' }}">
-  {%- include head.html -%}
+<html lang="{{ site.lang | default: 'en' }}">
+  {%- include layout/head.html -%}
   <body>
     <div class="mt-4 maintenance">
       <div class="container">
@@ -25,6 +25,6 @@
         </div>
       </div>
     </div>
-    {%- include footer.html -%}
+    {%- include layout/footer.html -%}
   </body>
 </html>
