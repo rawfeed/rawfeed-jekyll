@@ -62,5 +62,229 @@
       "Nov",
       "Dez"
     ]
+  },
+  "es_ES": {
+    "months_full": [
+      "",
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Augusto",
+      "Setiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
+    ],
+    "months_short": [
+      "",
+      "Ene",
+      "Feb",
+      "Mar",
+      "Abr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Set",
+      "Oct",
+      "Nov",
+      "Dic"
+    ]
+  },
+  "fr_FR": {
+    "months_full": [
+      "",
+      "Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre"
+    ],
+    "months_short": [
+      "",
+      "Jan",
+      "Fév",
+      "Mar",
+      "Avr",
+      "Mai",
+      "Juin",
+      "Juil",
+      "Aoû",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Déc"
+    ]
+  },
+  "it_IT": {
+    "months_full": [
+      "",
+      "Gennaio",
+      "Febbraio",
+      "Marzo",
+      "Aprile",
+      "Maggio",
+      "Giugno",
+      "Luglio",
+      "Agosto",
+      "Settembre",
+      "Ottobre",
+      "Novembre",
+      "Dicembre"
+    ],
+    "months_short": [
+      "",
+      "Gen",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mag",
+      "Giu",
+      "LuG",
+      "Ago",
+      "Set",
+      "Ott",
+      "Nov",
+      "Dic"
+    ]
+  },
+  "de_DE": {
+    "months_full": [
+      "",
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ],
+    "months_short": [
+      "",
+      "Jan",
+      "Feb",
+      "Mär",
+      "Apr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Dez"
+    ]
+  },
+  "ru_RU": {
+    "months_full": [
+      "",
+      "январь",
+      "февраль",
+      "март",
+      "апрель",
+      "май",
+      "июнь",
+      "июль",
+      "август",
+      "сентябрь",
+      "октябрь",
+      "ноябрь",
+      "декабрь"
+    ],
+    "months_short": [
+      "",
+      "янв.",
+      "февр.",
+      "март",
+      "апр.",
+      "май",
+      "июн.",
+      "июл.",
+      "авг.",
+      "сент.",
+      "окт.",
+      "нояб.",
+      "дек."
+    ]
+  },
+  "jp_JP": {
+    "months_full": [
+      "",
+      "一月",
+      "二月",
+      "三月",
+      "四月",
+      "五月",
+      "六月",
+      "七月",
+      "八月",
+      "九月",
+      "十月",
+      "十一月",
+      "十二月"
+    ],
+    "months_short": [
+      "",
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月",
+      "6月",
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ]
+  },
+  "ch_CH": {
+    "months_full": [
+      "",
+      "一月",
+      "二月",
+      "三月",
+      "四月",
+      "五月",
+      "六月",
+      "七月",
+      "八月",
+      "九月",
+      "十月",
+      "十一月",
+      "十二月"
+    ],
+    "months_short": [
+      "",
+      "一月",
+      "二月",
+      "三月",
+      "四月",
+      "五月",
+      "六月",
+      "七月",
+      "八月",
+      "九月",
+      "十月",
+      "十一月",
+      "十二月"
+    ]
   }
 }
