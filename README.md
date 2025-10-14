@@ -41,6 +41,7 @@
 - [x] Maintenance page;
 - [x] Comments on blog posts with Giscus or Disqus (only in production [jekyll build]);
 - [x] Google Analytics (only in production [jekyll build]);
+- and more [here]()
 
 # Installation
 
@@ -132,6 +133,23 @@ npm run publish
 ```
 
 For more tasks, see: `bundle exec rake --tasks`
+
+### Vendors
+
+[ Technologies and Services Used ]
+
+This [Jekyll](https://jekyllrb.com) theme was developed using the following services and
+technologies, to whom we would like to thank for their work and availability:
+
+| Vendor | Link | Use in Theme |
+| -------- | ------- | ------- |
+| **Bootstrap 5** | [https://getbootstrap.com](https://getbootstrap.com/) | Framework for responsive design and base components |
+| **Font Awesome** | [https://fontawesome.com](https://fontawesome.com/) | Providing vector icons |
+| **Google Fonts** | [https://fonts.google.com](https://fonts.google.com/) | Styling and appearance of texts (custom fonts) |
+| **Google Apps Script** | [https://developers.google.com/apps-script](https://developers.google.com/apps-script) | Email sending and form processing functionality (Contact page). |
+| **Google reCAPTCHA** | [https://www.google.com/recaptcha/about/](https://www.google.com/recaptcha/about/) | Form spam protection (if implemented). |
+| **Giscus** | [https://giscus.app](https://giscus.app/) | *GitHub Discussions-based commenting system option* |
+| **Disqus** | [https://disqus.com](https://disqus.com/) | *Comment system option* |
 
 ## Donation
 
