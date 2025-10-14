@@ -141,7 +141,7 @@ Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum e
 
 > Note: You must copy the embed link
 
-{% include video title="Video" url="https://www.youtube.com/embed/IcICF_YF_tI?si=2n30rpxhzdEpZH4Y" %}
+{% include video title="Video" url="https://www.youtube.com/embed/xHusjrb_34A?si=th-S_gaVdKqtrJjj" %}
 
 # Tabs example
 
