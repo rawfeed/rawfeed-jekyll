@@ -75,6 +75,19 @@ blog:
       disqus:
         shortname: "" # your shortname disqus
 
+# section: [datelang]
+# Here you change the language of the months of the date
+datelang:
+  format: "%b %-d, %Y"
+  lang: "en_US" # en_US | pt_PT | jp_JP | ch_CH | es_ES | fr_FR | it_IT | de_DE | ru_RU
+
+# section: [Reading time]
+reading_time:
+  enable: true
+  words_per_minute: 180
+  message: ["Read this post in approximately", "Read this post in less than"]
+  minutes_label: ["minute", "minutes"]
+
 # section: [text]
 # define names for static text on your website
 text:
@@ -105,6 +118,8 @@ text:
         text: "clean"
       results: "results"
       no_results: "No results found"
+  page:
+    updated_on: "Page updated on"
   post:
     author: "author"
     related_posts: "related posts"
@@ -198,6 +213,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-archives
   - jekyll-paginate-v2
+  - rawfeed
 feed:
   path: /feed.xml
 defaults:
