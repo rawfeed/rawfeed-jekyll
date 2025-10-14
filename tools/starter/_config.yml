@@ -78,7 +78,7 @@ blog:
 # section: [datelang]
 # Here you change the language of the months of the date
 datelang:
-  format: "%b %-d, %Y"
+  format: "%b %d, %Y"
   lang: "en_US" # en_US | pt_PT | jp_JP | ch_CH | es_ES | fr_FR | it_IT | de_DE | ru_RU
 
 # section: [Reading time]
@@ -160,7 +160,9 @@ text:
       fail: "Verification failed. Please reload the page and try again."
       error: "An error occurred while sending the message. Please try again."
   footer:
-    copyright: "© 2025 - All right reserved."
+    copyright:
+      since: 2015
+      message: "All rights reserved."
     message: "Created by: William C. Canin"
   error:
     image: https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXlxYzc5eXp1Nm01cmtldzM5bHhwdzJ2Njk2c2E4b2RkdTBkeGs5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c20UV66B7zCWA/giphy.gif
