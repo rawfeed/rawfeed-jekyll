@@ -7,6 +7,8 @@ All important changes to this project are listed here.
 ### Added
 
 - Adding copyright since and current date (year) automatically
+- Site security improvements with `<meta http-equiv>` tag
+- Color contrast improvement (accessibility)
 
 ### Bugfix
 
