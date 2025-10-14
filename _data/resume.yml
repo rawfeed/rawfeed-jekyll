@@ -143,6 +143,7 @@ body:
 
   # section: [Certificates]
   # Full links will only appear in print mode. Online and PDF modes are clickable.
+  # TODO: Quando tem muitos certificados, existe uma quebra de espaço absurda na impressão
   certificates:
     enable: true
     caption: Certificates
