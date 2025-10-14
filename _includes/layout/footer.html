@@ -14,7 +14,8 @@
 
     {%- if site.text.footer.copyright -%}
     <div class="col-sm">
-      <div class="footer-copyright">{{ site.title | default: theme_name }}&nbsp;{{ site.text.footer.copyright }}</div>
+      {%- assign year = site.time | date: "%Y" -%}
+      <div class="footer-copyright">©&nbsp;{{ site.title | default: theme_name }}&nbsp;{{ site.text.footer.copyright.since }}-{{year}}&nbsp;-&nbsp;{{ site.text.footer.copyright.message }}</div>
     </div>
     {%- endif -%}
 
