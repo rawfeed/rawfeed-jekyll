@@ -2,6 +2,7 @@
 layout: resume
 order: 4
 title: Resume
+in_menu: true
 published: true
 permalink: /resume/
 ---
