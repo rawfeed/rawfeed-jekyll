@@ -19,6 +19,7 @@ module Rawfeed
         file.puts("author: \"Your Name\"")
         file.puts("date: #{array[2]} -0300")
         file.puts("update_date: ")
+        file.puts("in_menu: true")
         file.puts("reading_time: true")
         file.puts("published: false")
         file.puts("permalink: /#{permalink}/")
