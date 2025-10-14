@@ -1,14 +1,17 @@
 $theme-colors: (
   bg: #181818,
-  text: #bfbfbf,
+  // default text: #bfbfbf;
+  text: #d5d5d5,
   text-muted: #9b9b9b,
   // default primary: #66c9e2 | #61b8b8
   // primary dark blue: #668be2
   // primary grovbox: #ebdbb2
   // primary oliva: #639e5b
   // primary oliva2: #75a683
-  // primary opaque aqua: #61b8b8
-  primary: #4ce4c8,
+  // primary opaque aqua fosco: #61b8b8
+  // primary opaque aqua 2: #4ce4c8
+  // primary opaque aqua 3: #5ebdac
+  primary: #5ebdac,
   shadow-color: rgba(0, 0, 0, 0.1),
   code-color: #f55ca8,
   code-block-header-color: #141414,
@@ -57,7 +60,7 @@ $theme-colors: (
   resume-border-color: #000000,
   resume-title-text-color: white,
   resume-content-text-color: #d3d3d3,
-  resume-text-muted-color: #707070,
+  resume-text-muted-color: #9d9d9d,
 );
 
 /* matrix */
