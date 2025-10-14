@@ -50,8 +50,6 @@
     }
 
     .section {
-      page-break-inside: avoid;
-
       &-title {
         font-size: 12pt;
         font-weight: 700;
@@ -60,7 +58,6 @@
       &-item {
         font-size: 10.5pt;
         margin-bottom: 0.4em;
-        page-break-inside: avoid;
 
         a {
           color: black;
