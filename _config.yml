@@ -14,6 +14,21 @@ url: ""
 # the subpath of your site, e.g. /blog
 baseurl: ""
 
+# section: [secutiry] (Content-Security-Policy)
+# IMPORTANT!!! If you use any external script from any website in your posts that is not on this
+#              list, you must put it here.
+#              --- If you don't use it, don't remove what's already there. ---
+csp:
+  frame-src:
+    - https://www.youtube.com
+    - https://giscus.app
+    - https://disqus.com
+  connect-src:
+    - https://api.github.com
+  img-src:
+    - https://media0.giphy.com
+    - https://media4.giphy.com
+
 # section: [google]
 google:
   site_verification: ""
@@ -257,6 +272,7 @@ exclude:
   - docs
   - rawfeed.gemspec
   - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
   - CHANGELOG.md
   - LICENSE.txt
   - pkg
