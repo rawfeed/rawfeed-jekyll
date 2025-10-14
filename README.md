@@ -150,6 +150,7 @@ technologies, to whom we would like to thank for their work and availability:
 | **Google reCAPTCHA** | [https://www.google.com/recaptcha/about/](https://www.google.com/recaptcha/about/) | Form spam protection (if implemented). |
 | **Giscus** | [https://giscus.app](https://giscus.app/) | *GitHub Discussions-based commenting system option* |
 | **Disqus** | [https://disqus.com](https://disqus.com/) | *Comment system option* |
+| **Gulp** | [https://gulpjs.com](https://gulpjs.com/) | Minification and cleaning |
 
 ## Donation
 
