@@ -2,4 +2,16 @@
 
 .page {
   @extend %markdown;
+
+  .dt-published,
+  .dt-modified {
+    font-weight: normal !important;
+    font-family: "SUSE Mono", sans-serif;
+    color: var(--text-muted-color);
+  }
+
+  &-reading_time {
+    margin-top: 15px;
+    color: var(--text-muted-color);
+  }
 }
