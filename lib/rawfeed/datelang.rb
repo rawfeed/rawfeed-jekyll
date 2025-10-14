@@ -37,7 +37,7 @@ module Rawfeed
 
         formatted = date.strftime(format)
 
-        # 👇 Detecta automaticamente o tipo de mês com base no formato
+        # Automatically detects month type based on format
         if format.include?("%B")
           replace_months(formatted, data, :full)
         else
