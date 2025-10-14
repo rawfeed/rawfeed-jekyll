@@ -2,6 +2,8 @@
 layout: default
 ---
 
+{%- include layout/data.liquid -%}
+
 <article class="container post" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="row">
 
@@ -11,7 +13,11 @@ layout: default
       <div class="row post-meta">
         <div class="col-sm d-flex justify-content-start">
           <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-          {{ page.date | date: "%b %-d, %Y" }}
+          {%- if site.datelang -%}
+            {% datelang page.date format:date_format %}
+          {%- else -%}
+            {{ page.date | date: "%b %-d, %Y" }}
+          {%- endif -%}
           </time>
         </div>
         <div class="col-sm d-flex justify-content-end">
@@ -23,6 +29,11 @@ layout: default
           </span>
           {%- endif -%}
         </div>
+        {%- if site.reading_time.enable -%}
+        <div class="post-reading_time">
+          [&nbsp;{{ page.content | reading_time }}&nbsp;]
+        </div>
+        {%- endif -%}
       </div>
 
     </header>
@@ -33,11 +44,14 @@ layout: default
 
     {%- if page.update_date -%}
     <div class="row post-modified">
-      <div class="col-sm d-flex justify-content-start">
-        <time class="dt-modified" datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateModified">
-          <strong>{{ site.text.post.updated_on | default: "Post updated on" }}:</strong>&nbsp;{{ page.update_date | date: "%b %-d, %Y" }}
-        </time>
-      </div>
+      <time class="dt-modified" datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateModified">
+        <strong>{{ site.text.post.updated_on | default: "Post updated on" }}:</strong>&nbsp;
+        {%- if site.datelang -%}
+          {% datelang page.update_date format:date_format %}
+        {%- else -%}
+          {{ page.date | date: "%b %-d, %Y" }}
+        {%- endif -%}
+      </time>
     </div>
     {%- endif -%}
 
@@ -85,8 +99,11 @@ layout: default
         <ul class="related-posts-list">
           {%- for post in related_posts limit:5 -%}
             <li class="related-posts-list__item">
-              {%- assign date_format = "%b %-d,%Y" -%}
-              <span class="related-posts-list__meta">{{ post.date | date: date_format }}</span>&nbsp;»&nbsp;
+              {%- if site.datelang -%}
+                <span class="related-posts-list__meta">{% datelang post.date format:date_format %}</span>&nbsp;»&nbsp;
+              {%- else -%}
+                <span class="related-posts-list__meta">{{ post.date | date: "%b %-d, %Y" }}</span>&nbsp;»&nbsp;
+              {%- endif -%}
               <a class="related-posts-list__link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
               {%- if post.draft -%}
                 <span class="draft-badge">[&nbsp;this is a draft&nbsp;]</span>

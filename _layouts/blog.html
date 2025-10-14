@@ -2,6 +2,8 @@
 layout: default
 ---
 
+{%- include layout/data.liquid -%}
+
 {%- if page.pagination.enabled == true and site.pagination.enabled == true -%}
   {%- assign count_posts = paginator.total_posts -%}
 {%- else -%}
@@ -28,8 +30,11 @@ layout: default
 
         {%- for post in posts -%}
         <li class="blog-list__item">
-          {%- assign date_format =  "%b %-d,%Y" -%}
-          <span class="blog-list__meta">{{ post.date | date: date_format }}</span>&nbsp;»&nbsp;
+          {%- if site.datelang -%}
+            <span class="blog-list__meta">{% datelang post.date format:date_format %}</span>&nbsp;»&nbsp;
+          {%- else -%}
+            <span class="blog-list__meta">{{ post.date | date: "%b %-d, %Y" }}</span>&nbsp;»&nbsp;
+          {%- endif -%}
           <a class="blog-list__link" href="{{ post.url | relative_url }}">
             {{ post.title | escape }}
           </a>

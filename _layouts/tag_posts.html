@@ -2,6 +2,8 @@
 layout: default
 ---
 
+{%- include layout/data.liquid -%}
+
 <div class="container tag-posts">
   <div class="row">
     <h1 class="tag-posts-title"><span>[&nbsp;{{ site.text.tags_posts.title }}:&nbsp;</span>{{ page.title }}<span>&nbsp;]</span></h1>
@@ -9,8 +11,7 @@ layout: default
     <ul class="row tag-posts-list">
       {%- for post in page.posts -%}
         <li class="tag-posts-list__item">
-          {%- assign date_format =  "%b %-d,%Y" -%}
-          <span class="tag-posts-list__meta">{{ post.date | date: date_format }}</span>&nbsp;»&nbsp;
+          <span class="tag-posts-list__meta">{% datelang post.date format:date_format %}</span>&nbsp;»&nbsp;
           <a class="tag-posts-list__link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
           {%- if post.draft -%}
             <span class="draft-badge">[&nbsp;this is a draft&nbsp;]</span>

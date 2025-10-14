@@ -2,10 +2,39 @@
 layout: default
 ---
 
+{%- include layout/data.liquid -%}
+
 <div class="container page">
+  {%- if page.date or page.reading_time -%}
+    <div class="row">
+      {%- if page.date -%}
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {%- if site.datelang -%}
+          {% datelang page.date format:date_format %}
+        {%- else -%}
+          {{ page.date | date: "%b %-d, %Y" }}
+        {%- endif -%}
+      </time>
+      {%- endif -%}
+      {%- if page.reading_time -%}
+        <div class="page-reading_time">
+          <p>[&nbsp;{{ page.content | reading_time }}&nbsp;]</p>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
   <div class="row">
     <div class="page-content">{{ content }}</div>
   </div>
+
+  {%- if page.update_date -%}
+    <div class="row page-modified">
+      <time class="dt-modified" datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateModified">
+        <strong>{{ site.text.page.updated_on | default: "Page updated on" }}:</strong>&nbsp;{% datelang page.update_date format:date_format %}
+      </time>
+    </div>
+  {%- endif -%}
 </div>
 
 <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
