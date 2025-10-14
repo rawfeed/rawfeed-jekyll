@@ -9,6 +9,30 @@
     <title>{{ page.title }} | {{ site.title | default: theme_name }}</title>
   {%- endif -%}
 
+  {% comment %} Security {% endcomment %}
+   {%- if jekyll.environment == 'production' %}
+  <meta http-equiv="Content-Security-Policy"
+    content="
+      default-src 'self';
+      img-src 'self' data: https:;
+      script-src 'self' https://cdn.jsdelivr.net;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net;
+      font-src 'self' https://fonts.gstatic.com data:;
+      connect-src 'self';
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+      frame-ancestors 'none';
+      require-trusted-types-for 'script';
+      trusted-types default;
+    ">
+    <!-- ⚠️ CSP,HSTS,COOP and enabled in the theme, remember to also configure it in Cloudflare or your server -->
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp">
+    <!-- ⚠️ CSP,HSTS,COOP enabled in the theme, remember to also configure it in Cloudflare or your server -->
+   {%- endif -%}
+
   {% comment %} favicon {% endcomment %}
   <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/images/favicon.png' | relative_url }}">
