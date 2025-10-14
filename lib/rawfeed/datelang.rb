@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 require "json"
 require "date"
+require "jekyll"
 
-module Jekyll
+module Rawfeed
   module Datelang
     class Main < Liquid::Tag
       def initialize(tag_name, text, tokens)
@@ -97,4 +98,4 @@ module Jekyll
   end
 end
 
-Liquid::Template.register_tag("datelang", Jekyll::Datelang::Main)
+Liquid::Template.register_tag("datelang", Rawfeed::Datelang::Main)

@@ -1,6 +1,6 @@
 require "jekyll"
 
-module Jekyll
+module Rawfeed
   module ReadingTimeFilter
     def reading_time(input)
       site_config = Jekyll.sites.first.config rescue {}
@@ -14,4 +14,4 @@ module Jekyll
     end
   end
 end
-Liquid::Template.register_filter(Jekyll::ReadingTimeFilter)
+Liquid::Template.register_filter(Rawfeed::ReadingTimeFilter)
