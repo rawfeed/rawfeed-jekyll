@@ -7,8 +7,9 @@ All important changes to this project are listed here.
 ### Added
 
 - Adding copyright since and current date (year) automatically
-- Site security improvements with `<meta http-equiv>` tag
+- Site security improvements with `CSP` tag
 - Color contrast improvement (accessibility)
+- Adding an "in_menu" option to pages. Now you can create pages without it being in the menu.
 
 ### Bugfix
 
