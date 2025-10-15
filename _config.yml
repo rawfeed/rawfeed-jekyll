@@ -104,14 +104,27 @@ reading_time:
   minutes_label: ["minute", "minutes"]
 
 # section: [text]
-# define names for static text on your website
+# TODO: Mudar text: para strings:
+# - define names for static text on your website
+# - use emoji unicode 6.0, to have greater compatibility
 text:
   menu:
-    home: "home"
-    blog: "weblog"
-    search: "search"
-    tags: "tags"
-    feed: "feed"
+    home:
+      emoji: 🏠&nbsp;
+      title: "home"
+    blog:
+      emoji: 📝&nbsp;
+      title: "weblog"
+      subtitle: "posts"
+    search:
+      emoji: 🔍&nbsp;
+      title: "search"
+    tags:
+      emoji: 🏷️&nbsp;
+      title: "tags"
+    feed:
+      emoji: 📰&nbsp;
+      title: "feed"
   home:
     terminal:
       user: "rawfeed"
@@ -176,7 +189,7 @@ text:
       error: "An error occurred while sending the message. Please try again."
   footer:
     copyright:
-      since: 2015
+      since: 2025
       message: "All rights reserved."
     message: "Created by: William C. Canin"
   error:
