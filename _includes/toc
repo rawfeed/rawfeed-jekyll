@@ -7,12 +7,46 @@
   </div>
   <div class="toc-list-wrapper">
     <ul class="toc-list" role="list"></ul>
-    <p class="toc-empty" style="display:none">No titles found.</p>
+    <p class="toc-empty" style="display:none">No titles found. Remove TOC!</p>
   </div>
 </nav>
 
 <script>
 (function () {
+  const minLayoutWidth = 1830;
+
+  const toc = document.getElementById('toc');
+  if (toc) {
+    const sentinel = document.createElement('div');
+    toc.parentNode.insertBefore(sentinel, toc);
+
+    function shouldApplyFixed() {
+      return window.innerWidth > minLayoutWidth;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (shouldApplyFixed()) {
+          if (!entry.isIntersecting) {
+            toc.classList.add('toc-fixed');
+          } else {
+            toc.classList.remove('toc-fixed');
+          }
+        } else {
+          toc.classList.remove('toc-fixed');
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(sentinel);
+
+    window.addEventListener('resize', () => {
+        if (!shouldApplyFixed()) {
+            toc.classList.remove('toc-fixed');
+        }
+    });
+  }
+
   function slugify(text) {
     if (!text) return '';
     return text.toString().toLowerCase().trim()
@@ -126,6 +160,15 @@
       const tocTop = toc.offsetTop;
 
       function handleScrollFix() {
+        if (window.innerWidth <= minLayoutWidth) {
+          toc.classList.remove('fixed');
+          toc.style.position = '';
+          toc.style.top = '';
+          toc.style.zIndex = '';
+          toc.style.width = '';
+          return;
+        }
+
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
         // Fixes pinning behavior in Chrome
