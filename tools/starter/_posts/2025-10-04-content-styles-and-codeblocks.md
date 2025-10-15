@@ -3,7 +3,7 @@ layout: post
 title: "Content styles and Codeblocks - Demonstration in the post"
 description: "An example post for: Code Block and Styles"
 author: "William C. Canin"
-date: 2025-10-04 17:09:18
+date: 2025-10-04 17:09:18 -0300
 update_date:
 comments: false
 tags: [example,codeblocks,style,include,chart,ruby,html,rust,raw]
@@ -72,6 +72,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eg
   - [x] Sourdough Choco-chip
 - [ ] Chee-ee-eeee-zzze!!!!
 
+# Quotes
+
+> normal citation
+
+> > double quote
+
+# Line separators
+
+---
+***
+___
+
+# Escaping special characters
+
+\*not in italics\*
+
 # Table
 
 | Title 1               | Title 2               | Title 3               | Title 4               |
@@ -123,7 +139,9 @@ Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum e
 
 # Video YouTube
 
-{% include video title="Video" url="https://www.youtube.com/watch?v=IcICF_YF_tI" %}
+> Note: You must copy the embed link
+
+{% include video title="Video" url="https://www.youtube.com/embed/xHusjrb_34A?si=th-S_gaVdKqtrJjj" %}
 
 # Tabs example
 
