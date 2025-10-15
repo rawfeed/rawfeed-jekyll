@@ -104,7 +104,8 @@ reading_time:
   minutes_label: ["minute", "minutes"]
 
 # section: [text]
-# define names for static text on your website
+# - define names for static text on your website
+# - use emoji unicode 6.0, to have greater compatibility
 strings:
   menu:
     home:
