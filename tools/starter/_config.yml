@@ -14,6 +14,21 @@ url: ""
 # the subpath of your site, e.g. /blog
 baseurl: ""
 
+# section: [secutiry] (Content-Security-Policy)
+# IMPORTANT!!! If you use any external script from any website in your posts that is not on this
+#              list, you must put it here.
+#              --- If you don't use it, don't remove what's already there. ---
+csp:
+  frame-src:
+    - https://www.youtube.com
+    - https://giscus.app
+    - https://disqus.com
+  connect-src:
+    - https://api.github.com
+  img-src:
+    - https://media0.giphy.com
+    - https://media4.giphy.com
+
 # section: [google]
 google:
   site_verification: ""
@@ -92,11 +107,22 @@ reading_time:
 # define names for static text on your website
 text:
   menu:
-    home: "home"
-    blog: "weblog"
-    search: "search"
-    tags: "tags"
-    feed: "feed"
+    home:
+      emoji: 🏠&nbsp;
+      title: "home"
+    blog:
+      emoji: 📝&nbsp;
+      title: "weblog"
+      subtitle: "posts"
+    search:
+      emoji: 🔍&nbsp;
+      title: "search"
+    tags:
+      emoji: 🏷️&nbsp;
+      title: "tags"
+    feed:
+      emoji: 📰&nbsp;
+      title: "feed"
   home:
     terminal:
       user: "rawfeed"
@@ -161,7 +187,7 @@ text:
       error: "An error occurred while sending the message. Please try again."
   footer:
     copyright:
-      since: 2015
+      since: 2025
       message: "All rights reserved."
     message: "Created by: William C. Canin"
   error:
