@@ -13,9 +13,11 @@
     background-color: transparent;
     margin-bottom: 5px;
     margin-right: 2px;
+
     @media (max-width: 1040px) {
       display: none;
     }
+
     &-link {
       font-size: 3rem;
       display: none;
@@ -24,21 +26,26 @@
     }
   }
 
-  &-copyright {
+  &-copyright-wrap {
     text-align: left;
-    @media (max-width: 400px) {
+
+    @media (max-width: 798px) {
       text-align: center !important;
     }
   }
-  &-message {
+
+  &-message-wrap {
     text-align: center;
-    @media (max-width: 1040px) {
+
+    @media (max-width: 940px) {
       display: none;
     }
   }
-  &-made-by {
+
+  &-made-by-wrap {
     text-align: right;
-    @media (max-width: 400px) {
+
+    @media (max-width: 800px) {
       display: none;
     }
   }
