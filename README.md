@@ -41,7 +41,7 @@
 - [x] Maintenance page;
 - [x] Comments on blog posts with Giscus or Disqus (only in production [jekyll build]);
 - [x] Google Analytics (only in production [jekyll build]);
-- and more [here]()
+- and more [here](#vendors)
 
 # Installation
 
@@ -134,7 +134,7 @@ npm run publish
 
 For more tasks, see: `bundle exec rake --tasks`
 
-### Vendors
+# Vendors
 
 [ Technologies and Services Used ]
 

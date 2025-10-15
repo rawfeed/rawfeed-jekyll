@@ -10,11 +10,13 @@ All important changes to this project are listed here.
 - Site security improvements with `CSP` tag
 - Color contrast improvement (accessibility)
 - Adding an "in_menu" option to pages. Now you can create pages without it being in the menu.
+- Adding emoji option to menu
 
 ### Bugfix
 
 - Bug fixes in the website style.
 - Correction on the resume page in print mode.
+- Improving footer inconsistency on mobile
 
 ## [0.1.3] - 2025-10-14
 
