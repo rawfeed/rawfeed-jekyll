@@ -3,7 +3,7 @@
 <footer class="container-fluid fixed-bottom footer">
   {%- if site.footer.top_button.enable -%}
   <div class="row top">
-    <div class="col-sm d-flex justify-content-end">
+    <div class="col-md d-flex justify-content-end">
       <!-- old: <a id="top-link" class="top-link" href="#top"><i class="fa-regular fa-square-caret-up"></i></a> -->
        <a id="top-link" class="top-link" href="#top">^</a>
     </div>
@@ -13,19 +13,20 @@
   <div class="row footer-wrapper">
 
     {%- if site.text.footer.copyright -%}
-    <div class="col-sm">
+    <div class="col-md footer-copyright-wrap">
       {%- assign year = site.time | date: "%Y" -%}
-      <div class="footer-copyright">©&nbsp;{{ site.title | default: theme_name }}&nbsp;{{ site.text.footer.copyright.since }}-{{year}}&nbsp;-&nbsp;{{ site.text.footer.copyright.message }}</div>
+      {%- assign since = site.text.footer.copyright.since -%}
+    <div class="footer-copyright">©&nbsp;{{ site.title | default: theme_name }}&nbsp;{{ since }}{%- if since -%}-{%- endif -%}{{year}}&nbsp;-&nbsp;{{ site.text.footer.copyright.message }}</div>
     </div>
     {%- endif -%}
 
     {%- if site.text.footer.message -%}
-    <div class="col-sm">
+    <div class="col-md footer-message-wrap">
         <div class="footer-message">{{ site.text.footer.message }}</div>
     </div>
     {%- endif -%}
 
-    <div class="col-sm">
+    <div class="col-md footer-made-by-wrap">
       <div class="footer-made-by">
         Using the <a href="{{ project_url }}" target="_blank" rel="noopener noreferrer">{{ theme_name }}</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener noreferrer">Jekyll</a>.
       </div>
