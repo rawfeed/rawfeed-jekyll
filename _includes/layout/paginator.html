@@ -6,7 +6,7 @@
         {%- if paginator.previous_page -%}
         <li class="page-item">
           <a class="page-link blog-pagination__newer" href="{{ paginator.previous_page_path | prepend: site.baseurl | prepend: site.url }}">
-            &larr;&nbsp;{{ site.text.post.pagination.newer_text }}
+            &larr;&nbsp;{{ site.strings.post.pagination.newer_text }}
           </a>
         </li>
         {%- endif -%}
@@ -14,9 +14,9 @@
         {%- if total_page > 1 -%}
           <li class="page-item">
             <span class="page-link blog-pagination__counter">
-              [&nbsp;{{ site.text.post.pagination.counter[0] }}
+              [&nbsp;{{ site.strings.post.pagination.counter[0] }}
               {{ paginator.page }}
-              {{ site.text.post.pagination.counter[1] }}
+              {{ site.strings.post.pagination.counter[1] }}
               {{ total_page }}&nbsp;]
             </span>
           </li>
@@ -25,7 +25,7 @@
         {%- if paginator.next_page -%}
         <li class="page-item">
           <a class="page-link blog-pagination__older" href="{{ paginator.next_page_path | prepend: site.baseurl | prepend: site.url }}">
-            {{ site.text.post.pagination.older_text }}&nbsp;&rarr;
+            {{ site.strings.post.pagination.older_text }}&nbsp;&rarr;
           </a>
         </li>
         {%- endif -%}

@@ -24,7 +24,7 @@ layout: default
           {%- if page.author -%}
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span class="p-author h-card" itemprop="name">
-              {{ site.text.post.author | default: "author" }}:&nbsp;{{ page.author }}
+              {{ site.strings.post.author | default: "author" }}:&nbsp;{{ page.author }}
             </span>
           </span>
           {%- endif -%}
@@ -45,7 +45,7 @@ layout: default
     {%- if page.update_date -%}
     <div class="row post-modified">
       <time class="dt-modified" datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateModified">
-        <strong>{{ site.text.post.updated_on | default: "Post updated on" }}:</strong>&nbsp;
+        <strong>{{ site.strings.post.updated_on | default: "Post updated on" }}:</strong>&nbsp;
         {%- if site.datelang -%}
           {% datelang page.update_date format:date_format %}
         {%- else -%}
@@ -94,7 +94,7 @@ layout: default
 
     {%- if related_posts.size > 0 -%}
       <div class="row related-posts">
-        <h3 class="related-posts-title">[&nbsp;{{ site.text.post.related_posts | default: "related posts" }}&nbsp;]</h3>
+        <h3 class="related-posts-title">[&nbsp;{{ site.strings.post.related_posts | default: "related posts" }}&nbsp;]</h3>
 
         <ul class="related-posts-list">
           {%- for post in related_posts limit:5 -%}

@@ -29,41 +29,41 @@ layout: default
     <span class="contact-title"><strong>[&nbsp;{{ page.title | downcase }}&nbsp;]</strong></span>
     <form id="contactForm" class="mt-4 contact-form">
       <div class="mb-3">
-        {% comment %} <label for="inputName" class="form-label">{{ site.text.contact.name | default: "Name" | downcase }}</label> {% endcomment %}
+        {% comment %} <label for="inputName" class="form-label">{{ site.strings.contact.name | default: "Name" | downcase }}</label> {% endcomment %}
         <input id="inputName"
         name="name"
         type="text"
-        placeholder="{{ site.text.contact.name.placeholder | default: 'First and last name' }}"
+        placeholder="{{ site.strings.contact.name.placeholder | default: 'First and last name' }}"
         class="form-control contact-form__name"
         required>
       </div>
       <div class="mb-3">
-        {% comment %} <label for="inputEmail" class="form-label">{{ site.text.contact.name | default: "Email address" | downcase }}</label> {% endcomment %}
+        {% comment %} <label for="inputEmail" class="form-label">{{ site.strings.contact.name | default: "Email address" | downcase }}</label> {% endcomment %}
         <input id="inputEmail"
         name="email"
         type="email"
-        placeholder="{{ site.text.contact.email.placeholder | default: 'Your best email address' }}"
+        placeholder="{{ site.strings.contact.email.placeholder | default: 'Your best email address' }}"
         class="form-control contact-form__email"
         aria-describedby="emailHelp"
         required>
         <div id="emailHelp" class="form-text contact-form__help">
-          {{ site.text.contact.email.help | default: "We'll never share your email with anyone else." }}
+          {{ site.strings.contact.email.help | default: "We'll never share your email with anyone else." }}
         </div>
       </div>
       <textarea id="textMessage"
       name="message"
       class="form-control contact-form__message"
-      placeholder="{{ site.text.contact.message.placeholder | default: 'Write your message here' }}"
+      placeholder="{{ site.strings.contact.message.placeholder | default: 'Write your message here' }}"
       style="min-height: 150px"
       required></textarea>
-      <small style="display: block; font-size: 8pt; opacity: .6">{{ site.text.contact.message.caracters.warning.content }}</small>
+      <small style="display: block; font-size: 8pt; opacity: .6">{{ site.strings.contact.message.caracters.warning.content }}</small>
       <!-- TODO: version: 0.2.0 Make reCaptcha change themes instantly -->
       <div id="g-recaptcha" class="g-recaptcha mt-2" data-sitekey="{{ site.google.recaptcha.pubkey }}" style="display: inline-block; margin: 5px 0;"></div>
       <div class="d-flex justify-content-end mb-5">
         <button id="submitButton"
         type="submit"
         class="btn contact-form__submit">
-        {{ site.text.contact.button.text | default: 'Send!' }}
+        {{ site.strings.contact.button.text | default: 'Send!' }}
         </button>
       </div>
     </form>
@@ -110,8 +110,8 @@ layout: default
     const recaptchaResponse = grecaptcha.getResponse();
     if (!recaptchaResponse) {
       showModal(
-        "{{ site.text.contact.recaptcha.warning.title | default: 'Warning' }}",
-        "{{ site.text.contact.recaptcha.warning.content | default: "Please tick the 'I'm not a robot' box." }}",
+        "{{ site.strings.contact.recaptcha.warning.title | default: 'Warning' }}",
+        "{{ site.strings.contact.recaptcha.warning.content | default: "Please tick the 'I'm not a robot' box." }}",
         "warning"
       );
       return;
@@ -119,17 +119,17 @@ layout: default
 
     const textarea = document.getElementById('textMessage');
     const text = textarea.value.trim();
-    if (text.length < {{ site.text.contact.message.caracters.min }}) {
+    if (text.length < {{ site.strings.contact.message.caracters.min }}) {
       showModal(
-        "{{ site.text.contact.message.caracters.warning.title | default: 'Warning' }}",
-        "{{ site.text.contact.message.caracters.warning.content | default: "The message must have at least 50 characters." }}",
+        "{{ site.strings.contact.message.caracters.warning.title | default: 'Warning' }}",
+        "{{ site.strings.contact.message.caracters.warning.content | default: "The message must have at least 50 characters." }}",
         "warning"
       );
       return;
     }
 
     submitButton.disabled = true;
-    submitButton.textContent = "{{ site.text.contact.message.status | default: "Sending...Wait" }}";
+    submitButton.textContent = "{{ site.strings.contact.message.status | default: "Sending...Wait" }}";
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
@@ -147,31 +147,31 @@ layout: default
         form.reset();
         grecaptcha.reset();
         showModal(
-          "{{ site.text.contact.message.success.title | default: 'Message Sent' }}",
-          "{{ site.text.contact.message.success.content | default: 'Your message has been sent successfully!' }}",
+          "{{ site.strings.contact.message.success.title | default: 'Message Sent' }}",
+          "{{ site.strings.contact.message.success.content | default: 'Your message has been sent successfully!' }}",
           "success"
         );
       } else {
         showModal(
-          "{{ site.text.contact.message.error.title | default: 'Error' }}",
-          "{{ site.text.contact.message.error.content | default: 'Something went wrong while sending your message.' }}",
+          "{{ site.strings.contact.message.error.title | default: 'Error' }}",
+          "{{ site.strings.contact.message.error.content | default: 'Something went wrong while sending your message.' }}",
           "error"
         );
-        throw new Error(result.message || "{{ site.text.contact.message.error.content | default: "An unknown error has occurred." }}");
+        throw new Error(result.message || "{{ site.strings.contact.message.error.content | default: "An unknown error has occurred." }}");
       }
 
     } catch (error) {
       console.error("Error sending:", error);
       if (error.message.includes("reCAPTCHA")) {
           showModal(
-            "{{ site.text.contact.message.error.title | default: 'Error' }}",
-            "{{ site.text.contact.recaptcha.fail | default: "Verification failed. Please reload the page and try again." }}",
+            "{{ site.strings.contact.message.error.title | default: 'Error' }}",
+            "{{ site.strings.contact.recaptcha.fail | default: "Verification failed. Please reload the page and try again." }}",
             "error"
           );
       } else {
           showModal(
-            "{{ site.text.contact.message.error.title | default: 'Error' }}",
-            "{{ site.text.contact.recaptcha.error | default: "An error occurred while sending the message. Please try again." }}",
+            "{{ site.strings.contact.message.error.title | default: 'Error' }}",
+            "{{ site.strings.contact.recaptcha.error | default: "An error occurred while sending the message. Please try again." }}",
             "error"
           );
       }
@@ -179,7 +179,7 @@ layout: default
 
     } finally {
       submitButton.disabled = false;
-      submitButton.textContent = "{{ site.text.contact.button.text | default: "Send!" }}";
+      submitButton.textContent = "{{ site.strings.contact.button.text | default: "Send!" }}";
     }
   });
 </script>

@@ -107,7 +107,7 @@ reading_time:
 # TODO: Mudar text: para strings:
 # - define names for static text on your website
 # - use emoji unicode 6.0, to have greater compatibility
-text:
+strings:
   menu:
     home:
       emoji: 🏠&nbsp;

@@ -2,15 +2,15 @@
 <div class="row blog-search" inert>
   <div class="col-sm">
     <div class="blog-search__wapper">
-      <strong>»</strong><input id="blog-search__input" type="text" class="blog-search__input" placeholder="{{ site.text.blog.search.placeholder }}" aria-label="{{ site.blog.search.placeholder }}">
+      <strong>»</strong><input id="blog-search__input" type="text" class="blog-search__input" placeholder="{{ site.strings.blog.search.placeholder }}" aria-label="{{ site.blog.search.placeholder }}">
       <button id="blog-search__btn-clean" class="blog-search__btn-clean" type="button">
-        {{ site.text.blog.search.button_clean.text }}
+        {{ site.strings.blog.search.button_clean.text }}
       </button>
     </div>
   </div>
 
   <div id="blog-search__results-wrapper" class="row disabled">
-    <h2 class="blog-subtitle">[&nbsp;{{ site.text.blog.search.results | default: "results" }}&nbsp;]</h2>
+    <h2 class="blog-subtitle">[&nbsp;{{ site.strings.blog.search.results | default: "results" }}&nbsp;]</h2>
     <ul id="blog-search__results" class="row blog-list"></ul>
   </div>
 

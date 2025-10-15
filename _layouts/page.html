@@ -31,7 +31,7 @@ layout: default
   {%- if page.update_date -%}
     <div class="row page-modified">
       <time class="dt-modified" datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateModified">
-        <strong>{{ site.text.page.updated_on | default: "Page updated on" }}:</strong>&nbsp;{% datelang page.update_date format:date_format %}
+        <strong>{{ site.strings.page.updated_on | default: "Page updated on" }}:</strong>&nbsp;{% datelang page.update_date format:date_format %}
       </time>
     </div>
   {%- endif -%}

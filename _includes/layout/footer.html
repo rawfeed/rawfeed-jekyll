@@ -12,17 +12,17 @@
 
   <div class="row footer-wrapper">
 
-    {%- if site.text.footer.copyright -%}
+    {%- if site.strings.footer.copyright -%}
     <div class="col-md footer-copyright-wrap">
       {%- assign year = site.time | date: "%Y" -%}
-      {%- assign since = site.text.footer.copyright.since -%}
-    <div class="footer-copyright">©&nbsp;{{ site.title | default: theme_name }}&nbsp;{{ since }}{%- if since -%}-{%- endif -%}{{year}}&nbsp;-&nbsp;{{ site.text.footer.copyright.message }}</div>
+      {%- assign since = site.strings.footer.copyright.since -%}
+    <div class="footer-copyright">©&nbsp;{{ site.title | default: theme_name }}&nbsp;{{ since }}{%- if since -%}-{%- endif -%}{{year}}&nbsp;-&nbsp;{{ site.strings.footer.copyright.message }}</div>
     </div>
     {%- endif -%}
 
-    {%- if site.text.footer.message -%}
+    {%- if site.strings.footer.message -%}
     <div class="col-md footer-message-wrap">
-        <div class="footer-message">{{ site.text.footer.message }}</div>
+        <div class="footer-message">{{ site.strings.footer.message }}</div>
     </div>
     {%- endif -%}
 

@@ -160,7 +160,7 @@
             searchInput: document.getElementById('blog-search__input'),
             resultsContainer: document.getElementById('blog-search__results'),
             searchResultTemplate: '<li><span class="blog-list__meta"><time datetime="{date}">{date}</time></span>&nbsp;»&nbsp; <a class="blog-list__link" href="{{ site.url }}{url}">{title}</a></li>',
-            noResultsText: '<p>{{ site.text.blog.no_results | default: "No results found" }}</p>',
+            noResultsText: '<p>{{ site.strings.blog.no_results | default: "No results found" }}</p>',
             json: "{{ '/assets/json/blog_search.json' | relative_url }}"
           })
         });
@@ -176,9 +176,9 @@
       const socialsEl = document.getElementById("terminal-screen--socials");
 
       const commands = {
-        help: `{{ site.text.home.terminal.commands }}`,
+        help: `{{ site.strings.home.terminal.commands }}`,
         about: document.getElementById("home-content").innerHTML,
-        socials: socialsEl ? socialsEl.innerHTML : `{{ site.text.home.terminal.no_socials }}`,
+        socials: socialsEl ? socialsEl.innerHTML : `{{ site.strings.home.terminal.no_socials }}`,
       };
 
       function createInputLine() {
@@ -187,7 +187,7 @@
 
         const prompt = document.createElement('span');
         prompt.className = 'prompt';
-        prompt.textContent = `[{{ site.text.home.terminal.user }}@{{ site.text.home.terminal.hostname }}:~]$`;
+        prompt.textContent = `[{{ site.strings.home.terminal.user }}@{{ site.strings.home.terminal.hostname }}:~]$`;
 
         // wrapper para conter input, cursor e measure
         const wrapper = document.createElement('span');
@@ -196,7 +196,7 @@
         const input = document.createElement('input');
         input.type = 'text';
         input.className = 'input';
-        input.placeholder = `{{ site.text.home.terminal.welcome }}`;
+        input.placeholder = `{{ site.strings.home.terminal.welcome }}`;
         input.spellcheck = false;
         input.autocomplete = 'off';
         input.autocorrect = 'off';
@@ -300,7 +300,7 @@
           case cmd === 'about': writeLineHTML(commands.about); break;
           case cmd === 'socials': writeLineHTML(commands.socials); break;
           case cmd === 'clear': screen.innerHTML=''; break;
-          default: if(cmd) commandsPrint(cmd + `{{ site.text.home.terminal.error }}`, mode='text');
+          default: if(cmd) commandsPrint(cmd + `{{ site.strings.home.terminal.error }}`, mode='text');
         }
       }
 
