@@ -25,9 +25,9 @@
         <div class="container">
           <div class="row">
             {%- if index.layout == "blog" -%}
-              <span>[&nbsp;<a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="{{home_url}}">{{ site.text.menu.blog | default: "blog" | downcase }}</a>&nbsp;]</span>
+              <span>[&nbsp;<a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="{{home_url}}">{{ site.text.menu.blog.title | default: "blog" | downcase }}</a>&nbsp;]</span>
             {%- else -%}
-              <span>[&nbsp;<a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="{{home_url}}">{{ site.text.menu.home | default: "home" | downcase }}</a>&nbsp;]</span>
+              <span>[&nbsp;{{site.text.menu.home.emoji}}<a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="{{home_url}}">{{ site.text.menu.home.title | default: "home" | downcase }}</a>&nbsp;]</span>
             {%- endif -%}
           </div>
         </div>
@@ -86,7 +86,7 @@
       <div class="col-sm d-flex justify-content-center column-bottom">
       {%- if index.layout == "blog" -%}
         <span class="blog-menu">menu&nbsp;»
-          &nbsp;{%- if site.blog.search.enable -%}<a id="blog-search__btn" class="blog-menu__link" href="{{search_url}}">{{ site.text.menu.search | default: "search" }}</a><strong>&nbsp;.&nbsp;</strong>{%- endif -%}<a class="blog-menu__link{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">{{ site.text.menu.tags | default: "tags" }}</a><strong>&nbsp;.&nbsp;</strong>
+          &nbsp;{{site.text.menu.search.emoji}}{%- if site.blog.search.enable -%}<a id="blog-search__btn" class="blog-menu__link" href="{{search_url}}">{{ site.text.menu.search.title | default: "search" }}</a><strong>&nbsp;.&nbsp;</strong>{%- endif -%}<a class="blog-menu__link{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">{{ site.text.menu.tags.title | default: "tags" }}</a><strong>&nbsp;.&nbsp;</strong>
         </span>
         {% assign sorted_pages = site.pages | sort: 'order' %}
           {%- for item in sorted_pages -%}
@@ -99,8 +99,8 @@
           <a class="blog-menu__link" href="{{feed_url}}">{{ site.text.menu.feed | default: "feed" }}</a><strong>&nbsp;.&nbsp;</strong>
       {%- else index.layout == "home" -%}
         {%- if page.url contains "/blog/" -%}
-          <span class="blog-menu">{{ site.text.menu.blog }}&nbsp;»
-            <a class="blog-menu__link{% if page.url == "/blog/" or page.url == "/blog/index.html" or page.url contains "/blog/page/" %} menu-active{% endif %}" href="{{blog_url}}">posts</a><strong>&nbsp;.&nbsp;</strong>{%- if site.blog.search.enable -%}<a id="blog-search__btn" class="blog-menu__link" href="{{search_url}}">{{ site.text.menu.search | default: "search" }}</a><strong>&nbsp;.&nbsp;</strong>{%- endif -%}<a class="blog-menu__link{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">{{ site.text.menu.tags | default: "tags" }}</a><strong>&nbsp;.&nbsp;</strong><a class="blog-menu__link" href="{{feed_url}}">{{ site.text.menu.feed | default: "feed" }}</a><strong>&nbsp;.&nbsp;</strong>
+          <span class="blog-menu">{{ site.text.menu.blog.title }}&nbsp;»
+            <a class="blog-menu__link{% if page.url == "/blog/" or page.url == "/blog/index.html" or page.url contains "/blog/page/" %} menu-active{% endif %}" href="{{blog_url}}">{{site.text.menu.blog.emoji}}{{site.text.menu.blog.subtitle}}</a><strong>&nbsp;.&nbsp;</strong>{%- if site.blog.search.enable -%}{{site.text.menu.search.emoji}}<a id="blog-search__btn" class="blog-menu__link" href="{{search_url}}">{{ site.text.menu.search.text | default: "search" }}</a><strong>&nbsp;.&nbsp;</strong>{%- endif -%}{{site.text.menu.tags.emoji}}<a class="blog-menu__link{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">{{ site.text.menu.tags.text | default: "tags" }}</a><strong>&nbsp;.&nbsp;</strong>{{site.text.menu.feed.emoji}}<a class="blog-menu__link" href="{{feed_url}}">{{ site.text.menu.feed.title | default: "feed" }}</a><strong>&nbsp;.&nbsp;</strong>
           </span>
         {%- else -%}
           {%- assign published_pages = site.pages | where_exp:"p","p.path contains '_pages/' and p.published" -%}
@@ -109,13 +109,13 @@
           {%- endif -%}
           {%- if site.pagination.enabled == true -%}
             {%- if blog_page -%}
-              <a href="{{blog_url}}">{{ site.text.menu.blog }}</a><strong>&nbsp;.&nbsp;</strong>
+              {{ site.text.menu.blog.emoji }}<a href="{{blog_url}}">{{ site.text.menu.blog.title }}</a><strong>&nbsp;.&nbsp;</strong>
             {%- endif -%}
             {% assign sorted_pages = site.pages | sort: 'order' %}
             {%- for item in sorted_pages -%}
               {%- if item.path contains '_pages/' and item.in_menu -%}
                 {%- unless item.url contains "blog" or item.url contains "404.html" -%}
-                  <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title | downcase }}</a><strong>&nbsp;.&nbsp;</strong>
+                  {{ item.emoji }}<a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title | downcase }}</a><strong>&nbsp;.&nbsp;</strong>
                 {%- endunless -%}
               {%- endif -%}
             {%- endfor -%}
@@ -124,7 +124,7 @@
             {%- for item in sorted_pages -%}
               {%- if item.path contains '_pages/' and item.published != false and item.in_menu -%}
                 {%- unless item.url contains "/tags/" or item.url contains "404.html" -%}
-                  <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title | downcase }}</a><strong>&nbsp;.&nbsp;</strong>
+                  {{ item.emoji }}<a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">{{ item.title | downcase }}</a><strong>&nbsp;.&nbsp;</strong>
                 {%- endunless -%}
               {%- endif -%}
             {%- endfor -%}

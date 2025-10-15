@@ -16,6 +16,7 @@ module Rawfeed
         file.puts("layout: page")
         file.puts("order: #number")
         file.puts("title: \"#{array[0]}\"")
+        file.puts("emoji: 😃&nbsp; # Add an emoji to the page menu or leave it blank")
         file.puts("author: \"Your Name\"")
         file.puts("date: #{array[2]} -0300")
         file.puts("update_date: ")

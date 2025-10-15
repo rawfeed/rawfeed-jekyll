@@ -2,6 +2,7 @@
 layout: page
 order: 7
 title: "any page"
+emoji: 😁&nbsp;
 author: "William C. Canin"
 date: 2025-10-13 10:24:43 -0300
 update_date: 2025-10-14 08:17:11 -0300

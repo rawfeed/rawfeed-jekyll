@@ -2,6 +2,8 @@
 layout: resume
 order: 4
 title: Resume
+emoji: 📜&nbsp;
+in_menu: true
 published: true
 permalink: /resume/
 ---
