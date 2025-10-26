@@ -1,36 +1,52 @@
+<!-- [Footer] NOTE: Removing or hiding this credit violates the license terms and copyright.
+Please preserve this credit according to the license terms.
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+See: https://rawfeed.github.io/rawfeed-jekyll/license/
+-->
+
 {%- include layout/data.liquid -%}
 
-<footer class="container-fluid fixed-bottom footer">
-  {%- if site.footer.top_button.enable -%}
-  <div class="row top">
-    <div class="col-md d-flex justify-content-end">
-      <!-- old: <a id="top-link" class="top-link" href="#top"><i class="fa-regular fa-square-caret-up"></i></a> -->
-       <a id="top-link" class="top-link" href="#top">^</a>
-    </div>
-  </div>
-  {%- endif -%}
+<footer class="fixed-bottom footer">
 
+  <!-- line top button  -->
+  {%- if footer_.top_button.enable -%}
+    <div class="row top">
+      <div class="col-md d-flex justify-content-end">
+        <a id="top-link" class="top-link" href="#top">{{ footer_.top_button.icon }}</a>
+      </div>
+    </div>
+  {%- endif -%}
+  <!-- line top button  -->
+
+  <!-- line footer content  -->
   <div class="row footer-wrapper">
 
-    {%- if site.strings.footer.copyright -%}
-    <div class="col-md footer-copyright-wrap">
-      {%- assign year = site.time | date: "%Y" -%}
-      {%- assign since = site.strings.footer.copyright.since -%}
-    <div class="footer-copyright">©&nbsp;{{ site.title | default: theme_name }}&nbsp;{{ since }}{%- if since -%}-{%- endif -%}{{year}}&nbsp;-&nbsp;{{ site.strings.footer.copyright.message }}</div>
-    </div>
+    <!-- column copyright  -->
+    {%- if footer_.copyright -%}
+      <div class="col-md footer-copyright-wrap">
+        {%- assign year = site.time | date: "%Y" -%}
+        {%- assign since = footer_.copyright.since -%}
+      <div class="footer-copyright">©&nbsp;{{ footer_.copyright.title | default: theme_name }}&nbsp;{{ since }}{%- if since -%}-{%- endif -%}{{year}}&nbsp;{%- if footer_.copyright.message -%}-&nbsp;{{ footer_.copyright.message }}&nbsp;{%- endif -%}|&nbsp;<a href="{{  footer_.licenses.page_url | relative_url  }}">{{ footer_.licenses.title }}</a></div>
+      </div>
     {%- endif -%}
+    <!-- column copyright  -->
 
-    {%- if site.strings.footer.message -%}
-    <div class="col-md footer-message-wrap">
-        <div class="footer-message">{{ site.strings.footer.message }}</div>
-    </div>
+    <!-- column message  -->
+    {%- if footer_.message -%}
+      <div class="col-md footer-message-wrap">
+          <div class="footer-message">{{ footer_.message | markdownify }}</div>
+      </div>
     {%- endif -%}
+    <!-- column message  -->
 
+    <!-- column made-by  -->
     <div class="col-md footer-made-by-wrap">
       <div class="footer-made-by">
         Using the <a href="{{ project_url }}" target="_blank" rel="noopener noreferrer">{{ theme_name }}</a> theme for <a href="https://jekyllrb.com" target="_blank" rel="noopener noreferrer">Jekyll</a>.
       </div>
     </div>
+    <!-- column made-by  -->
 
   </div>
+  <!-- line footer content  -->
 </footer>
