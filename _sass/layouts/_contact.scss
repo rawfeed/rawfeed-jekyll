@@ -18,14 +18,15 @@
   }
 }
 
-.contact {
-  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  // border: 1px solid #ddd;
-  // background-color: white;
-  // padding: 20px 40px;
+// -disabled
 
+.contact,
+.contact-disabled {
   @extend %markdown;
+  margin-bottom: 35px !important;
+}
 
+.contact {
   &-message-error .modal-header {
     background-color: #f8d7da;
     color: #842029;

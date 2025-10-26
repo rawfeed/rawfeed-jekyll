@@ -40,11 +40,31 @@
 }
 
 .header {
-  margin: 20px 0px 30px 0px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
   transition: margin 0.3s ease;
 
-  .menu-separator {
-    margin-top: 5px;
+  .menu {
+    margin-top: 8px;
+
+    @media (max-width: 760px) {
+      line-height: 1.7rem;
+    }
+
+    &-wrap-link {
+      display: inline-block !important;
+    }
+  }
+
+  &__column-home {
+    @media (max-width: 760px) {
+      margin-bottom: 26px;
+    }
+  }
+
+  .line-separator {
+    margin-top: 8px;
     border-bottom: 2px dotted var(--text-color);
     width: 100% !important;
   }
@@ -61,20 +81,6 @@
       float: right;
       right: 0;
     }
-  }
-
-  .blog-menu {
-    button {
-      @extend %button;
-    }
-
-    &__link {
-      margin: 0 !important;
-    }
-  }
-
-  .column-bottom {
-    margin-top: 5px;
   }
 
   .title {
@@ -109,7 +115,6 @@
     &-img {
       width: 70px !important;
       border: 2px dotted var(--primary-color);
-      border-radius: 10%;
       margin-bottom: 5px;
       cursor: pointer !important;
 
@@ -217,7 +222,6 @@
 .modal-avatar {
   max-width: 90vw;
   max-height: 80vh;
-  border-radius: 12px;
   animation: appear 0.6s ease forwards;
   transform: rotateY(180deg) scale(0.6);
   opacity: 0;

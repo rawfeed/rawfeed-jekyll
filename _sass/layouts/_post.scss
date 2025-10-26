@@ -1,14 +1,8 @@
 @use "../components/index";
 
 .post {
-  // TODO: version: 0.2.0 - Create background light
-  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  // border: 1px solid #ddd;
-  // background-color: white;
-  // padding: 10px 30px;
-
   @extend %markdown;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
 
   li {
     list-style: disc;
@@ -45,7 +39,7 @@
   .dt-published,
   .dt-modified {
     font-weight: normal !important;
-    font-family: "SUSE Mono", sans-serif;
+    // font-family: "SUSE Mono", sans-serif;
     color: var(--text-muted-color);
   }
 
@@ -81,8 +75,8 @@
 
       &__meta {
         display: inline-block;
-        min-width: 115px !important;
-        font-family: "SUSE Mono", sans-serif;
+        // min-width: 115px !important;
+        // font-family: "SUSE Mono", sans-serif;
         font-optical-sizing: auto;
         font-style: normal;
         line-height: 1rem;
@@ -90,7 +84,6 @@
       }
 
       &__link {
-        font-weight: bold;
         text-decoration: underline;
       }
     }

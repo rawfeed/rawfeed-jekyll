@@ -32,7 +32,7 @@
     &__meta {
       display: inline-block;
       min-width: 100px;
-      font-family: "SUSE Mono", sans-serif;
+      // font-family: "SUSE Mono", sans-serif;
       font-optical-sizing: auto;
       font-style: normal;
       line-height: 1rem;
@@ -41,7 +41,6 @@
 
     &__link {
       text-transform: none !important;
-      font-weight: bold;
       text-decoration: underline;
     }
   }

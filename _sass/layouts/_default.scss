@@ -1,10 +1,10 @@
 .default {
-  margin: 0 auto;
-  transition: transform 0.3s ease;
+  margin: 0 auto !important;
+  // transition: transform 0.3s ease;
 
-  .content {
-    margin-bottom: 30px !important;
-  }
+  // .content {
+  //   margin-bottom: 30px !important;
+  // }
 
   .content code,
   .content pre {

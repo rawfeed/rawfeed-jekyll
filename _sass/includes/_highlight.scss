@@ -5,7 +5,8 @@
     box-shadow: 0 2px 8px var(--shadow-color);
     border-radius: 3px;
     overflow: hidden;
-      .highlight {
+
+    .highlight {
       margin: 0;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
@@ -13,12 +14,13 @@
       border-bottom-right-radius: 5px;
     }
   }
+
   &-header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     background-color: var(--code-block-header-color);
-    padding: 0.5em 0.8em;
+    padding: .1em .8em;
 
     .copy-btn {
       background-color: transparent;
@@ -29,9 +31,12 @@
       font-size: 1.1em;
       transition: color 0.2s ease;
     }
-    .fa-clipboard, .fa-check {
+
+    .fa-clipboard,
+    .fa-check {
       color: var(--text-color);
       opacity: .7;
+
       &:hover {
         opacity: 0.5;
       }
@@ -42,6 +47,7 @@
 .highlight {
   padding: 5px;
   padding-bottom: 0.25rem;
+
   pre {
     border-radius: 3px;
     overflow-x: auto;
@@ -56,17 +62,22 @@
 
     /* estilizar o scrollbar (em navegadores que suportam) */
     &::-webkit-scrollbar {
-      height: 10px;   /* altura do scroll horizontal */
+      height: 10px;
+      /* altura do scroll horizontal */
     }
+
     &::-webkit-scrollbar-thumb {
       background: var(--scrollbar-color);
       border-radius: 6px;
     }
+
     &::-webkit-scrollbar-track {
       background: transparent;
     }
   }
-  td.code, .code {
+
+  td.code,
+  .code {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -81,7 +92,9 @@
 .highlight pre::after {
   content: "";
   display: block;
-  height: 12px;       /* altura reservada (aprox. altura do scrollbar) */
-  visibility: hidden; /* não aparece, apenas cria espaço */
+  height: 12px;
+  /* altura reservada (aprox. altura do scrollbar) */
+  visibility: hidden;
+  /* não aparece, apenas cria espaço */
   pointer-events: none;
 }

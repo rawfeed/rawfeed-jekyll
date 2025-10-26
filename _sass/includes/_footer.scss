@@ -1,6 +1,9 @@
 .footer {
-  color: var(--text-color) !important;
-  font-size: .8rem;
+  font: 16.34px monospace !important;
+  font-size: .75rem !important;
+  letter-spacing: normal !important;
+  color: var(--text-color);
+  padding: 0px 10px;
 
   &-wrapper {
     height: 24px;

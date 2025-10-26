@@ -10,13 +10,24 @@
   &-title {
     font-size: 1.05rem !important;
     font-weight: bold;
-    margin: 0px 0px 10px 0px !important;
+    margin: 0px 0px 30px 0px !important;
+  }
+
+  &-description {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 0;
+    }
   }
 
   &-list {
     &__item {
       display: inline-block;
       margin-bottom: 12px;
+      @extend %tags-badge;
     }
   }
 }

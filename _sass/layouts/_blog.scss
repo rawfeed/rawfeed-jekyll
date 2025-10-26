@@ -1,16 +1,21 @@
 @use "../components/index";
 
 .blog {
-  // TODO: version: 0.2.0 - Create background light
-  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  // border: 1px solid #ddd;
-  // background-color: white;
-  // padding: 20px 10px;
-
   &-subtitle {
     font-size: 1.05rem;
     font-weight: bold;
     margin: 0px 0px 10px 0px;
+  }
+
+  &-description {
+    line-height: 1.6 !important;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+
+    p {
+      margin: 0;
+    }
   }
 
   &-list {
@@ -34,8 +39,8 @@
 
     &__meta {
       display: inline-block;
-      min-width: 115px !important;
-      font-family: "SUSE Mono", sans-serif;
+      // min-width: 115px !important;
+      // font-family: "SUSE Mono", sans-serif;
       font-optical-sizing: auto;
       font-style: normal;
       line-height: 1rem;
@@ -48,7 +53,6 @@
 
     &__link {
       text-transform: none !important;
-      font-weight: bold;
       text-decoration: underline;
     }
   }

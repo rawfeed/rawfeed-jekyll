@@ -6,11 +6,10 @@
   }
 
   &-title {
-    color: black;
+    color: var(--text-color);
   }
 
   &-subtitle {
-    color: #595959;
-    font-family: "Inconsolata", monospace !important;
+    color: var(--text-muted-color);
   }
 }

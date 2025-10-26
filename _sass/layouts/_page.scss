@@ -2,6 +2,7 @@
 
 .page {
   @extend %markdown;
+  margin-bottom: 35px !important;
 
   .dt-published,
   .dt-modified {

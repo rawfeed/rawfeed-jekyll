@@ -82,7 +82,7 @@ $font-size: 18px;
     overflow-y: auto;
     font-weight: bold;
     padding: 10px 4px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: var(--terminal-screen-text-transform);
     text-shadow: var(--terminal-screen-text-shadow);
 
@@ -100,27 +100,50 @@ $font-size: 18px;
       opacity: 0.7;
     }
 
+    .socials-command {
+      &__desc {
+        margin-top: 15px !important;
+        white-space: pre;
+        display: flex;
+        align-items: center;
+        font-size: $font-size;
+        line-height: 1.4;
+        color: var(--text-color);
+      }
+    }
+
     .line-wrapper {
       font-size: $font-size;
       margin: 10px 0px;
       color: var(--text-color);
-
-      #mcmd,
-      #mdesc {
-        font-weight: bold;
-        // border-bottom: 1px solid #fff;
-        margin-bottom: 10px;
-      }
-
-      #mcmd {
-        margin-right: 130px;
-      }
 
       a {
         color: var(--terminal-screen-link-color) !important;
 
         &:hover {
           color: var(--text-color) !important;
+        }
+      }
+
+      .help-description {
+        p {
+          margin-top: 15px !important;
+          margin-bottom: 30px !important;
+        }
+      }
+
+      .help-commands {
+
+        &__title,
+        &__desc {
+          font-weight: bold;
+          text-decoration: underline;
+          display: inline-block;
+          margin-bottom: 10px !important;
+        }
+
+        &__desc {
+          margin-left: 120px !important;
         }
       }
     }

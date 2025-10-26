@@ -6,10 +6,9 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
 
-  font: 15.34px helvetica, arial, clean, sans-serif !important;
+  // impede selecionar texto no site
   user-select: none;
 
-  /* impede selecionar texto no site */
   code,
   pre,
   .highlight,
@@ -24,7 +23,7 @@ body {
 
   a {
     color: var(--primary-color);
-    font-weight: bold;
+    font-weight: normal !important;
 
     &:hover {
       color: var(--text-color);
@@ -60,4 +59,41 @@ body[data-layout="mobile"] .home-simple {
 
 .disabled {
   display: none !important;
+}
+
+.background_focus {
+  @media (min-width: 600px) {
+    background-color: var(--background-focus-color) !important;
+    border: 2px dotted var(--background-focus-border-color) !important;
+    padding: 15px !important;
+    // box-shadow: var(--background-focus-box-shadow) !important;
+  }
+}
+
+.rounding {
+  @media (min-width: 600px) {
+    border-radius: 10px !important;
+  }
+}
+
+.rounding-plugins {
+  @media (min-width: 600px) {
+    border-radius: 8px !important;
+  }
+}
+
+.spacer {
+  padding: 0 .3em;
+  opacity: .75;
+}
+
+.separator {
+  margin-right: 4px;
+}
+
+a[target="_blank"]::after {
+  content: "🢅";
+  font-size: .9em;
+  margin-left: 0.25em;
+  vertical-align: middle;
 }
