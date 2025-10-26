@@ -6,7 +6,7 @@
 @use "layouts";
 @use "includes";
 
-/* TODO: version 0.2.0:
+/* TODO: version 0.3.0:
 1 - create other dark and light themes for compilation, and have the option in
 "_config.yml" for example:
 layout:
@@ -70,6 +70,14 @@ layout:
   --resume-content-text-color: #{theme.theme-color(resume-content-text-color, light)};
   --resume-text-muted-color: #{theme.theme-color(resume-text-muted-color, light)};
   --resume-border-color: #{theme.theme-color(resume-border-color, light)};
+  --background-focus-color: #{theme.theme-color(background-focus-color, light)};
+  --background-focus-border-color: #{theme.theme-color(background-focus-border-color, light)};
+  --background-focus-box-shadow: #{theme.theme-color(background-focus-box-shadow, light)};
+  --tags-bg-color: #{theme.theme-color(tags-bg-color, light)};
+  --tags-border-color: #{theme.theme-color(tags-border-color, light)};
+  --pixels-overlay-bg: #{theme.theme-color(pixels-overlay-bg, light)};
+  --pixels-overlay-color: #{theme.theme-color(pixels-overlay-color, light)};
+
 }
 
 :root[data-theme="dark"] {
@@ -125,4 +133,11 @@ layout:
   --resume-content-text-color: #{theme.theme-color(resume-content-text-color, dark)};
   --resume-text-muted-color: #{theme.theme-color(resume-text-muted-color, dark)};
   --resume-border-color: #{theme.theme-color(resume-border-color, dark)};
+  --background-focus-color: #{theme.theme-color(background-focus-color, dark)};
+  --background-focus-border-color: #{theme.theme-color(background-focus-border-color, dark)};
+  --background-focus-box-shadow: #{theme.theme-color(background-focus-box-shadow, dark)};
+  --tags-bg-color: #{theme.theme-color(tags-bg-color, dark)};
+  --tags-border-color: #{theme.theme-color(tags-border-color, dark)};
+  --pixels-overlay-bg: #{theme.theme-color(pixels-overlay-bg, dark)};
+  --pixels-overlay-color: #{theme.theme-color(pixels-overlay-color, dark)};
 }
