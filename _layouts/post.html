@@ -4,7 +4,9 @@ layout: default
 
 {%- include layout/data.liquid -%}
 
-<article class="container post" itemscope itemtype="http://schema.org/BlogPosting">
+{%- assign menu_separator = default_.separator -%}
+
+<article id="post" class="post{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="row">
 
     <header class="post-header">
@@ -13,8 +15,8 @@ layout: default
       <div class="row post-meta">
         <div class="col-sm d-flex justify-content-start">
           <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-          {%- if site.datelang -%}
-            {% datelang page.date format:date_format %}
+          {%- if datelang_ -%}
+            {% datelang page.date format:datelang_.format %}
           {%- else -%}
             {{ page.date | date: "%b %-d, %Y" }}
           {%- endif -%}
@@ -24,12 +26,12 @@ layout: default
           {%- if page.author -%}
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span class="p-author h-card" itemprop="name">
-              {{ site.strings.post.author | default: "author" }}:&nbsp;{{ page.author }}
+              {{ blog_.post.author | default: "author" }}:&nbsp;{{ page.author }}
             </span>
           </span>
           {%- endif -%}
         </div>
-        {%- if site.reading_time.enable -%}
+        {%- if reading_time_.enable -%}
         <div class="post-reading_time">
           [&nbsp;{{ page.content | reading_time }}&nbsp;]
         </div>
@@ -43,45 +45,42 @@ layout: default
     </div>
 
     {%- if page.update_date -%}
-    <div class="row post-modified">
-      <time class="dt-modified" datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateModified">
-        <strong>{{ site.strings.post.updated_on | default: "Post updated on" }}:</strong>&nbsp;
-        {%- if site.datelang -%}
-          {% datelang page.update_date format:date_format %}
-        {%- else -%}
-          {{ page.date | date: "%b %-d, %Y" }}
-        {%- endif -%}
-      </time>
-    </div>
+      <div class="row post-modified">
+        <time class="dt-modified" datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateModified">
+          <strong>{{ blog_.post.updated_on | default: "Post updated on" }}:</strong>&nbsp;
+          {%- if datelang_ -%}
+            {% datelang page.update_date format:datelang_.format %}
+          {%- else -%}
+            {{ page.date | date: "%b %-d, %Y" }}
+          {%- endif -%}
+        </time>
+      </div>
     {%- endif -%}
 
     <div class="row post-tags">
       <ul class="tag-list">
       {%- assign tags = page.tags | sort -%}
-      <strong>[ tags ]:</strong>&nbsp;&nbsp;
+      <strong>[{{ "tags" | with_class: "spacer" }}]:</strong>
       {%- for tag in tags -%}
         <li class="tag-list__item">
           <a class="tag-list__link" href="{{ '/blog/tags/' | append: tag | relative_url }}">
             {{ tag }}
           </a>
-        </li><strong>&nbsp;&nbsp;.&nbsp;&nbsp;</strong>
+        </li><strong class="separator">{{menu_separator}}</strong>
       {%- endfor -%}
       </ul>
     </div>
 
   </div>
 
-  <div class="post-end text-center">/&nbsp;/&nbsp;/&nbsp;/&nbsp;&nbsp;end of post&nbsp;&nbsp;/&nbsp;/&nbsp;/&nbsp;/</div>
+  <div class="post-end text-center">////&nbsp;end of post&nbsp;////</div>
 
-  {%- if page.comments != false and site.blog.post.comments.provider == 'giscus' and jekyll.environment == 'production' -%}
-    {%- include layout/giscus.html -%}
-  {%- endif -%}
+  <!-- Comments -->
+  {%- include layout/disqus.html -%}
+  {%- include layout/giscus.html -%}
+  <!-- Comments -->
 
-  {%- if page.comments != false and site.blog.post.comments.provider == 'disqus' and jekyll.environment == 'production' -%}
-    {%- include layout/disqus.html -%}
-  {%- endif -%}
-
-  {%- if site.blog.post.related_posts.enable -%}
+  {%- if blog_.post.related_posts.enable -%}
     {%- assign related_posts_found = "" | split: "," -%}
 
     {%- for tag in page.tags -%}
@@ -94,13 +93,13 @@ layout: default
 
     {%- if related_posts.size > 0 -%}
       <div class="row related-posts">
-        <h3 class="related-posts-title">[&nbsp;{{ site.strings.post.related_posts | default: "related posts" }}&nbsp;]</h3>
+        <h3 class="related-posts-title">[&nbsp;{{ blog_.post.related_posts.title | default: "related posts" }}&nbsp;]</h3>
 
         <ul class="related-posts-list">
           {%- for post in related_posts limit:5 -%}
             <li class="related-posts-list__item">
-              {%- if site.datelang -%}
-                <span class="related-posts-list__meta">{% datelang post.date format:date_format %}</span>&nbsp;»&nbsp;
+              {%- if datelang_ -%}
+                <span class="related-posts-list__meta">{% datelang post.date format:datelang_.format %}</span>&nbsp;»&nbsp;
               {%- else -%}
                 <span class="related-posts-list__meta">{{ post.date | date: "%b %-d, %Y" }}</span>&nbsp;»&nbsp;
               {%- endif -%}

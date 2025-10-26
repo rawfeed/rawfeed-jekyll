@@ -4,14 +4,14 @@ layout: default
 
 {%- include layout/data.liquid -%}
 
-<div class="container tag-posts">
+<div class="container tag-posts{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}">
   <div class="row">
-    <h1 class="tag-posts-title"><span>[&nbsp;{{ site.strings.tags_posts.title }}:&nbsp;</span>{{ page.title }}<span>&nbsp;]</span></h1>
+    <h1 class="tag-posts-title"><span>[&nbsp;{{ blog_.post.tags_posts.title }}:&nbsp;</span>{{ page.title }}<span>&nbsp;]</span></h1>
 
     <ul class="row tag-posts-list">
       {%- for post in page.posts -%}
         <li class="tag-posts-list__item">
-          <span class="tag-posts-list__meta">{% datelang post.date format:date_format %}</span>&nbsp;»&nbsp;
+          <span class="tag-posts-list__meta">{% datelang post.date format:datelang_.format %}</span>&nbsp;»&nbsp;
           <a class="tag-posts-list__link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
           {%- if post.draft -%}
             <span class="draft-badge">[&nbsp;this is a draft&nbsp;]</span>

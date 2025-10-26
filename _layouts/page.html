@@ -4,13 +4,13 @@ layout: default
 
 {%- include layout/data.liquid -%}
 
-<div class="container page">
+<div id="page" class="page{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}">
   {%- if page.date or page.reading_time -%}
     <div class="row">
       {%- if page.date -%}
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- if site.datelang -%}
-          {% datelang page.date format:date_format %}
+        {%- if datelang_ -%}
+          {% datelang page.date format:datelang_.format %}
         {%- else -%}
           {{ page.date | date: "%b %-d, %Y" }}
         {%- endif -%}
@@ -31,7 +31,7 @@ layout: default
   {%- if page.update_date -%}
     <div class="row page-modified">
       <time class="dt-modified" datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateModified">
-        <strong>{{ site.strings.page.updated_on | default: "Page updated on" }}:</strong>&nbsp;{% datelang page.update_date format:date_format %}
+        <strong>{{ page_.updated_on | default: "Page updated on" }}:</strong>&nbsp;{% datelang page.update_date format:datelang_.format %}
       </time>
     </div>
   {%- endif -%}
