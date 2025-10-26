@@ -14,7 +14,6 @@ permalink: /any-page/
 
 {% include toc selector=".page-content" max_level=3 title="TOC" btn_hidden="Hidden" btn_show="Show" %}
 
-
 # Theology (h1)
 
 ***Lorem ipsum*** dolor sit amet, `consectetur` adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, ~~bibendum in velit~~.
