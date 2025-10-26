@@ -26,6 +26,7 @@ module Rawfeed
       File.open(filepath, 'w') do |file|
         file.puts("---")
         file.puts("layout: resume")
+        file.puts("author: # \"Your Name\"")
         file.puts("order: 4")
         file.puts("title: Resume")
         file.puts("published: false")

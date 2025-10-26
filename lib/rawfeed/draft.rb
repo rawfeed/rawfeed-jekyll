@@ -13,9 +13,9 @@ module Rawfeed
       File.open(array[3], 'w') do |file|
         file.puts("---")
         file.puts("layout: post")
+        file.puts("author: # \"Your Name\"")
         file.puts("title: \"#{array[0]}\"")
         file.puts("description: \"Description of your post\"")
-        file.puts("author: \"Your Name\"")
         file.puts("date: #{array[2]} -0300")
         file.puts("update_date: ")
         file.puts("comments: false")
