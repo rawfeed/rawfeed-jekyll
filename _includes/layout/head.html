@@ -4,40 +4,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   {%- if page.url == "/" -%}
-    <title>{{ site.title | default: theme_name }} | {{ site.baseurl | prepend: site.url }}</title>
+    <title>{{ site_title | replace: "/", "" | default: theme_name }} | {{ site.baseurl | prepend: site.url }}</title>
   {%- else -%}
-    <title>{{ page.title }} | {{ site.title | default: theme_name }}</title>
+    <title>{{ page.title | replace: "/", "" |  capitalize }} | {{ site_title | default: theme_name }}</title>
   {%- endif -%}
+
+  <!-- SEO -->
+  <meta name="description" content="{{ page.description | capitalize | default: header_.description | strip_html | truncate: 50 }}">
+  <meta name="author" content="{{ page.author | default: author_ }}">
+  <meta property="og:title" content="{{ page.title | capitalize | default: site_title }}">
+  <meta property="og:locale" content="{{ default_.lang | replace: "-", "_" | default: "en_US" }}">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:description" content="{{ page.description | capitalize | default: header_.description | strip_html | truncate: 50 }}">
+  <link rel="canonical" href="{{ page.url | prepend: site.url }}">
+  <meta property="og:url" content="{{ page.url | prepend: site.url }}">
+  <meta property="og:site_name" content="{{ site_title }}">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:title" content="{{ site_title }}">
+  <meta name="robots" content="index, follow">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","description":"{{ page.description | capitalize | default: header_.description | strip_html | truncate: 50 }}","headline":"{{ site_title }}","name":"{{ site_title }}","url":"{{ page.url | prepend: site.url }}"}</script>
+  <!-- SEO -->
 
   {% comment %} Security {% endcomment %}
   {%- if jekyll.environment == 'production' %}
-    {% comment %} { %- include layout/capture_scripts.liquid -% } {% endcomment %}
 
-    <script>
-      if (window.top !== window.self) {
-        // Prevents the site from being displayed inside an <iframe>
-        window.top.location = window.self.location;
-      }
-    </script>
-    <!-- TODO: Colocar os script inline <script> todos em .js para evistar o uso de 'unsafe-inline' em script-src -->
+    <script src="{{ '/assets/js/no_inframe.js' | relative_url }}"></script>
+
     <meta http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        img-src 'self' data: {{ site.csp.img-src | join: ' ' }};
-        script-src 'self' 'unsafe-inline'
-          https://cdn.jsdelivr.net
-          https://cdnjs.cloudflare.com
-          https://giscus.app
-        https://disqus.com;
-        style-src 'self' 'unsafe-inline'
-        https://cdnjs.cloudflare.com
-        https://fonts.googleapis.com
-        https://cdn.jsdelivr.net
-        https://giscus.app
-        https://disqus.com;
-        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
-        connect-src 'self' {{ site.csp.connect-src | join: ' ' }};
-        frame-src {{ site.csp.frame-src | join: ' ' }};
+        img-src 'self' data: {{ head_.csp.img-src | join: ' ' }};
+        script-src 'self' {{ head_.csp.script-src | join: ' ' }};
+        style-src 'self' 'unsafe-inline' {{ head_.csp.style-src | join: ' ' }};
+        font-src 'self' {{ head_.csp.font-src | join: ' ' }} data:;
+        connect-src 'self' {{ head_.csp.connect-src | join: ' ' }};
+        frame-src {{ head_.csp.frame-src | join: ' ' }};
         object-src 'none';
         base-uri 'self';
         form-action 'self';
@@ -53,19 +56,15 @@
   <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/images/favicon.png' | relative_url }}">
 
-  {% comment %} SEO (jekyll-seo-tag) {% endcomment %}
-  {%- seo -%}
-  <meta property="og:locale:alternate" content="en_US">
-
-  {%- if site.google.site_verification != "" -%}
+  {%- if head_.google.site_verification != "" -%}
     <!-- Google Site Verification -->
-    <meta name="google-site-verification" content="{{ site.google.site_verification }}">
+    <meta name="google-site-verification" content="{{ head_.google.site_verification }}">
     <!-- Google Site Verification -->
   {%- endif -%}
 
   {% comment %} Fonts {% endcomment %}
   {%- comment -%}
-  TODO: version: 0.2.0: place fonts used in the project instead of using Google Fonts.
+  TODO: version: 0.3.0: place fonts used in the project instead of using Google Fonts.
   {%- endcomment -%}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,26 +72,27 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+
   {% comment %} bootstrap {% endcomment %}
   <link rel="stylesheet" href="{{ '/assets/vendor/bootstrap/css/bootstrap.min.css' | relative_url }}">
 
   {% comment %} fixes FOUC/flicker in firefox {% endcomment %}
-  <script>
-    (function() {
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    })();
-  </script>
+  <script src="{{ '/assets/js/theme_load.js' | relative_url }}"></script>
 
   {% comment %} load theme {% endcomment %}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   {% comment %} feed {% endcomment %}
-  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site_title }}" href="{{ '/feed.xml' | relative_url }}">
 
-  {%- if jekyll.environment == 'production' and site.google.analytics.enable == true and site.google.analytics.id != "" -%}
+  {%- if jekyll.environment == 'production' and head_.google.analytics.enable == true and head_.google.analytics.id != "" -%}
     <!-- Google Analytics -->
-    {%- include google_analytics.html -%}
+    <script src="{{ '/assets/js/google_analytics.js' | relative_url }}"></script>
     <!-- Google Analytics -->
   {%- endif -%}
 </head>
