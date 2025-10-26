@@ -1,0 +1,270 @@
+title: rawfeed
+author: "William C. Canin"
+
+# section: [maintenance]
+maintenance:
+  enable: false
+  gif: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExczV3aGMxcnAzdnJ1eWp3cjk5OXdhdTYzdzB0dWVlMGFkbTd2ZDR0ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jwKC0qlOoXmcLDB4vC/giphy.gif"
+  title: "Under maintenance"
+  subtitle: |
+    We are undergoing maintenance, with no return date yet.
+    Sorry for the inconvenience :/
+
+# section: [social network]
+# note: if you want more, just add more "title" and "url".
+socials:
+  enable: true
+  description:
+    text: |
+      These are my social networks:
+    terminal:
+      about:
+        description: |
+          If you want to know our other links, use the "socials" command.
+      command:
+        description: |
+          Click on a link and go directly to my social network:
+  links:
+    - title: github
+      url: https://github.com/rawfeed/rawfeed-jekyll
+
+    - title: rubygems
+      url: https://rubygems.org/gems/rawfeed
+
+# section: [Reading time]
+reading_time:
+  enable: true
+  words_per_minute: 180
+  message: ["Read this post in approximately", "Read this post in less than"]
+  minutes_label: ["minute", "minutes"]
+
+# section: [datelang]
+# Here you change the language of the months of the date
+datelang:
+  format: "%b %d, %Y"
+  lang: "en_US" # en_US | pt_PT | jp_JP | ch_CH | es_ES | fr_FR | it_IT | de_DE | ru_RU
+
+# section: [head]
+head:
+  # (CSP - Content-Security-Policy)
+  # IMPORTANT!!! If you use any external script from any website in your posts that is not on this
+  #              list, you must put it here.
+  #              --- If you don't use it, don't remove what's already there. ---
+  csp:
+    frame-src:
+      - https://www.google.com
+      - https://www.youtube.com
+      - https://giscus.app
+      - https://disqus.com
+    connect-src:
+      - https://www.google.com
+      - https://api.github.com
+    img-src:
+      - https://www.google.com
+      - https://media0.giphy.com
+      - https://media4.giphy.com
+      - https://github.githubassets.com
+    script-src:
+      - https://www.google.com
+      - https://www.gstatic.com
+      - https://cdn.jsdelivr.net
+      - https://cdnjs.cloudflare.com
+      - https://giscus.app
+      - https://disqus.com
+    style-src:
+      - https://cdnjs.cloudflare.com
+      - https://fonts.googleapis.com
+      - https://cdn.jsdelivr.net
+      - https://giscus.app
+      - https://disqus.com
+    font-src:
+      - https://fonts.gstatic.com
+      - https://cdnjs.cloudflare.com
+  google:
+    site_verification: ""
+    analytics:
+      enable: false
+      id: "" # tracking id, e.g. "UA-200341029-1"
+    apps_script:
+      url:
+    recaptcha:
+      pubkey:
+
+# section: [default]
+default:
+  lang: en-US
+  # Some compatible separators: ⨟∫⦁;⬨⬖︙︰𐄛🢝
+  separator: ⨟
+  width: 860 # default: 860
+  background_focus: true
+  rounding: false
+  font:
+    # Fonts Style Options: [default: monospace]
+    # "'Ubuntu', sans-serif"
+    # "'Inconsolata', monospace"
+    # "'JetBrains Mono', monospace"
+    # "'Roboto Mono', monospace"
+    # "'Open Sans', sans-serif"
+    style: monospace
+    size: 16.34px
+    spacing: -0.05em
+
+# section: [header]
+header:
+  title: hey, i'm rawfeed-jekyll!
+  description: "A raw Jekyll theme for minimalists"
+  width: 860 # default: 860
+  # your website image or logo
+  avatar:
+    open: true
+    flip: true
+    # note: the image (.jpg|.png) will be searched in the directory: assets/images/
+    image:
+      front:
+        light: avatar_light.png
+        dark: avatar_dark.png
+      back: avatar_back.png
+  # menu: use emoji unicode 6.0, to have greater compatibility
+  menu:
+    title: "menu"
+    # default: 🏠📝🔍🔖📰 legacy: ⌂✐⌕▮▤
+    home:
+      emoji: "🏠"
+      title: "/home"
+    blog:
+      emoji: "📝"
+      title: "weblog"
+      subtitle: "posts"
+      search:
+        emoji: "🔍"
+        title: "search"
+      tags:
+        emoji: "🔖"
+        title: "tags"
+      feed:
+        emoji: "📰"
+        title: "feed"
+    pixels:
+      emoji: "📷"
+      title: "pixels"
+
+# section: [home]
+home:
+  terminal:
+    enable: true
+    user: "rawfeed"
+    hostname: "linux"
+    welcome: " type 'help'"
+    error: ": command not found."
+    no_socials: "No socials found"
+    help:
+      description: |
+        Use the commands below:
+      commands:
+        title: "Commands:"
+        description: "Description:"
+      menu: |
+        about ------------- A brief summary about 'rawfeed'
+        socials ----------- Links to my active social networks
+        clear ------------- Clear the terminal screen (or press Esc)
+        date -------------- Print the system date and time
+        help -------------- Print this menu
+
+# section: [blog]
+blog:
+  subtitle: "posts"
+  search:
+    enable: true
+    placeholder: "type here to search for a post or Esc to exit"
+    button_clean:
+      text: "clean"
+    results: "results"
+    no_results: "No results found"
+  pagination:
+    newer_text: "newer posts"
+    counter: ["page", "of"]
+    older_text: "older posts"
+  post:
+    author: "Posted by"
+    related_posts:
+      enable: true
+      title: "related posts"
+    updated_on: "Post updated on"
+    comments:
+      title: "comments"
+      provider: "giscus" # choose between. options: giscus | disqus.
+      giscus:
+        repo: "" # your repository, e.g: username/repo-name
+        repo_id: "" # copied from giscus.app, e.g: R_kgD...
+        repo_category: "" # copied category name GitHub
+        category_id: "" # copied from giscus.app, e.g: DIC_kwD...
+        mapping: "pathname"
+        reactions_enabled: 1
+        theme: "light" # initial theme. default: light
+        theme_light: "noborder_light" # light theme. default: noborder_light
+        theme_dark: "noborder_gray" # dark theme. default: noborder_gray
+        lang: "en" # en,pt,..
+      disqus:
+        shortname: "" # your shortname disqus
+    tags_posts:
+      title: "posts by tag"
+
+# section: [pixels]
+pixels:
+  title: "pixels"
+  layout:
+    width: 860 # default: 860
+# section: [page]
+page:
+  updated_on: "Page updated on"
+  error:
+    image: https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXlxYzc5eXp1Nm01cmtldzM5bHhwdzJ2Njk2c2E4b2RkdTBkeGs5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c20UV66B7zCWA/giphy.gif
+    title: Error 404
+    message: |
+      It appears this content does not exist or has been removed by the author.
+
+# section: [contact]
+contact:
+  name:
+    placeholder: "first and last name"
+  email:
+    placeholder: "your best email address"
+    help: "we'll never share your email with anyone else."
+  message:
+    placeholder: "write your message here"
+    status: "sending...wait"
+    caracters:
+      min: 50
+      warning:
+        title: "Warning"
+        content: "the message must have at least 50 characters."
+    success:
+      title: "Message sent"
+      content: "your message has been sent successfully!"
+    error:
+      title: "Error"
+      content: "something went wrong while sending your message."
+  button:
+    text: "send!"
+  recaptcha:
+    warning:
+      title: Warning
+      content: "Please tick the 'I'm not a robot' box."
+    fail: "Verification failed. Please reload the page and try again."
+    error: "An error occurred while sending the message. Please try again."
+
+# section: [footer]
+footer:
+  top_button:
+    # Some compatible icons: ↑ ⇡ ▴ 🢙
+    icon: ⇡
+    enable: true
+  copyright:
+    title: "rawfeed-jekyll"
+    since: 2025
+    message:
+  licenses:
+    title: "Licenses"
+    page_url: "/licenses/"
+  message: |
+    Your impactful phrase!
