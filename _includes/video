@@ -1,4 +1,7 @@
-<div class="video-wrapper">
+{%- include layout/data.liquid -%}
+
+
+<div class="video-wrapper{% if default_.rounding %} rounding-plugins{% endif %}">
   <iframe src="{{ include.url }}" title="{{ include.title | default: 'Video' }}"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
   </iframe>

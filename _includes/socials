@@ -1,3 +1,7 @@
+{%- include layout/data.liquid -%}
+
+{%- assign separator = default_.separator -%}
+
 <div class="container socials">
   <div class="row">
 
@@ -9,12 +13,10 @@
       {%- assign pos = "justify-content-end" -%}
     {%- endif -%}
 
-    <div class="col-sm d-flex {{pos}}"><strong>.&nbsp;</strong>
-      {% assign links = site.socials.links %}
+    <div class="col-sm d-flex {{pos}}" style="padding: 0 !important;">
+      {% assign links = socials_.links %}
       {% for item in links %}
-        <a class="socials-link" title="{{ item.title }}" href="{{ item.url }}" target="_blank">
-          {{ item.title }}
-        </a><strong>&nbsp;.&nbsp;</strong>
+        <a class="socials-link" title="{{ item.title }}" href="{{ item.url }}" target="_blank">{{ item.title }}</a><strong class="separator">{{separator}}</strong>
       {% endfor %}
     </div>
 

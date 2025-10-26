@@ -1,3 +1,5 @@
-<div class="alert alert-{{ include.type | default: 'info' }}">
+{%- include layout/data.liquid -%}
+
+<div class="alert alert-{{ include.type | default: 'info' }}{% if default_.rounding %} rounding-plugins{% endif %}">
   {{ include.content | markdownify }}
 </div>
