@@ -9,6 +9,7 @@
     "davidanson.vscode-markdownlint", // Markdown Linter
     "esbenp.prettier-vscode", // Consistent formatting
     "shopify.ruby-lsp", // Ruby Language Server (suporte Ruby)
+    "castwide.solargraph", // A Ruby language server
     "castwide.solargraph", // Ruby autocompletion, goto definition
     "syler.sass-indented", // Sass
     "xabikos.javascriptsnippets", // Code snippets for JavaScript in ES6 syntax

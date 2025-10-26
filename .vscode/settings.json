@@ -25,7 +25,7 @@
   // === Formatting ===
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   // Formatting by language
   "[liquid]": {
     "editor.defaultFormatter": "sissel.shopify-liquid"
