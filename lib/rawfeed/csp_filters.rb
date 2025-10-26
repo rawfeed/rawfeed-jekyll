@@ -2,6 +2,9 @@ require "jekyll"
 require 'digest'
 require 'base64'
 
+# TODO: Note: If you have an inline script, generate a hash of it for CSP
+#       By default, this functionality is not being used because the project does not have any
+#       inline scripts. Module disabled!
 module Rawfeed
   module CspFilters
     # Generates a SHA256 hash and encodes it in Base64, ready for use in a CSP.
