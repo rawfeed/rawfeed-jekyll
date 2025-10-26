@@ -1,21 +1,29 @@
-{%- if site.blog.post.comments.giscus.repo != "" and site.blog.post.comments.giscus.category_id != "" -%}
-<div class="row comments">
-  <h1 class="comments-title">[&nbsp;{{ site.strings.post.comments | default: "comments" }}&nbsp;]</h1>
-  <div class="row comments-content">
-    <script src="https://giscus.app/client.js"
-      data-repo="{{ site.blog.post.comments.giscus.repo }}"
-      data-repo-id="{{ site.blog.post.comments.giscus.repo_id }}"
-      data-category-id="{{ site.blog.post.comments.giscus.category_id }}"
-      data-mapping="{{ site.blog.post.comments.giscus.mapping | default: 'pathname' }}"
-      data-strict="0"
-      data-reactions-enabled="{{ site.blog.post.comments.giscus.reactions_enabled | default: 1 }}"
-      data-emit-metadata="0"
-      data-input-position="bottom"
-      data-theme="{{ site.blog.post.comments.giscus.theme_light | default: 'light' }}"
-      data-lang="{{ site.blog.post.comments.giscus.lang | default: 'en' }}"
-      crossorigin="anonymous"
-      async>
-    </script>
+{%- include layout/data.liquid -%}
+
+{%- if page.comments != false
+  and jekyll.environment == 'production'
+  and blog_.post.comments.provider == 'giscus'
+  and blog_.post.comments.giscus.repo != ""
+  and blog_.post.comments.giscus.category_id != "" -%}
+
+  <div id="giscus" class="row comments">
+    <h1 class="comments-title">[&nbsp;{{ blog_.post.comments.title | default: "comments" }}&nbsp;]</h1>
+    <div class="row comments-content">
+      <script src="https://giscus.app/client.js"
+        data-repo="{{ blog_.post.comments.giscus.repo }}"
+        data-repo-id="{{ blog_.post.comments.giscus.repo_id }}"
+        data-repo-category="{{ blog_.post.comments.giscus.repo_category }}"
+        data-category-id="{{ blog_.post.comments.giscus.category_id }}"
+        data-mapping="{{ blog_.post.comments.giscus.mapping | default: 'pathname' }}"
+        data-strict="0"
+        data-reactions-enabled="{{ blog_.post.comments.giscus.reactions_enabled | default: 1 }}"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="{{ blog_.post.comments.giscus.theme_light | default: 'light' }}"
+        data-lang="{{ blog_.post.comments.giscus.lang | default: 'en' }}"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
   </div>
-</div>
 {%- endif -%}
