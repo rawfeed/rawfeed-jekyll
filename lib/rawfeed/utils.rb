@@ -5,6 +5,7 @@ module Rawfeed
   CONFIG = {
     'DRAFTS_DIR' => File.join(".", "_drafts"),
     'POSTS_DIR' => File.join(".", "_posts"),
+    'PIXELS_DIR' => File.join(".", "_pixels"),
     'PAGES_DIR' => File.join(".", "_pages"),
     'RESUME_DIR' => File.join(".", "_data"),
     'CONFIG_YML' => File.join(".", "_config.yml"),
