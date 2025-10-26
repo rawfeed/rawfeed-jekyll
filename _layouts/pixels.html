@@ -37,7 +37,7 @@
                 <a href="{{ item.url | relative_url }}">
                   <div class="pixels-item{% if default_.rounding %} rounding{% endif %}">
                     <div class="pixels-overlay-card">
-                      <img src="{{ item.image.path }}" alt="{{ item.title }}">
+                      <img src="{{ item.image.path | relative_url }}" alt="{{ item.title }}">
                       <div class="overlay">
                         <div class="text-center overlay-content">
                           <small class="date">{% datelang item.date format:datelang_.format %}</small>
