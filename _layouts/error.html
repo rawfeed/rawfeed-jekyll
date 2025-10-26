@@ -2,14 +2,16 @@
 layout: default
 ---
 
+{%- include layout/data.liquid -%}
+
 <div class="container error">
   <div class="row">
     <div class="col-sm text-center">
-       {%- if site.strings.error.image -%}
-          <img class="error-image" src="{{ site.strings.error.image }}" alt="error 404">
+       {%- if page_.error.image -%}
+          <img class="error-image" src="{{ page_.error.image }}" alt="error 404">
        {%- endif -%}
-      <h1 class="error-title">{{ site.strings.error.title | escape }}</h1>
-      <h2 class="error-description">{{ site.strings.error.message | markdownify }}</h2>
+      <h1 class="error-title">{{ page_.error.title | escape }}</h1>
+      <h2 class="error-description">{{ page_.error.message | markdownify }}</h2>
     </div>
   </div>
 </div>
