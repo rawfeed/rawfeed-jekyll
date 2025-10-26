@@ -46,7 +46,7 @@ $theme-colors: (
   terminal-cursor-color: #7cff6b,
   terminal-screen-link-color: aqua,
   details-bg-color: #383838,
-  video-border-color: #333333,
+  video-border-color: #e9e9e9,
   chart-bg-color: #fff,
   chart-box-shadow-color: rgba(0, 0, 0, 0.9),
   tabs-bg-color: #303030,
@@ -61,6 +61,13 @@ $theme-colors: (
   resume-title-text-color: white,
   resume-content-text-color: #d3d3d3,
   resume-text-muted-color: #9d9d9d,
+  background-focus-color: #222222,
+  background-focus-border-color: #727272,
+  background-focus-box-shadow: "0px 1px 0px 0px #6363634d inset, 0px 2px 4px 0px #00000044",
+  tags-bg-color: #1e1e1e,
+  tags-border-color: #8f8f8f,
+  pixels-overlay-bg: rgba(0, 0, 0, 0.70),
+  pixels-overlay-color: var(--text-color),
 );
 
 /* matrix */
