@@ -1,39 +1,48 @@
+{%- include layout/data.liquid -%}
+
 {%- assign resume = site.data.resume -%}
 
-{%- if site.maintenance.enable -%}
-  {%- include layout/maintenance.html -%}
-{%- else -%}
+{%- if maintenance_.enable != true -%}
 <!DOCTYPE html>
-<html id="top" lang="{{ site.lang | default: 'en-US' }}" data-theme="light">
+<html id="top" lang="{{ default_.lang | default: 'en-US' }}" data-theme="light">
+  <!-- head -->
   {%- include layout/head.html -%}
+  <!-- head -->
   <body>
-    <div class="default" style="max-width: {{ site.layout.width | default: '780px' }} !important;">
-      {%- include layout/header.html -%}
-    </div>
-    {%- if resume.full_name == "John A. Doe" -%}
+
     <div class="container-fluid">
-      <div class="row">
-        <p style="text-align: center;
-        background-color: yellow;
-        color: black;
-        padding: 10px;
-        max-width: 780px;
-        margin: 0 auto;
-        margin-bottom: 20px">
-          WARNING: This is sample data. Edit the <strong>_data/resume.yml</strong> file with your information.
-        </p>
-      </div>
-    </div>
-    {%- endif -%}
-      <main class="resume">
+      <!-- header -->
+      {%- include layout/header.html -%}
+      <!-- header -->
+
+      {%- if resume.full_name == "John A. Doe" -%}
+        <div class="row">
+          <p style="text-align: center;
+          background-color: yellow;
+          color: black;
+          padding: 10px;
+          max-width: 860px;
+          margin: 0 auto;
+          margin-bottom: 20px">
+            WARNING: This is sample data. Edit the <strong>_data/resume.yml</strong> file with your information.
+          </p>
+        </div>
+      {%- endif -%}
+
+      <main class="resume{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}" style="max-width: {{ default_.width | default: '860' }}px !important;">
+
+        <!-- button print -->
         {%- if resume.buttons.print.enable -%}
-          <div class="container-fluid resume-header">
+          <div class="resume-header">
             <div class="row d-flex justify-content-end">
               <button id="btn-print" class="resume-header__btn-print">{{ resume.buttons.print.text }}</button>
             </div>
           </div>
         {%- endif -%}
-        <div id="print-this" class="container-fluid resume-content">
+        <!-- button print -->
+
+        <!-- resume content -->
+        <div id="print-this" class="resume-content">
           <div class="row resume-content__name-wrap">
             <div class="col-sm"><h1 class="resume-content__name">{{ resume.full_name }}</h1></div>
           </div>
@@ -259,24 +268,22 @@
             </div>
           </div>
         </div>
+        <!-- resume content -->
       </main>
+    </div>
+
     {%- include layout/footer.html -%}
   </body>
 
   <!-- Scripts -->
   <script src="{{ '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' | relative_url }}"></script>
-
   <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/resume.js' | relative_url }}"></script>
+  <!-- Scripts -->
 
-  {%- if site.avatar.open -%}
-    <script src="{{ '/assets/js/avatar.js' | relative_url }}"></script>
-  {%- endif -%}
+</html>
 
-  <script>
-    document.getElementById('btn-print').addEventListener('click', function() {
-      window.print();
-    });
-  </script>
-  </html>
+{%- else -%}
+  {%- include layout/maintenance.html -%}
 {%- endif -%}
 
