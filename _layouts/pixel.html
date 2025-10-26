@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+{%- include layout/data.liquid -%}
+
+{%- assign menu_separator = default_.separator -%}
+
+<article class="pixel{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="row">
+
+    <header class="pixel-header">
+      <h1 class="pixel-title p-name" itemprop="name headline">»&nbsp;{{ page.title | escape }}</h1>
+
+      <div class="row pixel-meta">
+        <div class="col-sm d-flex justify-content-start">
+          <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          {%- if datelang_ -%}
+            {% datelang page.date format:datelang_.format %}
+          {%- else -%}
+            {{ page.date | date: "%b %-d, %Y" }}
+          {%- endif -%}
+          </time>
+        </div>
+      </div>
+
+      {%- if page.image.path -%}
+      <div class="pixel-image">
+        {%- if page.image.width -%}
+        <figure style="width: {{ page.image.width }} !important;">
+        {%- else -%}
+        <figure>
+        {%- endif -%}
+          <img src="{{ page.image.path | relative_url }}" alt="{{ page.title }}">
+          {%- if page.image.caption -%}
+            <figcaption>{{ page.image.caption }}</figcaption>
+          {%- endif -%}
+        </figure>
+      </div>
+      {%- endif -%}
+
+    </header>
+
+    <div class="e-content pixel-content" itemprop="articleBody">
+      {{ content }}
+    </div>
+  </div>
+</article>

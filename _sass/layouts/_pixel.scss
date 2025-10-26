@@ -1,0 +1,61 @@
+@use "../components/index";
+
+.pixel {
+  @extend %markdown;
+  margin-bottom: 35px !important;
+
+  li {
+    list-style: disc;
+  }
+
+  &-title {
+    margin-top: 0px !important;
+    font-size: 1.3rem !important;
+    font-weight: bold !important;
+    margin-bottom: 40px !important;
+  }
+
+  &-image {
+    text-align: center;
+    margin: 50px 0px;
+
+    figure {
+      display: block;
+      max-width: 100%;
+      line-height: 1;
+      margin-left: auto;
+      margin-right: auto;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 12px !important;
+        border-top: 4px solid var(--text-color);
+        border-bottom: 4px solid var(--text-color);
+      }
+
+      figcaption {
+        display: block;
+        margin-top: 6px;
+        font-size: 0.85rem;
+        color: #777;
+      }
+    }
+  }
+
+  .comments {
+    &-title {
+      font-size: 1rem !important;
+    }
+  }
+
+  &-content {
+    margin-bottom: 100px;
+
+    p::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}
