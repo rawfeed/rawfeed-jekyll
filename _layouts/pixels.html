@@ -1,1 +1,71 @@
-<!-- TODO: Aqui vai ser um layout para uma página de coleção de imagens com post de texto -->
+{%- include layout/data.liquid -%}
+
+{%- if maintenance_.enable != true -%}
+
+{%- for _ in site.pixels -%}
+  {%- capture count_pixels -%} {{ count_pixels | plus: 1 }} {%- endcapture -%}
+{%- endfor -%}
+
+<!DOCTYPE html>
+<html id="top" lang="{{ default_.lang | default: 'en-US' }}" data-theme="light">
+
+  <!-- head -->
+  {%- include layout/head.html -%}
+  <!-- head -->
+  <body style="font-family: {{ default_.font.style }} !important; font-size: {{ default_.font.size }} !important; letter-spacing: {{ default_.font.spacing }} !important;">
+
+    <div class="container-fluid">
+      {%- include layout/header.html -%}
+
+      <div class="default" style="max-width: {{ pixels_.layout.width | default: "860" }}px !important;">
+        <main class="pixels{% if default_.background_focus %} background_focus{% endif %}{% if default_.rounding %} rounding{% endif %}">
+          <div class="row">
+            {%- if page.description -%}
+              <div class="pixels-description"><span>»&nbsp;</span>{{ page.description | markdownify }}</div>
+            {%- endif -%}
+          </div>
+
+          <div class="row d-flex justify-content-center">
+            {%- if pixels_.title -%}
+              <h1 class="pixels-title">[&nbsp;{{ pixels_.title | default: "pixels" }}:&nbsp;&nbsp;{{ count_pixels }}&nbsp;]</h1>
+            {%- endif -%}
+          </div>
+
+          <div class="pixels-grid">
+            {%- for item in site.pixels -%}
+              {%- if item.image.path -%}
+                <a href="{{ item.url | relative_url }}">
+                  <div class="pixels-item{% if default_.rounding %} rounding{% endif %}">
+                    <div class="pixels-overlay-card">
+                      <img src="{{ item.image.path }}" alt="{{ item.title }}">
+                      <div class="overlay">
+                        <div class="text-center overlay-content">
+                          <small class="date">{% datelang item.date format:datelang_.format %}</small>
+                          <p class="mb-0 desc">{{ item.content | strip_html | truncate: 50 }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+
+        </main>
+      </div>
+    </div>
+
+    {%- include layout/footer.html -%}
+
+  </body>
+
+  <!-- Scripts -->
+  <script src="{{ '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
+  <!-- Scripts -->
+
+</html>
+
+{%- else -%}
+  {%- include layout/maintenance.html -%}
+{%- endif -%}
