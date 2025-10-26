@@ -1,8 +1,9 @@
 ---
 layout: contact
-order: 3
+author: # "Your Name"
 title: "Contact"
-emoji: ✉️&nbsp;
+order: 3
+emoji: ✉️
 in_menu: true
 published: true
 permalink: /contact/

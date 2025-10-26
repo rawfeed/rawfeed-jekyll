@@ -1,8 +1,9 @@
 ---
 layout: resume
+author: # "Your Name"
+title: "Resume"
 order: 4
-title: Resume
-emoji: 📜&nbsp;
+emoji: 📜
 in_menu: true
 published: true
 permalink: /resume/
