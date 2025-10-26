@@ -5,7 +5,7 @@ require_relative "utils"
 
 module Rawfeed
   class Post
-    def self.post_move
+    def self.post
       drafts = Dir.glob(File.join(Rawfeed::CONFIG['DRAFTS_DIR'], "*.#{Rawfeed::CONFIG['markdown_extension']}"))
 
       if drafts.empty?
@@ -13,7 +13,7 @@ module Rawfeed
         return
       end
 
-      puts "Select the file to move:\n".light_blue
+      puts "Select the file to move:\n".cyan
 
       drafts.each_with_index do |file, index|
         puts "#{index + 1} - #{File.basename(file)}"
