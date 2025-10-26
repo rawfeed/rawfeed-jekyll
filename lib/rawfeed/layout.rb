@@ -127,6 +127,13 @@ module Rawfeed
       File.write(file, updated)
     end
 
+    def self.pixels_index(value)
+      file = "pixels/index.md"
+      content = File.read(file)
+      updated = content.gsub(/^published:\s*\S+$/, "published: #{value}")
+      File.write(file, updated)
+    end
+
     def self.tags_index(value)
       file = "blog/tags/index.md"
       content = File.read(file)
