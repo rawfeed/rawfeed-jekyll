@@ -5,7 +5,7 @@ description: "An example post for: Code Block and Styles"
 author: "William C. Canin"
 date: 2025-10-04 17:09:18 -0300
 update_date:
-comments: false
+comments: true
 tags: [example,codeblocks,style,include,chart,ruby,html,rust,raw]
 ---
 
@@ -107,7 +107,7 @@ width="300"
 height="auto"
 border-radius="2"
 align="left"
-border-color="#000" %}
+border-color="#858585" %}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt.
 _Mauris lobortis nulla et felis ullamcorper bibendum._ Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
@@ -119,8 +119,7 @@ caption="Example animated GIF — © Giphy"
 width="300"
 height="auto"
 border-radius="2"
-align="right"
-border-color="#000" %}
+align="right" %}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt.
 _Mauris lobortis nulla et felis ullamcorper bibendum._ Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
@@ -133,7 +132,7 @@ width="100%"
 height="auto"
 border-radius="2"
 align="center"
-border-color="#000" %}
+border-color="#46e038" %}
 
 Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
 
