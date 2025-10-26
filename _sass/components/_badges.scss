@@ -22,3 +22,13 @@
     border-right: 6px solid #000000;
   }
 }
+
+%tags-badge {
+  padding: 0px 1px;
+  background-color: var(--tags-bg-color);
+  border-radius: .1em;
+  border: 1px solid var(--tags-border-color);
+  min-width: 100px;
+  display: block;
+  text-align: center;
+}
