@@ -1,26 +1,34 @@
 {
   "name": "rawfeed",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "A raw Jekyll theme for minimalists",
+  "type": "module",
   "scripts": {
     "install": "echo 'wait...' && bundle install",
-    "build": "cross-env JEKYLL_ENV=production bundle exec jekyll build && gulp",
-    "serve": "JEKYLL_ENV=development; echo JEKYLL_ENV=$JEKYLL_ENV; bundle exec jekyll serve --drafts --livereload",
-    "draft": "bundle exec rake create:draft",
-    "posts": "bundle exec rake move:posts",
-    "page": "bundle exec rake create:page",
-    "resume": "bundle exec rake create:resume",
+    "minify:files": "node tools/scripts/minify.mjs",
+    "jekyll:build": "cross-env JEKYLL_ENV=production bundle exec jekyll build",
+    "jekyll:serve": "JEKYLL_ENV=development; echo JEKYLL_ENV=$JEKYLL_ENV; bundle exec jekyll serve --host 127.0.0.1 --port 4000 --drafts",
+    "create:draft": "bundle exec rake create:draft",
+    "create:page": "bundle exec rake create:page",
+    "create:pixel": "bundle exec rake create:pixel",
+    "create:resume": "bundle exec rake create:resume",
+    "post:draft": "bundle exec rake post:draft",
     "home:about": "bundle exec rake home:about",
     "home:blog": "bundle exec rake home:blog",
     "blog:disable": "bundle exec rake blog:disable",
     "blog:enable": "bundle exec rake blog:enable",
-    "gulp": "gulp",
-    "publish": "bundle exec rake release",
-    "gem": "bundle exec rake build",
-    "clean": "gulp clean",
-    "help": "gulp menu --silent"
+    "pixels:disable": "bundle exec rake pixels:disable",
+    "pixels:enable": "bundle exec rake pixels:enable",
+    "clean:cache": "node tools/scripts/clean.mjs --cache",
+    "clean:all": "node tools/scripts/clean.mjs --all",
+    "generate:gem": "bundle exec rake build",
+    "publish:gem": "bundle exec rake release",
+    "rake:tasks": "bundle exec rake --tasks",
+    "build": "npm-run-all clean:cache jekyll:build minify:files",
+    "serve": "npm run clean:cache && npm run jekyll:serve",
+    "help": "node tools/scripts/help.mjs"
   },
-  "repository": "git+https://github.com/williamcanin/rawfeed.git",
+  "repository": "git+https://github.com/rawfeed/rawfeed-jekyll.git",
   "keywords": [
     "rawfeed",
     "theme",
@@ -28,19 +36,20 @@
     "jekyll",
     "retro"
   ],
-  "author": "William C. Canin",
+  "author": "William Canin <https://williamcanin.github.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/williamcanin/rawfeed/issues"
+    "url": "https://github.com/rawfeed/rawfeed-jekyll/issues"
   },
-  "homepage": "https://github.com/williamcanin/rawfeed#readme",
+  "homepage": "https://rawfeed.github.io/rawfeed-jekyll",
   "devDependencies": {
     "cross-env": "^10.0.0",
+    "npm-run-all": "^4.1.5",
     "del": "^8.0.1",
-    "gulp": "^5.0.1",
-    "gulp-cli": "^3.1.0",
-    "gulp-htmlmin": "^5.0.1",
-    "gulp-uglify": "^3.0.2",
+    "esbuild": "^0.25.11",
+    "execa": "^9.6.0",
+    "glob": "^11.0.3",
+    "html-minifier-terser": "^7.2.0",
     "kleur": "^4.1.5"
   }
 }
