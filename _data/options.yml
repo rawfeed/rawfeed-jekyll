@@ -59,14 +59,18 @@ head:
     connect-src:
       - https://www.google.com
       - https://api.github.com
+      - https://script.google.com
+      - https://script.googleusercontent.com
     img-src:
       - https://www.google.com
       - https://media0.giphy.com
       - https://media4.giphy.com
+      - https://media.giphy.com
       - https://github.githubassets.com
     script-src:
       - https://www.google.com
       - https://www.gstatic.com
+      - https://script.google.com
       - https://cdn.jsdelivr.net
       - https://cdnjs.cloudflare.com
       - https://giscus.app
