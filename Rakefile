@@ -73,13 +73,11 @@ namespace :pixels do
   desc "Enable/Disable pixels"
   task :disable do
     Rawfeed::Layout.change_yml("defaults", "published", false, "_pixels")
-    Rawfeed::Layout.change_yml("pagination", "enabled", false)
     Rawfeed::Layout.pixels_index(false)
     puts "The pixels has been disabled!".green
   end
   task :enable do
     Rawfeed::Layout.change_yml("defaults", "published", true, "_pixels")
-    Rawfeed::Layout.change_yml("pagination", "enabled", true)
     Rawfeed::Layout.pixels_index(true)
     puts "The pixels has been enabled!".green
   end
