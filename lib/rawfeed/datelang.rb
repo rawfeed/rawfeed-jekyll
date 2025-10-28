@@ -14,9 +14,9 @@ module Rawfeed
       def render(context)
         site = context.registers[:site]
         page = context.registers[:page] || {}
-        config = site.config
+        options = site.data['options']
 
-        locale = config.dig("datelang", "lang") || "en_US"
+        locale = options.dig("datelang", "lang") || "en_US"
 
         json_path = File.join(site.source, "assets", "json", "datelang.json")
         json_path = File.expand_path("../../assets/json/datelang.json", __dir__) unless File.exist?(json_path)
