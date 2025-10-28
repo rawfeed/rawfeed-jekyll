@@ -17,7 +17,7 @@ module Rawfeed
         file.puts("author: # \"Your Name\"")
         file.puts("title: \"#{array[0]}\"")
         file.puts("order: #number")
-        file.puts("emoji: 😃&nbsp; # Add an emoji to the page menu or leave it blank")
+        file.puts("emoji: 😃 # Add an emoji to the page menu or leave it blank")
         file.puts("date: #{array[2]} -0300")
         file.puts("update_date: ")
         file.puts("in_menu: true")
