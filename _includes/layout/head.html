@@ -87,6 +87,13 @@
   {% comment %} load theme {% endcomment %}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
+  {% comment %} custom theme {% endcomment %}
+  {%- assign file_path = '/assets/css/custom.css' -%}
+  {%- assign file_exists = site.static_files | where: "path", file_path | size -%}
+  {%- if file_exists > 0 -%}
+    <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+  {%- endif -%}
+
   {% comment %} feed {% endcomment %}
   <link rel="alternate" type="application/atom+xml" title="{{ site_title }}" href="{{ '/feed.xml' | relative_url }}">
 
