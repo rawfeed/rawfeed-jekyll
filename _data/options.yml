@@ -151,6 +151,9 @@ header:
     pixels:
       emoji: "📷"
       title: "pixels"
+    pub:
+      emoji: "📂"
+      title: "pub"
 
 # section: [home]
 home:
@@ -256,6 +259,11 @@ contact:
       content: "Please tick the 'I'm not a robot' box."
     fail: "Verification failed. Please reload the page and try again."
     error: "An error occurred while sending the message. Please try again."
+
+# section: [pub]
+pub:
+  path:
+    title: "Index of"
 
 # section: [footer]
 footer:

@@ -1,0 +1,18 @@
+.pub {
+  font-size: 13px;
+  color: var(--text-color);
+  a {
+    color: var(--primary-color);
+  }
+  &-path {
+    font-size: 32px;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 15px 0px;
+    font-weight: bold !important;
+  }
+  &-line {
+    @media (max-width: 575px) {
+      margin-bottom: 15px !important;
+    }
+  }
+}

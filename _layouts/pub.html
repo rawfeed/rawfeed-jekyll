@@ -1,0 +1,51 @@
+{%- include layout/data.liquid -%}
+
+{%- if maintenance_.enable != true -%}
+  {% assign current_path = page.permalink | default: '/' %}
+
+<!DOCTYPE html>
+<html id="top" lang="{{ default_.lang | default: 'en-US' }}" data-theme="light">
+  <!-- head -->
+  {%- include layout/head.html -%}
+  <!-- head -->
+<body style="font-family: {{ default_.font.style }} !important;">
+  <div class="container-fluid">
+    <div class="row">
+      <main class="col-sm pub">
+        <h1 class="pub-path">{{ pub_.path.title | default: 'Index of' }} {{ current_path }}</h1>
+        <hr>
+        {% for item in page.directory_contents %}
+          <div class="row pub-line">
+            <div class="col-sm">
+              {% if item.type == 'directory' %}
+                <a href="{{ item.url }}">{{ item.name }}/</a>
+              {% elsif item.type == 'parent' %}
+                <a href="{{ item.url }}">{{ item.name }}</a>
+              {% else %}
+                <a href="{{ item.url }}">{{ item.name }}</a>
+              {% endif %}
+            </div>
+
+            <div class="col-sm">
+              {% if item.date %}
+                <span class="date">{{ item.date | date: "%Y-%m-%d %H:%M" }}</span>
+              {% endif %}
+            </div>
+
+            <div class="col-sm">
+              {% if item.type == 'file' %}
+                <span class="size">{{ item.size | divided_by: 1024.0 | round: 2 }} KB</span>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+        <hr>
+      </main>
+    </div>
+  </div>
+  {%- include layout/footer.html -%}
+</body>
+</html>
+{%- else -%}
+  {%- include layout/maintenance.html -%}
+{%- endif -%}
