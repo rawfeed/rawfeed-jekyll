@@ -11,7 +11,10 @@ module Jekyll
       @layout_name = 'pub.html'
 
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), 'pub.html')
+      theme_layouts = File.join(site.theme.root, "_layouts")
+      self.read_yaml(theme_layouts, "pub.html")
+      # # Note: This is for _plugins/
+      # self.read_yaml(File.join(base, '_layouts'), 'pub.html')
 
       # Define o permalink correto para a página de índice
       # Garante que 'pub/sub/index.html' tenha o permalink '/pub/sub/'
