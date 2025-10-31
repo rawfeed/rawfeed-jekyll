@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rawfeed (0.2.5)
+    rawfeed (0.2.6)
       colorize (~> 1.1.0)
       jekyll (>= 4.0, < 5.0)
       jekyll-archives (~> 2.3.0)
