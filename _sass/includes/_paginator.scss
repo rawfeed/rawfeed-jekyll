@@ -2,6 +2,7 @@
   margin-top: 50px;
   .page-link {
     border-radius: 0px;
+    padding: 0px !important;
     border: none;
     background-color: transparent;
     color: var(--text-color);
@@ -13,6 +14,7 @@
   &__newer, &__older {
     color: var(--primary-color) !important;
     &:hover {
+      cursor: pointer !important;
       color: var(--text-color) !important;
     }
   }
