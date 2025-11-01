@@ -3,7 +3,9 @@
   <br>
   <small>rawfeed-jekyll — A raw Jekyll theme for minimalists</small>
   <br>
-  <a href="https://badge.fury.io/rb/rawfeed"><img src="https://badge.fury.io/rb/rawfeed.svg" alt="Gem Version" height="18"></a>
+  <a href="https://badge.fury.io/rb/rawfeed" target="_blank"><img src="https://badge.fury.io/rb/rawfeed.svg" alt="Gem Version" height="18"></a>
+  <br>
+  <a href="https://rawfeed.github.io/rawfeed-jekyll" target="_blank">Documentation</a>
 </p>
 
 # For developer
