@@ -18,11 +18,11 @@
           <div class="row pub-line">
             <div class="col-sm">
               {% if item.type == 'directory' %}
-                <a href="{{ item.url }}">{{ item.name }}/</a>
+                <a href="{{ item.url | relative_url }}">{{ item.name }}/</a>
               {% elsif item.type == 'parent' %}
-                <a href="{{ item.url }}">{{ item.name }}</a>
+                <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
               {% else %}
-                <a href="{{ item.url }}">{{ item.name }}</a>
+                <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
               {% endif %}
             </div>
 
