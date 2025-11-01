@@ -6,7 +6,7 @@
   // background-color: white;
   // padding: 20px;
   @extend %markdown;
-  margin-bottom: 35px;
+  margin-bottom: var(--margin-bottom);
 
   &-title {
     font-size: 1.05rem !important;

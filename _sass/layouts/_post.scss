@@ -2,7 +2,7 @@
 
 .post {
   @extend %markdown;
-  margin-bottom: 35px;
+  margin-bottom: var(--margin-bottom);
 
   li {
     list-style: disc;

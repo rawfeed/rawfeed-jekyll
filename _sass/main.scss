@@ -17,6 +17,10 @@ layout:
        dark: "hacking"
 */
 :root[data-theme="light"] {
+  // margins
+  --margin-bottom: 85px !important; // note: This is the height of the footer.
+
+  // colors
   --bg-color: #{theme.theme-color(bg, light)};
   --text-color: #{theme.theme-color(text, light)};
   --text-muted-color: #{theme.theme-color(text-muted, light)};
@@ -81,6 +85,10 @@ layout:
 }
 
 :root[data-theme="dark"] {
+  // margins
+  --margin-bottom: 85px !important; // note: This is the height of the footer.
+
+  // colors
   --bg-color: #{theme.theme-color(bg, dark)};
   --text-color: #{theme.theme-color(text, dark)};
   --text-muted-color: #{theme.theme-color(text-muted, dark)};
