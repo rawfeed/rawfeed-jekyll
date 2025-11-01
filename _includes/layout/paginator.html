@@ -16,10 +16,10 @@
         {%- if total_page > 1 -%}
           <li class="page-item">
             <span class="page-link blog-pagination__counter">
-              [&nbsp;{{ blog_.pagination.counter[0] }}
+              &nbsp;[&nbsp;{{ blog_.pagination.counter[0] }}
               {{ paginator.page }}
               {{ blog_.pagination.counter[1] }}
-              {{ total_page }}&nbsp;]
+              {{ total_page }}&nbsp;]&nbsp;
             </span>
           </li>
         {%- endif -%}
