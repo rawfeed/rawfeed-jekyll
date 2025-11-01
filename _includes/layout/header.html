@@ -153,7 +153,7 @@
             {%- endif -%}
             {%- assign files_in_pub = site.static_files | where_exp: "item", "item.path contains pub_url" -%}
             {%- if files_in_pub.size > 0 -%}
-              <div class="menu-wrap-link">{{ header_.menu.pub.emoji | with_class: "spacer" }}<a href="{{ pub_url }}">{{ header_.menu.pub.title }}</a></div>
+              <div class="menu-wrap-link">{{ header_.menu.pub.emoji | with_class: "spacer" }}<a href="{{ pub_url | relative_url }}">{{ header_.menu.pub.title }}</a></div>
             {%- endif -%}
           </div>
         {%- endif -%}
