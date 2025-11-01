@@ -1,7 +1,7 @@
 @use "../components/index";
 
 .blog {
-  margin-bottom: 35px;
+  margin-bottom: var(--margin-bottom);
 
   &-subtitle {
     font-size: 1.05rem;

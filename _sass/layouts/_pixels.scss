@@ -1,6 +1,6 @@
 .pixels {
   margin: 0 auto;
-  margin-bottom: 35px !important;
+  margin-bottom: var(--margin-bottom);
 
   &-title {
     font-size: 1.05rem;

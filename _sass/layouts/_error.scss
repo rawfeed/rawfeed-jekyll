@@ -3,7 +3,7 @@
 .error {
   &-image {
     @extend %gif_border;
-    margin-bottom: 50px;
+    margin-bottom: var(--margin-bottom);
   }
 
   &-title {

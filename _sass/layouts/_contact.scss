@@ -23,7 +23,7 @@
 .contact,
 .contact-disabled {
   @extend %markdown;
-  margin-bottom: 35px !important;
+  margin-bottom: var(--margin-bottom);
 }
 
 .contact {
