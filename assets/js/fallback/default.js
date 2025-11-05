@@ -57,26 +57,21 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Show/disappear top button
   --------------------------------------------------------------------------------------------------
   */
-  let topButton = document.getElementById("top-link");
+  const topButton = document.getElementById("top-link");
   const scrollThreshold = 700;
-  window.onscroll = function () { scrollFunction() };
 
-  function scrollFunction() {
-    if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-      topButton.style.display = "block";
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > scrollThreshold) {
+      topButton.classList.add("show");
     } else {
-      topButton.style.display = "none";
+      topButton.classList.remove("show");
     }
-  }
+  });
 
-  topButton.addEventListener("click", topFunction);
-
-  function topFunction() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }
+  topButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 
   /* function Giscus
   --------------------------------------------------------------------------------------------------

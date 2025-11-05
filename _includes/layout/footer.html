@@ -6,17 +6,14 @@ See: https://rawfeed.github.io/rawfeed-jekyll/license/
 
 {%- include layout/data.liquid -%}
 
-<footer class="fixed-bottom footer">
 
-  <!-- line top button  -->
-  {%- if footer_.top_button.enable -%}
-    <div class="row top">
-      <div class="col-md d-flex justify-content-end">
-        <a id="top-link" class="top-link" href="#top">{{ footer_.top_button.icon }}</a>
-      </div>
-    </div>
-  {%- endif -%}
-  <!-- line top button  -->
+{%- if footer_.top_button.enable -%}
+  <a id="top-link" href="#top" class="top-link" aria-label="back to top">
+    {{ footer_.top_button.icon }}
+  </a>
+{%- endif -%}
+
+<footer class="fixed-bottom footer">
 
   <!-- line footer content  -->
   <div class="row footer-wrapper">
