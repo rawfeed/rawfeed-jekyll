@@ -18,7 +18,7 @@ layout:
 */
 :root[data-theme="light"] {
   // margins
-  --margin-bottom: 85px !important; // note: This is the height of the footer.
+  --margin-bottom: 35px !important; // note: This is the height of the footer.
 
   // colors
   --bg-color: #{theme.theme-color(bg, light)};
@@ -86,7 +86,7 @@ layout:
 
 :root[data-theme="dark"] {
   // margins
-  --margin-bottom: 85px !important; // note: This is the height of the footer.
+  --margin-bottom: 35px !important; // note: This is the height of the footer.
 
   // colors
   --bg-color: #{theme.theme-color(bg, dark)};
