@@ -1,13 +1,13 @@
 {
   "name": "rawfeed",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "A raw Jekyll theme for minimalists",
   "type": "module",
   "scripts": {
     "install": "echo 'wait...' && bundle install",
     "minify:files": "node tools/scripts/minify.mjs",
     "jekyll:build": "cross-env JEKYLL_ENV=production bundle exec jekyll build",
-    "jekyll:serve": "JEKYLL_ENV=development; echo JEKYLL_ENV=$JEKYLL_ENV; bundle exec jekyll serve --host 127.0.0.1 --port 4000 --drafts",
+    "jekyll:serve": "JEKYLL_ENV=development; echo JEKYLL_ENV=$JEKYLL_ENV; bundle exec jekyll serve --host 0.0.0.0 --port 4000 --drafts",
     "create:draft": "bundle exec rake create:draft",
     "create:page": "bundle exec rake create:page",
     "create:pixel": "bundle exec rake create:pixel",
