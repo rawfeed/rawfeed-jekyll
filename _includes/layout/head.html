@@ -21,10 +21,36 @@
   <meta property="og:site_name" content="{{ site_title }}">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
-  <meta property="twitter:title" content="{{ site_title }}">
+  <meta name="twitter:title" content="{{ site_title }}">
+  {% for item in socials_.links %}
+    {% if item.url contains "x.com" %}
+      {% assign username = item.url | remove: "https://x.com/" %}
+      {% if username != blank %}
+        <meta name="twitter:site" content="@{{ username }}"/>
+        <meta name="twitter:creator" content="@{{ username }}">
+      {% endif %}
+    {% endif %}
+  {% endfor %}
   <meta name="robots" content="index, follow">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","description":"{{ page.description | capitalize | default: header_.description | strip_html | truncate: 50 }}","headline":"{{ site_title }}","name":"{{ site_title }}","url":"{{ page.url | prepend: site.url }}"}</script>
+    {
+      "@context": "https://schema.org",
+      {% if page.url == "/blog/" %}
+      "@type": "BlogPosting",
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ author_.name }}"
+      },
+      {% else %}
+      "@type": "WebSite",
+      {% endif %}
+      "description": "{{ page.description | default: header_.description | strip_html | truncate: 160 | escape }}",
+      "headline": "{{ page.title | default: site_title | escape }}",
+      "name": "{{ site_title }}",
+      "url": "{{ page.url | prepend: site.url }}"
+    }
+  </script>
   <!-- SEO -->
 
   {% comment %} Security {% endcomment %}
@@ -36,7 +62,7 @@
       content="
         default-src 'self';
         img-src 'self' data: {{ head_.csp.img-src | join: ' ' }};
-        script-src 'self' {{ head_.csp.script-src | join: ' ' }};
+        script-src 'self' 'unsafe-inline' {{ head_.csp.script-src | join: ' ' }};
         style-src 'self' 'unsafe-inline' {{ head_.csp.style-src | join: ' ' }};
         font-src 'self' {{ head_.csp.font-src | join: ' ' }} data:;
         connect-src 'self' {{ head_.csp.connect-src | join: ' ' }};
