@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Rawfeed
-  VERSION = "0.2.10"
+  VERSION = "0.2.11"
 end
