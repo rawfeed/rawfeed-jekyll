@@ -12,7 +12,7 @@ published: true
 permalink: /any-page/
 ---
 
-{% include toc selector=".page-content" max_level=3 title="TOC" btn_hidden="Hidden" btn_show="Show" %}
+
 
 # Theology (h1)
 

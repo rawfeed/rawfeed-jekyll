@@ -9,7 +9,6 @@ comments: true
 tags: [example,style,include,chart]
 ---
 
-{% include toc selector=".post-content" max_level=3 title="TOC" btn_hidden="Hidden" btn_show="Show" %}
 
 
 # Theology (h1)
