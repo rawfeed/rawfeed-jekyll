@@ -2,7 +2,7 @@
 url: ""
 
 # the subpath of your site, e.g. /blog
-baseurl: ""
+baseurl: "/rawfeed-jekyll/preview"
 
 # ---------- CAUTION!!! DO NOT move from here unless you REALLY know what you are doing. -----------
 
