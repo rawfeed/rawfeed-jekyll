@@ -218,81 +218,47 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* TOC
+  /* Automatic TOC (ChatGPT Style)
   # ------------------------------------------------------------------------------------------------
   */
 
-  const tocElements = document.querySelectorAll('.toc');
-  if (tocElements.length > 0) {
-    const minLayoutWidth = 1200;
+  function initAutoTOC() {
+    const selector = '.post-content, .page-content';
+    const content = document.querySelector(selector);
+    if (!content) return;
 
-    for (const tocEl of tocElements) {
-      const btnShowText = tocEl.dataset.btnShow || 'Show';
-      const btnHiddenText = tocEl.dataset.btnHidden || 'Hide';
+    const maxLevel = 3;
+    const headings = Array.from(content.querySelectorAll('h1, h2, h3'))
+      .filter(h => parseInt(h.tagName[1]) <= maxLevel);
 
-      buildTOC(tocEl);
+    if (headings.length === 0) return;
 
-      const toggle = tocEl.querySelector('.toc-toggle');
-      const wrapper = tocEl.querySelector('.toc-list-wrapper');
+    // Create TOC container
+    const tocContainer = document.createElement('nav');
+    tocContainer.id = 'auto-toc';
+    tocContainer.className = 'auto-toc';
 
-      wrapper.style.display = 'none';
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.textContent = btnShowText;
-
-      toggle.addEventListener('click', () => {
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        wrapper.style.display = expanded ? 'none' : 'block';
-        toggle.setAttribute('aria-expanded', (!expanded).toString());
-        toggle.textContent = expanded ? btnShowText : btnHiddenText;
-      });
-
-      // Fechar TOC ao pressionar 'Esc'
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          wrapper.style.display = 'none';
-          toggle.setAttribute('aria-expanded', 'false');
-          toggle.textContent = btnShowText;
-        }
-      });
-
-      const handleScrollFix = () => {
-        if (window.innerWidth <= minLayoutWidth) {
-          tocEl.classList.remove('toc-fixed');
-          tocEl.style.position = '';
-          tocEl.style.top = '';
-          tocEl.style.left = '';
-          tocEl.style.zIndex = '';
-          tocEl.style.width = '';
-          tocEl.style.maxHeight = '';
-          tocEl.style.overflowY = '';
-          return;
-        }
-
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const tocTop = tocEl.parentElement.offsetTop;
-
-        if (scrollTop >= tocTop) {
-          tocEl.classList.add('toc-fixed');
-          // Inline styles here to ensure absolute left: 0 if needed, 
-          // although toc-fixed class should handle it.
-          // Keeping a few critical ones to ensure they override parent relative positioning if any.
-          tocEl.style.position = 'fixed';
-          tocEl.style.top = '0';
-          tocEl.style.left = '0';
-          tocEl.style.zIndex = '9999';
-        } else {
-          tocEl.classList.remove('toc-fixed');
-          tocEl.style.position = '';
-          tocEl.style.top = '';
-          tocEl.style.left = '';
-          tocEl.style.zIndex = '';
-        }
-      };
-
-      window.addEventListener('scroll', handleScrollFix, { passive: true });
-      window.addEventListener('resize', handleScrollFix);
-      handleScrollFix();
+    // Create Bars (risquinhos) - Minimized State
+    const barsContainer = document.createElement('div');
+    barsContainer.className = 'auto-toc-bars';
+    for (let i = 0; i < 20; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'toc-bar';
+      barsContainer.appendChild(bar);
     }
+    tocContainer.appendChild(barsContainer);
+
+    // Create Content Wrapper - Expanded State
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'auto-toc-content';
+
+    const title = document.createElement('h2');
+    title.textContent = 'Navegação';
+    contentWrapper.appendChild(title);
+
+    const tocList = document.createElement('ul');
+    tocList.className = 'auto-toc-list';
+    contentWrapper.appendChild(tocList);
 
     const slugify = (text) => {
       if (!text) return '';
@@ -303,103 +269,80 @@ document.addEventListener("DOMContentLoaded", () => {
         .replace(/--+/g, '-');
     };
 
-    function buildTOC(tocEl) {
-      const selector = tocEl.dataset.tocSelector || '.post-content' || '.page-content';
-      const maxLevel = parseInt(tocEl.dataset.tocMaxLevel || '3', 10);
-      const offset = parseInt(tocEl.dataset.tocScrollOffset || '20', 10);
+    const idCounts = {};
+    const offset = 20;
 
-      const root = document.querySelector(selector);
-      if (!root) {
-        const emptyMsg = tocEl.querySelector('.toc-empty');
-        if (emptyMsg) {
-          emptyMsg.textContent = `Content not found (${selector})`;
-          emptyMsg.style.display = 'block';
+    const stack = [{ level: 0, ul: tocList }];
+
+    headings.forEach((h, i) => {
+      if (!h.id) {
+        let id = slugify(h.textContent);
+        if (!id) id = 'section';
+        if (idCounts[id]) {
+          idCounts[id]++;
+          id = `${id}-${idCounts[id]}`;
+        } else {
+          idCounts[id] = 1;
         }
-        return;
+        h.id = id;
       }
 
-      const headings = Array.from(
-        root.querySelectorAll(Array(maxLevel).fill(0).map((_, i) => `h${i + 1}`).join(','))
-      )
-        .filter((h) => !tocEl.contains(h))
-        .filter((h) => parseInt(h.tagName.substring(1)) <= maxLevel);
+      const level = parseInt(h.tagName[1]);
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = `#${h.id}`;
+      a.textContent = h.textContent.trim();
 
-      if (headings.length === 0) return;
-
-      const tocRoot = tocEl.querySelector('.toc-list');
-      if (!tocRoot) return;
-      tocRoot.innerHTML = '';
-
-      const idCounts = {};
-      for (const h of headings) {
-        if (!h.id) {
-          let id = slugify(h.textContent);
-          if (!id) id = 'section';
-
-          if (idCounts[id]) {
-            idCounts[id] += 1;
-            id = `${id}-${idCounts[id]}`;
-          } else {
-            idCounts[id] = 1;
-          }
-          h.id = id;
-        }
-      }
-
-      const stack = [{ level: 0, ul: tocRoot }];
-      for (let i = 0; i < headings.length; i++) {
-        const h = headings[i];
-        const level = parseInt(h.tagName.substring(1));
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = `#${h.id}`;
-        a.textContent = h.textContent.trim();
-
-        a.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.scrollTo({
-            top: h.getBoundingClientRect().top + window.scrollY - offset,
-            behavior: 'smooth'
-          });
-          history.replaceState(null, '', `#${h.id}`);
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+          top: h.getBoundingClientRect().top + window.scrollY - offset,
+          behavior: 'smooth'
         });
+        history.replaceState(null, '', `#${h.id}`);
+      });
 
-        li.appendChild(a);
+      li.appendChild(a);
 
-        while (stack.length > 1 && level <= stack[stack.length - 1].level) {
-          stack.pop();
-        }
-
-        const parent = stack[stack.length - 1].ul;
-        parent.appendChild(li);
-
-        const next = headings[i + 1];
-        if (next) {
-          const nextLevel = parseInt(next.tagName.substring(1));
-          if (nextLevel > level) {
-            const newUl = document.createElement('ul');
-            li.appendChild(newUl);
-            stack.push({ level, ul: newUl });
-          }
-        }
+      while (stack.length > 1 && level <= stack[stack.length - 1].level) {
+        stack.pop();
       }
 
-      const links = tocRoot.querySelectorAll('a');
-      const onScroll = () => {
-        const fromTop = window.scrollY + offset + 1;
-        let current = headings[0];
-        for (const h of headings) {
-          if (h.offsetTop <= fromTop) current = h;
-        }
-        for (const l of links) {
-          l.classList.toggle('active', l.getAttribute('href') === `#${current.id}`);
-        }
-      };
+      const parent = stack[stack.length - 1].ul;
+      parent.appendChild(li);
 
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    }
+      const next = headings[i + 1];
+      if (next) {
+        const nextLevel = parseInt(next.tagName[1]);
+        if (nextLevel > level) {
+          const newUl = document.createElement('ul');
+          li.appendChild(newUl);
+          stack.push({ level, ul: newUl });
+        }
+      }
+    });
+
+    tocContainer.appendChild(contentWrapper);
+    document.body.appendChild(tocContainer);
+
+    // Active link highlighting
+    const links = tocList.querySelectorAll('a');
+    const onScroll = () => {
+      const fromTop = window.scrollY + offset + 1;
+      let current = headings[0];
+      for (const h of headings) {
+        if (h.offsetTop <= fromTop) current = h;
+      }
+      for (const l of links) {
+        l.classList.toggle('active', l.getAttribute('href') === `#${current.id}`);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
+
+  initAutoTOC();
 
 
 });
