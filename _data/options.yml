@@ -102,6 +102,7 @@ default:
   width: 860 # default: 860
   background_focus: true
   rounding: false
+  user_select: none # none | text
   font:
     # Fonts Style Options: [default: monospace]
     # "'Ubuntu', sans-serif"
@@ -280,3 +281,46 @@ footer:
     page_url: "/licenses/"
   message: |
     Your impactful phrase!
+
+# section: [donation]
+# Tip: use svg images for better quality (https://www.iconpacks.net)
+donation:
+  title: "Support the Project"
+  description: "If this project helps you, consider supporting it"
+  copy_button:
+    text: "Copy"
+    clicked: "Copied!"
+  services:
+    - name: pix
+      logo: "/assets/images/icons/pix.svg"
+      description: |
+        Make your donation using PIX from Brazil. Use the key below.
+      address: "00b53f61-b009-4f05-8c43-444cce86af1d"
+      qrcode: "/assets/images/qrcode_inter.jpg"
+
+    - name: card
+      logo: "/assets/images/icons/card.svg"
+      description: |
+        Donation using card through the service `Buy Me a Coffee`.
+      address: "https://buymeacoffee.com/williamcanin"
+
+    - name: paypal
+      logo: "/assets/images/icons/paypal.svg"
+      description: |
+        Donate quickly and securely using your PayPal balance or linked card.
+      address: "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=YBK2HEEYG8V5W&source=&ssrt=1775261628264"
+
+    - name: bitcoin (lightning network)
+      logo: "/assets/images/icons/lightning_network.svg"
+      description: |
+        Make an anonymous Bitcoin donation using a Lightning Address.
+      address: "williamcanin@walletofsatoshi.com"
+      qrcode: "/assets/images/qrcode_wos.jpg"
+
+    - name: bitcoin (on-chain)
+      logo: "/assets/images/icons/bitcoin.svg"
+      description: |
+        Make an anonymous Bitcoin donation using a On-Chain address (Binance).
+      address: "bc1qluh2mrchmtrwedspwhtta8ccgzsl9jqdr47f2p"
+      qrcode: "/assets/images/qrcode_btc_binance.jpg"
+
