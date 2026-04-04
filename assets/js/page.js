@@ -1,6 +1,8 @@
 ---
 ---
 
+{%- include layout/data.liquid -%}
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -218,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* Automatic TOC (ChatGPT Style)
+  /* Automatic TOC
   # ------------------------------------------------------------------------------------------------
   */
 
@@ -253,7 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
     contentWrapper.className = 'auto-toc-content';
 
     const title = document.createElement('h2');
-    title.textContent = 'Navegação';
+    title.textContent = '{{ page_.toc.title }}';
     contentWrapper.appendChild(title);
 
     const tocList = document.createElement('ul');
