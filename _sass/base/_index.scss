@@ -6,9 +6,6 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
 
-  // impede selecionar texto no site
-  user-select: none;
-
   code,
   pre,
   .highlight,
@@ -92,8 +89,8 @@ body[data-layout="mobile"] .home-simple {
 }
 
 a[target="_blank"]::after {
-  content: "🢅";
-  font-size: .9em;
-  margin-left: 0.25em;
-  vertical-align: middle;
+  content: "↗";
+  // font-size: .9em;
+  // margin-left: 0.25em;
+  // vertical-align: middle;
 }
