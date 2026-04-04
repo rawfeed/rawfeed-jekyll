@@ -34,7 +34,7 @@ layout: default
 
           <!-- LOGO -->
           <div class="col-md-2 col-12 text-center">
-            <img src="{{ service.logo }}"
+            <img src="{{ service.logo | relative_url }}"
                  class="img-fluid donation__logo"
                  alt="{{ service.name }}">
           </div>
@@ -64,12 +64,12 @@ layout: default
           <!-- QR CODE -->
           <div class="col-md-3 col-12 text-center">
             {%- if service.qrcode -%}
-            <img src="{{ service.qrcode }}"
+            <img src="{{ service.qrcode | relative_url }}"
                  class="img-fluid clickable-qr donation__qr"
                  alt="QR {{ service.name }}"
                  data-bs-toggle="modal"
                  data-bs-target="#qrModal"
-                 data-qr="{{ service.qrcode }}">
+                 data-qr="{{ service.qrcode | relative_url }}">
             {%- endif -%}
           </div>
 
