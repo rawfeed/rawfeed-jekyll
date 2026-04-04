@@ -1,0 +1,93 @@
+@use "../components/index";
+
+.donation {
+  @extend %markdown;
+  margin-bottom: var(--margin-bottom);
+
+  &__offset_input {
+    @media (min-width: 768px) {
+      padding-left: 18% !important;
+      padding-right: 6.5% !important;
+    }
+  }
+
+  &__btn {
+    @extend %button;
+
+    &--copy {
+     min-width: 100px !important;
+     text-align: center !important;
+     border: 1px solid var(--background-focus-border-color) !important;
+    }
+  }
+
+  &__box {
+    padding: 1rem;
+    border: 2px dotted var(--card-border-color);
+    background-color: var(--card-bg-color);
+    transition: all 0.2s ease;
+
+    &:hover {
+      // transform: translateY(-3px);
+      border: 2px dotted var(--background-focus-border-color) !important;
+      box-shadow: 0 1rem 1.2rem var(--card-box-shadow-color-hover);
+    }
+  }
+
+  &__logo {
+    max-height: 64px;
+    opacity: 0.65;
+  }
+
+  &__input__label {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    background-color: var(--background-focus-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--background-focus-border-color);
+    width: fit-content;
+  }
+
+  &__qr {
+    max-height: 90px;
+    cursor: pointer;
+    transition: transform .2s ease;
+
+    &:hover {
+      transform: scale(1.08);
+    }
+  }
+
+  &__service__description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  &__service__name {
+    margin-top: 0 !important;
+    text-transform: capitalize;
+    font-size: 1.3rem !important;
+  }
+
+  &__address {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    background-color: var(--background-focus-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--background-focus-border-color);
+    width: fit-content;
+
+    &:focus {
+      color: inherit !important;
+      outline: none !important;
+      box-shadow: none !important;
+      background-color: var(--background-focus-color) !important;
+      border: 1px solid var(--background-focus-border-color) !important;
+    }
+  }
+
+}
