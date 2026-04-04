@@ -70,13 +70,10 @@ exclude:
   - Rakefile
 
   # files below: developer mode
-  - IDEIAS.txt
   - docs
   - rawfeed.gemspec
   - CODE_OF_CONDUCT.md
-  - CONTRIBUTING.md
-  - CHANGELOG.md
-  - LICENSE.txt
+  - LICENSE
   - pkg
   - tmp
   - tools
