@@ -306,14 +306,13 @@
       position: fixed;
       top: 0;
       left: 0;
-      overflow: hidden;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       z-index: 9999;
       min-width: 480px !important;
       max-width: 480px !important;
       width: auto !important;
-      margin: 0 auto;
       max-height: 100vh;
     }
 
