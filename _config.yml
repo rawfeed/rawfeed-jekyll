@@ -72,7 +72,6 @@ exclude:
   # files below: developer mode
   - IDEIAS.txt
   - docs
-  - assets/js/fallback/README.md
   - rawfeed.gemspec
   - CODE_OF_CONDUCT.md
   - CONTRIBUTING.md
