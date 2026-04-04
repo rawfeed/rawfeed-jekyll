@@ -12,7 +12,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-archives
   - jekyll-paginate-v2
-  - jekyll-coffeescript
   - rawfeed
 collections:
   pixels:

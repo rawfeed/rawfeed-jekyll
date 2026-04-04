@@ -26,7 +26,6 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "jekyll", ">= 4.0", "< 5.0"
   # Jekyll plugins
-  spec.add_runtime_dependency "jekyll-coffeescript", "~> 2.0.0"
   spec.add_runtime_dependency "jekyll-sitemap", "~> 1.4"
   spec.add_runtime_dependency "jekyll-feed", "~> 0.17.0"
   spec.add_runtime_dependency "jekyll-archives", "~> 2.3.0"
