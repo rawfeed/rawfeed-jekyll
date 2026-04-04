@@ -44,6 +44,11 @@ layout:
   --table-td-border-color: #{theme.theme-color(table-td-border-color, light)};
   --table-tr-odd-bg-color: #{theme.theme-color(table-tr-odd-bg-color, light)};
   --table-tr-even-bg-color: #{theme.theme-color(table-tr-even-bg-color, light)};
+  --card-bg-color: #{theme.theme-color(card-bg-color, light)};
+  --card-border-color: #{theme.theme-color(card-border-color, light)};
+  --card-border-color-hover: #{theme.theme-color(card-border-color-hover, light)};
+  --card-box-shadow-color: #{theme.theme-color(card-box-shadow-color, light)};
+  --card-box-shadow-color-hover: #{theme.theme-color(card-box-shadow-color-hover, light)};
   --terminal-color: #{theme.theme-color(terminal-color, light)};
   --terminal-bg-color: #{theme.theme-color(terminal-bg-color, light)};
   --terminal-border-color: #{theme.theme-color(terminal-border-color, light)};
@@ -111,6 +116,11 @@ layout:
   --table-td-border-color: #{theme.theme-color(table-td-border-color, dark)};
   --table-tr-odd-bg-color: #{theme.theme-color(table-tr-odd-bg-color, dark)};
   --table-tr-even-bg-color: #{theme.theme-color(table-tr-even-bg-color, dark)};
+  --card-bg-color: #{theme.theme-color(card-bg-color, dark)};
+  --card-border-color: #{theme.theme-color(card-border-color, dark)};
+  --card-border-color-hover: #{theme.theme-color(card-border-color-hover, dark)};
+  --card-box-shadow-color: #{theme.theme-color(card-box-shadow-color, dark)};
+  --card-box-shadow-color-hover: #{theme.theme-color(card-box-shadow-color-hover, dark)};
   --terminal-color: #{theme.theme-color(terminal-color, dark)};
   --terminal-bg-color: #{theme.theme-color(terminal-bg-color, dark)};
   --terminal-border-color: #{theme.theme-color(terminal-border-color, dark)};
