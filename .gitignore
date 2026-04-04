@@ -13,6 +13,5 @@ pkg/
 ~*
 *.Identifier
 *.bak
-_config.yml.bak
 .log
 *.gem
