@@ -51,3 +51,15 @@ See [here](https://rawfeed.github.io/rawfeed-jekyll/changelog/)
 # License
 
 The theme is available as open source under the terms of [this License](https://rawfeed.github.io/rawfeed-jekyll/license/).
+
+# Donation
+
+Click on the image below to be redirected to the donation forms:
+
+<div class="donation">
+  <a href="https://williamcanin.github.io/donate/" target="_blank">
+    <img width="160" height="100" src="assets/images/icons/donation.svg" alt="Donate"/>
+  </a>
+</div>
+
+> It is very important that you make a donation to motivate further development of rawfeed-jekyll. :)
