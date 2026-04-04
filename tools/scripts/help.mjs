@@ -44,7 +44,7 @@ function showMenu() {
   generate:gem ------------- Create gem '${projectName}' ${kleur.yellow('[for developer]')}
   help --------------------- Print this menu
 
-  ${kleur.gray(`© ${projectName} 2025 - https://rawfeed.github.io`)}
+  ${kleur.gray(`© ${projectName} 2026 - https://rawfeed.github.io`)}
   `;
 
   console.log(menuText);
