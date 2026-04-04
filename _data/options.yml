@@ -222,8 +222,11 @@ pixels:
   title: "pixels"
   layout:
     width: 860 # default: 860
+
 # section: [page]
 page:
+  toc:
+    title: "Table of Contents"
   updated_on: "Page updated on"
   error:
     image: https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXlxYzc5eXp1Nm01cmtldzM5bHhwdzJ2Njk2c2E4b2RkdTBkeGs5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c20UV66B7zCWA/giphy.gif
