@@ -1,0 +1,113 @@
+---
+layout: default
+---
+
+{%- include layout/data.liquid -%}
+
+<div id="donation" class="donation py-5{% if default_.background_focus %} background_focus{% endif %}{% if default_.rounding %} rounding{% endif %}">
+
+  <div class="container">
+
+    {% if donation_.title or donation_.description %}
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h1 class="display-5 fw-bold mb-3 donation__title">{{ donation_.title }}</h1>
+        <p class="mb-0 donation__description">
+          {{ donation_.description }}
+        </p>
+      </div>
+    </div>
+    {% endif %}
+
+
+    <div class="row mt-5">
+      <div class="col donation__content">
+        {{ content }}
+      </div>
+    </div>
+
+    <div class="donation-list d-flex flex-column gap-4">
+
+      {%- for service in donation_.services -%}
+      <div class="donation__box">
+        <div class="row align-items-center g-4">
+
+          <!-- LOGO -->
+          <div class="col-md-2 col-12 text-center">
+            <img src="{{ service.logo }}"
+                 class="img-fluid donation__logo"
+                 alt="{{ service.name }}">
+          </div>
+
+          <!-- INFO -->
+          <div class="col-md-7 col-12">
+
+            <h1 class="mb-2 text-capitalize donation__service__name">{{ service.name }}</h1>
+            <p class="mb-4 donation__service__description">
+              {{ service.description | markdownify }}
+            </p>
+
+            {%- unless service.name contains "bitcoin" or service.name == "pix" -%}
+            <div class="row">
+              <div class="col">
+                <a class="fw-bold donation__btn" href="{{ service.address }}"
+                  target="_blank"
+                  rel="noopener">
+                  Open
+                </a>
+              </div>
+            </div>
+            {%- endunless -%}
+
+          </div>
+
+          <!-- QR CODE -->
+          <div class="col-md-3 col-12 text-center">
+            {%- if service.qrcode -%}
+            <img src="{{ service.qrcode }}"
+                 class="img-fluid clickable-qr donation__qr"
+                 alt="QR {{ service.name }}"
+                 data-bs-toggle="modal"
+                 data-bs-target="#qrModal"
+                 data-qr="{{ service.qrcode }}">
+            {%- endif -%}
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-12 mt-4 donation__offset_input">
+            {% if service.name == "pix" or service.name contains "bitcoin" %}
+              <div class="row">
+                <div class="input-group">
+                  {% if service.name contains "pix" %}
+                  <span class="input-group-text donation__input__label">Key</span>
+                  {% else %}
+                  <span class="input-group-text donation__input__label">Address</span>
+                  {% endif %}
+                  <input type="text" class="form-control donation__address"
+                  value="{{ service.address }}" readonly>
+                  <button class="fw-bold donation__btn donation__btn--copy" data-copy="{{ service.address }}">
+                    {{ donation_.copy_button.text }}
+                  </button>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {%- endfor -%}
+
+    </div>
+
+  </div>
+</div>
+
+<!-- QR Modal -->
+<div class="modal fade" id="qrModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-transparent border-0 text-center">
+      <img id="qrModalImg" class="img-fluid rounded shadow">
+    </div>
+  </div>
+</div>
