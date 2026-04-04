@@ -15,7 +15,7 @@
     "**/_includes/**": "liquid",
     "**/_layouts/**": "liquid",
     "blog_search.json": "liquid",
-    "*.gs": "javascript",
+    "*.js": "liquid-javascript",
   },
   // Emmet working within Liquid and Markdown
   "emmet.includeLanguages": {
