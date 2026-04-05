@@ -20,8 +20,8 @@ if %w[minify clean help new install].include?(first_arg)
   when "help"
     Rawfeed::Tools.help
   when "new"
-    Rawfeed::Tools.new_site(ARGV.shift)
-    exit 0
+    site_path = args.first || "my-site"
+    Rawfeed::Installer.create_new_site(site_path)
   when "install"
     Rawfeed::Tools.install
   end
