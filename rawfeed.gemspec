@@ -16,7 +16,43 @@ Gem::Specification.new do |spec|
 
   # Note: The files will only be inside the gem after "git commit"
   spec.files = `git ls-files -z`.split("\x0").select do |f|
-    f.match(%r!^(lib|tools|exe|assets|template|blog|pixels|package\.json|404.html|index.md|config\.yml|_(includes|layouts|sass|data|pixels|pages|posts)/|(LICENSE|README)((\.(txt|md|markdown)|$)))!i)
+    # Directories we want to include (everything inside)
+    include_dirs = %w[
+      lib
+      tools
+      exe
+      assets
+      template
+      blog
+      pixels
+      _includes
+      _layouts
+      _sass
+      _data
+      _pixels
+      _pages
+      _posts
+    ]
+
+    # Specific files we want to include
+    include_files = %w[
+      package.json
+      404.html
+      index.md
+      config.yml
+      LICENSE
+      README
+    ]
+
+    # Checks if it starts with any directory
+    matches_dir = include_dirs.any? { |d| f.start_with?("#{d}/") }
+
+    # Checks if it is a specific file (we can accept optional extension)
+    matches_file = include_files.any? do |file|
+      f == file || f =~ /^#{Regexp.escape(file)}\.(txt|md|markdown)$/i
+    end
+
+    matches_dir || matches_file
   end
   spec.require_paths = ["lib"]
 
