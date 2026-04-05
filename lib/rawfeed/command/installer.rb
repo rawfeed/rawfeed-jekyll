@@ -1,11 +1,12 @@
+require "rawfeed/root"
+
 module Rawfeed
   class Installer
     def self.gem_root
       if defined?(Gem) && Gem.loaded_specs["rawfeed"]
         Gem.loaded_specs["rawfeed"].full_gem_path
       else
-        # Fallback para o caminho relativo ao arquivo (lib/rawfeed/command/installer.rb)
-        File.expand_path("../../../", __dir__)
+        Rawfeed::ROOT
       end
     end
 
