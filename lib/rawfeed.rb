@@ -20,9 +20,9 @@ require_relative "rawfeed/content/post"
 require_relative "rawfeed/content/resume"
 
 # Jekyll Plugins
-require_relative "rawfeed/plugin/csp_filters"
 require_relative "rawfeed/plugin/datelang"
 require_relative "rawfeed/plugin/pub"
 require_relative "rawfeed/plugin/reading_time"
-require_relative "rawfeed/plugin/typescript_liquid"
 require_relative "rawfeed/plugin/with_class"
+# require_relative "rawfeed/plugin/csp_filters"
+# require_relative "rawfeed/plugin/typescript_liquid"
