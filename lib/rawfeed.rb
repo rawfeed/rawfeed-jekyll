@@ -14,6 +14,7 @@ require "rawfeed/reading_time"
 require "rawfeed/with_class"
 require "rawfeed/pub"
 require "rawfeed/tools"
+require "rawfeed/installer"
 
 # require "rawfeed/csp_filters"
 # require "rawfeed/typescript_liquid"
