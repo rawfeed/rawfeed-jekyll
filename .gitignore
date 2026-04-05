@@ -1,8 +1,5 @@
 _site/
 tmp/
-inst/
-test/
-dist/
 node_modules/
 .bundle-cache/
 .sass-cache/
@@ -18,3 +15,4 @@ pkg/
 *.bak
 .log
 *.gem
+.envrc
