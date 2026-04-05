@@ -1,8 +1,18 @@
 module Rawfeed
   class Installer
-    # Caminho para a raiz da gem (se estiver rodando via lib/rawfeed/installer.rb)
-    GEM_ROOT = File.expand_path("../..", __dir__)
-    TEMPLATE_DIR = File.join(GEM_ROOT, "template")
+    # Tenta detectar a raiz da gem de forma robusta
+    def self.gem_root
+      if defined?(Gem) && Gem.loaded_specs["rawfeed"]
+        Gem.loaded_specs["rawfeed"].full_gem_path
+      else
+        # Fallback para o caminho relativo ao arquivo (lib/rawfeed/installer.rb)
+        File.expand_path("../../../", __FILE__)
+      end
+    end
+
+    def self.template_dir
+      File.join(gem_root, "template")
+    end
 
     def self.create_new_site(path)
       if Dir.exist?(path)
@@ -13,23 +23,26 @@ module Rawfeed
       # Criar diretório do site
       FileUtils.mkdir_p(path)
 
-      # 1. Copiar todo o conteúdo da pasta template
-      if Dir.exist?(TEMPLATE_DIR)
-        FileUtils.cp_r(Dir["#{TEMPLATE_DIR}/*"], path)
+      # 1. Copiar todo o conteúdo da pasta template (incluindo arquivos ocultos)
+      cur_template_dir = template_dir
+      if Dir.exist?(cur_template_dir)
+        # O uso do "." no final do caminho de origem instrui o cp_r a copiar o conteúdo,
+        # incluindo arquivos ocultos, para o destino.
+        FileUtils.cp_r(File.join(cur_template_dir, "."), path)
       else
-        puts "Error: Template directory not found at #{TEMPLATE_DIR}".red
+        puts "Error: Template directory not found at #{cur_template_dir}".red
         return
       end
 
       # 2. Copiar package.json da raiz da gem (se não existir no template)
-      package_src = File.join(GEM_ROOT, "package.json")
+      package_src = File.join(gem_root, "package.json")
       package_dest = File.join(path, "package.json")
 
       unless File.exist?(package_dest)
         if File.exist?(package_src)
           FileUtils.cp(package_src, package_dest)
         else
-          puts "Warning: package.json not found in #{GEM_ROOT}".yellow
+          puts "Warning: package.json not found in #{gem_root}".yellow
         end
       end
 
