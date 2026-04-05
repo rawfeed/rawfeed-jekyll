@@ -2,6 +2,7 @@
 require "json"
 require "date"
 require "jekyll"
+require "rawfeed/root"
 
 module Rawfeed
   module Datelang
@@ -16,14 +17,12 @@ module Rawfeed
         page = context.registers[:page] || {}
         options = site.data['options']
 
-        locale = options.dig("datelang", "lang") || "en_US"
-
-        json_path = File.join(site.source, "assets", "json", "datelang.json")
-        json_path = File.expand_path("../../assets/json/datelang.json", __dir__) unless File.exist?(json_path)
+        json_path = File.join(Rawfeed::ROOT, "assets", "json", "datelang.json") unless File.exist?(json_path)
 
         return "[datelang error: datelang.json not found]" unless File.exist?(json_path)
 
         translations = JSON.parse(File.read(json_path))
+        locale = options.dig("datelang", "lang") || "en_US"
         data = translations[locale] || translations["en_US"]
 
         args = parse_args(@markup, context)
