@@ -1,14 +1,16 @@
-#!/bin/sh
-# --- Polyglot wrapper to support custom installation directory ---
+#!/bin/bash
+# --- Self-configuring wrapper ---
+# This script detects its own gem location and sets GEM_PATH if needed.
 if [ -z "$GEM_HOME" ] || [ -z "$GEM_PATH" ]; then
-  # Detect gem home relative to the executable path
-  BIN_DIR=$(dirname "$(readlink -f "$0" 2>/dev/null || readlink "$0" 2>/dev/null || echo "$0")")
+  REAL_PATH=$(readlink -f "$0" 2>/dev/null || readlink "$0" 2>/dev/null || echo "$0")
+  BIN_DIR=$(dirname "$REAL_PATH")
   CUSTOM_GEM_HOME=$(dirname "$BIN_DIR")
   if [ -d "$CUSTOM_GEM_HOME/gems" ]; then
     export GEM_HOME="$CUSTOM_GEM_HOME"
     export GEM_PATH="$CUSTOM_GEM_HOME:$GEM_PATH"
   fi
 fi
+# Transition to ruby using polyglot technique
 exec ruby -x "$0" "$@"
 #!ruby
 # frozen_string_literal: true
