@@ -1,5 +1,8 @@
 _site/
 tmp/
+inst/
+test/
+dist/
 node_modules/
 .bundle-cache/
 .sass-cache/
