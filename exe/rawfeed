@@ -1,116 +1,32 @@
 #!/bin/bash
-# --- Self-configuring wrapper ---
-# This script detects its own gem location and sets GEM_PATH if needed.
-if [ -z "$GEM_HOME" ] || [ -z "$GEM_PATH" ]; then
-  REAL_PATH=$(readlink -f "$0" 2>/dev/null || readlink "$0" 2>/dev/null || echo "$0")
-  BIN_DIR=$(dirname "$REAL_PATH")
-  CUSTOM_GEM_HOME=$(dirname "$BIN_DIR")
-  if [ -d "$CUSTOM_GEM_HOME/gems" ]; then
-    export GEM_HOME="$CUSTOM_GEM_HOME"
-    export GEM_PATH="$CUSTOM_GEM_HOME:$GEM_PATH"
-  fi
-fi
-# Transition to ruby using polyglot technique
-exec ruby -x "$0" "$@"
-#!ruby
-# frozen_string_literal: true
+# --- Self-configuring wrapper for Rawfeed ---
+# This script detects its own installation directory and sets GEM_PATH if it is not already set.
 
-require "fileutils"
-require "pathname"
-require "colorize"
-
-# Para suportar rodar mesmo sem a gem instalada globalmente
-RAWFEED_ROOT = File.expand_path("..", __dir__)
-LIB_PATH = File.join(RAWFEED_ROOT, "lib")
-
-if Dir.exist?(LIB_PATH)
-  $LOAD_PATH.unshift(LIB_PATH)
-end
-
-begin
-  require "rawfeed"
-rescue LoadError => e
-  warn "Error: Could not load 'rawfeed' gem logic. (#{e.message})"
-  warn "If you are developing locally, run with: bundle exec exe/rawfeed"
-  exit 1
-end
-
-# Se não tiver argumento, mostra ajuda
-if ARGV.empty?
-  puts "Usage: rawfeed <namespace>:<task> [options] or rawfeed <tools_command> [options]"
-  exit 1
-end
-
-first_arg = ARGV.shift
-args = ARGV
-
-# Ferramentas internas
-if %w[minify clean help new install].include?(first_arg)
-  case first_arg
-  when "minify"
-    Rawfeed::Tools.minify
-  when "clean"
-    Rawfeed::Tools.clean(*args)
-  when "help"
-    Rawfeed::Tools.help
-  when "new"
-    site_path = args.first || "my-site"
-    Rawfeed::Installer.create_new_site(site_path)
-  when "install"
-    Rawfeed::Tools.install
-  end
-  exit 0
-end
-
-# Separar namespace e task para os comandos principais
-namespace, task = first_arg.split(":")
-
-case namespace
-when "create"
-  case task
-  when "draft" then Rawfeed::Draft.draft_create(*args)
-  when "pixel" then Rawfeed::Pixel.pixel_create(*args)
-  when "page"  then Rawfeed::Page.page_create(*args)
-  when "resume" then Rawfeed::Resume.resume_create(*args)
-  else
-    puts "Unknown create task: #{task}"
-  end
-when "list"
-  case task
-  when "posts" then Rawfeed::PostList.display
-  else
-    puts "Unknown list task: #{task}"
-  end
-when "home"
-  case task
-  when "about" then Rawfeed::Layout.home_about(true)
-  when "blog"  then Rawfeed::Layout.home_blog
-  else
-    puts "Unknown home task: #{task}"
-  end
-when "post"
-  case task
-  when "draft" then Rawfeed::Post.post(*args)
-  else
-    puts "Unknown post task: #{task}"
-  end
-when "blog"
-  case task
-  when "enable"  then Rawfeed::Layout.blog_enable
-  when "disable" then Rawfeed::Layout.blog_disable
-  else
-    puts "Unknown blog task: #{task}"
-  end
-when "pixels"
-  case task
-  when "enable"  then Rawfeed::Layout.pixels_enable
-  when "disable" then Rawfeed::Layout.pixels_disable
-  else
-    puts "Unknown pixels task: #{task}"
-  end
+# 1. Detect the real location of this script
+if [ -n "$BASH_SOURCE" ]; then
+    REAL_PATH="$BASH_SOURCE"
 else
-  puts "Unknown namespace or command: #{namespace || first_arg}"
-  puts "Usage:"
-  puts "  rawfeed <namespace>:<task> [options]"
-  puts "  rawfeed <tools_command> [minify|clean|help|new|install] [options]"
-end
+    REAL_PATH="$0"
+fi
+
+# Detect absolute path
+REAL_ABS_PATH=$(readlink -f "$REAL_PATH" 2>/dev/null || readlink "$REAL_PATH" 2>/dev/null || echo "$REAL_PATH")
+BIN_DIR=$(dirname "$REAL_ABS_PATH")
+GEM_ROOT=$(dirname "$BIN_DIR")
+
+# 2. Check if we are running in a custom gem installation
+if [ -d "$GEM_ROOT/gems" ] && [ -d "$GEM_ROOT/specifications" ]; then
+    # We are in a custom install directory like .bundle-cache/bundle
+    if [[ ":$GEM_PATH:" != *":$GEM_ROOT:"* ]]; then
+        export GEM_PATH="$GEM_ROOT:$GEM_PATH"
+        export GEM_HOME="$GEM_ROOT"
+    fi
+fi
+
+# 3. Add local lib/ to $LOAD_PATH if we are in the source tree (development)
+if [ -d "$GEM_ROOT/lib" ]; then
+    RUBY_LIB="-I$GEM_ROOT/lib"
+fi
+
+# 4. Execute the Ruby logic
+exec ruby $RUBY_LIB -rrawfeed -rrawfeed/cli -e "Rawfeed::CLI.run(ARGV)" -- "$@"
