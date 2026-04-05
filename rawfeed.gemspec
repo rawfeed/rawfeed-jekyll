@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = "rawfeed"
   spec.version       = Rawfeed::VERSION
   spec.authors       = ["William C. Canin"]
-  spec.email         = ["william.costa.canin@gmail.com"]
+  spec.email         = ["hello.williamcanin@gmail.com"]
 
   spec.summary         = "A raw Jekyll theme for minimalists"
   spec.homepage        = "https://rawfeed.github.io/rawfeed-jekyll"
@@ -16,13 +16,17 @@ Gem::Specification.new do |spec|
 
   # Note: The files will only be inside the gem after "git commit"
   spec.files = `git ls-files -z`.split("\x0").select do |f|
-    f.match(%r!^(lib|assets|_(includes|layouts|sass|data)/|(LICENSE|README)((\.(txt|md|markdown)|$)))!i)
+    f.match(%r!^(lib|tools|exe|assets|package\.json|_(includes|layouts|sass|data)/|(LICENSE|README)((\.(txt|md|markdown)|$)))!i)
   end
   spec.require_paths = ["lib"]
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
   spec.metadata["source_code_uri"] = spec.homepage
-  spec.metadata["changelog_uri"]  = "#{spec.homepage}/blob/main/CHANGELOG.md"
+  spec.metadata["changelog_uri"]  = "https://rawfeed.github.io/rawfeed-jekyll/changelog/"
+
+  # Executables
+  spec.executables = ["rawfeed-minify"]
+  spec.bindir = "exe"
 
   spec.add_runtime_dependency "jekyll", ">= 4.0", "< 5.0"
   # Jekyll plugins
