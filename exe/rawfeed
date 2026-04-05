@@ -11,7 +11,7 @@ end
 first_arg = ARGV.shift
 
 # Comandos de ferramentas internas
-if %w[minify clean help init install].include?(first_arg)
+if %w[minify clean help new install].include?(first_arg)
   case first_arg
   when "minify"
     Rawfeed::Tools.minify
@@ -19,8 +19,9 @@ if %w[minify clean help init install].include?(first_arg)
     Rawfeed::Tools.clean(*ARGV)
   when "help"
     Rawfeed::Tools.help
-  when "init"
-    Rawfeed::Tools.init
+  when "new"
+    Rawfeed::Tools.new_site(ARGV.shift)
+    exit 0
   when "install"
     Rawfeed::Tools.install
   end
@@ -78,5 +79,5 @@ else
   puts "Unknown namespace or command: #{namespace || first_arg}"
   puts "Usage:"
   puts "  rawfeed <namespace>:<task> [options]"
-  puts "  rawfeed <tools_command> [minify|clean|help|init|install] [options]"
+  puts "  rawfeed <tools_command> [minify|clean|help|new|install] [options]"
 end
