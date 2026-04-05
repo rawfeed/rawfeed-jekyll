@@ -25,7 +25,6 @@ Gem::Specification.new do |spec|
   spec.metadata["changelog_uri"]  = "https://rawfeed.github.io/rawfeed-jekyll/changelog/"
 
   # Executables
-  spec.executables = ["rawfeed-tools"]
   spec.executables = ["rawfeed"]
   spec.bindir = "exe"
 
