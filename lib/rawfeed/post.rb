@@ -57,4 +57,50 @@ module Rawfeed
 
     end
   end
+
+  # Post List
+  class PostList
+    def self.display
+      directory_base = Rawfeed::CONFIG['POSTS_DIR']
+      posts = Dir.glob(File.join(directory_base, "*.{md,markdown}"))
+
+      # Capture arguments in format --key=value
+      args = {}
+      ARGV.each do |arg|
+        if arg =~ /--([^=]+)=(.*)/
+          args[$1] = $2
+        end
+      end
+
+      filter_tag  = args['tag'] ? args['tag'].downcase : nil
+      filter_date = args['date']
+
+      puts "\n" + "Blog Posts List".bold.blue
+      puts "Filters: Tag: #{filter_tag || 'None'} | Date: #{filter_date || 'None'}".cyan
+      puts "-" * 90
+
+      posts.sort.reverse_each do |file|
+        begin
+          content = File.read(file)
+          if content =~ /\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)/m
+            data = YAML.safe_load($1, permitted_classes: [Time, Date])
+
+            title     = data['title'] || "No Title"
+            published = data['published'] != false ? "YES".green : "NO".red
+            tags      = data['tags'] || []
+            date      = data['date'].to_s.split(' ').first || "No Date"
+
+            next if filter_tag && !tags.map(&:downcase).include?(filter_tag)
+            next if filter_date && date != filter_date
+
+            tag_list = tags.empty? ? "none" : tags.join(", ")
+            printf("%-12s | %-3s | %-30s | %s\n", date.cyan, published, title[0..28].ljust(30), tag_list.magenta)
+          end
+        rescue => e
+          puts "[x] Error reading #{file}: #{e.message}".red
+        end
+      end
+      puts "-" * 90
+    end
+  end
 end
