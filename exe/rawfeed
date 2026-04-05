@@ -7,10 +7,19 @@ require "colorize"
 
 # Para suportar rodar mesmo sem a gem instalada globalmente
 RAWFEED_ROOT = File.expand_path("..", __dir__)
+LIB_PATH = File.join(RAWFEED_ROOT, "lib")
 
-# Carrega a gem local via lib/
-$LOAD_PATH.unshift(File.join(RAWFEED_ROOT, "lib"))
-require "rawfeed"
+if Dir.exist?(LIB_PATH)
+  $LOAD_PATH.unshift(LIB_PATH)
+end
+
+begin
+  require "rawfeed"
+rescue LoadError => e
+  warn "Error: Could not load 'rawfeed' gem logic. (#{e.message})"
+  warn "If you are developing locally, run with: bundle exec exe/rawfeed"
+  exit 1
+end
 
 # Se não tiver argumento, mostra ajuda
 if ARGV.empty?
