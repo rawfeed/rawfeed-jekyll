@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
 
   # Executables
   spec.executables = ["rawfeed-tools"]
+  spec.executables = ["rawfeed"]
   spec.bindir = "exe"
 
   spec.add_runtime_dependency "rake", "~> 13.0"

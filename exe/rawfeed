@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "rawfeed"
+
+command = ARGV.shift
+subcommand = ARGV.shift
+args = ARGV
+
+# Helper to call namespaces dynamically
+def run_task(namespace, task, args)
+  case namespace
+  when "create"
+    case task
+    when "draft" then Rawfeed::Draft.draft_create(*args)
+    when "pixel" then Rawfeed::Pixel.pixel_create(*args)
+    when "page"  then Rawfeed::Page.page_create(*args)
+    when "resume" then Rawfeed::Resume.resume_create(*args)
+    else
+      puts "Unknown create task: #{task}"
+    end
+  when "list"
+    case task
+    when "posts" then Rawfeed::PostList.display(*args)
+    else
+      puts "Unknown list task: #{task}"
+    end
+  when "home"
+    case task
+    when "about" then Rawfeed::Layout.home_about(true)
+    when "blog"  then Rawfeed::Layout.home_blog
+    else
+      puts "Unknown home task: #{task}"
+    end
+  when "post"
+    case task
+    when "draft" then Rawfeed::Post.post(*args)
+    else
+      puts "Unknown post task: #{task}"
+    end
+  when "blog"
+    case task
+    when "enable"  then Rawfeed::Layout.blog_enable
+    when "disable" then Rawfeed::Layout.blog_disable
+    else
+      puts "Unknown blog task: #{task}"
+    end
+  when "pixels"
+    case task
+    when "enable"  then Rawfeed::Layout.pixels_enable
+    when "disable" then Rawfeed::Layout.pixels_disable
+    else
+      puts "Unknown pixels task: #{task}"
+    end
+  else
+    puts "Unknown command: #{namespace}"
+  end
+end
+
+if command && subcommand
+  run_task(command, subcommand, args)
+else
+  puts "Usage: rawfeed <namespace>:<task> [options]"
+  puts "Example: rawfeed create:draft"
+end
