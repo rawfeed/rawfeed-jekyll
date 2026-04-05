@@ -47,6 +47,7 @@ module Rawfeed
         [File.join(gem_dir, ".editorconfig"), ".editorconfig"],
         [File.join(gem_dir, ".hidden"), ".hidden"],
 
+        [File.join(gem_dir, "_data"), "_data"],
         [File.join(gem_dir, "_posts"), "_posts"],
         [File.join(gem_dir, "_pages"), "_pages"],
         [File.join(gem_dir, "_pixels"), "_pixels"],
