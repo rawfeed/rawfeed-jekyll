@@ -1,7 +1,8 @@
 module Rawfeed
   class Installer
-    GEM_DIR = File.expand_path("..", __dir__) # caminho para lib/rawfeed
-    TEMPLATE_DIR = File.join(GEM_DIR, "template")
+    # Caminho para a raiz da gem (se estiver rodando via lib/rawfeed/installer.rb)
+    GEM_ROOT = File.expand_path("../..", __dir__)
+    TEMPLATE_DIR = File.join(GEM_ROOT, "template")
 
     def self.create_new_site(path)
       if Dir.exist?(path)
@@ -9,20 +10,34 @@ module Rawfeed
         return
       end
 
+      # Criar diretório do site
       FileUtils.mkdir_p(path)
 
-      # Copiar template
-      FileUtils.cp_r(Dir["#{TEMPLATE_DIR}/*"], path)
+      # 1. Copiar todo o conteúdo da pasta template
+      if Dir.exist?(TEMPLATE_DIR)
+        FileUtils.cp_r(Dir["#{TEMPLATE_DIR}/*"], path)
+      else
+        puts "Error: Template directory not found at #{TEMPLATE_DIR}".red
+        return
+      end
 
-      # Copiar Gemfile e package.json da gem/template
-      gemfile_src = File.join(GEM_DIR, "template", "Gemfile")
-      package_src = File.join(GEM_DIR, "template", "package.json")
+      # 2. Copiar package.json da raiz da gem (se não existir no template)
+      package_src = File.join(GEM_ROOT, "package.json")
+      package_dest = File.join(path, "package.json")
 
-      FileUtils.cp(gemfile_src, File.join(path, "Gemfile")) if File.exist?(gemfile_src)
-      FileUtils.cp(package_src, File.join(path, "package.json")) if File.exist?(package_src)
+      unless File.exist?(package_dest)
+        if File.exist?(package_src)
+          FileUtils.cp(package_src, package_dest)
+        else
+          puts "Warning: package.json not found in #{GEM_ROOT}".yellow
+        end
+      end
 
       puts "New rawfeed site created at #{path}".green
-      puts "Run `cd #{path} && bundle install && npm install` to set up dependencies".yellow
+      puts "Run:".blue
+      puts "  cd #{path}".yellow
+      puts "  bundle install".yellow
+      puts "  npm install".yellow
     end
   end
 end
