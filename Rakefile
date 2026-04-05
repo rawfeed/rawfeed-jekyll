@@ -27,6 +27,14 @@ namespace :create do
   end
 end
 
+# lists
+namespace :list do
+  desc "List all blog posts (Optional: tag=name date=YYYY-MM-DD)"
+  task :posts do
+    Rawfeed::PostList.display
+  end
+end
+
 # home
 namespace :home do
   desc "Home page changed to 'about'"
