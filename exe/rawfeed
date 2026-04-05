@@ -1,4 +1,16 @@
-#!/usr/bin/env ruby
+#!/bin/sh
+# --- Polyglot wrapper to support custom installation directory ---
+if [ -z "$GEM_HOME" ] || [ -z "$GEM_PATH" ]; then
+  # Detect gem home relative to the executable path
+  BIN_DIR=$(dirname "$(readlink -f "$0" 2>/dev/null || readlink "$0" 2>/dev/null || echo "$0")")
+  CUSTOM_GEM_HOME=$(dirname "$BIN_DIR")
+  if [ -d "$CUSTOM_GEM_HOME/gems" ]; then
+    export GEM_HOME="$CUSTOM_GEM_HOME"
+    export GEM_PATH="$CUSTOM_GEM_HOME:$GEM_PATH"
+  fi
+fi
+exec ruby -x "$0" "$@"
+#!ruby
 # frozen_string_literal: true
 
 require "fileutils"
