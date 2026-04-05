@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
 
   # Note: The files will only be inside the gem after "git commit"
   spec.files = `git ls-files -z`.split("\x0").select do |f|
-    f.match(%r!^(lib|tools|exe|assets|package\.json|_(includes|layouts|sass|data)/|(LICENSE|README)((\.(txt|md|markdown)|$)))!i)
+    f.match(%r!^(lib|tools|exe|assets|template|package\.json|_(includes|layouts|sass|data)/|(LICENSE|README)((\.(txt|md|markdown)|$)))!i)
   end
   spec.require_paths = ["lib"]
 

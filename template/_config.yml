@@ -1,0 +1,69 @@
+# [ important!!! ] the base hostname & protocol for your site, e.g. http://example.com
+url: ""
+
+# the subpath of your site, e.g. /blog
+baseurl: ""
+
+# ---------- CAUTION!!! DO NOT move from here unless you REALLY know what you are doing. -----------
+
+theme: rawfeed
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-archives
+  - jekyll-paginate-v2
+  - rawfeed
+collections:
+  pixels:
+    output: true
+    permalink: /pixels/:title/
+pagination:
+  enabled: true
+  debug: false
+  collection: "posts"
+  sort_field: "date"
+  sort_reverse: true
+  per_page: 50
+  permalink: "/page/:num/"
+  locale: ""
+  title: ":title - Page :num"
+  limit: 0
+feed:
+  path: /feed.xml
+defaults:
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      published: true
+  - scope:
+      path: "_pixels"
+      type: "pixels"
+    values:
+      published: true
+jekyll-archives:
+  enabled:
+    - tags
+  layouts:
+    tag: tag_posts
+  permalinks:
+    tag: "/blog/tags/:name/"
+include: ["_pages"]
+permalink: "/blog/:title/"
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+sass:
+  sass_dir: _sass
+  style: compressed
+exclude:
+  - node_modules
+  - .bundle-cache
+  - Gemfile
+  - Gemfile.lock
+  - package-lock.json
+  - package.json
+  - README.md
+  - Rakefile
+  - tools
