@@ -1,6 +1,5 @@
 module Rawfeed
   class Installer
-    # Detecta a raiz da gem
     def self.gem_root
       if defined?(Gem) && Gem.loaded_specs["rawfeed"]
         Gem.loaded_specs["rawfeed"].full_gem_path
@@ -9,7 +8,67 @@ module Rawfeed
       end
     end
 
-    # Cria o Gemfile do site
+    # Função genérica para copiar arquivos ou pastas
+    # Se dest for um diretório aninhado, cria os diretórios pai automaticamente
+    def self.copy_items(items, dest_path)
+      items.each do |src, dest_rel|
+        dest = File.join(dest_path, dest_rel)
+
+        # cria diretório pai se não existir
+        FileUtils.mkdir_p(File.dirname(dest))
+
+        if File.exist?(src) || Dir.exist?(src)
+          FileUtils.cp_r(src, dest)
+        else
+          puts "Warning: #{src} not found".yellow
+        end
+      end
+    end
+
+    def self.create_new_site(path)
+      if Dir.exist?(path)
+        puts "Directory #{path} already exists!".red
+        return
+      end
+
+      FileUtils.mkdir_p(path)
+      gem_dir = gem_root
+
+      # --- arquivos e pastas para copiar ---
+      items_to_copy = [
+        [File.join(gem_dir, "package.json"), "package.json"],
+        [File.join(gem_dir, "_config.yml"), "_config.yml"],
+        [File.join(gem_dir, "index.md"), "index.md"],
+        [File.join(gem_dir, "404.html"), "404.html"],
+        [File.join(gem_dir, ".gitignore"), ".gitignore"],
+        [File.join(gem_dir, ".gitlab-ci.yml"), ".gitlab-ci.yml"],
+        [File.join(gem_dir, ".editorconfig"), ".editorconfig"],
+        [File.join(gem_dir, ".hidden"), ".hidden"],
+
+        [File.join(gem_dir, "_posts"), "_posts"],
+        [File.join(gem_dir, "_pages"), "_pages"],
+        [File.join(gem_dir, "_pixels"), "_pixels"],
+        [File.join(gem_dir, "blog"), "blog"],
+        [File.join(gem_dir, "pixels"), "pixels"],
+        [File.join(gem_dir, "assets/images"), "assets/images"]
+      ]
+
+      copy_items(items_to_copy, path)
+
+      # --- Gemfile ---
+      gemfile_dest = File.join(path, "Gemfile")
+      create_gemfile(path) unless File.exist?(gemfile_dest)
+
+      # --- final ---
+      puts "New rawfeed site created at #{path}".green
+      Dir.chdir(path) do
+        puts "Installing Ruby gems...".blue
+        system("bundle install")
+        puts "Installing Node modules...".blue
+        system("npm install")
+      end
+    end
+
     def self.create_gemfile(path)
       content = <<~GEMFILE
         # frozen_string_literal: true
@@ -33,69 +92,6 @@ module Rawfeed
 
       File.write(File.join(path, "Gemfile"), content)
       puts "Gemfile created at #{path}".green
-    end
-
-    # Copia arquivos se eles existirem
-    def self.copy_file_if_exists(src, dest, warn_name = nil)
-      return if File.exist?(dest)
-      if File.exist?(src)
-        FileUtils.cp(src, dest)
-      else
-        puts "Warning: #{warn_name || File.basename(src)} not found in #{gem_root}".yellow
-      end
-    end
-
-    # Cria um novo site rawfeed
-    def self.create_new_site(path)
-      if Dir.exist?(path)
-        puts "Directory #{path} already exists!".red
-        return
-      end
-
-      FileUtils.mkdir_p(path)
-
-      # Lista de arquivos e pastas para copiar [source_rel_path, dest_rel_path, warning_name]
-      files_to_copy = [
-        ["package.json", "package.json"],
-        ["_config.yml", "_config.yml"],
-        ["index.md", "index.md"],
-        ["404.html", "404.html"],
-        [".gitignore", ".gitignore"],
-        [".gitlab-ci.yml", ".gitlab-ci.yml"],
-        [".editorconfig", ".editorconfig"],
-        [".hidden", ".hidden"]
-      ]
-
-      files_to_copy.each do |src_rel, dest_rel, warn_name|
-        copy_file_if_exists(
-          File.join(gem_root, src_rel),
-          File.join(path, dest_rel),
-          warn_name
-        )
-      end
-
-      # Cria Gemfile se não existir
-      create_gemfile(path) unless File.exist?(File.join(path, "Gemfile"))
-
-      puts "New rawfeed site created at #{path}".green
-
-      # Executa bundle install e npm install automaticamente
-      Dir.chdir(path) do
-        puts "Running 'bundle install'...".blue
-        unless system("bundle install")
-          puts "[x] bundle install failed. Please check your environment.".red
-          return
-        end
-
-        puts "Running 'npm install'...".blue
-        unless system("npm install")
-          puts "[x] npm install failed. Please check your Node.js / npm setup.".red
-          return
-        end
-      end
-
-      puts "[*] Dependencies installed successfully!".green
-
     end
   end
 end
