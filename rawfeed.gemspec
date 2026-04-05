@@ -36,10 +36,14 @@ Gem::Specification.new do |spec|
 
     # Specific files we want to include
     include_files = %w[
+      .gitlab-ci.yml
+      .editorconfig
+      .hidden
+      .gitignore
       package.json
       404.html
       index.md
-      config.yml
+      _config.yml
       LICENSE
       README
     ]
