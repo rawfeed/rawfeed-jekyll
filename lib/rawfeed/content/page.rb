@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 require "colorize"
-require_relative "utils"
+require_relative "../core/utils"
 
 module Rawfeed
   class Page

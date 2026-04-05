@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "lib/rawfeed/version"
+require_relative "lib/rawfeed/core/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "rawfeed"

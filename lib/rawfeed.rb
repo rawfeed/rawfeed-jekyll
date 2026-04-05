@@ -1,21 +1,28 @@
 # frozen_string_literal: true
 # author: William C. Canin
 
-require_relative "rawfeed/version"
-require_relative "rawfeed/draft"
-require_relative "rawfeed/post"
-require_relative "rawfeed/page"
-require_relative "rawfeed/resume"
-require_relative "rawfeed/layout"
-require_relative "rawfeed/pixel"
-require_relative "rawfeed/author"
-require "rawfeed/datelang"
-require "rawfeed/reading_time"
-require "rawfeed/with_class"
-require "rawfeed/pub"
-require "rawfeed/tools"
-require_relative "rawfeed/installer"
-require_relative "rawfeed/cli"
+# Core
+require_relative "rawfeed/core/version"
+require_relative "rawfeed/core/utils"
+require_relative "rawfeed/core/layout"
 
-# require "rawfeed/csp_filters"
-# require "rawfeed/typescript_liquid"
+# Commands
+require_relative "rawfeed/command/tools"
+require_relative "rawfeed/command/installer"
+require_relative "rawfeed/command/cli"
+
+# Content Generators
+require_relative "rawfeed/content/author"
+require_relative "rawfeed/content/draft"
+require_relative "rawfeed/content/page"
+require_relative "rawfeed/content/pixel"
+require_relative "rawfeed/content/post"
+require_relative "rawfeed/content/resume"
+
+# Jekyll Plugins
+require_relative "rawfeed/plugin/csp_filters"
+require_relative "rawfeed/plugin/datelang"
+require_relative "rawfeed/plugin/pub"
+require_relative "rawfeed/plugin/reading_time"
+require_relative "rawfeed/plugin/typescript_liquid"
+require_relative "rawfeed/plugin/with_class"

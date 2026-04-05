@@ -19,7 +19,7 @@ end
 
 begin
   require "rawfeed"
-  require "rawfeed/cli"
+  require "rawfeed/command/cli"
 rescue LoadError => e
   warn "Error: Could not load 'rawfeed' gem logic. (#{e.message})"
   warn "If you are developing locally, run with: bundle exec exe/rawfeed"

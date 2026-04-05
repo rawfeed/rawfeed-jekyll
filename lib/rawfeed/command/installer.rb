@@ -4,7 +4,8 @@ module Rawfeed
       if defined?(Gem) && Gem.loaded_specs["rawfeed"]
         Gem.loaded_specs["rawfeed"].full_gem_path
       else
-        File.expand_path("../../../", __FILE__)
+        # Fallback para o caminho relativo ao arquivo (lib/rawfeed/command/installer.rb)
+        File.expand_path("../../../", __dir__)
       end
     end
 

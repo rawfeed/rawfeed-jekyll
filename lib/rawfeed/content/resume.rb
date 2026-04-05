@@ -3,7 +3,7 @@
 require "colorize"
 require "fileutils"
 require "rubygems"
-require_relative "utils"
+require_relative "../core/utils"
 
 module Rawfeed
   class Resume
