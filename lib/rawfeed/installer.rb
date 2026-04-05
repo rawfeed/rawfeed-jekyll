@@ -1,3 +1,29 @@
+module Rawfeed
+  class Installer
+    GEM_DIR = Gem::Specification.find_by_name("rawfeed").gem_dir
+    TEMPLATE_DIR = File.join(GEM_DIR, "template")
+
+    def self.create_new_site(path)
+      if Dir.exist?(path)
+        puts "Directory #{path} already exists!".red
+        return
+      end
+
+      FileUtils.mkdir_p(path)
+      # Copia template
+      FileUtils.cp_r(Dir["#{TEMPLATE_DIR}/*"], path)
+
+      # Copia Gemfile e package.json
+      FileUtils.cp(File.join(GEM_DIR, "Gemfile"), File.join(path, "Gemfile"))
+      FileUtils.cp(File.join(GEM_DIR, "package.json"), File.join(path, "package.json"))
+
+      puts "New rawfeed site created at #{path}".green
+      puts "Run `cd #{path} && bundle install && npm install` to set up dependencies".yellow
+    end
+  end
+end
+
+
 # require "fileutils"
 # require "rubygems"
 
