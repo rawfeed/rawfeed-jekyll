@@ -75,7 +75,12 @@ module Rawfeed
         # frozen_string_literal: true
         source "https://rubygems.org"
 
-        gem "rawfeed", "~> #{Rawfeed::VERSION}"
+        ## Do not modify this block unless you know what you are doing.
+        if ENV["RAWFEED_DEV_PATH"] && File.directory?(ENV["RAWFEED_DEV_PATH"])
+          gem "rawfeed", path: ENV["RAWFEED_DEV_PATH"]
+        else
+          gem "rawfeed", "~> #{Rawfeed::VERSION}"
+        end
 
         ## Place your plugins here.
         # group :jekyll_plugins do
