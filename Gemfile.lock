@@ -9,6 +9,7 @@ PATH
       jekyll-paginate-v2 (~> 3.0.0)
       jekyll-sitemap (~> 1.4)
       logger (~> 1.4)
+      rake (~> 13.0)
 
 GEM
   remote: https://rubygems.org/
@@ -177,6 +178,14 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  colorize (~> 1.1.0)
+  jekyll (~> 4.0)
+  jekyll-archives (~> 2.3.0)
+  jekyll-feed (~> 0.17.0)
+  jekyll-paginate-v2 (~> 3.0.0)
+  jekyll-sitemap (~> 1.4)
+  logger (~> 1.4)
+  rake (~> 13.0)
   rawfeed!
   tzinfo (~> 1.2)
   tzinfo-data

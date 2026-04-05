@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "install": "echo 'wait...' && bundle install",
-    "minify:files": "rawfeed-minify",
+    "minify": "bundle exec rawfeed-tools minify",
     "jekyll:build": "cross-env JEKYLL_ENV=production bundle exec jekyll build",
     "jekyll:serve": "cross-env JEKYLL_ENV=development bundle exec jekyll serve --host 0.0.0.0 --port 4000 --drafts",
     "create:draft": "bundle exec rake create:draft",
@@ -20,14 +20,14 @@
     "blog:enable": "bundle exec rake blog:enable",
     "pixels:disable": "bundle exec rake pixels:disable",
     "pixels:enable": "bundle exec rake pixels:enable",
-    "clean:cache": "node tools/scripts/clean.mjs --cache",
-    "clean:all": "node tools/scripts/clean.mjs --all",
+    "clean:cache": "bundle exec rawfeed-tools clean --cache",
+    "clean:all": "bundle exec rawfeed-tools clean --all",
     "generate:gem": "bundle exec rake build",
     "publish:gem": "bundle exec rake release",
     "rake:tasks": "bundle exec rake --tasks",
     "build": "npm-run-all clean:cache jekyll:build minify:files",
     "serve": "npm run clean:cache && npm run jekyll:serve",
-    "help": "node tools/scripts/help.mjs"
+    "help": "bundle exec rawfeed-tools help"
   },
   "repository": "git+https://github.com/rawfeed/rawfeed-jekyll.git",
   "keywords": [
