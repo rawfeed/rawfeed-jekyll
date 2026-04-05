@@ -1,95 +1,101 @@
 module Rawfeed
   class Installer
-    # Tenta detectar a raiz da gem de forma robusta
+    # Detecta a raiz da gem
     def self.gem_root
       if defined?(Gem) && Gem.loaded_specs["rawfeed"]
         Gem.loaded_specs["rawfeed"].full_gem_path
       else
-        # Fallback para o caminho relativo ao arquivo (lib/rawfeed/installer.rb)
         File.expand_path("../../../", __FILE__)
       end
     end
 
-    def self.template_dir
-      File.join(gem_root, "template")
+    # Cria o Gemfile do site
+    def self.create_gemfile(path)
+      content = <<~GEMFILE
+        # frozen_string_literal: true
+        source "https://rubygems.org"
+
+        gem "rawfeed", "~> #{Rawfeed::VERSION}"
+
+        ## Place your plugins here.
+        # group :jekyll_plugins do
+        # end
+
+        # Windows and JRuby
+        platforms :windows, :jruby do
+          gem "tzinfo", "~> 1.2"
+          gem "tzinfo-data"
+        end
+
+        # Windows file watcher
+        gem "wdm", "~> 0.1.1", platforms: [:windows]
+      GEMFILE
+
+      File.write(File.join(path, "Gemfile"), content)
+      puts "Gemfile created at #{path}".green
     end
 
+    # Copia arquivos se eles existirem
+    def self.copy_file_if_exists(src, dest, warn_name = nil)
+      return if File.exist?(dest)
+      if File.exist?(src)
+        FileUtils.cp(src, dest)
+      else
+        puts "Warning: #{warn_name || File.basename(src)} not found in #{gem_root}".yellow
+      end
+    end
+
+    # Cria um novo site rawfeed
     def self.create_new_site(path)
       if Dir.exist?(path)
         puts "Directory #{path} already exists!".red
         return
       end
 
-      # Criar diretório do site
       FileUtils.mkdir_p(path)
 
-      # 1. Copiar todo o conteúdo da pasta template (incluindo arquivos ocultos)
-      cur_template_dir = template_dir
-      if Dir.exist?(cur_template_dir)
-        # O uso do "." no final do caminho de origem instrui o cp_r a copiar o conteúdo,
-        # incluindo arquivos ocultos, para o destino.
-        FileUtils.cp_r(File.join(cur_template_dir, "."), path)
-      else
-        puts "Error: Template directory not found at #{cur_template_dir}".red
-        return
+      # Lista de arquivos e pastas para copiar [source_rel_path, dest_rel_path, warning_name]
+      files_to_copy = [
+        ["package.json", "package.json"],
+        ["_config.yml", "_config.yml"],
+        ["index.md", "index.md"],
+        ["404.html", "404.html"],
+        [".gitignore", ".gitignore"],
+        [".gitlab-ci.yml", ".gitlab-ci.yml"],
+        [".editorconfig", ".editorconfig"],
+        [".hidden", ".hidden"]
+      ]
+
+      files_to_copy.each do |src_rel, dest_rel, warn_name|
+        copy_file_if_exists(
+          File.join(gem_root, src_rel),
+          File.join(path, dest_rel),
+          warn_name
+        )
       end
 
-      # 2. Copiar package.json da raiz da gem (se não existir no template)
-      package_src = File.join(gem_root, "package.json")
-      package_dest = File.join(path, "package.json")
+      # Cria Gemfile se não existir
+      create_gemfile(path) unless File.exist?(File.join(path, "Gemfile"))
 
-      unless File.exist?(package_dest)
-        if File.exist?(package_src)
-          FileUtils.cp(package_src, package_dest)
-        else
-          puts "Warning: package.json not found in #{gem_root}".yellow
+      puts "New rawfeed site created at #{path}".green
+
+      # Executa bundle install e npm install automaticamente
+      Dir.chdir(path) do
+        puts "Running 'bundle install'...".blue
+        unless system("bundle install")
+          puts "[x] bundle install failed. Please check your environment.".red
+          return
+        end
+
+        puts "Running 'npm install'...".blue
+        unless system("npm install")
+          puts "[x] npm install failed. Please check your Node.js / npm setup.".red
+          return
         end
       end
 
-      puts "New rawfeed site created at #{path}".green
-      puts "Run:".blue
-      puts "  cd #{path}".yellow
-      puts "  bundle install".yellow
-      puts "  npm install".yellow
+      puts "[*] Dependencies installed successfully!".green
+
     end
   end
 end
-
-
-# require "fileutils"
-# require "rubygems"
-
-# # overwrite: FORCE=true bundle exec rake theme:install_full
-
-# module Rawfeed
-#   class Installer
-#     def self.install_template(name = "full", dest = Dir.pwd, force: false)
-#       spec = Gem::Specification.find_by_name("rawfeed")
-#       theme_path = spec.gem_dir
-
-#       src = File.join(theme_path, "lib", "templates", name)
-
-#       unless Dir.exist?(src)
-#         puts "[x] Template '#{name}' not found in #{src}."
-#         return
-#       end
-
-#       Dir.glob("#{src}/**/*", File::FNM_DOTMATCH).each do |file|
-#         next if File.directory?(file)
-
-#         rel_path = file.sub(/^#{Regexp.escape(src)}\//, "")
-#         target   = File.join(dest, rel_path)
-
-#         if File.exist?(target) && !force
-#           puts "[!] #{rel_path} already exists, not overwriting.".yellow
-#         else
-#           FileUtils.mkdir_p(File.dirname(target))
-#           FileUtils.cp(file, target)
-#           # puts "Copied #{rel_path}".green
-#         end
-#       end
-
-#       # puts "[*] Template '#{name}' installed.".green
-#     end
-#   end
-# end
