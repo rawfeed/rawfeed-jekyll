@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.metadata["changelog_uri"]  = "https://rawfeed.github.io/rawfeed-jekyll/changelog/"
 
   # Executables
-  spec.executables = ["rawfeed-minify"]
+  spec.executables = ["rawfeed-tools"]
   spec.bindir = "exe"
 
   spec.add_runtime_dependency "rake", "~> 13.0"
