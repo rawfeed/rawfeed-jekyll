@@ -1,3 +1,3 @@
 module Rawfeed
-  ROOT = File.expand_path("..", __dir__)
+  ROOT = File.expand_path("../..", __dir__)
 end

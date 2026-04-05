@@ -17,7 +17,7 @@ module Rawfeed
         page = context.registers[:page] || {}
         options = site.data['options']
 
-        json_path = File.join(Rawfeed::ROOT, "assets", "json", "datelang.json") unless File.exist?(json_path)
+        json_path = File.join(Rawfeed::ROOT, "assets", "json", "datelang.json")
 
         return "[datelang error: datelang.json not found]" unless File.exist?(json_path)
 
