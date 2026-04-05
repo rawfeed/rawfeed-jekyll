@@ -1,6 +1,6 @@
 module Rawfeed
   class Installer
-    GEM_DIR = Gem::Specification.find_by_name("rawfeed").gem_dir
+    GEM_DIR = File.expand_path("..", __dir__) # caminho para lib/rawfeed
     TEMPLATE_DIR = File.join(GEM_DIR, "template")
 
     def self.create_new_site(path)
@@ -10,12 +10,16 @@ module Rawfeed
       end
 
       FileUtils.mkdir_p(path)
-      # Copia template
+
+      # Copiar template
       FileUtils.cp_r(Dir["#{TEMPLATE_DIR}/*"], path)
 
-      # Copia Gemfile e package.json
-      FileUtils.cp(File.join(GEM_DIR, "Gemfile"), File.join(path, "Gemfile"))
-      FileUtils.cp(File.join(GEM_DIR, "package.json"), File.join(path, "package.json"))
+      # Copiar Gemfile e package.json da gem/template
+      gemfile_src = File.join(GEM_DIR, "template", "Gemfile")
+      package_src = File.join(GEM_DIR, "template", "package.json")
+
+      FileUtils.cp(gemfile_src, File.join(path, "Gemfile")) if File.exist?(gemfile_src)
+      FileUtils.cp(package_src, File.join(path, "package.json")) if File.exist?(package_src)
 
       puts "New rawfeed site created at #{path}".green
       puts "Run `cd #{path} && bundle install && npm install` to set up dependencies".yellow
