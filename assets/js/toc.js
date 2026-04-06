@@ -1,3 +1,8 @@
+---
+---
+
+{%- include layout/data.liquid -%}
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* Automatic TOC
