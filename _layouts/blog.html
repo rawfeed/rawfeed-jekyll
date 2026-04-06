@@ -12,7 +12,7 @@ layout: default
   {%- endfor -%}
 {%- endif -%}
 
-<div id="blog" class="blog{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}">
+<div id="blog" class="blog{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
   {%- include layout/blog_search.html -%}
 
   <div id="posts" class="row">
@@ -20,7 +20,7 @@ layout: default
       <div class="blog-description"><span>»&nbsp;</span>{{ page.description | markdownify }}</div>
     {%- endif -%}
     {%- if page.title -%}
-      <h2 class="blog-subtitle">[&nbsp;{{ blog_.subtitle | default: "posts" }}:&nbsp;&nbsp;{{ count_posts }}&nbsp;]</h2>
+      <h2 class="blog-subtitle">[&nbsp;{{ blog.subtitle | default: "posts" }}:&nbsp;&nbsp;{{ count_posts }}&nbsp;]</h2>
     {%- endif -%}
 
     {%- if site.posts.size > 0 -%}
@@ -33,8 +33,8 @@ layout: default
 
         {%- for post in posts -%}
         <li class="blog-list__item">
-          {%- if datelang_ -%}
-            <span class="blog-list__meta">{% datelang post.date format:datelang_.format %}</span>&nbsp;»&nbsp;
+          {%- if datelang -%}
+            <span class="blog-list__meta">{% datelang post.date format:datelang.format %}</span>&nbsp;»&nbsp;
           {%- else -%}
             <span class="blog-list__meta">{{ post.date | date: "%b %-d, %Y" }}</span>&nbsp;»&nbsp;
           {%- endif -%}

@@ -4,9 +4,9 @@ layout: default
 
 {%- include layout/data.liquid -%}
 
-{%- assign menu_separator = default_.separator -%}
+{%- assign menu_separator = default.separator -%}
 
-<div class="container tag{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}">
+<div class="container tag{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
   {%- if page.description -%}
     <div class="row">
       <div class="tag-description"><span>»&nbsp;</span>{{ page.description }}</div>

@@ -1,18 +1,18 @@
 {%- include layout/data.liquid -%}
 
-{%- if maintenance_.enable != true -%}
+{%- if maintenance.enable != true -%}
   {% assign current_path = page.permalink | default: '/' %}
 
 <!DOCTYPE html>
-<html id="top" lang="{{ default_.lang | default: 'en-US' }}" data-theme="light">
+<html id="top" lang="{{ default.lang | default: 'en-US' }}" data-theme="light">
   <!-- head -->
   {%- include layout/head.html -%}
   <!-- head -->
-<body style="font-family: {{ default_.font.style }} !important;">
+<body style="font-family: {{ default.font.style }} !important;">
   <div class="container-fluid">
     <div class="row">
       <main class="col-sm pub">
-        <h1 class="pub-path">{{ pub_.path.title | default: 'Index of' }} {{ current_path }}</h1>
+        <h1 class="pub-path">{{ pub.path.title | default: 'Index of' }} {{ current_path }}</h1>
         <hr>
         {% for item in page.directory_contents %}
           <div class="row pub-line">

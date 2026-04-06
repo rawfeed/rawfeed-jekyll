@@ -4,11 +4,11 @@ layout: default
 
 {%- include layout/data.liquid -%}
 
-{%- if head_.google.recaptcha.pubkey and head_.google.apps_script.url -%}
+{%- if head.google.recaptcha.pubkey and head.google.apps_script.url -%}
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-<div id="contact" class="contact{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}">
+<div id="contact" class="contact{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
 
   <div class="modal fade"
     id="contactMessageModal"
@@ -35,7 +35,7 @@ layout: default
         <input id="inputName"
         name="name"
         type="text"
-        placeholder="{{ contact_.name.placeholder | default: 'First and last name' }}"
+        placeholder="{{ contact.name.placeholder | default: 'First and last name' }}"
         class="form-control contact-form__name"
         required>
       </div>
@@ -43,28 +43,28 @@ layout: default
         <input id="inputEmail"
         name="email"
         type="email"
-        placeholder="{{ contact_.email.placeholder | default: 'Your best email address' }}"
+        placeholder="{{ contact.email.placeholder | default: 'Your best email address' }}"
         class="form-control contact-form__email"
         aria-describedby="emailHelp"
         required>
         <div id="emailHelp" class="form-text contact-form__help">
-          {{ contact_.email.help | default: "We'll never share your email with anyone else." }}
+          {{ contact.email.help | default: "We'll never share your email with anyone else." }}
         </div>
       </div>
       <textarea id="textMessage"
       name="message"
       class="form-control contact-form__message"
-      placeholder="{{ contact_.message.placeholder | default: 'Write your message here' }}"
+      placeholder="{{ contact.message.placeholder | default: 'Write your message here' }}"
       style="min-height: 150px"
       required></textarea>
-      <small style="display: block; font-size: 8pt; opacity: .6">{{ contact_.message.caracters.warning.content }}</small>
+      <small style="display: block; font-size: 8pt; opacity: .6">{{ contact.message.caracters.warning.content }}</small>
       <!-- TODO: version: 0.3.0 Make reCaptcha change themes instantly -->
-      <div id="g-recaptcha" class="g-recaptcha mt-2" data-sitekey="{{ head_.google.recaptcha.pubkey }}" style="display: inline-block; margin: 5px 0;"></div>
+      <div id="g-recaptcha" class="g-recaptcha mt-2" data-sitekey="{{ head.google.recaptcha.pubkey }}" style="display: inline-block; margin: 5px 0;"></div>
       <div class="d-flex justify-content-end mb-5">
         <button id="submitButton"
         type="submit"
         class="btn contact-form__submit">
-        {{ contact_.button.text | default: 'Send!' }}
+        {{ contact.button.text | default: 'Send!' }}
         </button>
       </div>
     </form>
@@ -76,7 +76,7 @@ layout: default
 
 {%- else -%}
 
-<div class="contact-disabled{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}">
+<div class="contact-disabled{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
   <h1 style="background-color: yellow;color: black;padding: 10px">Warning: Email form disabled</h1>
   <p>To use the email submission form, you need to:</p>
   <p>1 - Copy the script below and implement it in <a href="https://script.google.com" target="_blank">Google Apps Script</a>:</p>

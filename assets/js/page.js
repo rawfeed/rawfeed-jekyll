@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
     contentWrapper.className = 'auto-toc-content';
 
     const title = document.createElement('h2');
-    title.textContent = '{{ page_.toc.title }}';
+    title.textContent = '{{ page_data.toc.title }}';
     contentWrapper.appendChild(title);
 
     const tocList = document.createElement('ul');

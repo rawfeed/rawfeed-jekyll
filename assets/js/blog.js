@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput: document.getElementById('blog-search__input'),
     resultsContainer: document.getElementById('blog-search__results'),
     searchResultTemplate: '<li><span class="blog-list__meta"><time datetime="{date}">{date}</time></span>&nbsp;»&nbsp; <a class="blog-list__link" href="{{ site.url }}{url}">{title}</a></li>',
-    noResultsText: '<p>{{ blog_.no_results | default: "No results found" }}</p>',
+    noResultsText: '<p>{{ blog.no_results | default: "No results found" }}</p>',
     json: "{{ '/assets/json/blog_search.json' | relative_url }}"
   })
 });

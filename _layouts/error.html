@@ -7,11 +7,11 @@ layout: default
 <div class="container error">
   <div class="row">
     <div class="col-sm text-center">
-       {%- if page_.error.image -%}
-          <img class="error-image" src="{{ page_.error.image }}" alt="error 404">
+       {%- if page_data.error.image -%}
+          <img class="error-image" src="{{ page_data.error.image }}" alt="error 404">
        {%- endif -%}
-      <h1 class="error-title">{{ page_.error.title | escape }}</h1>
-      <h2 class="error-description">{{ page_.error.message | markdownify }}</h2>
+      <h1 class="error-title">{{ page_data.error.title | escape }}</h1>
+      <h2 class="error-description">{{ page_data.error.message | markdownify }}</h2>
     </div>
   </div>
 </div>

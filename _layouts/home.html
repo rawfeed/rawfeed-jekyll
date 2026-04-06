@@ -4,25 +4,25 @@ layout: default
 
 {%- include layout/data.liquid -%}
 
-{%- if home_.terminal.enable and page.url == "/" -%}
+{%- if home.terminal.enable and page.url == "/" -%}
   <div class="d-flex justify-content-center align-items-center mb-5 home home-terminal">
     <div id="terminal" class="terminal">
       <div class="terminal-header">
         <div class="terminal-header__btn terminal-header__close" title="close"></div>
         <div class="terminal-header__btn terminal-header__min" title="minimize"></div>
         <div class="terminal-header__btn terminal-header__max" title="maximize"></div>
-        <div class="terminal-header__title">{{ home_.terminal.user }}@{{ home_.terminal.hostname }}</div>
+        <div class="terminal-header__title">{{ home.terminal.user }}@{{ home.terminal.hostname }}</div>
       </div>
 
       <div id="screen" class="terminal-screen">
         <div id="home-content" style="display:none !important;">
           {{ content }}
-          {{ socials_.description.terminal.about.description | markdownify }}
+          {{ socials.description.terminal.about.description | markdownify }}
         </div>
 
         <div id="terminal-screen--socials" style="display:none">
-          {%- assign menu_separator = default_.separator -%}
-          {% assign links = socials_.links %}
+          {%- assign menu_separator = default.separator -%}
+          {% assign links = socials.links %}
           {% for item in links %}
             <a class="socials-link" title="{{ item.title }}" href="{{ item.url }}" target="_blank">{{ item.title }}</a><strong class="separator">{{menu_separator}}</strong>
           {% endfor %}
@@ -38,7 +38,7 @@ layout: default
       <div class="row">
         <div class="content" style="{%- if page.text_center -%} text-align: center; {%- endif -%}">
           {{ content }}
-          {{ socials_.description.text | markdownify }}
+          {{ socials.description.text | markdownify }}
         </div>
       </div>
     </div>
@@ -50,14 +50,14 @@ layout: default
     <div class="row">
       <div class="content" style="{%- if page.text_center -%} text-align: center; {%- endif -%}">
         {{ content }}
-        {{ socials_.description.text | markdownify }}
+        {{ socials.description.text | markdownify }}
       </div>
     </div>
   </div>
 {%- endif -%}
 
-{%- if home_.terminal.enable == false -%}
-  {%- if page.url == "/" and socials_.enable -%}
+{%- if home.terminal.enable == false -%}
+  {%- if page.url == "/" and socials.enable -%}
     {%- if page.text_center -%}
       {%- include socials pos="center" -%}
     {%- else -%}

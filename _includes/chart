@@ -1,7 +1,7 @@
 {%- include layout/data.liquid -%}
 
 <canvas
-  class="chart{% if default_.rounding %} rounding-plugins{% endif %}"
+  class="chart{% if default.rounding %} rounding-plugins{% endif %}"
   id="chart-{{ include.label | slugify }}"
   data-label="{{ include.label | default: 'Dataset' }}"
   data-type="{{ include.type | default: 'line' }}"

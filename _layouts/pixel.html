@@ -4,9 +4,9 @@ layout: default
 
 {%- include layout/data.liquid -%}
 
-{%- assign menu_separator = default_.separator -%}
+{%- assign menu_separator = default.separator -%}
 
-<article class="pixel{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="pixel{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="row">
 
     <header class="pixel-header">
@@ -15,8 +15,8 @@ layout: default
       <div class="row pixel-meta">
         <div class="col-sm d-flex justify-content-start">
           <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-          {%- if datelang_ -%}
-            {% datelang page.date format:datelang_.format %}
+          {%- if datelang -%}
+            {% datelang page.date format:datelang.format %}
           {%- else -%}
             {{ page.date | date: "%b %-d, %Y" }}
           {%- endif -%}

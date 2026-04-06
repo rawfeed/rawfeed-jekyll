@@ -2,9 +2,9 @@
 
 {%- assign resume = site.data.resume -%}
 
-{%- if maintenance_.enable != true -%}
+{%- if maintenance.enable != true -%}
 <!DOCTYPE html>
-<html id="top" lang="{{ default_.lang | default: 'en-US' }}" data-theme="light">
+<html id="top" lang="{{ default.lang | default: 'en-US' }}" data-theme="light">
   <!-- head -->
   {%- include layout/head.html -%}
   <!-- head -->
@@ -29,7 +29,7 @@
         </div>
       {%- endif -%}
 
-      <main class="resume{% if default_.background_focus %} background_focus{% endif %} {% if default_.rounding %} rounding{% endif %}" style="max-width: {{ default_.width | default: '860' }}px !important;">
+      <main class="resume{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}" style="max-width: {{ default.width | default: '860' }}px !important;">
 
         <!-- button print -->
         {%- if resume.buttons.print.enable -%}

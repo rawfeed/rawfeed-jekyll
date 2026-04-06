@@ -7,9 +7,9 @@ See: https://rawfeed.github.io/rawfeed-jekyll/license/
 {%- include layout/data.liquid -%}
 
 
-{%- if footer_.top_button.enable -%}
+{%- if footer.top_button.enable -%}
   <a id="top-link" href="#top" class="top-link" aria-label="back to top">
-    {{ footer_.top_button.icon }}
+    {{ footer.top_button.icon }}
   </a>
 {%- endif -%}
 
@@ -19,19 +19,19 @@ See: https://rawfeed.github.io/rawfeed-jekyll/license/
   <div class="row footer-wrapper">
 
     <!-- column copyright  -->
-    {%- if footer_.copyright -%}
+    {%- if footer.copyright -%}
       <div class="col-md footer-copyright-wrap">
         {%- assign year = site.time | date: "%Y" -%}
-        {%- assign since = footer_.copyright.since -%}
-      <div class="footer-copyright">©&nbsp;{{ footer_.copyright.title | default: theme_name }}&nbsp;{{ since }}{%- if since -%}-{%- endif -%}{{year}}&nbsp;{%- if footer_.copyright.message -%}-&nbsp;{{ footer_.copyright.message }}&nbsp;{%- endif -%}|&nbsp;<a href="{{  footer_.licenses.page_url | relative_url  }}">{{ footer_.licenses.title }}</a></div>
+        {%- assign since = footer.copyright.since -%}
+      <div class="footer-copyright">©&nbsp;{{ footer.copyright.title | default: theme_name }}&nbsp;{{ since }}{%- if since -%}-{%- endif -%}{{year}}&nbsp;{%- if footer.copyright.message -%}-&nbsp;{{ footer.copyright.message }}&nbsp;{%- endif -%}|&nbsp;<a href="{{  footer.licenses.page_url | relative_url  }}">{{ footer.licenses.title }}</a></div>
       </div>
     {%- endif -%}
     <!-- column copyright  -->
 
     <!-- column message  -->
-    {%- if footer_.message -%}
+    {%- if footer.message -%}
       <div class="col-md footer-message-wrap">
-          <div class="footer-message">{{ footer_.message | markdownify }}</div>
+          <div class="footer-message">{{ footer.message | markdownify }}</div>
       </div>
     {%- endif -%}
     <!-- column message  -->

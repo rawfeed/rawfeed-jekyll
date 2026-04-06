@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const commands = {
       // Multiple string is the same as using ` in Javascript
-      help: `{{ home_.terminal.help.menu }}`,
+      help: `{{ home.terminal.help.menu }}`,
       about: document.getElementById("home-content").innerHTML,
-      socials: socialsEl ? socialsEl.innerHTML : "{{ home_.terminal.no_socials }}"
+      socials: socialsEl ? socialsEl.innerHTML : "{{ home.terminal.no_socials }}"
     };
 
     const createInputLine = () => {
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const prompt = document.createElement("span");
       prompt.className = "prompt";
-      prompt.textContent = "[{{ home_.terminal.user }}@{{ home_.terminal.hostname }} ~]$";
+      prompt.textContent = "[{{ home.terminal.user }}@{{ home.terminal.hostname }} ~]$";
 
       // wrapper para conter input, cursor e measure
       const wrapper = document.createElement("span");
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const input = document.createElement("input");
       input.type = "text";
       input.className = "input";
-      input.placeholder = `{{ home_.terminal.welcome }}`;
+      input.placeholder = `{{ home.terminal.welcome }}`;
       input.spellcheck = false;
       input.autocomplete = "off";
       input.autocorrect = "off";
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (cmd === "clear") {
         screen.innerHTML = "";
       } else if (cmd) {
-        commandsPrint(cmd + `{{ home_.terminal.error }}`, "text");
+        commandsPrint(cmd + `{{ home.terminal.error }}`, "text");
       }
     };
 
@@ -200,13 +200,13 @@ document.addEventListener("DOMContentLoaded", () => {
       wrapper.className = "line-wrapper";
       const helpDescription = document.createElement("span");
       helpDescription.className = "help-description";
-      helpDescription.innerHTML = `{{ home_.terminal.help.description | markdownify }}`;
+      helpDescription.innerHTML = `{{ home.terminal.help.description | markdownify }}`;
       const helpCommandTitle = document.createElement("span");
       helpCommandTitle.className = "help-commands__title";
-      helpCommandTitle.textContent = "{{ home_.terminal.help.commands.title }}";
+      helpCommandTitle.textContent = "{{ home.terminal.help.commands.title }}";
       const helpCommandDesc = document.createElement("span");
       helpCommandDesc.className = "help-commands__desc";
-      helpCommandDesc.textContent = `{{ home_.terminal.help.commands.description }}`;
+      helpCommandDesc.textContent = `{{ home.terminal.help.commands.description }}`;
 
       wrapper.appendChild(helpDescription);
       wrapper.appendChild(helpCommandTitle);
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
       wrapper.className = "line-wrapper";
       const socialsCommandDesc = document.createElement("span");
       socialsCommandDesc.className = "socials-command__desc";
-      socialsCommandDesc.textContent = `{{ socials_.description.terminal.command.description }}`;
+      socialsCommandDesc.textContent = `{{ socials.description.terminal.command.description }}`;
 
       screen.appendChild(socialsCommandDesc);
 

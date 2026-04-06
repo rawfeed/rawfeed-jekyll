@@ -1,6 +1,6 @@
 {%- include layout/data.liquid -%}
 
-{%- assign separator = default_.separator -%}
+{%- assign separator = default.separator -%}
 
 <div class="container socials">
   <div class="row">
@@ -14,7 +14,7 @@
     {%- endif -%}
 
     <div class="col-sm d-flex {{pos}}" style="padding: 0 !important;">
-      {% assign links = socials_.links %}
+      {% assign links = socials.links %}
       {% for item in links %}
         <a class="socials-link" title="{{ item.title }}" href="{{ item.url }}" target="_blank">{{ item.title }}</a><strong class="separator">{{separator}}</strong>
       {% endfor %}

@@ -23,7 +23,7 @@
       src="{{ include.src }}"
       alt="{{ include.title | default: include.caption | escape }}"
       style="display:block; width:100%; height: {{ include.height | default: 'auto' }}; border-radius: {{ include.border-radius | default: 0 }}px; border: 1px solid {{ include.border-color | default: '#757575' }};"
-      class="{% if default_.rounding %}rounding-plugins{% endif %}"
+      class="{% if default.rounding %}rounding-plugins{% endif %}"
       />
     {%- if include.caption -%}
       <figcaption class="img-include-caption">{{ include.caption }}</figcaption>
@@ -36,7 +36,7 @@
       src="{{ include.src }}"
       alt="{{ include.title | default: include.caption | escape }}"
       style="display:block; width:100%; height: {{ include.height | default: 'auto' }}; border-radius: {{ include.border-radius | default: 0 }}px; border: 1px solid {{ include.border-color | default: '#ddd' }};"
-      class="{% if default_.rounding %}rounding-plugins{% endif %}"
+      class="{% if default.rounding %}rounding-plugins{% endif %}"
       />
     {%- if include.caption -%}
       <figcaption class="img-include-caption">{{ include.caption }}</figcaption>
@@ -49,7 +49,7 @@
       src="{{ include.src }}"
       alt="{{ include.title | default: include.caption | escape }}"
       style="display:block; width:100%; height: {{ include.height | default: 'auto' }}; border-radius: {{ include.border-radius | default: 0 }}px; border: 1px solid {{ include.border-color | default: '#ddd' }};"
-      class="{% if default_.rounding %}rounding-plugins{% endif %}"
+      class="{% if default.rounding %}rounding-plugins{% endif %}"
       />
     {%- if include.caption -%}
       <figcaption class="img-include-caption">{{ include.caption }}</figcaption>

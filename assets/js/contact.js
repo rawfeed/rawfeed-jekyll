@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
   if (form) {
     const submitButton = document.getElementById("submitButton");
-    const endpoint = "{{ head_.google.apps_script.url }}"; // URL Google Apps Script
+    const endpoint = "{{ head.google.apps_script.url }}"; // URL Google Apps Script
 
     // get modal
     function showModal(title, message, type = 'success') {
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const recaptchaResponse = grecaptcha.getResponse();
       if (!recaptchaResponse) {
         showModal(
-          "{{ contact_.recaptcha.warning.title | default: 'Warning' }}",
-          `{{ contact_.recaptcha.warning.content | default: "Please tick the 'I'm not a robot' box." }}`,
+          "{{ contact.recaptcha.warning.title | default: 'Warning' }}",
+          `{{ contact.recaptcha.warning.content | default: "Please tick the 'I'm not a robot' box." }}`,
           "warning"
         );
         return;
@@ -50,17 +50,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const textarea = document.getElementById('textMessage');
       const text = textarea.value.trim();
-      if (text.length < "{{ contact_.message.caracters.min }}" ) {
+      if (text.length < "{{ contact.message.caracters.min }}" ) {
         showModal(
-          "{{ contact_.message.caracters.warning.title | default: 'Warning' }}",
-          "{{ contact_.message.caracters.warning.content | default: 'The message must have at least 50 characters.' }}",
+          "{{ contact.message.caracters.warning.title | default: 'Warning' }}",
+          "{{ contact.message.caracters.warning.content | default: 'The message must have at least 50 characters.' }}",
           "warning"
         );
         return;
       }
 
       submitButton.disabled = true;
-      submitButton.textContent = "{{ contact_.message.status | default: 'Sending...Wait' }}";
+      submitButton.textContent = "{{ contact.message.status | default: 'Sending...Wait' }}";
 
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
@@ -80,31 +80,31 @@ document.addEventListener("DOMContentLoaded", () => {
           form.reset();
           grecaptcha.reset();
           showModal(
-            "{{ contact_.message.success.title | default: 'Message Sent' }}",
-            "{{ contact_.message.success.content | default: 'Your message has been sent successfully!' }}",
+            "{{ contact.message.success.title | default: 'Message Sent' }}",
+            "{{ contact.message.success.content | default: 'Your message has been sent successfully!' }}",
             "success"
           );
         } else {
           showModal(
-            "{{ contact_.message.error.title | default: 'Error' }}",
-            "{{ contact_.message.error.content | default: 'Something went wrong while sending your message.' }}",
+            "{{ contact.message.error.title | default: 'Error' }}",
+            "{{ contact.message.error.content | default: 'Something went wrong while sending your message.' }}",
             "error"
           );
-          throw new Error(result.message || "{{ contact_.message.error.content | default: 'An unknown error has occurred.' }}");
+          throw new Error(result.message || "{{ contact.message.error.content | default: 'An unknown error has occurred.' }}");
         }
 
       } catch (error) {
         console.error("Error sending:", error);
         if (error.message.includes("reCAPTCHA")) {
             showModal(
-              "{{ contact_.message.error.title | default: 'Error' }}",
-              "{{ contact_.recaptcha.fail | default: 'Verification failed. Please reload the page and try again.' }}",
+              "{{ contact.message.error.title | default: 'Error' }}",
+              "{{ contact.recaptcha.fail | default: 'Verification failed. Please reload the page and try again.' }}",
               "error"
             );
         } else {
             showModal(
-              "{{ contact_.message.error.title | default: 'Error' }}",
-              "{{ contact_.recaptcha.error | default: 'An error occurred while sending the message. Please try again.' }}",
+              "{{ contact.message.error.title | default: 'Error' }}",
+              "{{ contact.recaptcha.error | default: 'An error occurred while sending the message. Please try again.' }}",
               "error"
             );
         }
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       } finally {
         submitButton.disabled = false;
-        submitButton.textContent = "{{ contact_.button.text | default: 'Send!' }}";
+        submitButton.textContent = "{{ contact.button.text | default: 'Send!' }}";
       }
     });
   }

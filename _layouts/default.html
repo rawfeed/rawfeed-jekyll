@@ -1,21 +1,21 @@
 <!-- Theme for Jekyll.rb by: © rawfeed <https://rawfeed.github.io> -->
 {%- include layout/data.liquid -%}
 
-{%- if maintenance_.enable != true -%}
+{%- if maintenance.enable != true -%}
 
 {%- assign index = site.pages | where: "path", "index.md" | first -%}
 
-{%- if home_.terminal.enable and page.url == "/" and index.layout == "home" -%}
+{%- if home.terminal.enable and page.url == "/" and index.layout == "home" -%}
   {%- assign default_term = " default-terminal" -%}
   {%- assign default_style = "" -%}
 {%- else -%}
   {%- assign default_term = "" -%}
-  {%- assign width = default_.width | default: '860' -%}
+  {%- assign width = default.width | default: '860' -%}
   {%- assign default_style = "max-width: " | append: width | append: "px !important;" -%}
 {%- endif -%}
 
 <!DOCTYPE html>
-<html id="top" lang="{{ default_.lang | default: 'en-US' }}" data-theme="light">
+<html id="top" lang="{{ default.lang | default: 'en-US' }}" data-theme="light">
 
   <!-- head -->
   {%- include layout/head.html -%}
@@ -23,12 +23,12 @@
 
   <!-- body -->
   <body data-layout="{{ page.layout | default: '' }}"
-  data-terminal-enabled="{{ home_.terminal.enable | default: false }}"
+  data-terminal-enabled="{{ home.terminal.enable | default: false }}"
   style="
-  font-family: {{ default_.font.style }} !important;
-  font-size: {{ default_.font.size }} !important;
-  letter-spacing: {{ default_.font.spacing }} !important;
-  user-select: {{ default_.user_select | default: 'none' }};">
+  font-family: {{ default.font.style }} !important;
+  font-size: {{ default.font.size }} !important;
+  letter-spacing: {{ default.font.spacing }} !important;
+  user-select: {{ default.user_select | default: 'none' }};">
 
     <!-- container -->
     <div class="container-fluid">
@@ -52,7 +52,7 @@
     <script src="{{ '/assets/js/home.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/page.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/contact.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/donation.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/donate.js' | relative_url }}"></script>
     <!-- scripts -->
   </body>
   <!-- body -->

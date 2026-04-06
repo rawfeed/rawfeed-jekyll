@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /**
      * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES
      */
-    var disqus_shortname = '{{ blog_.post.comments.disqus.shortname }}';
+    var disqus_shortname = '{{ blog.post.comments.disqus.shortname }}';
 
     // The unique URL for the discussion, usually the post's permalink.
     var disqus_config = function () {
