@@ -25,12 +25,12 @@ module Rawfeed
       puts "rawfeed - A raw Jekyll theme for minimalists".bold
       puts "\nUsage: rawfeed <command> [options]".yellow
       puts "\nCommands:".bold
-      puts "  new <path>        Create a new rawfeed site".gray
-      puts "  install           Install dependencies (Bundle/npm)".gray
-      puts "  minify            Minify JS, HTML and optimize images".gray
-      puts "  clean --cache     Clean Jekyll cache".gray
-      puts "  clean --all       Clean entire project".gray
-      puts "  help              Show this help message".gray
+      puts "  new <path>        Create a new rawfeed site"
+      puts "  install           Install dependencies (Bundle/npm)"
+      puts "  minify            Minify JS, HTML and optimize images"
+      puts "  clean --cache     Clean Jekyll cache"
+      puts "  clean --all       Clean entire project"
+      puts "  help              Show this help message"
       puts "\nFor more info: https://rawfeed.github.io/rawfeed-jekyll".cyan
     end
 
