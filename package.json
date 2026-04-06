@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "install": "echo 'wait...' && bundle install",
-    "minify": "bundle exec rawfeed minify",
+    "minify:files": "bundle exec rawfeed minify",
     "jekyll:build": "cross-env JEKYLL_ENV=production bundle exec jekyll build",
     "jekyll:serve": "cross-env JEKYLL_ENV=development bundle exec jekyll serve --host 0.0.0.0 --port 4000 --drafts",
     "create:draft": "bundle exec rawfeed create:draft",
