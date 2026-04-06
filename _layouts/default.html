@@ -43,11 +43,11 @@
     <!-- container -->
 
     <!-- scripts -->
-    <script src="{{ '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/vendors/bootstrap-5.2.3/js/bootstrap.bundle.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
-    {%- if page.url contains '/blog/' -%}
-      <script src="{{ '/assets/vendor/simple-jekyll-search.min.js' | relative_url }}"></script>
-    {%- endif -%}
+    {% if page.url contains "/blog/" %}
+      <script src="{{ '/assets/vendors/fuse.min.js' | relative_url }}" defer></script>
+    {% endif %}
     <script src="{{ '/assets/js/blog.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/home.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/page.js' | relative_url }}"></script>
