@@ -38,7 +38,6 @@ module Rawfeed
 
       # --- arquivos e pastas para copiar ---
       items_to_copy = [
-        [File.join(gem_dir, "package.json"), "package.json"],
         [File.join(gem_dir, "_config.yml"), "_config.yml"],
         [File.join(gem_dir, "index.md"), "index.md"],
         [File.join(gem_dir, "404.html"), "404.html"],
@@ -64,12 +63,6 @@ module Rawfeed
 
       # --- final ---
       puts "New rawfeed site created at #{path}".green
-      Dir.chdir(path) do
-        puts "Installing Ruby gems...".blue
-        system("bundle install")
-        puts "Installing Node modules...".blue
-        system("npm install")
-      end
     end
 
     def self.create_gemfile(path)

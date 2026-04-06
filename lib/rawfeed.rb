@@ -6,6 +6,9 @@ require_relative "rawfeed/core/version"
 require_relative "rawfeed/core/utils"
 require_relative "rawfeed/core/layout"
 
+# Build
+require_relative "rawfeed/build"
+
 # Commands
 require_relative "rawfeed/command/tools"
 require_relative "rawfeed/command/installer"

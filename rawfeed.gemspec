@@ -19,7 +19,6 @@ Gem::Specification.new do |spec|
     # Directories we want to include (everything inside)
     include_dirs = %w[
       lib
-      tools
       exe
       assets
       template
@@ -40,7 +39,6 @@ Gem::Specification.new do |spec|
       .editorconfig
       .hidden
       .gitignore
-      package.json
       404.html
       index.md
       _config.yml
@@ -77,8 +75,11 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jekyll-archives", "~> 2.3.0"
   spec.add_runtime_dependency "jekyll-paginate-v2", "~> 3.0.0"
 
-  # utilities
+  # Utilities
   spec.add_runtime_dependency "colorize", "~> 1.1.0"
   spec.add_runtime_dependency "logger", "~> 1.4"
+
+  # Build and minification
+  spec.add_runtime_dependency "uglifier", "~> 4.2.0"
 
 end
