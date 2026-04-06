@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".donation__btn--copy").forEach(btn => {
     btn.addEventListener("click", function () {
       navigator.clipboard.writeText(this.dataset.copy).then(() => {
-        this.innerText = "{{ donation_.copy_button.clicked }}";
-        setTimeout(() => this.innerText = "{{ donation_.copy_button.text }}", 2000);
+        this.innerText = "{{ donate.copy_button.clicked }}";
+        setTimeout(() => this.innerText = "{{ donate.copy_button.text }}", 2000);
       });
     });
   });

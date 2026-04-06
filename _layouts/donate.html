@@ -4,16 +4,16 @@ layout: default
 
 {%- include layout/data.liquid -%}
 
-<div id="donation" class="donation py-5{% if default_.background_focus %} background_focus{% endif %}{% if default_.rounding %} rounding{% endif %}">
+<div id="donation" class="donation py-5{% if default.background_focus %} background_focus{% endif %}{% if default.rounding %} rounding{% endif %}">
 
   <div class="container">
 
-    {% if donation_.title or donation_.description %}
+    {% if donate.title or donate.description %}
     <div class="row justify-content-center mb-5">
       <div class="col-lg-8 text-center">
-        <h1 class="display-5 fw-bold mb-3 donation__title">{{ donation_.title }}</h1>
+        <h1 class="display-5 fw-bold mb-3 donation__title">{{ donate.title }}</h1>
         <p class="mb-0 donation__description">
-          {{ donation_.description }}
+          {{ donate.description }}
         </p>
       </div>
     </div>
@@ -28,7 +28,7 @@ layout: default
 
     <div class="donation-list d-flex flex-column gap-4">
 
-      {%- for service in donation_.services -%}
+      {%- for service in donate.services -%}
       <div class="donation__box">
         <div class="row align-items-center g-4">
 
@@ -81,14 +81,14 @@ layout: default
               <div class="row">
                 <div class="input-group">
                   {% if service.name contains "pix" %}
-                  <span class="input-group-text donation__input__label">Key</span>
+                  <span class="input-group-text donation__input__label">{{ donate.input.label.key }}</span>
                   {% else %}
-                  <span class="input-group-text donation__input__label">Address</span>
+                  <span class="input-group-text donation__input__label">{{ donate.input.label.address }}</span>
                   {% endif %}
                   <input type="text" class="form-control donation__address"
                   value="{{ service.address }}" readonly>
                   <button class="fw-bold donation__btn donation__btn--copy" data-copy="{{ service.address }}">
-                    {{ donation_.copy_button.text }}
+                    {{ donate.copy_button.text }}
                   </button>
                 </div>
               </div>
