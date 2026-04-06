@@ -118,10 +118,10 @@
               {%- endif -%}
             </div>
             <div class="col-sm-8 resume-content__body">
-              {%- if resume.body.sumary.enable -%}
-              <section class="row section sumary">
-                <h2 class="section-title">{{ resume.body.sumary.caption }}</h2>
-                <div class="section-content">{{ resume.body.sumary.content | markdownify }}</div>
+              {%- if resume.body.summary.enable -%}
+              <section class="row section summary">
+                <h2 class="section-title">{{ resume.body.summary.caption }}</h2>
+                <div class="section-content">{{ resume.body.summary.content | markdownify }}</div>
               </section>
               {%- endif -%}
               {%- if resume.body.experience.enable -%}

@@ -12,11 +12,11 @@ toc:
 ---
 
 
-# Blockcodes
+# Block codes
 
 An article with various blocks of highlighted code snippets.
 
-## HTML code using crase ` ` `
+## HTML code using crasis ` ` `
 
 ```html
 <html>
@@ -27,14 +27,14 @@ An article with various blocks of highlighted code snippets.
 </html>
 ```
 
-## Ruby code using crase ` ` `
+## Ruby code using crasis ` ` `
 
 ```ruby
 include Enumerable
 
 module Foo
   class Bar
-    LIPSUM = "lorem ipsum dolor sit"
+    LOREM = "lorem ipsum dolor sit"
 
     attr_reader :layout
 
@@ -46,7 +46,7 @@ module Foo
     def profile
       measure_time do
         compile layout
-        layout.render_with Bar::LIPSUM
+        layout.render_with Bar::LOREM
       end
     rescue ArgumentError
       false
@@ -58,7 +58,7 @@ end
 Foo::Bar.new.profile
 ```
 
-## Sass code using crase ` ` `
+## Sass code using crasis ` ` `
 
 ```sass
 @import "base"

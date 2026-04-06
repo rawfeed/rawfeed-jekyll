@@ -1,6 +1,6 @@
 ---
 layout: pixel
-author: "William Canin"
+author: "William C. Canin"
 title: "Luffy smiling"
 description: "Luffy is in a good mood"
 image:

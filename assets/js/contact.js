@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const textarea = document.getElementById('textMessage');
       const text = textarea.value.trim();
-      if (text.length < "{{ contact.message.caracters.min }}" ) {
+      if (text.length < "{{ contact.message.characters.min }}" ) {
         showModal(
-          "{{ contact.message.caracters.warning.title | default: 'Warning' }}",
-          "{{ contact.message.caracters.warning.content | default: 'The message must have at least 50 characters.' }}",
+          "{{ contact.message.characters.warning.title | default: 'Warning' }}",
+          "{{ contact.message.characters.warning.content | default: 'The message must have at least 50 characters.' }}",
           "warning"
         );
         return;

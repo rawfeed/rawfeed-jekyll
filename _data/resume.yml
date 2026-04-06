@@ -97,12 +97,12 @@ sidebar:
 
 # ---------------------------------------- BODY ----------------------------------------------------
 body:
-  # section: [Sumary]
-  # Note: The "Sumary" should be a concise paragraph (3-4 lines) that presents your profile,
+  # section: [Summary]
+  # Note: The "Summary" should be a concise paragraph (3-4 lines) that presents your profile,
   # your main expertise, and your greatest impact. It is your initial "advertisement."
-  sumary:
+  summary:
     enable: true
-    caption: Sumary
+    caption: Summary
     content: |
       Senior Software Engineer and Researcher with **8 years of experience** in the full systems
       development lifecycle. Proficient in high-performance languages (**Rust**, **C++**, **Python**) and

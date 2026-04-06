@@ -61,9 +61,9 @@ module Rawfeed
         begin
           minify_javascript
           minify_html
-          puts "\n Minify completed successfully!\n".bold.bg_green
+          puts "\n Minify completed successfully!\n".bold.green
         rescue => e
-          puts "\n An error occurred during minify.\n".bold.bg_red
+          puts "\n An error occurred during minify.\n".bold.red
           puts e.message.red
           exit 1
         end

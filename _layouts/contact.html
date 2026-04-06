@@ -57,7 +57,7 @@ layout: default
       placeholder="{{ contact.message.placeholder | default: 'Write your message here' }}"
       style="min-height: 150px"
       required></textarea>
-      <small style="display: block; font-size: 8pt; opacity: .6">{{ contact.message.caracters.warning.content }}</small>
+      <small style="display: block; font-size: 8pt; opacity: .6">{{ contact.message.characters.warning.content }}</small>
       <!-- TODO: version: 0.3.0 Make reCaptcha change themes instantly -->
       <div id="g-recaptcha" class="g-recaptcha mt-2" data-sitekey="{{ head.google.recaptcha.pubkey }}" style="display: inline-block; margin: 5px 0;"></div>
       <div class="d-flex justify-content-end mb-5">

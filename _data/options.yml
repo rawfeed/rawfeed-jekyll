@@ -244,7 +244,7 @@ contact:
   message:
     placeholder: "write your message here"
     status: "sending...wait"
-    caracters:
+    characters:
       min: 50
       warning:
         title: "Warning"

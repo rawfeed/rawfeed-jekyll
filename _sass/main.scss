@@ -34,7 +34,7 @@ layout:
   --footer-border-color: #{theme.theme-color(footer-border-color, light)};
   --footer-bg-color: #{theme.theme-color(footer-bg-color, light)};
   --terminal-shadow: #{theme.theme-color(terminal-shadow, light)};
-  --sumary-bg-color: #{theme.theme-color(sumary-bg-color, light)};
+  --summary-bg-color: #{theme.theme-color(summary-bg-color, light)};
   --checkbox-border-color: #{theme.theme-color(checkbox-border-color, light)};
   --checkbox-border-color-after: #{theme.theme-color(checkbox-border-color-after, light)};
   --table-border-color: #{theme.theme-color(table-border-color, light)};
@@ -107,7 +107,7 @@ layout:
   --footer-border-color: #{theme.theme-color(footer-border-color, dark)};
   --footer-bg-color: #{theme.theme-color(footer-bg-color, dark)};
   --terminal-shadow: #{theme.theme-color(terminal-shadow, dark)};
-  --sumary-bg-color: #{theme.theme-color(sumary-bg-color, dark)};
+  --summary-bg-color: #{theme.theme-color(summary-bg-color, dark)};
   --checkbox-border-color: #{theme.theme-color(checkbox-border-color, dark)};
   --checkbox-border-color-after: #{theme.theme-color(checkbox-border-color-after, dark)};
   --table-color: #{theme.theme-color(table-color, dark)};
