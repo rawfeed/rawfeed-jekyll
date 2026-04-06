@@ -92,22 +92,56 @@ document.addEventListener("DOMContentLoaded", () => {
   /* open results and close posts in search (toggle)
   --------------------------------------------------------------------------------------------------
   */
+  /* Fuse.js search implementation
+  --------------------------------------------------------------------------------------------------
+  */
+  let fuse;
+  const searchJsonUrl = "{{ '/assets/json/blog_search.json' | relative_url }}";
+
+  fetch(searchJsonUrl)
+    .then(response => response.json())
+    .then(data => {
+      fuse = new Fuse(data, {
+        keys: ['title', 'tags'],
+        threshold: 0.3,
+        includeMatches: true
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching search data:', error);
+    });
+
+  function renderResults(results) {
+    if (results.length === 0) {
+      searchResults.innerHTML = '<p>{{ blog.no_results | default: "No results found" }}</p>';
+      return;
+    }
+
+    const html = results.map(result => {
+      const item = result.item;
+      // Using existing template logic
+      return `<li><span class="blog-list__meta"><time datetime="${item.date}">${item.date}</time></span>&nbsp;»&nbsp; <a class="blog-list__link" href="{{ site.url }}${item.url}">${item.title}</a></li>`;
+    }).join('');
+
+    searchResults.innerHTML = html;
+  }
+
   searchInput.addEventListener('input', () => {
-    if (searchInput.value.trim().length > 0) {
+    const query = searchInput.value.trim();
+    if (query.length > 0) {
       blogPosts.classList.add('disabled');
       searchResults.classList.remove('disabled');
       searchResultsWrapper.classList.remove('disabled');
+
+      if (fuse) {
+        const results = fuse.search(query);
+        renderResults(results);
+      }
     } else {
       blogPosts.classList.remove('disabled');
       searchResults.classList.add('disabled');
       searchResultsWrapper.classList.add('disabled');
+      searchResults.innerHTML = '';
     }
   });
-  var sjs = SimpleJekyllSearch({
-    searchInput: document.getElementById('blog-search__input'),
-    resultsContainer: document.getElementById('blog-search__results'),
-    searchResultTemplate: '<li><span class="blog-list__meta"><time datetime="{date}">{date}</time></span>&nbsp;»&nbsp; <a class="blog-list__link" href="{{ site.url }}{url}">{title}</a></li>',
-    noResultsText: '<p>{{ blog.no_results | default: "No results found" }}</p>',
-    json: "{{ '/assets/json/blog_search.json' | relative_url }}"
-  })
 });
