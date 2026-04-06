@@ -8,22 +8,36 @@
   <a href="https://rawfeed.github.io/rawfeed-jekyll" target="_blank">Documentation</a>
 </p>
 
-# For developer
-
 ## Requirements
 
 | Required | Version | How to verify | How to install                    |
 | -------- | ------- | ------------- | --------------------------------- |
-| Git      | >= 2    | `git -v`      | [Git](http://git-scm.com/)        |
 | Ruby     | >= 3.0  | `ruby -v`     | [Ruby](https://www.ruby-lang.org) |
 | Gem      | >= 3.0  | `gem -v`      | **Ruby** contains **Gem**         |
 | Bundler  | >= 2.0  | `bundler -v`  | `gem install bundler`             |
 
+# Install
+
+See: [https://rawfeed.github.io/rawfeed-jekyll/](https://rawfeed.github.io/rawfeed-jekyll/)
+
+<!-- ## Linux / macos
+
+```sh
+bash <(curl -fsSL https://rawfeed.github.io/install.sh)
+```
+
+## Windows
+
+```powershell
+iex (Invoke-WebRequest -Uri "https://rawfeed.github.io/install.ps1" -UseBasicParsing).Content
+``` -->
+
+# For developer
 
 ## Clone
 
 ```shell
-git clone https://github.com/rawfeed/rawfeed-jekyll.git "rawfeed"; cd rawfeed; npm install
+git clone https://github.com/rawfeed/rawfeed-jekyll.git; cd rawfeed-jekyll; npm install
 ```
 
 ## Gem
@@ -31,13 +45,13 @@ git clone https://github.com/rawfeed/rawfeed-jekyll.git "rawfeed"; cd rawfeed; n
 **(1)** - Compile the gem:
 
 ```shell
-npm run generate:gem
+gem build rawfeed.gemspec
 ```
 
 **(2)** - Publish the gem:
 
 ```shell
-npm run publish:gem
+gem push rawfeed-<VERSION>.gem
 ```
 
 For more tasks, see: `npm run rake:tasks`
