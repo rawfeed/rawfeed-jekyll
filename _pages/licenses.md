@@ -4,6 +4,8 @@ author: # "Your Name"
 title: "licenses"
 in_menu: false
 published: true
+toc:
+  enable: false
 permalink: /licenses/
 ---
 

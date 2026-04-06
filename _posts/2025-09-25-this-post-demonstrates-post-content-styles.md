@@ -7,6 +7,8 @@ date: 2025-09-22 17:24:04 -0300
 update_date: 2025-09-28 07:16:01 -0300
 comments: true
 tags: [example,style,include,chart]
+toc:
+  enable: true
 ---
 
 

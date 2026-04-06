@@ -7,6 +7,8 @@ date: 2025-09-25 10:36:34 -0300
 update_date: 2025-09-28 07:16:01 -0300
 comments: true
 tags: [example,codeblocks,ruby,html,rust,raw]
+toc:
+  enable: true
 ---
 
 

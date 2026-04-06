@@ -30,6 +30,8 @@ module Rawfeed
         file.puts("order: 4")
         file.puts("title: Resume")
         file.puts("published: false")
+        file.puts("toc:")
+        file.puts("  enable: false")
         file.puts("permalink: /resume/")
         file.puts("---")
         file.puts("")

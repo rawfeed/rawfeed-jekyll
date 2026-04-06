@@ -19,6 +19,8 @@ module Rawfeed
         file.puts("image:")
         file.puts("  path: # /assets/images/pixels/example.jpg")
         file.puts("  caption: ")
+        file.puts("toc:")
+        file.puts("  enable: false")
         file.puts("date: #{array[2]} -0300")
         file.puts("---")
         file.puts("")

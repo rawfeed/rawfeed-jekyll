@@ -23,6 +23,8 @@ module Rawfeed
         file.puts("in_menu: true")
         file.puts("reading_time: true")
         file.puts("published: false")
+        file.puts("toc:")
+        file.puts("  enable: false")
         file.puts("permalink: /#{permalink}/")
         file.puts("---")
         file.puts("")

@@ -9,6 +9,8 @@ update_date: 2025-10-14 08:17:11 -0300
 in_menu: true
 reading_time: true
 published: true
+toc:
+  enable: true
 permalink: /any-page/
 ---
 

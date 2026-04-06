@@ -7,6 +7,8 @@ image:
   path: "/assets/images/pixels/luffy.jpg"
   caption: "Luffy, from the anime One Piece"
   width: 60%
+toc:
+  enable: false
 date: 2025-10-15 14:11:04 -0300
 ---
 

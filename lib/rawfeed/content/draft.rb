@@ -19,6 +19,8 @@ module Rawfeed
         file.puts("date: #{array[2]} -0300")
         file.puts("update_date: ")
         file.puts("comments: false")
+        file.puts("toc:")
+        file.puts("  enable: true")
         file.puts("tags: [tag1, tag2]")
         file.puts("---")
         file.puts("")

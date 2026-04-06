@@ -6,6 +6,8 @@ order: 8
 emoji: ☕
 in_menu: true
 published: true
+toc:
+  enable: false
 permalink: /donate/
 ---
 
