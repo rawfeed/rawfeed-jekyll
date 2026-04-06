@@ -309,7 +309,7 @@ donate:
       logo: "/assets/images/donate/card.svg"
       description: |
         Donation using card through the service `Buy Me a Coffee`.
-      address: "https://buymeacoffee.com/williamcanin"
+      address: "https://buymeacoffee.com"
 
     - name: paypal
       logo: "/assets/images/donate/paypal.svg"
