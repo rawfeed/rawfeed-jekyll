@@ -2,6 +2,7 @@
   "recommendations": [
     "sissel.shopify-liquid", // Full Liquid support
     "shopify.theme-check-vscode", // Liquid/Shopify/Jekyll Linter and Validation
+    "seunlanlege.action-buttons", // VSCode Actions Buttons
     "neilding.language-liquid", // Syntax Extra Liquid
     "shortall.html-liquid-preview", // HTML+Liquid Preview
     "redhat.vscode-yaml", // Front Matter YAML
