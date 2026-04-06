@@ -1,4 +1,63 @@
 {
+  // === Editor VSCode === //
+  "editor.rulers": [80],
+  "editor.fontSize": 14,
+  "editor.semanticHighlighting.enabled": false,
+  "editor.hover.delay": 300,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.hover.sticky": false,
+  "editor.stickyScroll.enabled": false,
+  "workbench.tree.enableStickyScroll": false,
+  "editor.stickyScroll.scrollWithEditor": false,
+  "terminal.integrated.stickyScroll.enabled": false,
+  "editor.inlayHints.enabled": "on", // disable type annotactions
+  "editor.inlayHints.fontSize": 12,
+  "editor.inlayHints.padding": true,
+  "editor.inlayHints.fontFamily": "Open Sans Medium",
+  "editor.guides.indentation": true,
+  "window.titleBarStyle": "custom",
+  "workbench.editor.labelFormat": "short",
+  "workbench.editor.enablePreviewFromCodeNavigation": true,
+  "terminal.integrated.fontFamily": "DejaVuSansMono Nerd Font",
+  "editor.fontFamily": "JetBrains Mono, monospace",
+  "editor.fontLigatures": true,
+  "terminal.integrated.fontWeight": "500",
+  "editor.lineHeight": 1.8,
+  "editor.fontWeight": "400",
+  "files.autoSave": "onFocusChange",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "editor.renderControlCharacters": false,
+  "editor.minimap.enabled": true,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.horizontal": "hidden",
+  "breadcrumbs.enabled": false,
+  "files.autoSaveDelay": 4000,
+  "files.trimTrailingWhitespace": true,
+  "css.lint.emptyRules": "ignore",
+  "terminal.integrated.tabs.enabled": true,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.cursorStyle": "underline",
+  "editor.bracketPairColorization.enabled": false,
+  "editor.guides.highlightActiveBracketPair": false,
+  "editor.guides.bracketPairs": false,
+  "editor.matchBrackets": "always",
+  "editor.renderLineHighlight": "gutter",
+  "editor.showUnused": true,
+  // "editor.suggestSelection": "first",
+  "editor.suggest.showSnippets": true,
+  "git.autofetch": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-dark",
+  "workbench.startupEditor": "newUntitledFile",
+  "explorer.compactFolders": false,
+  "explorer.fileNesting.enabled": true,
+  "workbench.activityBar.location": "default",
+  "workbench.editor.empty.hint": "hidden",
+  "chat.unifiedAgentsBar.enabled": true,
+  "gitlens.ai.model": "vscode",
   // === TODO ===
   "todo-tree.general.tags": [
     "TODO",
@@ -10,34 +69,65 @@
     "dist",
     "vendor**"
   ],
+  "todo-tree.highlights.defaultHighlight": {
+    "icon": "alert",
+    "type": "text",
+    "foreground": "#ff1e00",
+    "background": "#ffffff",
+    "opacity": 90,
+    "iconColour": "#ffffff"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "icon": "check",
+      "type": "line"
+    },
+    "FIXME": {
+      "foreground": "#000000",
+      "iconColour": "#eeff00",
+      "gutterIcon": true
+    }
+  },
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true,
+    "rules": {
+      "*.mutable": {
+        "underline": false,
+        "bold": true
+      }
+    }
+  },
   // === Files and languages ===
   "files.associations": {
     "**/_includes/**": "liquid",
     "**/_layouts/**": "liquid",
     "blog_search.json": "liquid",
-    "*.js": "liquid-javascript",
+    "*.css": "scss",
+    "*.html": "liquid",
+    "*.md": "markdown",
+    "*.scss": "scss",
+    "*.JS": "liquid-javascript",
+    "LICENSE": "plaintext",
+    "CNAME": "plaintext",
   },
   // Emmet working within Liquid and Markdown
   "emmet.includeLanguages": {
     "liquid": "html",
     "markdown": "html"
   },
-  // === Formatting ===
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "editor.formatOnSave": false,
   // Formatting by language
   "[liquid]": {
     "editor.defaultFormatter": "sissel.shopify-liquid"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.rulers": [100],
+     "editor.defaultFormatter": "vscode.html-language-features"
   },
   // === HTML & Liquid ===
   "html.validate.scripts": true,
@@ -54,10 +144,116 @@
   // === Markdown ===
   "markdown.preview.breaks": true,
   // === Several ===
-  "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "chat.tools.terminal.autoApprove": {
     "bundle": true,
-    "git add": true
-  }
+    "git add": true,
+    "git commit": true
+  },
+  "cSpell.words": [
+    "rawfeed",
+    "williamcanin",
+    "canin",
+    "markdownify",
+    "enddetails",
+    "figcaption",
+    "endfor",
+    "endif",
+    "datelang",
+    "autoplay",
+    "referrerpolicy",
+    "noscript",
+    "allowfullscreen",
+    "endtabs",
+    "nbsp",
+    "disqus",
+    "noopener",
+    "noreferrer",
+    "giscus",
+    "linenos",
+    "xmlschema",
+    "endcomment",
+    "inframe",
+    "endraw",
+    "embedder",
+    "hsts",
+    "stylesheet",
+    "gtag",
+    "FOUC",
+    "luffy",
+    "eiichiro",
+    "monkī",
+    "println",
+    "rufi",
+    "tabindex",
+    "larr",
+    "rarr",
+    "endcapture",
+    "labelledby",
+    "recaptcha",
+    "describedby",
+    "sitekey",
+    "grecaptcha",
+    "qrcode",
+    "itemprop",
+    "itemscope",
+    "itemtype",
+
+  ],
+  "actionButtons": {
+      "defaultColor": "#fff",
+      "loadNpmCommands":false,
+      "reloadButton":"$(sync) NPM:",
+      "inheritGlobalCommands": false,
+      "commands": [
+        {
+          "name": "$(package) Install",
+          "color": "white",
+          "singleInstance": true,
+          "command": "rawfeed install",
+        },
+        {
+          "name": "$(play) Serve",
+          "color": "white",
+          "singleInstance": true,
+          "command": "rawfeed serve",
+        },
+        {
+          "name": "$(gear) Build",
+          "color": "white",
+          "singleInstance": true,
+          "command": "rawfeed build",
+        },
+        {
+          "name": "$(file-add) Create Page",
+          "color": "white",
+          "singleInstance": true,
+          "command": "rawfeed create:page",
+        },
+        {
+          "name": "$(edit) Create Draft",
+          "color": "white",
+          "singleInstance": true,
+          "command": "rawfeed create:draft",
+        },
+        {
+          "name": "$(send) Post draft",
+          "color": "white",
+          "singleInstance": true,
+          "command": "rawfeed post:draft",
+        },
+        {
+          "name": "$(cloud-upload) Auto Deploy",
+          "color": "white",
+          "singleInstance": true,
+          "command": "npm run auto-deploy",
+        },
+        {
+          "name": "$(git-commit) Auto Commit",
+          "color": "white",
+          "singleInstance": true,
+          "command": "npm run auto-commit",
+        }
+      ]
+    }
 }
