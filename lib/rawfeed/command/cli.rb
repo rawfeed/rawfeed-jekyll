@@ -13,8 +13,8 @@ module Rawfeed
       end
 
       first_arg = args.shift
-      
-      # Ferramentas internas
+
+      # Internal tools
       if %w[minify clean help new install].include?(first_arg)
         case first_arg
         when "minify"
@@ -32,7 +32,7 @@ module Rawfeed
         return
       end
 
-      # Separar namespace e task para os comandos principais
+      # Separate namespace and task for the main commands.
       namespace, task = first_arg.split(":")
 
       case namespace
