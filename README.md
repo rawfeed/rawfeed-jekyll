@@ -18,8 +18,6 @@
 | Ruby     | >= 3.0  | `ruby -v`     | [Ruby](https://www.ruby-lang.org) |
 | Gem      | >= 3.0  | `gem -v`      | **Ruby** contains **Gem**         |
 | Bundler  | >= 2.0  | `bundler -v`  | `gem install bundler`             |
-| NodeJs   | >= 20   | `node -v`     | [NodeJS](https://nodejs.org)      |
-| Npm      | >= 9    | `npm -v`      | **NodeJS** contains **Npm**       |
 
 
 ## Clone
@@ -58,7 +56,7 @@ Click on the image below to be redirected to the donation forms:
 
 <div class="donation">
   <a href="https://williamcanin.github.io/donate/" target="_blank">
-    <img width="160" height="100" src="assets/images/icons/donate.svg" alt="Donate"/>
+    <img width="160" height="100" src="/assets/images/icons/donate.svg" alt="Donate"/>
   </a>
 </div>
 
