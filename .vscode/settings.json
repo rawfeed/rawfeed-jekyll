@@ -122,6 +122,8 @@
     "giscus",
     "linenos",
     "xmlschema",
+    "envrc",
+    "direnv",
     "endcomment",
     "inframe",
     "endraw",
