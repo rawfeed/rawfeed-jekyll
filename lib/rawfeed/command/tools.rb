@@ -22,42 +22,52 @@ module Rawfeed
     end
 
     def self.help
-      puts "rawfeed - A raw Jekyll theme for minimalists".bold
-      puts "\nUsage: rawfeed <command> [options]".yellow
-      puts "\nCommands:".bold
-      puts "  new <path>        Create a new rawfeed site"
-      puts "  install           Install dependencies (Bundle)"
-      puts "  build [OPTIONS]   Build the site"
-      puts "  serve [OPTIONS]   Run local development server"
-      puts "  minify            Minify JS and HTML in _site/"
-      puts "  clean --cache     Clean Jekyll cache"
-      puts "  clean --all       Clean entire project"
-      puts "\nContent Generators:".bold
-      puts "  create:draft      Create a draft for a post"
-      puts "  create:page       Create a page"
-      puts "  create:pixel      Create a post for pixel"
-      puts "  restore:resume    Restore the resume page (CV)"
-      puts "  restore:donate    Restore the donation page"
-      puts "  restore:contact   Restore the contact page"
-      puts "  restore:license   Restore the license page"
-      puts "  post:draft        Opens a selector to move drafts to posting"
-      puts "\nLayout Commands:".bold
-      puts "  home:about        Set the home page as the about page"
-      puts "  home:blog         Set the home page as the weblog page"
-      puts "  blog:enable       Enable the Blog"
-      puts "  blog:disable      Disables the Blog, leaving only the pages"
-      puts "  pixels:enable     Enable the Pixels"
-      puts "  pixels:disable    Disables the Pixels, leaving only the pages"
-      puts "\nOptions:".bold
-      puts "  For Jekyll build/serve options, run:"
-      puts "    rawfeed build --help"
-      puts "    rawfeed serve --help"
-      puts "\nFor more info: https://rawfeed.github.io/rawfeed-jekyll".cyan
+      begin
+        puts "rawfeed - A raw Jekyll theme for minimalists".bold
+        puts "\nUsage: rawfeed <command> [options]".yellow
+        puts "\nCommands:".bold
+        puts "  new <path>        Create a new rawfeed site"
+        puts "  install           Install dependencies (Bundle)"
+        puts "  build [OPTIONS]   Build the site"
+        puts "  serve [OPTIONS]   Run local development server"
+        puts "  minify            Minify JS and HTML in _site/"
+        puts "  clean --cache     Clean Jekyll cache"
+        puts "  clean --all       Clean entire project"
+        puts "\nContent Generators:".bold
+        puts "  create:draft      Create a draft for a post"
+        puts "  create:page       Create a page"
+        puts "  create:pixel      Create a post for pixel"
+        puts "  restore:resume    Restore the resume page (CV)"
+        puts "  restore:donate    Restore the donation page"
+        puts "  restore:contact   Restore the contact page"
+        puts "  restore:licenses  Restore the licenses page"
+        puts "  post:draft        Opens a selector to move drafts to posting"
+        puts "\nLayout Commands:".bold
+        puts "  home:about        Set the home page as the about page"
+        puts "  home:blog         Set the home page as the weblog page"
+        puts "  blog:enable       Enable the Blog"
+        puts "  blog:disable      Disables the Blog, leaving only the pages"
+        puts "  pixels:enable     Enable the Pixels"
+        puts "  pixels:disable    Disables the Pixels, leaving only the pages"
+        puts "\nOptions:".bold
+        puts "  For Jekyll build/serve options, run:"
+        puts "    rawfeed build --help"
+        puts "    rawfeed serve --help"
+        puts "\nFor more info: https://rawfeed.github.io/rawfeed-jekyll".cyan
+      rescue Interrupt
+        puts "\n[!] Approached by the user".yellow
+        exit!
+      end
     end
 
     def self.install
       puts "Installing Ruby gems...".blue
-      system("bundle install")
+      begin
+          system("bundle install")
+      rescue Interrupt
+        puts "\n[!] Approached by the user".yellow
+        exit!
+      end
 
       puts "Dependencies installed successfully!".green
     end
@@ -67,8 +77,13 @@ module Rawfeed
         output, = Open3.capture2(*["bundle", "exec", "jekyll", "build", "--help"])
         puts output.gsub(/jekyll/, "rawfeed")
       else
-        cmd = ["bundle", "exec", "jekyll", "build"] + args
-        system(*cmd)
+        begin
+          cmd = ["bundle", "exec", "jekyll", "build"] + args
+          system(*cmd)
+        rescue Interrupt
+          puts "\n[!] Approached by the user".yellow
+          exit!
+        end
       end
     end
 
@@ -77,8 +92,13 @@ module Rawfeed
         output, = Open3.capture2(*["bundle", "exec", "jekyll", "serve", "--help"])
         puts output.gsub(/jekyll/, "rawfeed")
       else
-        cmd = ["bundle", "exec", "jekyll", "serve"] + args
-        system(*cmd)
+        begin
+          cmd = ["bundle", "exec", "jekyll", "serve"] + args
+          system(*cmd)
+        rescue Interrupt
+          puts "\n[!] Approached by the user".yellow
+          exit!
+        end
       end
     end
   end
