@@ -8,7 +8,7 @@ module Rawfeed
   class CLI
     def self.run(args)
       if args.empty?
-        puts "Usage: rawfeed <namespace>:<task> [options] or rawfeed <tools_command> [options]"
+        puts "Use: rawfeed help"
         exit 1
       end
 
@@ -80,9 +80,8 @@ module Rawfeed
         end
       else
         puts "Unknown namespace or command: #{namespace || first_arg}"
-        puts "Usage:"
-        puts "  rawfeed <namespace>:<task> [options]"
-        puts "  rawfeed <tools_command> [minify|clean|help|new|install] [options]"
+        puts "Use:"
+        puts "  rawfeed help"
       end
     end
   end
