@@ -27,6 +27,8 @@ module Rawfeed
         puts "\nUsage: rawfeed <command> [options]".yellow
         puts "\nCommands:".bold
         puts "  new <path>        Create a new rawfeed site"
+        puts "                    Use '.' to create in current directory"
+        puts "                    Add --force to override non-empty directory"
         puts "  install           Install dependencies (Bundle)"
         puts "  build [OPTIONS]   Build the site"
         puts "  serve [OPTIONS]   Run local development server"

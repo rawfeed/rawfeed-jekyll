@@ -24,8 +24,8 @@ module Rawfeed
         when "help"
           Rawfeed::Tools.help
         when "new"
-          site_path = args.first || "my-site"
-          Rawfeed::Installer.create_new_site(site_path)
+          site_path = args.shift || "my-site"
+          Rawfeed::Installer.create_new_site(site_path, *args)
         when "install"
           Rawfeed::Tools.install
         when "build"

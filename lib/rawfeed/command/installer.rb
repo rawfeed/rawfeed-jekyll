@@ -27,13 +27,28 @@ module Rawfeed
       end
     end
 
-    def self.create_new_site(path)
-      if Dir.exist?(path)
-        puts "Directory #{path} already exists!".red
-        return
+    def self.create_new_site(path, *args)
+      force = args.include?("--force")
+
+      # Normalize path
+      path = "." if path.nil? || path.empty?
+      actual_path = File.expand_path(path)
+
+      # Check if directory exists and is not empty
+      if Dir.exist?(actual_path)
+        entries = Dir.entries(actual_path) - [".", ".."]
+
+        if entries.any?
+          unless force
+            puts "Directory #{path} is not empty!".red
+            puts "Use the --force flag to proceed: rawfeed new #{path} --force".yellow
+            return
+          end
+        end
+      else
+        FileUtils.mkdir_p(actual_path)
       end
 
-      FileUtils.mkdir_p(path)
       gem_dir = gem_root
 
       # --- files and folders to copy ---
@@ -56,11 +71,11 @@ module Rawfeed
         [File.join(gem_dir, "assets/images"), "assets/images"]
       ]
 
-      copy_items(items_to_copy, path)
+      copy_items(items_to_copy, actual_path)
 
       # --- Gemfile ---
-      gemfile_dest = File.join(path, "Gemfile")
-      create_gemfile(path) unless File.exist?(gemfile_dest)
+      gemfile_dest = File.join(actual_path, "Gemfile")
+      create_gemfile(actual_path) unless File.exist?(gemfile_dest)
 
       # --- final ---
       puts "New rawfeed site created at #{path}".green
