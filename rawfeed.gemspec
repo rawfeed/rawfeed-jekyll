@@ -44,6 +44,7 @@ Gem::Specification.new do |spec|
       _config.yml
       LICENSE
       README
+      robots.txt
     ]
 
     # Checks if it starts with any directory
