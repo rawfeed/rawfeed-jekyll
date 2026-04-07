@@ -78,15 +78,19 @@ module Rawfeed
         end
       when "blog"
         case task
-        when "enable"  then Rawfeed::Layout.blog_enable
-        when "disable" then Rawfeed::Layout.blog_disable
+        when "enable"  then
+          Rawfeed::Layout.blog_index(true)
+          Rawfeed::Layout.tags_index(true)
+        when "disable" then
+          Rawfeed::Layout.blog_index(false)
+          Rawfeed::Layout.tags_index(false)
         else
           puts "Unknown blog task: #{task}"
         end
       when "pixels"
         case task
-        when "enable"  then Rawfeed::Layout.pixels_enable
-        when "disable" then Rawfeed::Layout.pixels_disable
+        when "enable"  then Rawfeed::Layout.pixels_index(true)
+        when "disable" then Rawfeed::Layout.pixels_index(false)
         else
           puts "Unknown pixels task: #{task}"
         end
