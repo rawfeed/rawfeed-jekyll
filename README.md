@@ -64,11 +64,11 @@ See [here](https://rawfeed.github.io/rawfeed-jekyll/changelog/)
 
 The theme is available as open source under the terms of [this License](https://rawfeed.github.io/rawfeed-jekyll/license/).
 
-# Donation
+# Donate
 
 Click on the image below to be redirected to the donation forms:
 
-<div class="donation">
+<div class="donate">
   <a href="https://williamcanin.github.io/donate/" target="_blank">
     <img width="160" height="100" src="https://williamcanin.github.io/assets/images/icons/donate.svg" alt="Donate"/>
   </a>
