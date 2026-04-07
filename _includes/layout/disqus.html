@@ -1,16 +1,15 @@
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
-{%- if page.comments != false
-  and jekyll.environment == 'production'
-  and blog.post.comments.provider == 'disqus'
-  and blog.post.comments.disqus.shortname != "" -%}
-
+{%- if page.comments != false and jekyll.environment == 'production' and blog.post.comments.provider == 'disqus' and blog.post.comments.disqus.shortname != ''
+-%}
   <div class="row comments">
-    <h1 class="comments-title">[&nbsp;{{ blog.post.comments.title | default: "comments" }}&nbsp;]</h1>
+    <h1 class="comments-title">[&nbsp;{{ blog.post.comments.title | default: 'comments' }}&nbsp;]</h1>
     <div class="comments-content">
       <div id="disqus_thread"></div>
       <script src="{{ '/assets/js/discus.js' | relative_url }}"></script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      <noscript>Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+      </noscript>
     </div>
   </div>
 {% endif %}

@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+{%- include assigned -%}
+
+<div class="container posts_by_tag{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
+  <div class="row">
+    <h1 class="posts_by_tag__title">
+      <span>[&nbsp;{{ blog.post.posts_by_tags.title }}:&nbsp;</span>
+      {{ page.title }}<span>&nbsp;]</span>
+    </h1>
+
+    <ul class="row posts_by_tag__list">
+      {%- for post in page.posts -%}
+        <li class="posts_by_tag__list__item">
+          <span class="posts_by_tag__list__meta">{%- datelang post.date format: datelang.format -%}</span>&nbsp;»&nbsp;
+          <a class="posts_by_tag__list__link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          {%- if post.draft -%}
+            <span class="draft-badge">[&nbsp;this is a draft&nbsp;]</span>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+
+  </div>
+</div>

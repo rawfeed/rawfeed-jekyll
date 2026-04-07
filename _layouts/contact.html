@@ -2,91 +2,110 @@
 layout: default
 ---
 
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
 {%- if head.google.recaptcha.pubkey and head.google.apps_script.url -%}
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script
+    src="https://www.google.com/recaptcha/api.js"
+    async
+    defer></script>
 
-<div id="contact" class="contact{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
+  <div id="contact" class="contact{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
 
-  <div class="modal fade"
-    id="contactMessageModal"
-    tabindex="-1"
-    aria-labelledby="contactMessageModalLabel"
-    aria-hidden="true"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="contactMessageModalLabel"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div
+      class="modal fade"
+      id="contactMessageModal"
+      tabindex="-1"
+      aria-labelledby="contactMessageModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="contactMessageModalLabel"></h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body"></div>
         </div>
-        <div class="modal-body"></div>
       </div>
+    </div>
+
+    <div class="row">
+      <span class="contact-title">
+        <strong>[&nbsp;{{ page.title | downcase }}&nbsp;]</strong>
+      </span>
+      <form id="contactForm" class="mt-4 contact-form">
+        <div class="mb-3">
+          <input
+            id="inputName"
+            name="name"
+            type="text"
+            placeholder="{{ contact.name.placeholder | default: 'First and last name' }}"
+            class="form-control contact-form__name"
+            required>
+        </div>
+        <div class="mb-3">
+          <input
+            id="inputEmail"
+            name="email"
+            type="email"
+            placeholder="{{ contact.email.placeholder | default: 'Your best email address' }}"
+            class="form-control contact-form__email"
+            aria-describedby="emailHelp"
+            required>
+          <div id="emailHelp" class="form-text contact-form__help">
+            {{ contact.email.help | default: "We'll never share your email with anyone else." }}
+          </div>
+        </div>
+        <textarea
+          id="textMessage"
+          name="message"
+          class="form-control contact-form__message"
+          placeholder="{{ contact.message.placeholder | default: 'Write your message here' }}"
+          style="min-height: 150px"
+          required></textarea>
+        <small style="display: block; font-size: 8pt; opacity: .6">{{ contact.message.characters.warning.content }}</small>
+        <!-- TODO: version: 0.3.0 Make reCaptcha change themes instantly -->
+        <div
+          id="g-recaptcha"
+          class="g-recaptcha mt-2"
+          data-sitekey="{{ head.google.recaptcha.pubkey }}"
+          style="display: inline-block; margin: 5px 0;"></div>
+        <div class="d-flex justify-content-end mb-5">
+          <button
+            id="submitButton"
+            type="submit"
+            class="btn contact-form__submit">
+            {{ contact.button.text | default: 'Send!' }}
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="contact-content">{{ content }}</div>
     </div>
   </div>
 
-  <div class="row">
-    <span class="contact-title"><strong>[&nbsp;{{ page.title | downcase }}&nbsp;]</strong></span>
-    <form id="contactForm" class="mt-4 contact-form">
-      <div class="mb-3">
-        <input id="inputName"
-        name="name"
-        type="text"
-        placeholder="{{ contact.name.placeholder | default: 'First and last name' }}"
-        class="form-control contact-form__name"
-        required>
-      </div>
-      <div class="mb-3">
-        <input id="inputEmail"
-        name="email"
-        type="email"
-        placeholder="{{ contact.email.placeholder | default: 'Your best email address' }}"
-        class="form-control contact-form__email"
-        aria-describedby="emailHelp"
-        required>
-        <div id="emailHelp" class="form-text contact-form__help">
-          {{ contact.email.help | default: "We'll never share your email with anyone else." }}
-        </div>
-      </div>
-      <textarea id="textMessage"
-      name="message"
-      class="form-control contact-form__message"
-      placeholder="{{ contact.message.placeholder | default: 'Write your message here' }}"
-      style="min-height: 150px"
-      required></textarea>
-      <small style="display: block; font-size: 8pt; opacity: .6">{{ contact.message.characters.warning.content }}</small>
-      <!-- TODO: version: 0.3.0 Make reCaptcha change themes instantly -->
-      <div id="g-recaptcha" class="g-recaptcha mt-2" data-sitekey="{{ head.google.recaptcha.pubkey }}" style="display: inline-block; margin: 5px 0;"></div>
-      <div class="d-flex justify-content-end mb-5">
-        <button id="submitButton"
-        type="submit"
-        class="btn contact-form__submit">
-        {{ contact.button.text | default: 'Send!' }}
-        </button>
-      </div>
-    </form>
-  </div>
-  <div class="row">
-    <div class="contact-content">{{ content }}</div>
-  </div>
-</div>
-
 {%- else -%}
 
-<div class="contact-disabled{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
-  <h1 style="background-color: yellow;color: black;padding: 10px">Warning: Email form disabled</h1>
-  <p>To use the email submission form, you need to:</p>
-  <p>1 - Copy the script below and implement it in <a href="https://script.google.com" target="_blank">Google Apps Script</a>:</p>
-  <blockquote>
-    <p>Note1: Don't forget to change the constants: TO_ADDRESS, SITE, LOGO_URL, MINIMUM_MESSAGE.</p>
-    <p>Note2: Without editing the script in Google Apps Script, you will need to redeploy it.</p>
-  </blockquote>
+  <div class="contact-disabled{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
+    <h1 style="background-color: yellow;color: black;padding: 10px">Warning: Email form disabled</h1>
+    <p>To use the email submission form, you need to:</p>
+    <p>1 - Copy the script below and implement it in
+      <a href="https://script.google.com" target="_blank">Google Apps Script</a>:</p>
+    <blockquote>
+      <p>Note1: Don't forget to change the constants: TO_ADDRESS, SITE, LOGO_URL, MINIMUM_MESSAGE.</p>
+      <p>Note2: Without editing the script in Google Apps Script, you will need to redeploy it.</p>
+    </blockquote>
 
-  {% highlight javascript linenos %}
-  /**
+    {% highlight javascript linenos %}
+      /** 
   * GOOGLE APPS SCRIPT - HYBRID VERSION (RECAPTCHA & TURNSTYLE)
   * by William C. Canin
   */
@@ -106,8 +125,8 @@ layout: default
     if (!str) return "";
     let clean = str.trim();
     if (isHeader) clean = clean.replace(/[\r\n]/g, "");
-    return clean.replace(/[&<>"']/g, function(m) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+    return clean.replace(/[&<>"']/g, function(m) { 
+      return { '&': '&amp;', '<':'&lt;','>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]; 
     });
   }
 
@@ -194,42 +213,54 @@ layout: default
       let cleanMessage = escapedContent.replace(/```([\s\S]+?)```/g, function(match, code) {
         const id = codeBlocks.length;
 
-        const codeHtml = `<pre style="background: #f6f8fa; color: #24292e; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Fira Code','Consolas',SFMono-Regular, SF Mono, Menlo, monospace; font-size: 15px; line-height: 1.85; border: 1px solid #d1d5da; border-bottom: 3px solid #a1a2a7; border-right: 1px solid #a1a2a7; border-top: 1px solid #a1a2a7; border-left: 1px solid #a1a2a7;">${code.trim()}</pre>`;
+        const codeHtml = `<pre style="background: #f6f8fa; color: #24292e; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Fira Code','Consolas',SFMono-Regular, SF Mono, Menlo, monospace; font-size: 15px; line-height: 1.85; border: 1px solid #d1d5da; border-bottom: 3px solid #a1a2a7; border-right: 1px solid #a1a2a7; border-top: 1px solid #a1a2a7; border-left: 1px solid #a1a2a7;">${code.trim()}</pre>
+`; 
 
         codeBlocks.push(codeHtml);
         return placeholder + id + "___";
       });
 
-      cleanMessage = cleanMessage.replace(/\n/g, '<br>');
+      cleanMessage = cleanMessage.replace(/\n/g, '<br>'); 
       codeBlocks.forEach((block, index) => {
         cleanMessage = cleanMessage.replace(placeholder + index + "___", block);
       });
 
       const subject = `Message from: ${name} (${SITE})`;
       const htmlBody = `
-      <div style="font-family: sans-serif; color: #333; max-width: 820px; border: 1px solid #eee; padding: 20px;">
-        ${LOGO_URL ? `
-          <div style="text-align: center; margin-bottom: 20px;">
-            <img src="${LOGO_URL}" alt="Logo" style="width: 150px; padding: 10px; border-radius: 50%; border: 1px solid #ddd;">
-          </div>
-        ` : ''}
+          <div style="font-family: sans-serif; color: #333; max-width: 820px; border: 1px solid #eee; padding: 20px;">
+            ${LOGO_URL ? `
+            <div style="text-align: center; margin-bottom: 20px;">
+              <img
+                src="${LOGO_URL}"
+                alt="Logo"
+                style="width: 150px; padding: 10px; border-radius: 50%; border: 1px solid #ddd;">
+            </div>
+            ` : ''}
 
-        <h2 style="color: #333; border-bottom: 2px solid #333; padding-bottom: 10px;"></h2>
+            <h2 style="color: #333; border-bottom: 2px solid #333; padding-bottom: 10px;"></h2>
 
-        <div style="margin-top: 20px;">
-          <p><b>Name:</b> ${name}</p>
-          <p><b>From:</b> <a href="mailto:${email}">${email}</a></p>
-          <p><b>Message:</b></p>
-          <div style="background: #fff; font-size: 15px; color: black; border: 1px solid transparent; padding: 15px; border-radius: 5px;">
-            ${cleanMessage}
-          </div>
-        </div>
+            <div style="margin-top: 20px;">
+              <p>
+                <b>Name:</b>
+                ${name}</p>
+              <p>
+                <b>From:</b>
+                <a href="mailto:${email}">${email}</a>
+              </p>
+              <p>
+                <b>Message:</b>
+              </p>
+              <div style="background: #fff; font-size: 15px; color: black; border: 1px solid transparent; padding: 15px; border-radius: 5px;">
+                ${cleanMessage}
+              </div>
+            </div>
 
-        <footer style="margin-top: 30px; font-size: 12px; color: #888; border-top: 1px solid #eee; padding-top: 10px;">
-          This is an automated email sent by your form ${pageUrl} using ${antiRobot}/Google Script.<br>
-          &copy; ${new Date().getFullYear()} ${SITE.replace('https://', '')} - ${new Date().toLocaleString('pt-BR')} - <b>${locationInfo}</b>
-        </footer>
-      </div>`;
+            <footer style="margin-top: 30px; font-size: 12px; color: #888; border-top: 1px solid #eee; padding-top: 10px;">
+              This is an automated email sent by your form ${pageUrl} using ${antiRobot}/Google Script.<br>
+              &copy; ${new Date().getFullYear()} ${SITE.replace('https://', '')} - ${new Date().toLocaleString('pt-BR')} -
+              <b>${locationInfo}</b>
+            </footer>
+          </div>`; 
 
       MailApp.sendEmail({ to: TO_ADDRESS, subject: subject, htmlBody: htmlBody, replyTo: email });
 
@@ -239,21 +270,32 @@ layout: default
       return ContentService.createTextOutput(JSON.stringify({ 'result': 'error', 'debug': err.message })).setMimeType(ContentService.MimeType.JSON);
     }
   }
-  {% endhighlight %}
+        {% endhighlight %}
 
-  <p>2 - Create a <a href="https://console.cloud.google.com/security/recaptcha" target="_blank">reCaptcha</a>
-  on Google and add the reCaptcha <strong>PRIVATE</strong> key to the <strong>Google Apps Script</strong> script property.</p>
-  <p>3 - Copy the reCaptcha <strong>PUBLIC</strong> key and the <strong>Google Apps Script</strong> URL and place them in <strong>_config.yml:</strong></p>
+        <p>2 - Create a
+          <a href="https://console.cloud.google.com/security/recaptcha" target="_blank">reCaptcha</a>
+          on Google and add the reCaptcha
+          <strong>PRIVATE</strong>
+          key to the
+          <strong>Google Apps Script</strong>
+          script property.</p>
+        <p>3 - Copy the reCaptcha
+          <strong>PUBLIC</strong>
+          key and the
+          <strong>Google Apps Script</strong>
+          URL and place them in
+          <strong>_config.yml:</strong>
+        </p>
 
-  {% highlight yml linenos %}
-  google:
+        {% highlight yml linenos %}
+          google: 
     ###
     ###
     apps_script:
       url: "https://script.google.com/macros/s/BuD..."
     recaptcha:
       pubkey: "8Lci194rAAAAA70Sv..."
-  {% endhighlight %}
+        {% endhighlight %}
 
-</div>
-{%- endif -%}
+      </div>
+    {%- endif -%}

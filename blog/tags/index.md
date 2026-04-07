@@ -1,5 +1,5 @@
 ---
-layout: tag
+layout: blog/tags
 author: "William C. Canin"
 order: 0
 title: "tags"

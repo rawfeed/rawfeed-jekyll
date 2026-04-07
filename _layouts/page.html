@@ -1,20 +1,22 @@
 ---
 layout: default
 ---
-
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
 <div id="page" class="page{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
   {%- if page.date or page.reading_time -%}
     <div class="row">
       {%- if page.date -%}
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- if datelang -%}
-          {% datelang page.date format:datelang.format %}
-        {%- else -%}
-          {{ page.date | date: "%b %-d, %Y" }}
-        {%- endif -%}
-      </time>
+        <time
+          class="dt-published"
+          datetime="{{ page.date | date_to_xmlschema }}"
+          itemprop="datePublished">
+          {%- if datelang -%}
+            {% datelang page.date format: datelang.format %}
+          {%- else -%}
+            {{ page.date | date: '%b %-d, %Y' }}
+          {%- endif -%}
+        </time>
       {%- endif -%}
       {%- if page.reading_time -%}
         <div class="page-reading_time">
@@ -30,8 +32,12 @@ layout: default
 
   {%- if page.update_date -%}
     <div class="row page-modified">
-      <time class="dt-modified" datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateModified">
-        <strong>{{ page_data.updated_on | default: "Page updated on" }}:</strong>&nbsp;{% datelang page.update_date format:datelang.format %}
+      <time
+        class="dt-modified"
+        datetime="{{ page.date | date_to_xmlschema }}"
+        itemprop="dateModified">
+        <strong>{{ page_data.updated_on | default: 'Page updated on' }}:</strong>&nbsp;
+        {%- datelang page.update_date format: datelang.format %}
       </time>
     </div>
   {%- endif -%}

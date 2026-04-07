@@ -1,4 +1,4 @@
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
 {%- assign right_style = "float: right; margin-left: 10px;" -%}
 {%- assign left_style  = "float: left; margin-right: 10px;" -%}

@@ -1,12 +1,12 @@
-{%- assign theme_name = "rawfeed" -%}
-{%- assign project_url = "https://rawfeed.github.io/rawfeed-jekyll" -%}
-{%- assign home_url = "/" | relative_url -%}
-{%- assign blog_url = "/blog/" | relative_url -%}
-{%- assign pixels_url = "/pixels/" | relative_url -%}
-{%- assign search_url = "/blog/?search=open" | relative_url -%}
-{%- assign tags_url = "/blog/tags/" | relative_url -%}
-{%- assign feed_url = "/feed.xml" | relative_url -%}
-{%- assign pub_url = "/pub/" -%}
+{%- assign theme_name = 'rawfeed' -%}
+{%- assign project_url = 'https://rawfeed.github.io/rawfeed-jekyll' -%}
+{%- assign home_url = '/' | relative_url -%}
+{%- assign blog_url = '/blog/' | relative_url -%}
+{%- assign pixels_url = '/pixels/' | relative_url -%}
+{%- assign search_url = '/blog/?search=open' | relative_url -%}
+{%- assign tags_url = '/blog/tags/' | relative_url -%}
+{%- assign feed_url = '/feed.xml' | relative_url -%}
+{%- assign pub_url = '/pub/' -%}
 {%- assign head = site.data.options.head -%}
 {%- assign site_title = site.data.options.title -%}
 {%- assign author = site.data.options.author -%}
@@ -24,8 +24,3 @@
 {%- assign datelang = site.data.options.datelang -%}
 {%- assign maintenance = site.data.options.maintenance -%}
 {%- assign reading_time = site.data.options.reading_time -%}
-
-
-
-
-

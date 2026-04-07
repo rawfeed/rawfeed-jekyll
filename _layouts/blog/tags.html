@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{%- include assigned -%}
+
+{%- assign menu_separator = default.separator -%}
+
+<div class="container tags{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
+  {%- if page.description -%}
+    <div class="row">
+      <div class="tags__description">
+        <span>»&nbsp;</span>
+        {{ page.description }}</div>
+    </div>
+  {%- endif -%}
+
+  <div class="row">
+    <h1 class="tags__title">[&nbsp;tags&nbsp;]</h1>
+    <ul class="tags__list">
+      {%- assign tags = site.tags | sort -%}
+      {%- for tag in tags -%}
+        {%- assign tag_name = tag[0] -%}
+        <li class="tags__list__item">
+          <a class="tags__list__link" href="{{ '/blog/tags/' | append: tag_name | relative_url }}">
+            {{ tag_name }}
+          </a>
+        </li>
+        <strong>{{ menu_separator }}</strong>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>

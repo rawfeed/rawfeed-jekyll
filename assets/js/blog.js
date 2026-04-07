@@ -1,7 +1,7 @@
 ---
 ---
 
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById('blog-search__btn');

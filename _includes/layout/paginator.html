@@ -1,4 +1,4 @@
-{% include layout/data.liquid %}
+{% include assigned %}
 
 {%- if page.pagination.enabled == true and site.pagination.enabled == true -%}
   {%- assign total_page = paginator.total_pages -%}
@@ -6,11 +6,10 @@
     <nav>
       <ul class="pagination justify-content-center blog-pagination">
         {%- if paginator.previous_page -%}
-        <li class="page-item">
-          <a class="page-link blog-pagination__newer" href="{{ paginator.previous_page_path | prepend: site.baseurl | prepend: site.url }}">
-            &larr;&nbsp;{{ blog.pagination.newer_text }}
-          </a>
-        </li>
+          <li class="page-item">
+            <a class="page-link blog-pagination__newer" href="{{ paginator.previous_page_path | prepend: site.baseurl | prepend: site.url }}">
+              &larr;&nbsp;{{ blog.pagination.newer_text }}</a>
+          </li>
         {%- endif -%}
 
         {%- if total_page > 1 -%}
@@ -25,11 +24,11 @@
         {%- endif -%}
 
         {%- if paginator.next_page -%}
-        <li class="page-item">
-          <a class="page-link blog-pagination__older" href="{{ paginator.next_page_path | prepend: site.baseurl | prepend: site.url }}">
-            {{ blog.pagination.older_text }}&nbsp;&rarr;
-          </a>
-        </li>
+          <li class="page-item">
+            <a class="page-link blog-pagination__older" href="{{ paginator.next_page_path | prepend: site.baseurl | prepend: site.url }}">
+              {{ blog.pagination.older_text }}&nbsp;&rarr;
+            </a>
+          </li>
         {%- endif -%}
       </ul>
     </nav>

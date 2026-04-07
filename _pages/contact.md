@@ -11,6 +11,6 @@ toc:
 permalink: /contact/
 ---
 
-{%- include details summary="Other forms of contact" -%}
-  **You** can contact me in other ways...
-{%- include enddetails -%}
+{%- include markdown/details summary="Other forms of contact" -%}
+**You** can contact me in other ways...
+{%- include markdown/enddetails -%}

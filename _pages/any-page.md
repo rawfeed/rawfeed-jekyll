@@ -14,11 +14,11 @@ toc:
 permalink: /any-page/
 ---
 
-
+> NOTE: This page created with command: `rawfeed create:page`
 
 # Theology (h1)
 
-***Lorem ipsum*** dolor sit amet, `consectetur` adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, ~~bibendum in velit~~.
+**_Lorem ipsum_** dolor sit amet, `consectetur` adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, ~~bibendum in velit~~.
 
 ## Eschatology
 
@@ -58,8 +58,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eg
 4. Fourth item, fo sheezy my neezy
 5. Fifth item, nested!
 
-1. First item, yo
-2. Second item, dawg
+6. First item, yo
+7. Second item, dawg
    1. Second Subnivel item, dawg
 
 ## List with subtitles
@@ -90,8 +90,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eg
 # Line separators
 
 ---
-***
-___
+
+---
+
+---
 
 # Escaping special characters
 
@@ -108,7 +110,7 @@ ___
 
 # Images or Gifs example
 
-{% include image
+{% include markdown/image
 src= "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXNqM21hNWtxeWtkMTh0ajIwc3prYmt3dmV0a3ptY2RyMDJrejlrYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgG50Fb7Mi0prBC/giphy.gif"
 title="Hello!"
 caption="Example animated GIF — © Giphy"
@@ -121,7 +123,7 @@ border-color="#000" %}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt.
 _Mauris lobortis nulla et felis ullamcorper bibendum._ Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
 
-{% include image
+{% include markdown/image
 src= "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXNqM21hNWtxeWtkMTh0ajIwc3prYmt3dmV0a3ptY2RyMDJrejlrYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgG50Fb7Mi0prBC/giphy.gif"
 title="Hello!"
 caption="Example animated GIF — © Giphy"
@@ -134,7 +136,7 @@ border-color="#000" %}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt.
 _Mauris lobortis nulla et felis ullamcorper bibendum._ Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
 
-{% include image
+{% include markdown/image
 src= "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXNqM21hNWtxeWtkMTh0ajIwc3prYmt3dmV0a3ptY2RyMDJrejlrYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgG50Fb7Mi0prBC/giphy.gif"
 title="Hello!"
 caption="Example animated GIF — © Giphy"
@@ -150,11 +152,11 @@ Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum e
 
 > Note: You must copy the embed link
 
-{% include video title="Video" url="https://www.youtube.com/embed/IcICF_YF_tI?si=2n30rpxhzdEpZH4Y" %}
+{% include markdown/video title="Video" url="https://www.youtube.com/embed/IcICF_YF_tI?si=2n30rpxhzdEpZH4Y" %}
 
 # Tabs example
 
-{% include tabs %}
+{% include markdown/tabs %}
 
 tab1: Installation
 
@@ -164,39 +166,39 @@ tab2: Settings
 
 Tab 2 content — everything is set up normally.
 
-{% include endtabs %}
+{% include markdown/endtabs %}
 
 # Details example
 
-{% include details summary="How install" %}
+{% include markdown/details summary="How install" %}
 
 Here's the **expanded** content — it may have Markdown, code, lists, etc.
 
-{% include enddetails %}
+{% include markdown/enddetails %}
 
 # Alerts
 
 ## Success
 
-{% include alert type="success" content="
+{% include markdown/alert type="success" content="
   Congratulations! Your theme is working.
 "%}
 
 ## Danger
 
-{% include alert type="danger" content="
+{% include markdown/alert type="danger" content="
   Danger! Do not remove this example
 "%}
 
 ## Warning
 
-{% include alert type="warning" content="
+{% include markdown/alert type="warning" content="
   Warning! This is just an example
 "%}
 
 # Charts example
 
-{% include chart
+{% include markdown/chart
   type="bar"
   labels="January,February,March,April,May"
   data="10,13,20,25,50"
@@ -206,7 +208,7 @@ Here's the **expanded** content — it may have Markdown, code, lists, etc.
 
 # Socials networks links
 
-{% include socials pos="center" %}
+{% include markdown/socials pos="center" %}
 
 # Blockcodes
 
@@ -273,7 +275,7 @@ Foo::Bar.new.profile
 {% raw %}
 
 ```liquid
-{% assign foo = page.foo | bar: 'baz' %}
+{%- assign foo = page.foo | bar: 'baz' -%}
 {{ foo }}
 ```
 
@@ -304,32 +306,32 @@ use std::collections::HashMap;
 
 fn main() {
 
-  let workflow: HashMap<&str, HashMap<&str, Vec<&str>>> = HashMap::from([
-    (
-      "My Main Tech Stack",
-      HashMap::from([
-        ("Languages", vec!["Rust", "Python", "Shell Script"]),
-        ("Frontend", vec!["HTML", "CSS", "SASS", "Bootstrap", "Jekyll"]),
-        ("Database", vec!["PostGreSQL", "MySQL"]),
-        ("Tools", vec!["VSCode", "Vim", "JetBrains IDEs", "Git"]),
-        ("OS", vec!["Linux", "Windows"]),
-      ]),
-    ),
-  ]);
+let workflow: HashMap<&str, HashMap<&str, Vec<&str>>> = HashMap::from([
+(
+"My Main Tech Stack",
+HashMap::from([
+("Languages", vec!["Rust", "Python", "Shell Script"]),
+("Frontend", vec!["HTML", "CSS", "SASS", "Bootstrap", "Jekyll"]),
+("Database", vec!["PostGreSQL", "MySQL"]),
+("Tools", vec!["VSCode", "Vim", "JetBrains IDEs", "Git"]),
+("OS", vec!["Linux", "Windows"]),
+]),
+),
+]);
 
-  let yt_link: &str = "https://www.youtube.com/c/williamcanin";
+let yt_link: &str = "https://www.youtube.com/c/williamcanin";
 
-  println!("Hello, World!");
-  println!("My name is William, and I am a programming and hacking enthusiast.");
+println!("Hello, World!");
+println!("My name is William, and I am a programming and hacking enthusiast.");
 
-  for (key, value) in &workflow {
-    println!("{}:", key);
-    for (inner_key, inner_value) in value {
-        println!("  {}: {:?}", inner_key, inner_value);
-    }
-  }
+for (key, value) in &workflow {
+println!("{}:", key);
+for (inner_key, inner_value) in value {
+println!(" {}: {:?}", inner_key, inner_value);
+}
+}
 
-  println!("YouTube::> {}", yt_link);
+println!("YouTube::> {}", yt_link);
 
 }
 {% endhighlight %}

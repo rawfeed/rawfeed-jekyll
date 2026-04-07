@@ -1,4 +1,4 @@
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
 <canvas
   class="chart{% if default.rounding %} rounding-plugins{% endif %}"

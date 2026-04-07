@@ -1,65 +1,67 @@
 <!-- Theme for Jekyll.rb by: © rawfeed <https://rawfeed.github.io> -->
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
 {%- if maintenance.enable != true -%}
+  {%- assign index = site.pages | where: 'path', 'index.md' | first -%}
 
-{%- assign index = site.pages | where: "path", "index.md" | first -%}
+  {%- if home.terminal.enable and page.url == '/' and index.layout == 'home' -%}
+    {%- assign default_term = ' default-terminal' -%}
+    {%- assign default_style = '' -%}
+  {%- else -%}
+    {%- assign default_term = '' -%}
+    {%- assign width = default.width | default: '860' -%}
+    {%- assign default_style = 'max-width: ' | append: width | append: 'px !important;' -%}
+  {%- endif -%}
 
-{%- if home.terminal.enable and page.url == "/" and index.layout == "home" -%}
-  {%- assign default_term = " default-terminal" -%}
-  {%- assign default_style = "" -%}
-{%- else -%}
-  {%- assign default_term = "" -%}
-  {%- assign width = default.width | default: '860' -%}
-  {%- assign default_style = "max-width: " | append: width | append: "px !important;" -%}
-{%- endif -%}
+  <!doctype html>
+  <html
+    id="top"
+    lang="{{ default.lang | default: 'en-US' }}"
+    data-theme="light">
+    <!-- head -->
+    {%- include layout/head.html -%}
+    <!-- head -->
 
-<!DOCTYPE html>
-<html id="top" lang="{{ default.lang | default: 'en-US' }}" data-theme="light">
+    <!-- body -->
+    <body
+      data-layout="{{ page.layout | default: '' }}"
+      data-terminal-enabled="{{ home.terminal.enable | default: false }}"
+      style="
+        font-family: {{ default.font.style }} !important;
+        font-size: {{ default.font.size }} !important;
+        letter-spacing: {{ default.font.spacing }} !important;
+        user-select: {{ default.user_select | default: 'none' }};
+      ">
+      <!-- container -->
+      <div class="container-fluid">
+        {%- include layout/header.html -%}
 
-  <!-- head -->
-  {%- include layout/head.html -%}
-  <!-- head -->
+        <div class="default{{default_term}}" style="{{default_style}}">
+          <main class="content">{{ content }}</main>
+        </div>
 
-  <!-- body -->
-  <body data-layout="{{ page.layout | default: '' }}"
-  data-terminal-enabled="{{ home.terminal.enable | default: false }}"
-  style="
-  font-family: {{ default.font.style }} !important;
-  font-size: {{ default.font.size }} !important;
-  letter-spacing: {{ default.font.spacing }} !important;
-  user-select: {{ default.user_select | default: 'none' }};">
-
-    <!-- container -->
-    <div class="container-fluid">
-      {%- include layout/header.html -%}
-
-      <div class="default{{default_term}}" style="{{default_style}}">
-        <main class="content">{{ content }}</main>
+        {%- include layout/footer.html -%}
       </div>
+      <!-- container -->
 
-      {%- include layout/footer.html -%}
-    </div>
-    <!-- container -->
-
+      <!-- scripts -->
+      <script src="{{ '/assets/vendors/bootstrap-5.2.3/js/bootstrap.bundle.min.js' | relative_url }}"></script>
+      <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
+      {%- if page.url contains '/blog/' -%}
+        <script src="{{ '/assets/vendors/fuse.min.js' | relative_url }}" defer></script>
+      {%- endif -%}
+      <script src="{{ '/assets/js/blog.js' | relative_url }}"></script>
+      <script src="{{ '/assets/js/home.js' | relative_url }}"></script>
+      <script src="{{ '/assets/js/page.js' | relative_url }}"></script>
+      <script src="{{ '/assets/js/contact.js' | relative_url }}"></script>
+      <script src="{{ '/assets/js/donate.js' | relative_url }}"></script>
+      {%- if page.toc.enable -%}
+        <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
+      {%- endif -%}
     <!-- scripts -->
-    <script src="{{ '/assets/vendors/bootstrap-5.2.3/js/bootstrap.bundle.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
-    {% if page.url contains "/blog/" %}
-      <script src="{{ '/assets/vendors/fuse.min.js' | relative_url }}" defer></script>
-    {% endif %}
-    <script src="{{ '/assets/js/blog.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/home.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/page.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/contact.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/donate.js' | relative_url }}"></script>
-    {%- if page.toc.enable -%}
-    <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
-    {%- endif -%}
-    <!-- scripts -->
-  </body>
+    </body>
   <!-- body -->
-</html>
+  </html>
 
 {%- else -%}
   {%- include layout/maintenance.html -%}

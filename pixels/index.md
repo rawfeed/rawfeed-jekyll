@@ -1,5 +1,5 @@
 ---
-layout: pixels
+layout: pixels/index
 author: "William C. Canin"
 title: "Pixels"
 description: |

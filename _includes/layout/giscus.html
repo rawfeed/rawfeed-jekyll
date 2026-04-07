@@ -1,15 +1,12 @@
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
-{%- if page.comments != false
-  and jekyll.environment == 'production'
-  and blog.post.comments.provider == 'giscus'
-  and blog.post.comments.giscus.repo != ""
-  and blog.post.comments.giscus.category_id != "" -%}
-
+{%- if page.comments != false and jekyll.environment == 'production' and blog.post.comments.provider == 'giscus' and blog.post.comments.giscus.repo != '' and blog.post.comments.giscus.category_id != ''
+-%}
   <div id="giscus" class="row comments">
-    <h1 class="comments-title">[&nbsp;{{ blog.post.comments.title | default: "comments" }}&nbsp;]</h1>
+    <h1 class="comments-title">[&nbsp;{{ blog.post.comments.title | default: 'comments' }}&nbsp;]</h1>
     <div class="row comments-content">
-      <script src="https://giscus.app/client.js"
+      <script
+        src="https://giscus.app/client.js"
         data-repo="{{ blog.post.comments.giscus.repo }}"
         data-repo-id="{{ blog.post.comments.giscus.repo_id }}"
         data-repo-category="{{ blog.post.comments.giscus.repo_category }}"
@@ -22,8 +19,7 @@
         data-theme="{{ blog.post.comments.giscus.theme_light | default: 'light' }}"
         data-lang="{{ blog.post.comments.giscus.lang | default: 'en' }}"
         crossorigin="anonymous"
-        async>
-      </script>
+        async></script>
     </div>
   </div>
 {%- endif -%}

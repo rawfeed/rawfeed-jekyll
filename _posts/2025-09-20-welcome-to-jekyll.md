@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blog/post
 title: "Welcome to Jekyll!"
 description: "Welcome page"
 author: "William Canin"

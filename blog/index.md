@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: blog/index
 author: "William C. Canin"
 order: -1
 title: "blog"

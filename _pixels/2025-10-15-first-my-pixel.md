@@ -1,5 +1,5 @@
 ---
-layout: pixel
+layout: pixels/post
 author: "William C. Canin"
 title: "Luffy smiling"
 description: "Luffy is in a good mood"
@@ -29,4 +29,4 @@ through different "Gears"; this is reflected in his bounty, which is used to mea
 poses to the World Government, which forbids piracy. Luffy clashes with the three kinds of great
 powers in One Piece: the World Government's Marines and its allied privateers known as the
 Seven Warlords of the Sea, and the most influential pirate captains known as the Four Emperors.
-[font](https://en.wikipedia.org/wiki/Monkey_D._Luffy){:target="_blank"}
+[font](https://en.wikipedia.org/wiki/Monkey_D._Luffy){:target="\_blank"}

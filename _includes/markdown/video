@@ -1,4 +1,4 @@
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
 
 <div class="video-wrapper{% if default.rounding %} rounding-plugins{% endif %}">

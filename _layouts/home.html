@@ -1,10 +1,9 @@
 ---
 layout: default
 ---
+{%- include assigned -%}
 
-{%- include layout/data.liquid -%}
-
-{%- if home.terminal.enable and page.url == "/" -%}
+  {%- if home.terminal.enable and page.url == '/' -%}
   <div class="d-flex justify-content-center align-items-center mb-5 home home-terminal">
     <div id="terminal" class="terminal">
       <div class="terminal-header">
@@ -22,17 +21,21 @@ layout: default
 
         <div id="terminal-screen--socials" style="display:none">
           {%- assign menu_separator = default.separator -%}
-          {% assign links = socials.links %}
-          {% for item in links %}
-            <a class="socials-link" title="{{ item.title }}" href="{{ item.url }}" target="_blank">{{ item.title }}</a><strong class="separator">{{menu_separator}}</strong>
-          {% endfor %}
+          {%- assign links = socials.links -%}
+          {%- for item in links -%}
+            <a
+              class="socials-link"
+              title="{{ item.title }}"
+              href="{{ item.url }}"
+              target="_blank">{{ item.title }}</a>
+            <strong class="separator">{{ menu_separator }}</strong>
+          {%- endfor -%}
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- For responsive/mobile (disable terminal) --->
+  <!-- For responsive/mobile (disable terminal) - -->
   <div class="home-text">
     <div class="container home">
       <div class="row">
@@ -42,7 +45,7 @@ layout: default
         </div>
       </div>
     </div>
-    {%- include socials pos="center" -%}
+    {%- include markdown/socials pos="center" -%}
   </div>
 
 {%- else -%}
@@ -57,11 +60,11 @@ layout: default
 {%- endif -%}
 
 {%- if home.terminal.enable == false -%}
-  {%- if page.url == "/" and socials.enable -%}
+  {%- if page.url == '/' and socials.enable -%}
     {%- if page.text_center -%}
-      {%- include socials pos="center" -%}
+      {%- include markdown/socials pos="center" -%}
     {%- else -%}
-      {%- include socials pos="left" -%}
+      {%- include markdown/socials pos="left" -%}
     {%- endif -%}
   {%- endif -%}
 {%- endif -%}

@@ -1,8 +1,7 @@
 ---
 layout: default
 ---
-
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
 {%- if page.pagination.enabled == true and site.pagination.enabled == true -%}
   {%- assign count_posts = paginator.total_posts -%}
@@ -17,10 +16,12 @@ layout: default
 
   <div id="posts" class="row">
     {%- if page.description -%}
-      <div class="blog-description"><span>»&nbsp;</span>{{ page.description | markdownify }}</div>
+      <div class="blog-description">
+        <span>»&nbsp;</span>
+        {{ page.description | markdownify }}</div>
     {%- endif -%}
     {%- if page.title -%}
-      <h2 class="blog-subtitle">[&nbsp;{{ blog.subtitle | default: "posts" }}:&nbsp;&nbsp;{{ count_posts }}&nbsp;]</h2>
+      <h2 class="blog-subtitle">[&nbsp;{{ blog.subtitle | default: 'posts' }}:&nbsp;&nbsp;{{ count_posts }}&nbsp;]</h2>
     {%- endif -%}
 
     {%- if site.posts.size > 0 -%}
@@ -28,21 +29,21 @@ layout: default
         {%- if page.pagination.enabled == true and site.pagination.enabled == true -%}
           {%- assign posts = paginator.posts -%}
         {%- else -%}
-          {% assign posts = site.posts %}
+          {%- assign posts = site.posts -%}
         {%- endif -%}
 
         {%- for post in posts -%}
-        <li class="blog-list__item">
-          {%- if datelang -%}
-            <span class="blog-list__meta">{% datelang post.date format:datelang.format %}</span>&nbsp;»&nbsp;
-          {%- else -%}
-            <span class="blog-list__meta">{{ post.date | date: "%b %-d, %Y" }}</span>&nbsp;»&nbsp;
-          {%- endif -%}
-          <a class="blog-list__link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-          {%- if post.draft -%}
-            <span class="draft-badge">[&nbsp;this is a draft&nbsp;]</span>
-          {%- endif -%}
-        </li>
+          <li class="blog-list__item">
+            {%- if datelang -%}
+              <span class="blog-list__meta">{% datelang post.date format: datelang.format %}</span>&nbsp;»&nbsp;
+            {%- else -%}
+              <span class="blog-list__meta">{{ post.date | date: '%b %-d, %Y' }}</span>&nbsp;»&nbsp;
+            {%- endif -%}
+            <a class="blog-list__link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+            {%- if post.draft -%}
+              <span class="draft-badge">[&nbsp;this is a draft&nbsp;]</span>
+            {%- endif -%}
+          </li>
         {%- endfor -%}
       </ul>
     {%- endif -%}

@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{%- include layout/data.liquid -%}
+{%- include assigned -%}
 
 <div class="licenses{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
   <h1 class="licenses-title">{{ page.title | capitalize }}</h1>

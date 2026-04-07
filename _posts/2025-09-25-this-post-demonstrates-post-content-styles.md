@@ -1,17 +1,15 @@
 ---
-layout: post
+layout: blog/post
 title: "Content styles - Demonstration in the post"
 description: "This post demonstrates post content styles"
 author: "William Canin"
 date: 2025-09-22 17:24:04 -0300
 update_date: 2025-09-28 07:16:01 -0300
 comments: true
-tags: [example,style,include,chart]
+tags: [example, style, include, chart]
 toc:
   enable: true
 ---
-
-
 
 # Theology (h1)
 
@@ -85,7 +83,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eg
 
 # Tabs example
 
-{% include tabs %}
+{% include markdown/tabs %}
 
 tab1: Installation
 
@@ -95,31 +93,31 @@ tab2: Settings
 
 Tab 2 content — everything is set up normally.
 
-{% include endtabs %}
+{% include markdown/endtabs %}
 
 # Alerts
 
 ## Success
 
-{% include alert type="success" content="
+{% include markdown/alert type="success" content="
   Congratulations! Your theme is working.
 "%}
 
 ## Danger
 
-{% include alert type="danger" content="
+{% include markdown/alert type="danger" content="
   Danger! Do not remove this example
 "%}
 
 ## Warning
 
-{% include alert type="warning" content="
+{% include markdown/alert type="warning" content="
   Warning! This is just an example
 "%}
 
 # Charts example
 
-{% include chart
+{% include markdown/chart
   type="bar"
   labels="January,February,March,April,May"
   data="10,13,20,25,50"
@@ -129,4 +127,4 @@ Tab 2 content — everything is set up normally.
 
 # Socials networks links
 
-{% include socials pos="center" %}
+{% include markdown/socials pos="center" %}
