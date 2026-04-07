@@ -43,7 +43,7 @@ module Rawfeed
       answer
     end
 
-    def self.enginer(directory, message, type)
+    def self.engineer(directory, message, type)
       self.create_directory(directory)
       # abort("Rake aborted: #{directory} directory not found.") unless FileTest.directory?(directory)
       begin

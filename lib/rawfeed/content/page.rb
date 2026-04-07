@@ -6,7 +6,7 @@ require_relative "../core/utils"
 module Rawfeed
   class Page
     def self.page_create
-      array = Rawfeed::Utils.enginer(Rawfeed::CONFIG['PAGES_DIR'], 'Enter new page title:', 'page')
+      array = Rawfeed::Utils.engineer(Rawfeed::CONFIG['PAGES_DIR'], 'Enter new page title:', 'page')
       puts ":: Creating new page: #{array[3]}"
 
       permalink = array[0].downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')

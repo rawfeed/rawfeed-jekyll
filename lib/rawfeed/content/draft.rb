@@ -6,7 +6,7 @@ require_relative "../core/utils"
 module Rawfeed
   class Draft
     def self.draft_create
-      array = Rawfeed::Utils.enginer(Rawfeed::CONFIG['DRAFTS_DIR'], 'Enter new draft title:', 'draft')
+      array = Rawfeed::Utils.engineer(Rawfeed::CONFIG['DRAFTS_DIR'], 'Enter new draft title:', 'draft')
 
       puts "Creating new draft: #{array[3]}"
 

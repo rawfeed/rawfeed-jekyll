@@ -6,7 +6,7 @@ require_relative "../core/utils"
 module Rawfeed
   class Pixel
     def self.pixel_create
-      array = Rawfeed::Utils.enginer(Rawfeed::CONFIG['PIXELS_DIR'], 'Enter new pixel title:', 'pixel')
+      array = Rawfeed::Utils.engineer(Rawfeed::CONFIG['PIXELS_DIR'], 'Enter new pixel title:', 'pixel')
 
       puts "Creating new pixel: #{array[3]}"
 
