@@ -2,19 +2,15 @@
   "recommendations": [
     "sissel.shopify-liquid", // Full Liquid support
     "shopify.theme-check-vscode", // Liquid/Shopify/Jekyll Linter and Validation
+    "shopify.ruby-lsp", // Ruby Language Server (suporte Ruby)
     "seunlanlege.action-buttons", // VSCode Actions Buttons
-    "neilding.language-liquid", // Syntax Extra Liquid
-    "shortall.html-liquid-preview", // HTML+Liquid Preview
     "redhat.vscode-yaml", // Front Matter YAML
     "yzhang.markdown-all-in-one", // Markdown with shortcuts and preview
     "davidanson.vscode-markdownlint", // Markdown Linter
     "esbenp.prettier-vscode", // Consistent formatting
-    "shopify.ruby-lsp", // Ruby Language Server (suporte Ruby)
-    "castwide.solargraph", // A Ruby language server
-    "castwide.solargraph", // Ruby autocompletion, goto definition
-    "syler.sass-indented", // Sass
-    "xabikos.javascriptsnippets", // Code snippets for JavaScript in ES6 syntax
     "gruntfuggly.todo-tree", // --TODO--
-    "zainchen.json", // Json
+    "editorconfig.editorconfig", // EditorConfig
+    "ecmel.vscode-html-css", // HTML & CSS Support
+    "christian-kohler.path-intellisense",
   ]
 }
