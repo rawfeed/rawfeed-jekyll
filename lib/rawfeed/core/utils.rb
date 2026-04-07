@@ -47,7 +47,7 @@ module Rawfeed
       self.create_directory(directory)
       # abort("Rake aborted: #{directory} directory not found.") unless FileTest.directory?(directory)
       begin
-        print "#{message}\n> ".blue
+        print "#{message}\n>>> ".blue
         title = STDIN.gets.chomp
       rescue Interrupt
         puts "\n[!] Approached by the user".yellow

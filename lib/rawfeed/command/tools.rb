@@ -36,7 +36,10 @@ module Rawfeed
       puts "  create:draft      Create a draft for a post"
       puts "  create:page       Create a page"
       puts "  create:pixel      Create a post for pixel"
-      puts "  create:resume     Create the resume page (CV)"
+      puts "  restore:resume    Restore the resume page (CV)"
+      puts "  restore:donate    Restore the donation page"
+      puts "  restore:contact   Restore the contact page"
+      puts "  restore:license   Restore the license page"
       puts "  post:draft        Opens a selector to move drafts to posting"
       puts "\nLayout Commands:".bold
       puts "  home:about        Set the home page as the about page"

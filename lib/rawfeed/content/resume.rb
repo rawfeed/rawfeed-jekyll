@@ -7,7 +7,7 @@ require_relative "../core/utils"
 
 module Rawfeed
   class Resume
-    def self.resume_page_create
+    def self.restore_page
       Rawfeed::Utils.create_directory(Rawfeed::CONFIG['PAGES_DIR'])
       slug = "resume"
       filepath = File.join(Rawfeed::CONFIG['PAGES_DIR'], "#{slug}.#{CONFIG['markdown_extension']}")
@@ -27,8 +27,10 @@ module Rawfeed
         file.puts("---")
         file.puts("layout: resume")
         file.puts("author: # \"Your Name\"")
-        file.puts("order: 4")
         file.puts("title: Resume")
+        file.puts("order: 4")
+        file.puts("emoji: 📜")
+        file.puts("in_menu: true")
         file.puts("published: false")
         file.puts("toc:")
         file.puts("  enable: false")
@@ -42,21 +44,21 @@ module Rawfeed
       puts "[!] Note: Remember to set \"published\" to \"true\" to publish.".yellow
 
     end
-    def self.resume_create
-      self.resume_page_create
-      Rawfeed::Utils.create_directory(Rawfeed::CONFIG['RESUME_DIR'])
-      spec = Gem::Specification.find_by_name("rawfeed")
-      theme_path = spec.gem_dir
-      src = File.join(theme_path, "_data", "resume.yml")
-      dest = File.join(Dir.pwd, Rawfeed::CONFIG['RESUME_DIR'])
+    # def self.restore
+    #   self.restore_page
+    #   Rawfeed::Utils.create_directory(Rawfeed::CONFIG['RESUME_DIR'])
+    #   spec = Gem::Specification.find_by_name("rawfeed")
+    #   theme_path = spec.gem_dir
+    #   src = File.join(theme_path, "_data", "resume.yml")
+    #   dest = File.join(Dir.pwd, Rawfeed::CONFIG['RESUME_DIR'])
 
-      if File.exist?(File.join(dest, "resume.yml"))
-        answer = Rawfeed::Utils.confirm("File #{File.join(dest, "resume.yml")} already exists. Do you want to overwrite?")
-        abort("Creation of #{File.join(dest, "resume.yml")} canceled by user!") if answer == 'n'
-      end
-      FileUtils.cp(src, dest)
-      puts "[*] Created #{File.join(dest, "resume.yml")} successfully!".green
-      puts "[!] Note: Configure your #{File.join(dest, "resume.yml")} settings".yellow
-    end
+    #   if File.exist?(File.join(dest, "resume.yml"))
+    #     answer = Rawfeed::Utils.confirm("File #{File.join(dest, "resume.yml")} already exists. Do you want to overwrite?")
+    #     abort("Creation of #{File.join(dest, "resume.yml")} canceled by user!") if answer == 'n'
+    #   end
+    #   FileUtils.cp(src, dest)
+    #   puts "[*] Created #{File.join(dest, "resume.yml")} successfully!".green
+    #   puts "[!] Note: Configure your #{File.join(dest, "resume.yml")} settings".yellow
+    # end
   end
 end

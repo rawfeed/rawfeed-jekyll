@@ -45,9 +45,17 @@ module Rawfeed
         when "draft" then Rawfeed::Draft.draft_create(*args)
         when "pixel" then Rawfeed::Pixel.pixel_create(*args)
         when "page"  then Rawfeed::Page.page_create(*args)
-        when "resume" then Rawfeed::Resume.resume_create(*args)
         else
           puts "Unknown create task: #{task}"
+        end
+      when "restore"
+        case task
+          when "donate" then Rawfeed::Donate.restore_page
+          when "contact" then Rawfeed::Contact.restore_page
+          when "licenses" then Rawfeed::Licenses.restore_page
+          when "resume" then Rawfeed::Resume.restore_page
+        else
+          puts "Unknown restore task: #{task}"
         end
       when "list"
         case task

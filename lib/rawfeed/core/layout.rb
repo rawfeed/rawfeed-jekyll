@@ -21,7 +21,7 @@ module Rawfeed
     def self.home_blog
       file = "index.md"
       content = File.read(file)
-      updated = content.gsub(/^layout:\s*\S+$/, "layout: blog")
+      updated = content.gsub(/^layout:\s*\S+$/, "layout: blog/index")
       File.write(file, updated)
 
        puts "Home page changed to 'blog' successfully!".green
