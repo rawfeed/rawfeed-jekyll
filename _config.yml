@@ -45,7 +45,7 @@ jekyll-archives:
   enabled:
     - tags
   layouts:
-    tag: tag_posts
+    tag: blog/posts_by_tag
   permalinks:
     tag: "/blog/tags/:name/"
 include: ["_pages"]
