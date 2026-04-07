@@ -40,9 +40,25 @@ After installing the requirements, prepare the environment as follows:
 git clone https://github.com/rawfeed/rawfeed-jekyll.git
 cd rawfeed-jekyll
 export RAWFEED_DEV_PATH="$PWD"
-rawfeed install
-rawfeed serve
+bundle exec rawfeed serve
 ```
+
+> [!TIP]
+> You can use `direnv` to manage your environment variables through a `.envrc` file in the project root.
+>
+> Linux / macos:
+>
+> ```bash
+> echo "export RAWFEED_DEV_PATH=\"\$PWD\"" > .envrc
+> direnv allow
+> ```
+>
+> Windows (PowerShell):
+>
+> ```bash
+> "export RAWFEED_DEV_PATH=`"$PWD`"" | Out-File -Encoding utf8 .envrc
+> direnv allow
+> ```
 
 ## Generate the gem
 
