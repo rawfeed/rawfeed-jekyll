@@ -10,13 +10,13 @@ module Rawfeed
       end
     end
 
-    # Função genérica para copiar arquivos ou pastas
-    # Se dest for um diretório aninhado, cria os diretórios pai automaticamente
+    # Generic function to copy files or folders
+    # If dest is a nested directory, it automatically creates the parent directories
     def self.copy_items(items, dest_path)
       items.each do |src, dest_rel|
         dest = File.join(dest_path, dest_rel)
 
-        # cria diretório pai se não existir
+        # Creates parent directory if it doesn't exist.
         FileUtils.mkdir_p(File.dirname(dest))
 
         if File.exist?(src) || Dir.exist?(src)
@@ -36,7 +36,7 @@ module Rawfeed
       FileUtils.mkdir_p(path)
       gem_dir = gem_root
 
-      # --- arquivos e pastas para copiar ---
+      # --- files and folders to copy ---
       items_to_copy = [
         [File.join(gem_dir, "_config.yml"), "_config.yml"],
         [File.join(gem_dir, "index.md"), "index.md"],
