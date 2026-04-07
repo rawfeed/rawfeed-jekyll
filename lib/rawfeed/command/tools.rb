@@ -31,6 +31,10 @@ module Rawfeed
         puts "  build [OPTIONS]   Build the site"
         puts "  serve [OPTIONS]   Run local development server"
         puts "  minify            Minify JS and HTML in _site/"
+        puts "  backup            Create a backup of your site"
+        puts "                    Options:"
+        puts "                      -d, --destination PATH  Save backup to a specific directory"
+        puts "                      -a, --append PATH       Add extra files/folders to backup"
         puts "  clean --cache     Clean Jekyll cache"
         puts "  clean --all       Clean entire project"
         puts "\nContent Generators:".bold
