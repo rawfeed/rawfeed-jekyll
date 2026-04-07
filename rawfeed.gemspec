@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["William C. Canin"]
   spec.email         = ["hello.williamcanin@gmail.com"]
 
-  spec.summary         = "A raw Jekyll theme for minimalists"
+  spec.summary         = "A minimal, batteries-included Jekyll CMS"
   spec.homepage        = "https://rawfeed.github.io/rawfeed-jekyll"
   spec.license         = "MIT"
 
