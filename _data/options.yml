@@ -214,7 +214,7 @@ blog:
         lang: "en" # en,pt,..
       disqus:
         shortname: "" # your shortname disqus
-    tags_posts:
+    posts_by_tags:
       title: "posts by tag"
 
 # section: [pixels]
@@ -330,4 +330,3 @@ donate:
         Make an anonymous Bitcoin donation using a On-Chain address (Binance).
       address: "bc1qluh2mrchmtrwedspwhtta8ccgzsl9jqdr47f2p"
       qrcode: "/assets/images/donate/qrcode_btc_binance.jpg"
-
