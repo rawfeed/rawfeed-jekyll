@@ -60,13 +60,13 @@ sass:
   sass_dir: _sass
   style: compressed
 exclude:
-  - node_modules
   - .bundle-cache
   - Gemfile
   - Gemfile.lock
   - README.md
 
   # files below: developer mode
+  - node_modules
   - docs
   - exe
   - rawfeed.gemspec
@@ -74,3 +74,4 @@ exclude:
   - LICENSE
   - tmp
   - lib
+  - pkg
