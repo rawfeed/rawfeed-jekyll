@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById('blog-search__input');
   const blogPosts = document.getElementById('posts');
   const searchResults = document.getElementById('blog-search__results');
-  const searchResultsWrapper = document.getElementById('blog-search__results-wrapper');
+  const searchResultsWrap = document.getElementById('blog-search__results-wrap');
   const btnSearchClean = document.getElementById('blog-search__btn-clean');
-  const blogSeachInput = document.getElementById('blog-search__input');
+  const blogSearchInput = document.getElementById('blog-search__input');
 
 
   if (!btn || !box) return;
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         box.removeEventListener('transitionend', onOpened);
       }
     });
-    blogSeachInput.focus();
+    blogSearchInput.focus();
   };
 
   const closeSearch = () => {
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       closeSearch();
       searchInput.value = '';
       blogPosts.classList.remove('disabled');
-      searchResultsWrapper.classList.add('disabled');
+      searchResultsWrap.classList.add('disabled');
     } else {
       openSearch();
     }
@@ -75,11 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
   --------------------------------------------------------------------------------------------------
   */
   function clearSearch() {
-    blogSeachInput.value = '';
+    blogSearchInput.value = '';
     blogPosts.classList.remove('disabled');
     searchResults.classList.add('disabled');
-    searchResultsWrapper.classList.add('disabled');
-    blogSeachInput.focus();
+    searchResultsWrap.classList.add('disabled');
+    blogSearchInput.focus();
   }
   btnSearchClean.addEventListener('click', clearSearch);
   document.addEventListener('keydown', (e) => {
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (query.length > 0) {
       blogPosts.classList.add('disabled');
       searchResults.classList.remove('disabled');
-      searchResultsWrapper.classList.remove('disabled');
+      searchResultsWrap.classList.remove('disabled');
 
       if (fuse) {
         const results = fuse.search(query);
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       blogPosts.classList.remove('disabled');
       searchResults.classList.add('disabled');
-      searchResultsWrapper.classList.add('disabled');
+      searchResultsWrap.classList.add('disabled');
       searchResults.innerHTML = '';
     }
   });
