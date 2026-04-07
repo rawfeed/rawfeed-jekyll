@@ -27,7 +27,7 @@ module Rawfeed
 
         args = parse_args(@markup, context)
         date_input = args[:date] || page["date"] || page[:date]
-        format = args[:format] || "%b %-d, %Y"
+        format = args[:format] || options.dig("datelang", "format") || "%b %-d, %Y"
 
         return "[datelang: no date]" unless date_input && date_input.to_s.strip != ""
 

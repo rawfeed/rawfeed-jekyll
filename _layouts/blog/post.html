@@ -23,7 +23,7 @@ layout: default
             datetime="{{ page.date | date_to_xmlschema }}"
             itemprop="datePublished">
             {%- if datelang -%}
-              {% datelang page.date format: datelang.format %}
+              {% datelang page.date %}
             {%- else -%}
               {{ page.date | date: "%b %-d, %Y" }}
             {%- endif -%}
@@ -61,7 +61,7 @@ layout: default
           itemprop="dateModified">
           <strong>{{ blog.post.updated_on | default: "Post updated on" }}:</strong>&nbsp;
           {%- if datelang -%}
-            {% datelang page.update_date format: datelang.format %}
+            {% datelang page.update_date %}
           {%- else -%}
             {{ page.date | date: "%b %-d, %Y" }}
           {%- endif -%}

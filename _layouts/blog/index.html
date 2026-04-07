@@ -35,7 +35,7 @@ layout: default
         {%- for post in posts -%}
           <li class="blog-list__item">
             {%- if datelang -%}
-              <span class="blog-list__meta">{% datelang post.date format: datelang.format %}</span>&nbsp;»&nbsp;
+              <span class="blog-list__meta">{% datelang post.date %}</span>&nbsp;»&nbsp;
             {%- else -%}
               <span class="blog-list__meta">{{ post.date | date: '%b %-d, %Y' }}</span>&nbsp;»&nbsp;
             {%- endif -%}
