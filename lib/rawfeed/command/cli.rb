@@ -15,7 +15,7 @@ module Rawfeed
       first_arg = args.shift
 
       # Internal tools
-      if %w[minify clean help new install].include?(first_arg)
+      if %w[minify clean help new install build serve].include?(first_arg)
         case first_arg
         when "minify"
           Rawfeed::Tools.minify
@@ -28,6 +28,10 @@ module Rawfeed
           Rawfeed::Installer.create_new_site(site_path)
         when "install"
           Rawfeed::Tools.install
+        when "build"
+          Rawfeed::Tools.build(*args)
+        when "serve"
+          Rawfeed::Tools.serve(*args)
         end
         return
       end
