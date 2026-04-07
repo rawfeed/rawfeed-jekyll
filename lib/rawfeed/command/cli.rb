@@ -81,9 +81,13 @@ module Rawfeed
         when "enable"  then
           Rawfeed::Layout.blog_index(true)
           Rawfeed::Layout.tags_index(true)
+          Rawfeed::Layout::change_yml("defaults", "published", true, "_posts")
+          Rawfeed::Layout.change_yml("pagination", "enabled", true)
         when "disable" then
           Rawfeed::Layout.blog_index(false)
           Rawfeed::Layout.tags_index(false)
+          Rawfeed::Layout::change_yml("defaults", "published", false, "_posts")
+          Rawfeed::Layout.change_yml("pagination", "enabled", false)
         else
           puts "Unknown blog task: #{task}"
         end
