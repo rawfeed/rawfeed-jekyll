@@ -64,17 +64,13 @@ exclude:
   - .bundle-cache
   - Gemfile
   - Gemfile.lock
-  - package-lock.json
-  - package.json
   - README.md
-  - Rakefile
 
   # files below: developer mode
   - docs
+  - exe
   - rawfeed.gemspec
   - CODE_OF_CONDUCT.md
   - LICENSE
-  - pkg
   - tmp
-  - tools
   - lib
