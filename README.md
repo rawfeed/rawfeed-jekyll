@@ -34,13 +34,17 @@ iex (Invoke-WebRequest -Uri "https://rawfeed.github.io/install.ps1" -UseBasicPar
 
 # For developer
 
-## Clone
+After installing the requirements, prepare the environment as follows:
 
 ```shell
-git clone https://github.com/rawfeed/rawfeed-jekyll.git; cd rawfeed-jekyll; npm install
+git clone https://github.com/rawfeed/rawfeed-jekyll.git
+cd rawfeed-jekyll
+export RAWFEED_DEV_PATH="$PWD"
+rawfeed install
+rawfeed serve
 ```
 
-## Gem
+## Generate the gem
 
 **(1)** - Compile the gem:
 
@@ -48,13 +52,13 @@ git clone https://github.com/rawfeed/rawfeed-jekyll.git; cd rawfeed-jekyll; npm 
 gem build rawfeed.gemspec
 ```
 
-**(2)** - Publish the gem:
+## Publish the gem
 
 ```shell
 gem push rawfeed-<VERSION>.gem
 ```
 
-For more tasks, see: `npm run rake:tasks`
+> Note: Option available only to the gem maintainer (William C. Canin) in [**RubyGems**](https://rubygems.org/).
 
 # Changelog
 
