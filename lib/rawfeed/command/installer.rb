@@ -82,6 +82,13 @@ module Rawfeed
 
       copy_items(items_to_copy, actual_path, force)
 
+      # --- Bundle config set ---
+      puts <<~MSG.yellow.bold
+        To silence rubyzip post-install messages, run:
+
+          bundle config set --local ignore_messages true
+      MSG
+
       # --- Gemfile ---
       gemfile_dest = File.join(actual_path, "Gemfile")
       create_gemfile(actual_path) unless File.exist?(gemfile_dest)
