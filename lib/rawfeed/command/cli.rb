@@ -3,6 +3,7 @@
 require "fileutils"
 require "pathname"
 require "colorize"
+require_relative "tools"
 
 module Rawfeed
   class CLI

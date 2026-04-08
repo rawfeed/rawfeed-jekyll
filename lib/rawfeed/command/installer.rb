@@ -103,7 +103,23 @@ module Rawfeed
           gem "rawfeed", "~> #{Rawfeed::VERSION}"
         end
 
+        # Core
+        gem "jekyll", ">= 4.0", "< 5.0"
+        gem "rake", "~> 13.0"
+
+        # Jekyll plugins
+        gem "jekyll-sitemap", "~> 1.4"
+        gem "jekyll-feed", "~> 0.17.0"
+        gem "jekyll-archives", "~> 2.3.0"
+        gem "jekyll-paginate-v2", "~> 3.0.0"
+
+        # Utilities
+        gem "colorize", "~> 1.1.0"
+        gem "logger", "~> 1.4"
         gem "rubyzip", "~> 2.3"
+
+        # Build and minification
+        gem "uglifier", "~> 4.2.0"
 
         ## Place your plugins here.
         # group :jekyll_plugins do
