@@ -11,15 +11,6 @@ module Rawfeed
     GOOGLE_PATTERN = /^google.*\.html$/.freeze
 
     def self.site(*args)
-      begin
-        require "zip"
-      rescue LoadError
-        puts "[!] Error: rubyzip gem is required for backup feature".red
-        puts "    Install it with: gem install rubyzip".yellow
-        puts "    Or add to your Gemfile: gem 'rubyzip', '~> 2.3'".yellow
-        exit 1
-      end
-
       project_root = "."
       gemspec_path = File.join(project_root, "rawfeed.gemspec")
 
