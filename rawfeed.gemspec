@@ -79,12 +79,10 @@ Gem::Specification.new do |spec|
   # Utilities
   spec.add_runtime_dependency "colorize", "~> 1.1.0"
   spec.add_runtime_dependency "logger", "~> 1.4"
+  spec.add_runtime_dependency "rubyzip", "~> 2.3"  # For backup feature (pure Ruby gem)
 
   # Build and minification
   spec.add_runtime_dependency "uglifier", "~> 4.2.0"
-
-  # Optional gems (with graceful error handling if not installed)
-  # spec.add_runtime_dependency "ruby-vips", "~> 2.1"    # For image minification
-  # spec.add_runtime_dependency "rubyzip", "~> 2.3"      # For backup feature
+  spec.add_runtime_dependency "mini_magick", "~> 4.12"  # For image minification (requires ImageMagick)
 
 end

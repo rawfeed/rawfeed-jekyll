@@ -14,16 +14,39 @@ module Rawfeed
 
       def self.minify_images
         begin
-          require "vips"
+          require "mini_magick"
         rescue LoadError
-          puts "[!] Error: ruby-vips gem is required for image minification".red
-          puts "    Install it with: gem install ruby-vips".yellow
-          puts "    Or add to your Gemfile: gem 'ruby-vips', '~> 2.1'".yellow
+          puts "[!] Error: mini_magick gem is required for image minification".red
+          puts "    Install it with: gem install mini_magick".yellow
+          puts "    Or add to your Gemfile: gem 'mini_magick', '~> 4.12'".yellow
           puts "".yellow
-          puts "    Note: ruby-vips requires libvips to be installed on your system:".yellow
-          puts "      Ubuntu/Debian: sudo apt-get install libvips42".yellow
-          puts "      macOS: brew install vips".yellow
-          puts "      Windows: https://github.com/libvips/libvips/wiki/Build-for-Windows".yellow
+          puts "    Note: mini_magick requires ImageMagick to be installed on your system:".yellow
+          puts "      Ubuntu/Debian: sudo apt-get install imagemagick".yellow
+          puts "      macOS: brew install imagemagick".yellow
+          puts "      Arch Linux: sudo pacman -S imagemagick".yellow
+          puts "      Windows: https://imagemagick.org/script/download.php".yellow
+          exit 1
+        end
+
+        # Check if ImageMagick is installed
+        begin
+          MiniMagick::Tool::Convert.new
+        rescue => e
+          puts "[!] Error: ImageMagick is not installed or not found in PATH".red
+          puts "".red
+          if RUBY_PLATFORM.include?("linux")
+            if File.exist?("/etc/arch-release")
+              puts "    Arch Linux: sudo pacman -S imagemagick".yellow
+            else
+              puts "    Ubuntu/Debian: sudo apt-get install imagemagick".yellow
+            end
+          elsif RUBY_PLATFORM.include?("darwin")
+            puts "    macOS: brew install imagemagick".yellow
+          elsif RUBY_PLATFORM.include?("mingw") || RUBY_PLATFORM.include?("mswin")
+            puts "    Windows: https://imagemagick.org/script/download.php".yellow
+          else
+            puts "    See: https://imagemagick.org/script/download.php".yellow
+          end
           exit 1
         end
 
@@ -40,59 +63,74 @@ module Rawfeed
 
         total_before = 0
         total_after = 0
+        successful = 0
+        failed = 0
 
         image_files.each do |file|
           begin
             before_size = File.size(file)
             total_before += before_size
 
-            # Load image with vips
-            image = Vips::Image.new_from_file(file, access: :sequential)
-
             # Get file info
             dir = File.dirname(file)
             basename = File.basename(file, File.extname(file))
             ext = File.extname(file).downcase
 
-            # Convert to JPEG (replace original)
-            jpeg_buffer = image.jpegsave_buffer(Q: QUALITY_JPEG)
-            File.write(file, jpeg_buffer)
-            jpeg_size = jpeg_buffer.bytesize
+            # Load image with MiniMagick
+            image = MiniMagick::Image.open(file)
+
+            # Convert to JPEG (replace original) and optimize
+            image.format "jpg"
+            image.quality QUALITY_JPEG
+            image.write(file)
+            image.destroy
+
+            jpeg_size = File.size(file)
             total_after += jpeg_size
+            successful += 1
 
             # Create WebP version
             webp_path = File.join(dir, "#{basename}.webp")
-            webp_buffer = image.webpsave_buffer(Q: QUALITY_WEBP)
-            File.write(webp_path, webp_buffer)
+            image = MiniMagick::Image.open(file)
+            image.format "webp"
+            image.quality QUALITY_WEBP
+            image.write(webp_path)
+            image.destroy
 
             # Create AVIF version
             avif_path = File.join(dir, "#{basename}.avif")
-            # AVIF options: effort (1-9, default 4), quality (0-100)
-            avif_buffer = image.heifsave_buffer(
-              codec: :av1,
-              effort: 4,
-              Q: QUALITY_AVIF
-            )
-            File.write(avif_path, avif_buffer)
+            image = MiniMagick::Image.open(file)
+            image.format "avif"
+            image.quality QUALITY_AVIF
+            image.write(avif_path)
+            image.destroy
 
             # Display progress
             human_before = format_bytes(before_size)
             human_after = format_bytes(jpeg_size)
             puts "  #{green_checkmark} #{file} #{gray("(#{human_before} → #{human_after})")}"
           rescue => e
-            puts "  ✗ #{file} #{red("Error: #{e.message}")}".red
+            failed += 1
+            puts "  #{red_x} #{file} #{red("(#{e.message}")}\n"
           end
         end
 
         # Display summary
-        saved = total_before - total_after
-        human_before = format_bytes(total_before)
-        human_after = format_bytes(total_after)
-        human_saved = format_bytes(saved)
+        if successful > 0
+          saved = total_before - total_after
+          human_before = format_bytes(total_before)
+          human_after = format_bytes(total_after)
+          human_saved = format_bytes(saved)
 
-        puts ""
-        puts "Images optimized: #{human_before} → #{human_after} (saved #{human_saved})".bold.green
-        puts ""
+          puts ""
+          puts "Images optimized: #{human_before} → #{human_after} (saved #{human_saved})".bold.green
+          puts "  Successful: #{successful}, Failed: #{failed}".cyan if failed > 0
+          puts ""
+        elsif failed > 0
+          puts ""
+          puts "No images were processed (#{failed} failed)".red
+          puts ""
+        end
       end
 
       private
@@ -109,6 +147,10 @@ module Rawfeed
 
       def self.green_checkmark
         "✔".green
+      end
+
+      def self.red_x
+        "✗".red
       end
 
       def self.gray(text)

@@ -33,7 +33,7 @@ module Rawfeed
         puts "  build [OPTIONS]   Build the site"
         puts "  serve [OPTIONS]   Run local development server"
         puts "  minify            Minify JS, HTML and images in _site/"
-        puts "                    (requires ruby-vips for image minification)"
+        puts "                    (requires ImageMagick for image minification)"
         puts "  backup            Create a backup of your site"
         puts "                    Options:"
         puts "                      -d, --destination PATH  Save backup to a specific directory"

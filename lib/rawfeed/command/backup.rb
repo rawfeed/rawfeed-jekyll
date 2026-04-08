@@ -1,4 +1,5 @@
 require "rawfeed/root"
+require "zip"
 require "fileutils"
 require "time"
 require "colorize"
