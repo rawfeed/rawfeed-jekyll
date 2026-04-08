@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "colorize"
+require_relative "image_minifier"
 
 module Rawfeed
   module Build
@@ -69,12 +70,17 @@ module Rawfeed
         begin
           minify_javascript
           minify_html
+          minify_images
           puts "\n Minify completed successfully!\n".bold.green
         rescue => e
           puts "\n An error occurred during minify.\n".bold.red
           puts e.message.red
           exit 1
         end
+      end
+
+      def self.minify_images
+        ImageMinifier.minify_images
       end
     end
   end

@@ -83,4 +83,8 @@ Gem::Specification.new do |spec|
   # Build and minification
   spec.add_runtime_dependency "uglifier", "~> 4.2.0"
 
+  # Optional gems (with graceful error handling if not installed)
+  # spec.add_runtime_dependency "ruby-vips", "~> 2.1"    # For image minification
+  # spec.add_runtime_dependency "rubyzip", "~> 2.3"      # For backup feature
+
 end
