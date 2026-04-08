@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "uglifier"
 require "colorize"
 
 module Rawfeed
@@ -9,6 +8,8 @@ module Rawfeed
       BUILD_DIR = "_site"
 
       def self.minify_javascript
+        require "uglifier"
+
         puts "Minifying JavaScript files...".yellow
         js_files = Dir.glob("#{BUILD_DIR}/assets/js/**/*.js")
 

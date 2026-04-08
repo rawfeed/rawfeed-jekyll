@@ -1,5 +1,4 @@
 require "rawfeed/root"
-require "zip"
 require "fileutils"
 require "time"
 require "colorize"
@@ -12,6 +11,8 @@ module Rawfeed
     GOOGLE_PATTERN = /^google.*\.html$/.freeze
 
     def self.site(*args)
+      require "zip"
+
       project_root = "."
       gemspec_path = File.join(project_root, "rawfeed.gemspec")
 
