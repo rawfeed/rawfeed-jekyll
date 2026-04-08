@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
 
     # Specific files we want to include
     include_files = %w[
+      Gemfile
       .gitlab-ci.yml
       .editorconfig
       .hidden

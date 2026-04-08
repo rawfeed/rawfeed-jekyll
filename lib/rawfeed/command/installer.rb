@@ -62,6 +62,7 @@ module Rawfeed
 
       # --- files and folders to copy ---
       items_to_copy = [
+        [File.join(gem_dir, "Gemfile"), "Gemfile"],
         [File.join(gem_dir, "_config.yml"), "_config.yml"],
         [File.join(gem_dir, "index.md"), "index.md"],
         [File.join(gem_dir, "404.html"), "404.html"],
@@ -89,65 +90,66 @@ module Rawfeed
           bundle config set --local ignore_messages true
       MSG
 
-      # --- Gemfile ---
-      gemfile_dest = File.join(actual_path, "Gemfile")
-      create_gemfile(actual_path) unless File.exist?(gemfile_dest)
+      # --- Gemfile --- DEPRECATED - Using the dev's Gemfile
+      # gemfile_dest = File.join(actual_path, "Gemfile")
+      # create_gemfile(actual_path) unless File.exist?(gemfile_dest)
 
       # --- final ---
       puts "New rawfeed site created at #{path}".green
     end
 
-    def self.create_gemfile(path)
-      content = <<~GEMFILE
-        # frozen_string_literal: true
-        source "https://rubygems.org"
+    # DEPRECATED - Using the dev's Gemfile
+    # def self.create_gemfile(path)
+    #   content = <<~GEMFILE
+    #     # frozen_string_literal: true
+    #     source "https://rubygems.org"
 
-        ## [ rawfeed ] Do not modify this block unless you know what you are doing.
-        if ENV["RAWFEED_DEV_PATH"] && File.directory?(ENV["RAWFEED_DEV_PATH"])
-          gem "rawfeed", path: ENV["RAWFEED_DEV_PATH"]
-        else
-          ## --- To update rawfeed-jekyll, simply update the version here ---
-          gem "rawfeed", "~> #{Rawfeed::VERSION}"
-        end
+    #     ## [ rawfeed ] Do not modify this block unless you know what you are doing.
+    #     if ENV["RAWFEED_DEV_PATH"] && File.directory?(ENV["RAWFEED_DEV_PATH"])
+    #       gem "rawfeed", path: ENV["RAWFEED_DEV_PATH"]
+    #     else
+    #       ## --- To update rawfeed-jekyll, simply update the version here ---
+    #       gem "rawfeed", "~> #{Rawfeed::VERSION}"
+    #     end
 
-        # Core
-        gem "jekyll", ">= 4.0", "< 5.0"
-        gem "rake", "~> 13.0"
+    #     # Core
+    #     gem "jekyll", ">= 4.0", "< 5.0"
+    #     gem "rake", "~> 13.0"
 
-        # Jekyll plugins
-        gem "jekyll-sitemap", "~> 1.4"
-        gem "jekyll-feed", "~> 0.17.0"
-        gem "jekyll-archives", "~> 2.3.0"
-        gem "jekyll-paginate-v2", "~> 3.0.0"
+    #     # Jekyll plugins
+    #     gem "jekyll-sitemap", "~> 1.4"
+    #     gem "jekyll-feed", "~> 0.17.0"
+    #     gem "jekyll-archives", "~> 2.3.0"
+    #     gem "jekyll-paginate-v2", "~> 3.0.0"
 
-        # Utilities
-        gem "colorize", "~> 1.1.0"
-        gem "logger", "~> 1.4"
-        gem "rubyzip", "~> 2.3"
+    #     # Utilities
+    #     gem "colorize", "~> 1.1.0"
+    #     gem "logger", "~> 1.4"
+    #     gem "rubyzip", "~> 2.3"
 
-        # Build and minification
-        gem "uglifier", "~> 4.2.0"
+    #     # Build and minification
+    #     gem "uglifier", "~> 4.2.0"
 
-        ## Place your plugins here.
-        # group :jekyll_plugins do
-        # end
+    #     ## Place your plugins here.
+    #     # group :jekyll_plugins do
+    #     # end
 
-        # Windows and JRuby
-        platforms :windows, :jruby do
-          gem "tzinfo", "~> 1.2"
-          gem "tzinfo-data"
-        end
+    #     # Windows and JRuby
+    #     platforms :windows, :jruby do
+    #       gem "tzinfo", "~> 1.2"
+    #       gem "tzinfo-data"
+    #     end
 
-        # Windows file watcher
-        gem "wdm", "~> 0.1.1", platforms: [:windows]
+    #     # Windows file watcher
+    #     gem "wdm", "~> 0.1.1", platforms: [:windows]
 
-        # Lock `http_parser.rb` gem to `v0.6.x` on JRuby builds since newer versions of the gem
-        # do not have a Java counterpart.
-        gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
-      GEMFILE
+    #     # Lock `http_parser.rb` gem to `v0.6.x` on JRuby builds since newer versions of the gem
+    #     # do not have a Java counterpart.
+    #     gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
+    #   GEMFILE
 
-      File.write(File.join(path, "Gemfile"), content)
-      puts "Gemfile created at #{path}".green
-    end
+    #   File.write(File.join(path, "Gemfile"), content)
+    #   puts "Gemfile created at #{path}".green
+    # end
   end
 end
