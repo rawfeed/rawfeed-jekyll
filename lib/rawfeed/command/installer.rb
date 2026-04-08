@@ -12,7 +12,7 @@ module Rawfeed
 
     # Generic function to copy files or folders
     # If dest is a nested directory, it automatically creates the parent directories
-    def self.copy_items(items, dest_path)
+    def self.copy_items(items, dest_path, force = false)
       items.each do |src, dest_rel|
         dest = File.join(dest_path, dest_rel)
 
@@ -20,6 +20,15 @@ module Rawfeed
         FileUtils.mkdir_p(File.dirname(dest))
 
         if File.exist?(src) || Dir.exist?(src)
+          # Remove destination if it already exists and force is true
+          if force && (File.exist?(dest) || Dir.exist?(dest))
+            if Dir.exist?(dest)
+              FileUtils.rm_rf(dest)
+            else
+              File.delete(dest)
+            end
+          end
+
           FileUtils.cp_r(src, dest)
         else
           puts "Warning: #{src} not found".yellow
@@ -71,7 +80,7 @@ module Rawfeed
         [File.join(gem_dir, "assets/images"), "assets/images"]
       ]
 
-      copy_items(items_to_copy, actual_path)
+      copy_items(items_to_copy, actual_path, force)
 
       # --- Gemfile ---
       gemfile_dest = File.join(actual_path, "Gemfile")
