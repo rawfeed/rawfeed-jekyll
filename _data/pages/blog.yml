@@ -1,0 +1,40 @@
+# Rawfeed - Blog Page Content & Texts
+
+# section: [blog]
+blog:
+  subtitle: "posts"
+  search:
+    enable: true
+    placeholder: "type here to search for a post or Esc to exit"
+    button_clean:
+      text: "clean"
+    results: "results"
+    no_results: "No results found"
+  pagination:
+    newer_text: "newer posts"
+    counter: ["page", "of"]
+    older_text: "older posts"
+  post:
+    author: "Posted by"
+    related_posts:
+      enable: true
+      title: "related posts"
+    updated_on: "Post updated on"
+    comments:
+      title: "comments"
+      provider: "giscus" # choose between. options: giscus | disqus.
+      giscus:
+        repo: "" # your repository, e.g: username/repo-name
+        repo_id: "" # copied from giscus.app, e.g: R_kgD...
+        repo_category: "" # copied category name GitHub
+        category_id: "" # copied from giscus.app, e.g: DIC_kwD...
+        mapping: "pathname"
+        reactions_enabled: 1
+        theme: "light" # initial theme. default: light
+        theme_light: "noborder_light" # light theme. default: noborder_light
+        theme_dark: "noborder_gray" # dark theme. default: noborder_gray
+        lang: "en" # en,pt,..
+      disqus:
+        shortname: "" # your shortname disqus
+    posts_by_tags:
+      title: "posts by tag"

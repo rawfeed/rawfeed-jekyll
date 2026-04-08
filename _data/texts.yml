@@ -1,0 +1,14 @@
+# Rawfeed - Global Texts & Strings
+# Generic UI strings and global content
+
+title: rawfeed
+author: "William C. Canin"
+
+# section: [maintenance]
+maintenance:
+  enable: false
+  gif: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExczV3aGMxcnAzdnJ1eWp3cjk5OXdhdTYzdzB0dWVlMGFkbTd2ZDR0ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jwKC0qlOoXmcLDB4vC/giphy.gif"
+  title: "Under maintenance"
+  subtitle: |
+    We are undergoing maintenance, with no return date yet.
+    Sorry for the inconvenience :/

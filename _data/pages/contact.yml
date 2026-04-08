@@ -1,0 +1,31 @@
+# Rawfeed - Contact Page Content & Texts
+
+# section: [contact]
+contact:
+  name:
+    placeholder: "first and last name"
+  email:
+    placeholder: "your best email address"
+    help: "we'll never share your email with anyone else."
+  message:
+    placeholder: "write your message here"
+    status: "sending...wait"
+    characters:
+      min: 50
+      warning:
+        title: "Warning"
+        content: "the message must have at least 50 characters."
+    success:
+      title: "Message sent"
+      content: "your message has been sent successfully!"
+    error:
+      title: "Error"
+      content: "something went wrong while sending your message."
+  button:
+    text: "send!"
+  recaptcha:
+    warning:
+      title: Warning
+      content: "Please tick the 'I'm not a robot' box."
+    fail: "Verification failed. Please reload the page and try again."
+    error: "An error occurred while sending the message. Please try again."

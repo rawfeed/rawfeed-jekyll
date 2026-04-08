@@ -1,0 +1,85 @@
+# Rawfeed - Technical Configuration
+# This file contains core technical settings for the Jekyll theme
+
+# section: [Reading time]
+reading_time:
+  enable: true
+  words_per_minute: 180
+  message: ["Read this post in approximately", "Read this post in less than"]
+  minutes_label: ["minute", "minutes"]
+
+# section: [datelang]
+# Here you change the language of the months of the date
+datelang:
+  format: "%b %d, %Y"
+  lang: "en_US" # en_US | pt_PT | jp_JP | ch_CH | es_ES | fr_FR | it_IT | de_DE | ru_RU
+
+# section: [head]
+# (CSP - Content-Security-Policy)
+# IMPORTANT!!! If you use any external script from any website in your posts that is not on this
+#              list, you must put it here.
+#              --- If you don't use it, don't remove what's already there. ---
+head:
+  csp:
+    frame-src:
+      - https://www.google.com
+      - https://www.youtube.com
+      - https://giscus.app
+      - https://disqus.com
+    connect-src:
+      - https://www.google.com
+      - https://api.github.com
+      - https://script.google.com
+      - https://script.googleusercontent.com
+    img-src:
+      - https://www.google.com
+      - https://media0.giphy.com
+      - https://media4.giphy.com
+      - https://media.giphy.com
+      - https://github.githubassets.com
+    script-src:
+      - https://www.google.com
+      - https://www.gstatic.com
+      - https://script.google.com
+      - https://cdn.jsdelivr.net
+      - https://cdnjs.cloudflare.com
+      - https://giscus.app
+      - https://disqus.com
+    style-src:
+      - https://cdnjs.cloudflare.com
+      - https://fonts.googleapis.com
+      - https://cdn.jsdelivr.net
+      - https://giscus.app
+      - https://disqus.com
+    font-src:
+      - https://fonts.gstatic.com
+      - https://cdnjs.cloudflare.com
+  google:
+    site_verification: ""
+    analytics:
+      enable: false
+      id: "" # tracking id, e.g. "UA-200341029-1"
+    apps_script:
+      url:
+    recaptcha:
+      pubkey:
+
+# section: [default]
+default:
+  lang: en-US
+  # Some compatible separators: ⨟∫⦁;⬨⬖︙︰𐄛🢝
+  separator: ⨟
+  width: 860 # default: 860
+  background_focus: true
+  rounding: false
+  user_select: none # none | text
+  font:
+    # Fonts Style Options: [default: monospace]
+    # "'Ubuntu', sans-serif"
+    # "'Inconsolata', monospace"
+    # "'JetBrains Mono', monospace"
+    # "'Roboto Mono', monospace"
+    # "'Open Sans', sans-serif"
+    style: monospace
+    size: 16.34px
+    spacing: -0.05em

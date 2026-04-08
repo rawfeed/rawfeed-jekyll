@@ -1,0 +1,63 @@
+# Rawfeed - Footer & Donation Content & Texts
+
+# section: [footer]
+footer:
+  top_button:
+    # Some compatible icons: ↑ ⇡ ▴ 🢙
+    icon: ⇡
+    enable: true
+  copyright:
+    title: "rawfeed-jekyll"
+    since: 2025
+    message:
+  licenses:
+    title: "Licenses"
+    page_url: "/licenses/"
+  message: |
+    Your impactful phrase!
+
+# section: [donate]
+# Tip: use svg images for better quality (https://www.iconpacks.net)
+donate:
+  title: "Support the Project"
+  description: "If this project helps you, consider supporting it"
+  input:
+    label:
+      key: Chave
+      address: Address
+  copy_button:
+    text: Copy
+    clicked: Copied!
+  services:
+    - name: pix
+      logo: "/assets/images/donate/pix.svg"
+      description: |
+        Make your donation using PIX from Brazil. Use the key below.
+      address: "00b53f61-b009-4f05-8c43-444cce86af1d"
+      qrcode: "/assets/images/donate/qrcode_inter.jpg"
+
+    - name: card
+      logo: "/assets/images/donate/card.svg"
+      description: |
+        Donation using card through the service `Buy Me a Coffee`.
+      address: "https://buymeacoffee.com"
+
+    - name: paypal
+      logo: "/assets/images/donate/paypal.svg"
+      description: |
+        Donate quickly and securely using your PayPal balance or linked card.
+      address: "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=YBK2HEEYG8V5W&source=&ssrt=1775261628264"
+
+    - name: bitcoin (lightning network)
+      logo: "/assets/images/donate/lightning_network.svg"
+      description: |
+        Make an anonymous Bitcoin donation using a Lightning Address.
+      address: "williamcanin@walletofsatoshi.com"
+      qrcode: "/assets/images/donate/qrcode_wos.jpg"
+
+    - name: bitcoin (on-chain)
+      logo: "/assets/images/donate/bitcoin.svg"
+      description: |
+        Make an anonymous Bitcoin donation using a On-Chain address (Binance).
+      address: "bc1qluh2mrchmtrwedspwhtta8ccgzsl9jqdr47f2p"
+      qrcode: "/assets/images/donate/qrcode_btc_binance.jpg"

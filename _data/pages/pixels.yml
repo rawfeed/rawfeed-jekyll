@@ -1,0 +1,7 @@
+# Rawfeed - Pixels Page Content & Texts
+
+# section: [pixels]
+pixels:
+  title: "pixels"
+  layout:
+    width: 860 # default: 860
