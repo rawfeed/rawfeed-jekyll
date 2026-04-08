@@ -31,9 +31,9 @@ module Rawfeed
 
         if deleted_paths.any?
           puts "Items successfully removed:".green
-          deleted_paths.each { |path| puts "  - #{path}".gray }
+          deleted_paths.each { |path| puts "  - #{path}" }
         else
-          puts "No items to clean.".gray
+          puts "No items to clean."
         end
       end
 
@@ -50,9 +50,9 @@ module Rawfeed
 
         if deleted_paths.any?
           puts "Items successfully removed:".green
-          deleted_paths.each { |path| puts "  - #{path}".gray }
+          deleted_paths.each { |path| puts "  - #{path}" }
         else
-          puts "No items to clean.".gray
+          puts "No items to clean."
         end
       end
     end

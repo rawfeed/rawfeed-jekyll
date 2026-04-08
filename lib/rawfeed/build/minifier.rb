@@ -13,7 +13,7 @@ module Rawfeed
         js_files = Dir.glob("#{BUILD_DIR}/assets/js/**/*.js")
 
         if js_files.empty?
-          puts "No JavaScript files found.".gray
+          puts "No JavaScript files found."
           return
         end
 
@@ -35,7 +35,7 @@ module Rawfeed
         html_files = Dir.glob("#{BUILD_DIR}/**/*.html")
 
         if html_files.empty?
-          puts "No HTML files found.".gray
+          puts "No HTML files found."
           return
         end
 
