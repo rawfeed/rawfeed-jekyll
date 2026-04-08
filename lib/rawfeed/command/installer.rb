@@ -86,7 +86,10 @@ module Rawfeed
         # frozen_string_literal: true
         source "https://rubygems.org"
 
-        ## Do not modify this block unless you know what you are doing.
+        # Dependencies
+        gem "rubyzip", "~> 2.3"
+
+        ## [ rawfeed ] Do not modify this block unless you know what you are doing.
         if ENV["RAWFEED_DEV_PATH"] && File.directory?(ENV["RAWFEED_DEV_PATH"])
           gem "rawfeed", path: ENV["RAWFEED_DEV_PATH"]
         else
