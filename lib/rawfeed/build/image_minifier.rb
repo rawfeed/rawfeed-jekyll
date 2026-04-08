@@ -16,21 +16,15 @@ module Rawfeed
         begin
           require "mini_magick"
         rescue LoadError
-          puts "[!] Error: mini_magick gem is required for image minification".red
-          puts "    Install it with: gem install mini_magick".yellow
-          puts "    Or add to your Gemfile: gem 'mini_magick', '~> 4.12'".yellow
-          puts "".yellow
-          puts "    Note: mini_magick requires ImageMagick to be installed on your system:".yellow
-          puts "      Ubuntu/Debian: sudo apt-get install imagemagick".yellow
-          puts "      macOS: brew install imagemagick".yellow
-          puts "      Arch Linux: sudo pacman -S imagemagick".yellow
-          puts "      Windows: https://imagemagick.org/script/download.php".yellow
-          exit 1
+          # mini_magick is optional, but let user know they need it OR ImageMagick
         end
 
         # Check if ImageMagick is installed
         begin
-          MiniMagick::Tool::Convert.new
+          system("identify -version > /dev/null 2>&1")
+          unless $?.success?
+            raise "ImageMagick not found"
+          end
         rescue => e
           puts "[!] Error: ImageMagick is not installed or not found in PATH".red
           puts "".red
@@ -74,41 +68,41 @@ module Rawfeed
             # Get file info
             dir = File.dirname(file)
             basename = File.basename(file, File.extname(file))
-            ext = File.extname(file).downcase
 
-            # Load image with MiniMagick
-            image = MiniMagick::Image.open(file)
+            # Process with ImageMagick convert command
+            # Use 'magick convert' for ImageMagick 7+, fallback to 'convert' for older versions
+            converter = system("magick --version > /dev/null 2>&1") ? "magick convert" : "convert"
 
-            # Convert to JPEG (replace original) and optimize
-            image.format "jpg"
-            image.quality QUALITY_JPEG
-            image.write(file)
-            image.destroy
+            # 1. Compress original to JPEG
+            temp_jpeg = "#{file}.temp.jpg"
+            cmd_jpeg = "#{converter} '#{file}' -quality #{QUALITY_JPEG} -strip '#{temp_jpeg}' 2>/dev/null"
+            system(cmd_jpeg)
 
-            jpeg_size = File.size(file)
-            total_after += jpeg_size
-            successful += 1
+            if File.exist?(temp_jpeg) && File.size(temp_jpeg) > 0
+              FileUtils.mv(temp_jpeg, file)
+              jpeg_size = File.size(file)
+              total_after += jpeg_size
+              successful += 1
 
-            # Create WebP version
-            webp_path = File.join(dir, "#{basename}.webp")
-            image = MiniMagick::Image.open(file)
-            image.format "webp"
-            image.quality QUALITY_WEBP
-            image.write(webp_path)
-            image.destroy
+              # Create WebP version
+              webp_path = File.join(dir, "#{basename}.webp")
+              cmd_webp = "#{converter} '#{file}' -quality #{QUALITY_WEBP} '#{webp_path}' 2>/dev/null"
+              system(cmd_webp)
 
-            # Create AVIF version
-            avif_path = File.join(dir, "#{basename}.avif")
-            image = MiniMagick::Image.open(file)
-            image.format "avif"
-            image.quality QUALITY_AVIF
-            image.write(avif_path)
-            image.destroy
+              # Create AVIF version
+              avif_path = File.join(dir, "#{basename}.avif")
+              cmd_avif = "#{converter} '#{file}' -quality #{QUALITY_AVIF} '#{avif_path}' 2>/dev/null"
+              system(cmd_avif)
 
-            # Display progress
-            human_before = format_bytes(before_size)
-            human_after = format_bytes(jpeg_size)
-            puts "  #{green_checkmark} #{file} #{gray("(#{human_before} → #{human_after})")}"
+              # Display progress
+              human_before = format_bytes(before_size)
+              human_after = format_bytes(jpeg_size)
+              puts "  #{green_checkmark} #{file} #{gray("(#{human_before} → #{human_after})")}"
+            else
+              failed += 1
+              FileUtils.rm(temp_jpeg) if File.exist?(temp_jpeg)
+              puts "  #{red_x} #{file} #{red("(Failed to convert)")}"
+            end
           rescue => e
             failed += 1
             puts "  #{red_x} #{file} #{red("(#{e.message}")}\n"

@@ -83,6 +83,5 @@ Gem::Specification.new do |spec|
 
   # Build and minification
   spec.add_runtime_dependency "uglifier", "~> 4.2.0"
-  spec.add_runtime_dependency "mini_magick", "~> 4.12"  # For image minification (requires ImageMagick)
 
 end
