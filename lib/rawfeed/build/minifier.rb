@@ -8,7 +8,14 @@ module Rawfeed
       BUILD_DIR = "_site"
 
       def self.minify_javascript
-        require "uglifier"
+        begin
+          require "uglifier"
+        rescue LoadError
+          puts "[!] Error: uglifier gem is required for minify feature".red
+          puts "    Install it with: gem install uglifier".yellow
+          puts "    Or add to your Gemfile: gem 'uglifier', '~> 4.2.0'".yellow
+          exit 1
+        end
 
         puts "Minifying JavaScript files...".yellow
         js_files = Dir.glob("#{BUILD_DIR}/assets/js/**/*.js")
