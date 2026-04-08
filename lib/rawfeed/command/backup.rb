@@ -1,5 +1,4 @@
 require "rawfeed/root"
-require "zip"
 require "fileutils"
 require "time"
 require "colorize"
@@ -64,6 +63,7 @@ module Rawfeed
     end
 
     def self.create_backup(project_root, backup_path, append_paths)
+      require "zip"
       Zip::File.open(backup_path, Zip::File::CREATE) do |zipfile|
         # Add default folders
         DEFAULT_FOLDERS.each do |folder|

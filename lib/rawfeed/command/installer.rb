@@ -103,6 +103,8 @@ module Rawfeed
           gem "rawfeed", "~> #{Rawfeed::VERSION}"
         end
 
+        gem "rubyzip", "~> 2.3"
+
         ## Place your plugins here.
         # group :jekyll_plugins do
         # end

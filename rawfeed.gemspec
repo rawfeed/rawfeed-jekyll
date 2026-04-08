@@ -79,7 +79,8 @@ Gem::Specification.new do |spec|
   # Utilities
   spec.add_runtime_dependency "colorize", "~> 1.1.0"
   spec.add_runtime_dependency "logger", "~> 1.4"
-  spec.add_runtime_dependency "rubyzip", "~> 2.3"  # For backup feature (pure Ruby gem)
+  # Note: rubyzip is added to the user's Gemfile by the installer, not here
+  # This avoids Jekyll trying to auto-require it during theme initialization
 
   # Build and minification
   spec.add_runtime_dependency "uglifier", "~> 4.2.0"
