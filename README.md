@@ -40,6 +40,7 @@ After installing the requirements, prepare the environment as follows:
 git clone https://github.com/rawfeed/rawfeed-jekyll.git
 cd rawfeed-jekyll
 export RAWFEED_DEV_PATH="$PWD"
+rawfeed install
 bundle exec rawfeed serve
 ```
 
