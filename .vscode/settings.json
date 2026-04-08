@@ -122,6 +122,7 @@
     "giscus",
     "linenos",
     "xmlschema",
+    "magick",
     "envrc",
     "direnv",
     "endcomment",
