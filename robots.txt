@@ -23,4 +23,4 @@ Disallow: /assets/css/
 Disallow: /404.html
 
 # Change the URL to your website's sitemap.xml.
-Sitemap: http://example.com/sitemap.xml
+Sitemap: http://your_website_URL/sitemap.xml
