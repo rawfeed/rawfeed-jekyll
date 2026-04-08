@@ -49,7 +49,7 @@ module Rawfeed
         image_files = Dir.glob("#{BUILD_DIR}/assets/images/**/*.{jpg,jpeg,png}", File::FNM_CASEFOLD)
 
         if image_files.empty?
-          puts "No images found.".gray
+          puts "No images found."
           return
         end
 
@@ -97,7 +97,7 @@ module Rawfeed
               # Display progress
               human_before = format_bytes(before_size)
               human_after = format_bytes(jpeg_size)
-              puts "  #{green_checkmark} #{file} #{gray("(#{human_before} → #{human_after})")}"
+              puts "  #{green_checkmark} #{file} #{neutral("(#{human_before} → #{human_after})")}"
             else
               failed += 1
               FileUtils.rm(temp_jpeg) if File.exist?(temp_jpeg)
@@ -147,8 +147,8 @@ module Rawfeed
         "✗".red
       end
 
-      def self.gray(text)
-        text.gray
+      def self.neutral(text)
+        text
       end
 
       def self.red(text)
