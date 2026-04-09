@@ -12,6 +12,7 @@ sections:
   - title: "Added"
     types:
       - feat
+      - feature
   - title: "Fixed"
     types:
       - fix
