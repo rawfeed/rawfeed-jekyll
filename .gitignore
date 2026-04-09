@@ -1,4 +1,5 @@
 _site/
+.rspec_status
 tmp/
 node_modules/
 .bundle-cache/
