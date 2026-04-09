@@ -11,6 +11,9 @@ toc:
   enable: true
 ---
 
+> Note: This post create with command: `bundle exec rawfeed create:draft`
+> And then using the: `bundle exec rawfeed post:draft`
+
 # Block codes
 
 An article with various blocks of highlighted code snippets.

@@ -12,6 +12,8 @@ toc:
 date: 2025-10-15 14:11:04 -0300
 ---
 
+> Note: This page create with command: `bundle exec rawfeed create:pixel`
+
 Monkey D. Luffy (/ˈluːfi/ LOO-fee) (Japanese: モンキー・D・ルフィ, Hepburn: Monkī Dī Rufi; [ɾɯꜜɸiː]),
 also known as "Straw Hat" Luffy,[n 2] is a fictional character and the protagonist of the Japanese
 manga series One Piece, created by Eiichiro Oda. Luffy made his debut as a young boy who acquires

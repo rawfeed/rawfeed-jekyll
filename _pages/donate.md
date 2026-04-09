@@ -11,4 +11,6 @@ toc:
 permalink: /donate/
 ---
 
+> Note: This page create with command: `bundle exec rawfeed restore:donate`
+
 Every contribution helps me to continue my work.

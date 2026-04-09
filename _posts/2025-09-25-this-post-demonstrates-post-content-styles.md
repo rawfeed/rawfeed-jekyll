@@ -11,6 +11,9 @@ toc:
   enable: true
 ---
 
+> Note: This post create with command: `bundle exec rawfeed create:draft`
+> And then using the: `bundle exec rawfeed post:draft`
+
 # Theology (h1)
 
 Lorem ipsum dolor sit amet, `consectetur` adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.
