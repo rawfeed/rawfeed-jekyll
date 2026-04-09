@@ -6,7 +6,7 @@ labels: bug
 
 ## Description
 
-Describe the problem encountered.
+Describe the problem encountered clearly and concisely.
 
 ## Steps to reproduce
 
@@ -20,16 +20,16 @@ Explain what you expected to happen.
 
 ## Current behavior
 
-Explain what is actually happening.
+Explain what is actually happening. Include any error messages or stacktraces.
 
 ## Environment
 
-- Ruby version:
-
-- Operating system:
-
-- rawfeed-jekyll version:
+- rawfeed-jekyll version: <!-- e.g. 1.0.0 -->
+- Ruby version: <!-- ruby -v -->
+- Jekyll version: <!-- bundle exec jekyll -v -->
+- Operating system: <!-- e.g. Ubuntu 22.04, macOS 14 -->
+- Shell: <!-- e.g. bash, zsh -->
 
 ## Additional observations
 
-Include logs, links, screenshots, or other relevant details.
+Include logs, links, screenshots, or any other relevant details that may help reproduce or diagnose the issue.

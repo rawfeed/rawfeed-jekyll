@@ -89,7 +89,7 @@ The CI job performs:
 ## Changelog generation
 
 This repository includes a development tool to help generate changelogs from GitHub issues and tags.
-The project is configured in `.github_changelog_generator`, which uses the same CLI options format used by `github_changelog_generator`.
+The project is configured in `.github_changelog_generator`, which uses `key=value` pairs (one per line) — **not** the CLI `--flag value` format.
 By default, the tool generates or updates `CHANGELOG.md` in the repository root.
 
 Use the following command after installing development dependencies:
@@ -113,15 +113,6 @@ Publish the gem to RubyGems:
 ```shell
 gem push rawfeed-<VERSION>.gem
 ```
-
-## Continuous integration
-
-This repository includes GitHub Actions at `.github/workflows/ci.yml` that:
-
-- check out the repository
-- install Ruby and dependencies
-- validate that `rawfeed` loads successfully
-- build the gem package
 
 ## Changelog
 
