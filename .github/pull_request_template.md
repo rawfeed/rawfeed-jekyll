@@ -8,7 +8,7 @@ Informe o que esta PR altera e por quê.
 - [ ] Nova funcionalidade
 - [ ] Atualização de documentação
 - [ ] Refatoração
-- [ ] Outro: _______________
+- [ ] Outro: ******\_\_\_******
 
 ## Checklist
 
