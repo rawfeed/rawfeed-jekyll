@@ -9,6 +9,26 @@ RSpec.describe Rawfeed::Utils do
       result = described_class.slug_generator("Hello World! Test")
       expect(result).to eq("hello-world-test")
     end
+
+    it "handles multiple consecutive spaces" do
+      result = described_class.slug_generator("Hello   World")
+      expect(result).to eq("hello---world")
+    end
+
+    it "removes special characters and punctuation" do
+      result = described_class.slug_generator("Title: with, punctuation!")
+      expect(result).to eq("title-with-punctuation")
+    end
+
+    it "returns an empty string when input is empty" do
+      result = described_class.slug_generator("")
+      expect(result).to eq("")
+    end
+
+    it "preserves hyphens and underscores" do
+      result = described_class.slug_generator("my-post_title")
+      expect(result).to eq("my-post_title")
+    end
   end
 
   describe ".datetime_generator" do

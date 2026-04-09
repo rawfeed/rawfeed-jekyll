@@ -169,6 +169,34 @@ RSpec.describe Rawfeed::CLI do
       expect { described_class.run(["unknown:task"]) }.not_to raise_error
     end
 
+    it "prints an unknown task message for create:<unknown>" do
+      expect { described_class.run(["create:unknown"]) }.to output(/Unknown create task/).to_stdout
+    end
+
+    it "prints an unknown task message for restore:<unknown>" do
+      expect { described_class.run(["restore:unknown"]) }.to output(/Unknown restore task/).to_stdout
+    end
+
+    it "prints an unknown task message for list:<unknown>" do
+      expect { described_class.run(["list:unknown"]) }.to output(/Unknown list task/).to_stdout
+    end
+
+    it "prints an unknown task message for home:<unknown>" do
+      expect { described_class.run(["home:unknown"]) }.to output(/Unknown home task/).to_stdout
+    end
+
+    it "prints an unknown task message for post:<unknown>" do
+      expect { described_class.run(["post:unknown"]) }.to output(/Unknown post task/).to_stdout
+    end
+
+    it "prints an unknown task message for blog:<unknown>" do
+      expect { described_class.run(["blog:unknown"]) }.to output(/Unknown blog task/).to_stdout
+    end
+
+    it "prints an unknown task message for pixels:<unknown>" do
+      expect { described_class.run(["pixels:unknown"]) }.to output(/Unknown pixels task/).to_stdout
+    end
+
     it "exits with status 1 when no arguments are provided" do
       expect { described_class.run([]) }.to raise_error(SystemExit) do |error|
         expect(error.status).to eq(1)
