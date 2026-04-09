@@ -36,12 +36,16 @@
   // ================= FILE ASSOCIATIONS (O SEGREDO) =================
   "files.associations": {
     "**/assets/js/**/*.js": "liquid-javascript",
-    "**/_includes/assigned": "liquid",
+    "**/assets/json/blog_search.json": "liquid",
+    "**/_data/**/*.yml": "yaml",
     "**/_includes/**/*.html": "liquid",
+    "**/_includes/assigned": "liquid",
     "**/_layouts/**/*.html": "liquid",
     "**/*.liquid": "liquid",
     "*.html": "html",
     "*.scss": "scss",
+    "*.yml": "yaml",
+    "*.yaml": "yaml",
     "*.md": "markdown",
     "LICENSE": "plaintext",
     "CNAME": "plaintext"
@@ -56,7 +60,7 @@
   // ================= FORMATTERS =================
   "[liquid]": {
     "editor.defaultFormatter": "sissel.shopify-liquid",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -82,14 +86,14 @@
   },
 
   // ================= RUBY LSP =================
-  "rubyLsp.enabledFeatures": [
-    "diagnostics",
-    "formatting",
-    "completion",
-    "hover",
-    "documentSymbols",
-    "definition"
-  ],
+  // "rubyLsp.enabledFeatures": [
+  //   "diagnostics",
+  //   "formatting",
+  //   "completion",
+  //   "hover",
+  //   "documentSymbols",
+  //   "definition"
+  // ],
 
   // ================= PRETTIER =================
   "prettier.printWidth": 100,
@@ -114,10 +118,18 @@
     "referrerpolicy",
     "noscript",
     "allowfullscreen",
+    "NFKD",
+    "contextmenu",
+    "animationend",
+    "xmark",
+    "noborder",
     "endtabs",
+    "forloop",
     "nbsp",
     "disqus",
     "noopener",
+    "inconsolata",
+    "roboto",
     "noreferrer",
     "giscus",
     "mswin",
@@ -159,5 +171,10 @@
   "[liquid-javascript]": {
     "editor.defaultFormatter": "sissel.shopify-liquid",
     "editor.formatOnSave": false
+  },
+  "chat.tools.terminal.autoApprove": {
+    "git add": true,
+    "git restore": true,
+    "git commit": true
   }
 }
