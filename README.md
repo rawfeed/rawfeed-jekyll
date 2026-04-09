@@ -83,7 +83,7 @@ The CI job performs:
 - `bundle install` with Bundler cache
 - library loading validation via `bundle exec ruby -Ilib -e 'require "rawfeed"'
 - `bundle exec rspec` for test coverage
-- `bundle exec jekyll build --destination .site_build` to ensure the theme builds cleanly
+- `bundle exec rawfeed build --destination .site_build` to ensure the theme builds cleanly
 - `gem build rawfeed.gemspec` to verify package creation
 
 ## Changelog generation

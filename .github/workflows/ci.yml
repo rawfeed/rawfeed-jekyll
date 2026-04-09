@@ -45,8 +45,8 @@ jobs:
       - name: Run tests
         run: bundle exec rspec
 
-      - name: Build Jekyll site
-        run: bundle exec jekyll build --destination .site_build
+      - name: Build rawfeed site
+        run: bundle exec rawfeed build --destination .site_build
 
-      - name: Build gem
+      - name: Build gem rawfeed
         run: gem build rawfeed.gemspec
