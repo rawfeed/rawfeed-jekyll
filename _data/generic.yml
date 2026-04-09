@@ -1,0 +1,29 @@
+# Rawfeed - Technical Configuration
+# This file contains core technical settings for the Jekyll theme
+
+title: rawfeed
+author: "William C. Canin"
+
+# Here you change the language of the months of the date
+datelang:
+  format: "%b %d, %Y"
+  lang: "en_US" # en_US | pt_PT | jp_JP | ch_CH | es_ES | fr_FR | it_IT | de_DE | ru_RU
+
+default:
+  lang: en-US
+  # Some compatible separators: ⨟∫⦁;⬨⬖︙︰𐄛🢝
+  separator: ⨟
+  width: 860 # default: 860
+  background_focus: true
+  rounding: false
+  user_select: none # none | text
+  font:
+    # Fonts Style Options: [default: monospace]
+    # "'Ubuntu', sans-serif"
+    # "'Inconsolata', monospace"
+    # "'JetBrains Mono', monospace"
+    # "'Roboto Mono', monospace"
+    # "'Open Sans', sans-serif"
+    style: monospace
+    size: 16.34px
+    spacing: -0.05em

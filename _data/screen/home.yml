@@ -1,0 +1,23 @@
+# Rawfeed - Home Page Content & Texts
+
+# section: [home]
+home:
+  terminal:
+    enable: true
+    user: "rawfeed"
+    hostname: "linux"
+    welcome: " type 'help'"
+    error: ": command not found."
+    no_socials: "No socials found"
+    help:
+      description: |
+        Use the commands below:
+      commands:
+        title: "Commands:"
+        description: "Description:"
+      menu: |
+        about ------------- A brief summary about 'rawfeed'
+        socials ----------- Links to my active social networks
+        clear ------------- Clear the terminal screen (or press Esc)
+        date -------------- Print the system date and time
+        help -------------- Print this menu

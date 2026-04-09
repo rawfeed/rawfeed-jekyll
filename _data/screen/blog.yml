@@ -15,6 +15,12 @@ blog:
     counter: ["page", "of"]
     older_text: "older posts"
   post:
+    reading_time:
+      enable: true
+      words_per_minute: 180
+      message:
+        ["Read this post in approximately", "Read this post in less than"]
+      minutes_label: ["minute", "minutes"]
     author: "Posted by"
     related_posts:
       enable: true

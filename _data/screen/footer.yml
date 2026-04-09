@@ -1,0 +1,17 @@
+# Rawfeed - Footer & Donation Content & Texts
+
+# section: [footer]
+footer:
+  top_button:
+    # Some compatible icons: ↑ ⇡ ▴ 🢙
+    icon: ⇡
+    enable: true
+  copyright:
+    title: "rawfeed-jekyll"
+    since: 2025
+    message:
+  licenses:
+    title: "Licenses"
+    page_url: "/licenses/"
+  message: |
+    Your impactful phrase!

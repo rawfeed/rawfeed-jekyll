@@ -1,0 +1,20 @@
+# section: [social network]
+# note: if you want more, just add more "title" and "url".
+socials:
+  enable: true
+  description:
+    text: |
+      These are my social networks:
+    terminal:
+      about:
+        description: |
+          If you want to know our other links, use the "socials" command.
+      command:
+        description: |
+          Click on a link and go directly to my social network:
+  links:
+    - title: github
+      url: https://github.com/rawfeed/rawfeed-jekyll
+
+    - title: rubygems
+      url: https://rubygems.org/gems/rawfeed

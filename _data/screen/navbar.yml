@@ -1,0 +1,41 @@
+# section: [navbar]
+navbar:
+  title: hey, i'm rawfeed-jekyll!
+  description: "A minimal, batteries-included Jekyll CMS"
+  width: 860 # default: 860
+  # your website image or logo
+  avatar:
+    open: true
+    flip: true
+    # note: the image (.jpg|.png) will be searched in the directory: assets/images/
+    image:
+      front:
+        light: "/assets/images/avatars/light.png"
+        dark: "/assets/images/avatars/dark.png"
+      back: "/assets/images/avatars/back.png"
+  # menu: use emoji unicode 6.0, to have greater compatibility
+  menu:
+    title: "menu"
+    # default: 🏠📝🔍🔖📰 legacy: ⌂✐⌕▮▤
+    home:
+      emoji: "🏠"
+      title: "/home"
+    blog:
+      emoji: "📝"
+      title: "weblog"
+      subtitle: "posts"
+      search:
+        emoji: "🔍"
+        title: "search"
+      tags:
+        emoji: "🔖"
+        title: "tags"
+      feed:
+        emoji: "📰"
+        title: "feed"
+    pixels:
+      emoji: "📷"
+      title: "pixels"
+    pub:
+      emoji: "📂"
+      title: "pub"

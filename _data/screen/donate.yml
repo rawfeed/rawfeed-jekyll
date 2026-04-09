@@ -1,21 +1,3 @@
-# Rawfeed - Footer & Donation Content & Texts
-
-# section: [footer]
-footer:
-  top_button:
-    # Some compatible icons: ↑ ⇡ ▴ 🢙
-    icon: ⇡
-    enable: true
-  copyright:
-    title: "rawfeed-jekyll"
-    since: 2025
-    message:
-  licenses:
-    title: "Licenses"
-    page_url: "/licenses/"
-  message: |
-    Your impactful phrase!
-
 # section: [donate]
 # Tip: use svg images for better quality (https://www.iconpacks.net)
 donate:
@@ -32,7 +14,7 @@ donate:
     - name: pix
       logo: "/assets/images/donate/pix.svg"
       description: |
-        Make your donation using PIX from Brazil. Use the key below.
+        Faça sua doação usando PIX. Use a chave abaixo.
       address: "00b53f61-b009-4f05-8c43-444cce86af1d"
       qrcode: "/assets/images/donate/qrcode_inter.jpg"
 

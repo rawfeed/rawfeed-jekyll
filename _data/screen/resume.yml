@@ -1,8 +1,8 @@
-# --------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Note: Two pages is acceptable for experienced professionals. Stick to the one-page rule if you
 # have less than 10 years of experience, or two pages if you're senior/academic.
 # Do not put exaggerated information.
-# --------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 # section: [Full name]
 full_name: John A. Doe
@@ -17,7 +17,7 @@ buttons:
     enable: true
     text: print
 
-# ---------------------------------------- SIDEBAR -------------------------------------------------
+# section: [Sidebar]
 sidebar:
   # section: [Contact]
   contact:
@@ -95,7 +95,7 @@ sidebar:
       - group: Others
         tools: [Git, AWS]
 
-# ---------------------------------------- BODY ----------------------------------------------------
+# section: [Body]
 body:
   # section: [Summary]
   # Note: The "Summary" should be a concise paragraph (3-4 lines) that presents your profile,

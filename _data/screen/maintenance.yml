@@ -1,9 +1,3 @@
-# Rawfeed - Global Texts & Strings
-# Generic UI strings and global content
-
-title: rawfeed
-author: "William C. Canin"
-
 # section: [maintenance]
 maintenance:
   enable: false
