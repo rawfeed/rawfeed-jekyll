@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (modalEl) {
     const flipperAvatars = document.querySelectorAll('.avatar-flipper__open-true');
     const modalAvatar = document.getElementById('modalAvatar');
-    const header = document.querySelector('.header');
+    const navigation = document.querySelector('.navigation');
     const bsModal = new bootstrap.Modal(modalEl);
 
     flipperAvatars.forEach((flipper) => {
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       modalAvatar.classList.remove("modal-avatar");
       void modalAvatar.offsetWidth;
       modalAvatar.classList.add("modal-avatar");
-      header.classList.remove("modal-active");
+      navigation.classList.remove("modal-active");
 
       flipperAvatars.forEach((flipper) => flipper.classList.add("hidden"));
     });
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Let's use a timeout to ensure the Giscus iframe is ready
       const giscusInterval = setInterval(() => {
         const giscusFrame = document.querySelector('iframe.giscus-frame');
-        // Se o iframe existir no documento...
+        // If the iframe exists in the document...
         if (giscusFrame) {
           // ...we sent the message...
           giscusFrame.contentWindow.postMessage(message, 'https://giscus.app');
