@@ -22,7 +22,7 @@ jobs:
           ruby-version: 3.2
           bundler-cache: true
 
-      - name: Install dependencies
+      - name: Bundle - Install dependencies
         run: bundle install --jobs 4 --retry 3
 
       - name: Validate Ruby load
