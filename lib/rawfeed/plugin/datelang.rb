@@ -15,19 +15,19 @@ module Rawfeed
       def render(context)
         site = context.registers[:site]
         page = context.registers[:page] || {}
-        options = site.data['options']
+        generic = site.data['generic']
 
         json_path = File.join(Rawfeed::ROOT, "assets", "json", "datelang.json")
 
         return "[datelang error: datelang.json not found]" unless File.exist?(json_path)
 
         translations = JSON.parse(File.read(json_path))
-        locale = options.dig("datelang", "lang") || "en_US"
+        locale = generic.dig("datelang", "lang") || "en_US"
         data = translations[locale] || translations["en_US"]
 
         args = parse_args(@markup, context)
         date_input = args[:date] || page["date"] || page[:date]
-        format = args[:format] || options.dig("datelang", "format") || "%b %-d, %Y"
+        format = args[:format] || generic.dig("datelang", "format") || "%b %-d, %Y"
 
         return "[datelang: no date]" unless date_input && date_input.to_s.strip != ""
 
