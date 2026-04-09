@@ -44,12 +44,14 @@ rawfeed install
 bundle exec rawfeed serve
 ```
 
-### Using direnv
-
-```bash
-echo "export RAWFEED_DEV_PATH=\"\$PWD\"" > .envrc
-direnv allow
-```
+> [!TIP]
+>
+> ### Using direnv
+>
+> ```bash
+> echo "export > RAWFEED_DEV_PATH=\"\$PWD\"" > .>envrc
+> direnv allow
+> ```
 
 ## Contribution workflow
 
@@ -74,27 +76,29 @@ The release workflow is documented in [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.m
 ## Changelog generation
 
 This repository includes a development tool to help generate changelogs from GitHub issues and tags.
-The project is configured in `.github_changelog_generator`.
+The project is configured in `.github_changelog_generator`, which uses the same CLI options format used by `github_changelog_generator`.
+By default, the tool generates or updates `CHANGELOG.md` in the repository root.
+
 Use the following command after installing development dependencies:
 
 ```shell
 bundle exec github_changelog_generator
 ```
 
-When commit messages are not standardized, manual changelog editing is still recommended.
+If you prefer a manual approach, keep editing `CHANGELOG.md` by hand.
 
 ## Build and publish
 
 Build the gem:
 
 ```shell
-gem build rawfeed.gemspec
+bundle exec rake build
 ```
 
 Publish the gem:
 
 ```shell
-gem push rawfeed-<VERSION>.gem
+bundle exec rake release
 ```
 
 ## Continuous integration
