@@ -40,7 +40,7 @@ layout: default
             </span>
           {%- endif -%}
         </div>
-        {%- if reading_time.enable -%}
+        {%- if blog.post.reading_time.enable -%}
           <div class="post-reading_time">
             [&nbsp;{{ page.content | reading_time }}&nbsp;]
           </div>
@@ -113,7 +113,7 @@ layout: default
           {%- for post in related_posts limit: 5 -%}
             <li class="related-posts-list__item">
               {%- if datelang -%}
-                <span class="related-posts-list__meta">{% datelang post.date format: datelang.format %}</span>&nbsp;»&nbsp;
+                <span class="related-posts-list__meta">{% datelang post.date %}</span>&nbsp;»&nbsp;
               {%- else -%}
                 <span class="related-posts-list__meta">{{ post.date | date: "%b %-d, %Y" }}</span>&nbsp;»&nbsp;
               {%- endif -%}

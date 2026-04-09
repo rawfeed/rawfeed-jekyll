@@ -1,4 +1,7 @@
 {%- assign theme_name = 'rawfeed' -%}
+
+{%- comment -%} URLS {%- endcomment -%}
+
 {%- assign project_url = 'https://rawfeed.github.io/rawfeed-jekyll' -%}
 {%- assign home_url = '/' | relative_url -%}
 {%- assign blog_url = '/blog/' | relative_url -%}
@@ -7,20 +10,27 @@
 {%- assign tags_url = '/blog/tags/' | relative_url -%}
 {%- assign feed_url = '/feed.xml' | relative_url -%}
 {%- assign pub_url = '/pub/' -%}
-{%- assign head = site.data.options.head -%}
-{%- assign site_title = site.data.options.title -%}
-{%- assign author = site.data.options.author -%}
-{%- assign header = site.data.options.header -%}
-{%- assign blog = site.data.options.blog -%}
-{%- assign pixels = site.data.options.pixels -%}
-{%- assign home = site.data.options.home -%}
-{%- assign default = site.data.options.default -%}
-{%- assign page_data = site.data.options.page -%}
-{%- assign donate = site.data.options.donate -%}
-{%- assign contact = site.data.options.contact -%}
-{%- assign footer = site.data.options.footer -%}
-{%- assign socials = site.data.options.socials -%}
-{%- assign pub = site.data.options.pub -%}
-{%- assign datelang = site.data.options.datelang -%}
-{%- assign maintenance = site.data.options.maintenance -%}
-{%- assign reading_time = site.data.options.reading_time -%}
+
+{%- comment -%} SCREEN {%- endcomment -%}
+
+{%- assign generic = site.data.generic -%}
+{%- assign blog = site.data.screen.blog.blog -%}
+{%- assign contact = site.data.screen.contact.contact -%}
+{%- assign donate = site.data.screen.donate.donate -%}
+{%- assign footer = site.data.screen.footer.footer -%}
+{%- assign head = site.data.screen.head.head -%}
+{%- assign home = site.data.screen.home.home -%}
+{%- assign maintenance = site.data.screen.maintenance.maintenance -%}
+{%- assign navbar = site.data.screen.navbar.navbar -%}
+{%- assign page_data = site.data.screen.page.page -%}
+{%- assign pixels = site.data.screen.pixels.pixels -%}
+{%- assign pub = site.data.screen.pub.pub -%}
+{%- assign resume = site.data.screen.resume -%}
+{%- assign socials = site.data.screen.socials.socials -%}
+
+{%- comment -%} VALUES {%- endcomment -%}
+
+{%- assign datelang = site.data.generic.datelang -%}
+{%- assign default = site.data.generic.default -%}
+{%- assign site_title = site.data.generic.title -%}
+{%- assign author = site.data.generic.author -%}

@@ -16,7 +16,7 @@ layout: default
         <div class="col-sm d-flex justify-content-start">
           <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
           {%- if datelang -%}
-            {% datelang page.date format:datelang.format %}
+            {% datelang page.date %}
           {%- else -%}
             {{ page.date | date: "%b %-d, %Y" }}
           {%- endif -%}

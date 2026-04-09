@@ -18,12 +18,12 @@
   {%- endif -%}
 
   <!-- SEO -->
-  <meta name="description" content="{{ page.description | capitalize | default: header.description | strip_html | truncate: 50 }}">
+  <meta name="description" content="{{ page.description | capitalize | default: navbar.description | strip_html | truncate: 50 }}">
   <meta name="author" content="{{ page.author | default: author }}">
   <meta property="og:title" content="{{ page.title | capitalize | default: site_title }}">
   <meta property="og:locale" content="{{ default.lang | replace: "-", "_" | default: "en_US" }}">
   <meta property="og:locale:alternate" content="en_US">
-  <meta property="og:description" content="{{ page.description | capitalize | default: header.description | strip_html | truncate: 50 }}">
+  <meta property="og:description" content="{{ page.description | capitalize | default: navbar.description | strip_html | truncate: 50 }}">
   <link rel="canonical" href="{{ page.url | prepend: site.url }}">
   <meta property="og:url" content="{{ page.url | prepend: site.url }}">
   <meta property="og:site_name" content="{{ site_title }}">
@@ -53,7 +53,7 @@
         {%- else -%}
         "@type" : "WebSite",
         {%- endif -%}
-        "description": "{{ page.description | default: header.description | strip_html | truncate: 160 | escape }}",
+        "description": "{{ page.description | default: navbar.description | strip_html | truncate: 160 | escape }}",
         "headline": "{{ page.title | default: site_title | escape }}",
         "name": "{{ site_title }}",
         "url": "{{ page.url | prepend: site.url }}"

@@ -17,7 +17,7 @@
     <body style="font-family: {{ default.font.style }} !important; font-size: {{ default.font.size }} !important; letter-spacing: {{ default.font.spacing }} !important;">
 
       <div class="container-fluid">
-        {%- include layout/header.html -%}
+        {%- include layout/navbar.html -%}
 
         <div class="default" style="max-width: {{ pixels.layout.width | default: "860" }}px !important;">
           <main class="pixels{% if default.background_focus %} background_focus{% endif %}{% if default.rounding %} rounding{% endif %}">
@@ -44,7 +44,7 @@
                         <img src="{{ item.image.path | relative_url }}" alt="{{ item.title }}">
                         <div class="overlay">
                           <div class="text-center overlay-content">
-                            <small class="date">{% datelang item.date format: datelang.format %}</small>
+                            <small class="date">{% datelang item.date %}</small>
                             <p class="mb-0 desc">{{ item.content | strip_html | truncate: 50 }}</p>
                           </div>
                         </div>

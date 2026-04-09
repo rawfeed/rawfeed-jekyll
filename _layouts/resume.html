@@ -1,7 +1,5 @@
 {%- include assigned -%}
 
-{%- assign resume = site.data.resume -%}
-
 {%- if maintenance.enable != true -%}
   <!doctype html>
   <html
@@ -14,7 +12,7 @@
     <body>
       <div class="container-fluid">
         <!-- header -->
-        {%- include layout/header.html -%}
+        {%- include layout/navbar.html -%}
         <!-- header -->
 
         {%- if resume.full_name == 'John A. Doe' -%}
