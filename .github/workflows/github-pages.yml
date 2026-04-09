@@ -1,0 +1,47 @@
+# Note: This action will be copied to the end-user (production) project. It has no purpose for
+# development.
+
+### --- Dear user, uncomment this block if you want to publish the site on GitHub Pages.
+
+# name: GitHub Pages
+#
+# # Controls when the action will run.
+# on:
+#   push:
+#     branches:
+#       - main
+
+# # Sets permissions for the GITHUB_TOKEN token
+# permissions:
+#   contents: write
+
+# # A single job that builds and deploys the site
+# jobs:
+#   build-deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+
+#       - name: Setup Ruby
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: "3.3"
+#           bundler-cache: true
+
+#       - name: Bundle - Install dependencies gems
+#         run: |
+#           bundle config set --local path '.bundle-cache'
+#           bundle install
+
+#       - name: rawfeed - Build site
+#         run: |
+#           bundle exec rawfeed build
+
+#       - name: Deploy GitHub Pages
+#         uses: peaceiris/actions-gh-pages@v3
+#         if: github.ref == 'refs/heads/main'
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           publish_dir: ./_site
+
+### --- Dear user, uncomment this block if you want to publish the site on GitHub Pages.
