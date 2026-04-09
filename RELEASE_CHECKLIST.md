@@ -26,35 +26,37 @@ This file defines the release readiness criteria for `1.0.0`.
 
 ## Release steps
 
-1. Update `lib/rawfeed/core/version.rb` to `1.0.0`.
-2. Add or update the release entry in `CHANGELOG.md`.
+1. Create a release branch from `main`, for example `release/1.0.0`.
+2. Update `lib/rawfeed/core/version.rb` to `1.0.0`.
+3. Add or update the release entry in `CHANGELOG.md`.
    - If desired, generate a changelog draft with:
 
      ```bash
      bundle exec github_changelog_generator
      ```
 
-3. Ensure CI passes on the release branch.
-4. Build the gem:
+4. Open a pull request from the release branch into `main`.
+5. Ensure CI passes on the release branch and on the pull request.
+6. Build the gem:
 
    ```bash
    gem build rawfeed.gemspec
    ```
 
-5. Verify the package loads:
+7. Verify the package loads:
 
    ```bash
    bundle exec ruby -Ilib -e 'require "rawfeed"; puts Rawfeed::VERSION'
    ```
 
-6. Publish the gem:
+8. Publish the gem:
 
    ```bash
    gem push rawfeed-1.0.0.gem
    ```
 
-7. Create a GitHub release and add release notes using `.github/release_template.md`.
-8. Tag the release and close the associated milestone or issue.
+9. Create a GitHub release and add release notes using `.github/release_template.md`.
+10. Tag the release and close the associated milestone or issue.
 
 ## Notes
 
