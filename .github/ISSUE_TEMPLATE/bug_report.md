@@ -4,30 +4,32 @@ about: Report a bug in rawfeed-jekyll
 labels: bug
 ---
 
-## Descrição
+## Description
 
-Descreva o problema encontrado.
+Describe the problem encountered.
 
-## Passos para reproduzir
+## Steps to reproduce
 
 1.
 2.
 3.
 
-## Comportamento esperado
+## Expected behavior
 
-Explique o que você esperava que acontecesse.
+Explain what you expected to happen.
 
-## Comportamento atual
+## Current behavior
 
-Explique o que está acontecendo de fato.
+Explain what is actually happening.
 
-## Ambiente
+## Environment
 
-- Versão do Ruby:
-- Sistema operacional:
-- Versão do rawfeed-jekyll:
+- Ruby version:
 
-## Observações adicionais
+- Operating system:
 
-Inclua logs, links, capturas de tela ou outros detalhes relevantes.
+- rawfeed-jekyll version:
+
+## Additional observations
+
+Include logs, links, screenshots, or other relevant details.

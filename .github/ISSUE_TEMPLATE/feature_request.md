@@ -1,21 +1,21 @@
 ---
 name: Feature request
-about: Sugira uma melhoria ou nova funcionalidade para rawfeed-jekyll
+about: Suggest an improvement or new feature for rawfeed-jekyll
 labels: enhancement
 ---
 
-## Descrição da melhoria
+## Description of the improvement
 
-Explique o que você gostaria de ver adicionado ou melhorado.
+Explain what you would like to see added or improved.
 
-## Motivação
+## Motivation
 
-Por que essa melhoria é importante? Qual problema ela resolve?
+Why is this improvement important? What problem does it solve?
 
-## Exemplo de uso
+## Example of use
 
-Como você espera usar essa funcionalidade?
+How do you expect to use this feature?
 
-## Alternativas consideradas
+## Alternatives considered
 
-Descreva outras abordagens ou soluções que você avaliou.
+Describe other approaches or solutions you have evaluated.
