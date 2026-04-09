@@ -40,7 +40,7 @@ See the full documentation at [https://rawfeed.github.io/rawfeed-jekyll/](https:
 git clone https://github.com/rawfeed/rawfeed-jekyll.git
 cd rawfeed-jekyll
 export RAWFEED_DEV_PATH="$PWD"
-rawfeed install
+bundle install
 bundle exec rawfeed serve
 ```
 
