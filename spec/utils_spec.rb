@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require "stringio"
 
 RSpec.describe Rawfeed::Utils do
   describe ".slug_generator" do
@@ -17,6 +18,36 @@ RSpec.describe Rawfeed::Utils do
       expect(result).to eq("2025-11-30")
     ensure
       ENV.delete("date")
+    end
+  end
+
+  describe ".confirm" do
+    it "returns the user choice from STDIN" do
+      input = StringIO.new("y\n")
+      allow(STDIN).to receive(:gets).and_return(input.gets)
+
+      result = described_class.confirm("Continue?")
+      expect(result).to eq("y")
+    end
+  end
+
+  describe ".engineer" do
+    it "builds page metadata and filename for a new content item" do
+      Dir.mktmpdir do |tmp_dir|
+        fake_stdin = StringIO.new("Prototype Title\n")
+        allow(STDIN).to receive(:gets).and_return(fake_stdin.gets)
+        ENV["date"] = "2025-12-01"
+
+        title, date, datetime, filename = described_class.engineer(tmp_dir, "Title", "post")
+
+        expect(title).to eq("Prototype Title")
+        expect(date).to eq("2025-12-01")
+        expect(datetime).to match(/2025-12-01 \d{2}:\d{2}:\d{2}/)
+        expect(filename).to include("2025-12-01-prototype-title.md")
+        expect(File).to exist(File.dirname(filename))
+      ensure
+        ENV.delete("date")
+      end
     end
   end
 
