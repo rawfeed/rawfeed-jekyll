@@ -10,9 +10,9 @@ Descreva o problema encontrado.
 
 ## Passos para reproduzir
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ## Comportamento esperado
 
