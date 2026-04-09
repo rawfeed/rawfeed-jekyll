@@ -10,18 +10,18 @@ module Jekyll
     priority :low
 
     def generate(site)
-      options_yml = File.join(site.source, "_data", "options.yml")
+      generic_yml = File.join(site.source, "_data", "generic.yml")
 
-      unless File.exist?(options_yml)
-        Jekyll.logger.error "[AuthorPlugin]", "File _data/options.yml not found!"
+      unless File.exist?(generic_yml)
+        Jekyll.logger.error "[AuthorPlugin]", "File _data/generic.yml not found!"
         return
       end
 
-      options_data = YAML.load_file(options_yml)
-      author_value = options_data["author"]
+      generic_data = YAML.load_file(generic_yml)
+      author_value = generic_data["author"]
 
       unless author_value
-        Jekyll.logger.warn "[AuthorPlugin]", "Field 'author' not found in options.yml."
+        Jekyll.logger.warn "[AuthorPlugin]", "Field 'author' not found in generic.yml."
         return
       end
 
@@ -41,7 +41,7 @@ module Jekyll
 
         if content =~ /^author:\s*.+$/
           updated = content.gsub(/^author:\s*.+$/, "author: \"#{author_value}\"")
-        elsif content =~ /\A---\s*\n/  # insere logo depois do primeiro ---
+        elsif content =~ /\A---\s*\n/
           updated = content.sub(/\A(---\s*\n)/, "\\1author: \"#{author_value}\"\n")
         end
 
