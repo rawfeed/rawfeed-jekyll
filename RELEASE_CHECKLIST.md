@@ -27,8 +27,7 @@ This file defines the release readiness criteria for `1.0.0`.
 ## Release steps
 
 1. Update `lib/rawfeed/core/version.rb` to `1.0.0`.
-2. Add or update the release entry in `CHANGELOG.md`.
-3. Ensure CI passes on the release branch.
+2. Add or update the release entry in `CHANGELOG.md`.   - Optionally regenerate the changelog using `bundle exec cliff changelog` if commit messages follow Conventional Commits.3. Ensure CI passes on the release branch.
 4. Build the gem:
 
    ```bash

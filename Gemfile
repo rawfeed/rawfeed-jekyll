@@ -28,6 +28,8 @@ gem "rubyzip", "~> 2.3"
 # Build and minification
 gem "uglifier", "~> 4.2.0"
 
+gem "cliff", "~> 2.0"
+
 ## Place your plugins here.
 # group :jekyll_plugins do
 # end
