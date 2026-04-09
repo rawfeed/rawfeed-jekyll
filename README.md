@@ -49,7 +49,7 @@ bundle exec rawfeed serve
 > ### Using direnv
 >
 > ```bash
-> echo "export > RAWFEED_DEV_PATH=\"\$PWD\"" > .>envrc
+> echo "export RAWFEED_DEV_PATH=\"\$PWD\"" > .envrc
 > direnv allow
 > ```
 
@@ -71,7 +71,20 @@ The release workflow is documented in [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.m
 - Package metadata is in `rawfeed.gemspec`
 - CI is configured in `.github/workflows/ci.yml`
 - Release notes are captured by `.github/release_template.md`
+- Release branches should follow `release/<version>` and use `RELEASE_CHECKLIST.md` as the release branch base
 - Changelog automation can be done with `github_changelog_generator` in development
+
+## Continuous integration
+
+This repository uses GitHub Actions to run the complete release workflow on pull requests to `main` and on pushes to `main` or `release/**` branches.
+
+The CI job performs:
+
+- `bundle install` with Bundler cache
+- library loading validation via `bundle exec ruby -Ilib -e 'require "rawfeed"'
+- `bundle exec rspec` for test coverage
+- `bundle exec jekyll build --destination .site_build` to ensure the theme builds cleanly
+- `gem build rawfeed.gemspec` to verify package creation
 
 ## Changelog generation
 
@@ -89,16 +102,16 @@ If you prefer a manual approach, keep editing `CHANGELOG.md` by hand.
 
 ## Build and publish
 
-Build the gem:
+Build the gem package:
 
 ```shell
 bundle exec rake build
 ```
 
-Publish the gem:
+Publish the gem to RubyGems:
 
 ```shell
-bundle exec rake release
+gem push rawfeed-<VERSION>.gem
 ```
 
 ## Continuous integration

@@ -65,6 +65,8 @@ The project version is defined in `lib/rawfeed/core/version.rb` and referenced b
 
 Before publishing a release, complete the tasks in [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md).
 
+Release branches should be created from `main` using the `release/<version>` naming convention.
+
 1. Update `lib/rawfeed/core/version.rb` to the new version.
 2. Add a changelog entry in `CHANGELOG.md`.
 3. Build the gem:

@@ -9,12 +9,13 @@ This file defines the release readiness criteria for `1.0.0`.
 - [ ] `rawfeed.gemspec` metadata is correct
 - [ ] `CHANGELOG.md` includes a release entry for `1.0.0`
 - [ ] The code is reviewed, tested, and approved in a pull request
-- [ ] GitHub Actions CI passes on main and the release branch
+- [ ] GitHub Actions CI passes on `main` and on the release branch
 - [ ] The gem package builds successfully with `gem build rawfeed.gemspec`
 - [ ] The library loads successfully with `require "rawfeed"`
 - [ ] Issue and PR templates are available in `.github`
 - [ ] `README.md`, `CONTRIBUTING.md`, and `CODE_OF_CONDUCT.md` are up to date
 - [ ] License and project metadata are visible and correct
+- [ ] Release branches are created from `main` using `release/<version>` naming
 
 ## Quality checks
 
@@ -27,6 +28,7 @@ This file defines the release readiness criteria for `1.0.0`.
 ## Release steps
 
 1. Create a release branch from `main`, for example `release/1.0.0`.
+   - Use this file as the release branch base: `RELEASE_CHECKLIST.md`.
 2. Update `lib/rawfeed/core/version.rb` to `1.0.0`.
 3. Add or update the release entry in `CHANGELOG.md`.
    - If desired, generate a changelog draft with:
