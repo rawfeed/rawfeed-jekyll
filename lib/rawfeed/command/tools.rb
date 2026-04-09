@@ -23,7 +23,7 @@ module Rawfeed
 
     def self.help
       begin
-        puts "rawfeed-jekyll - A minimal, batteries-included Jekyll CMS".bold
+        puts "rawfeed-jekyll - A batteries-included Jekyll framework and CLI".bold
         puts "\nUsage: rawfeed <command> [options]".yellow
         puts "\nCommands:".bold
         puts "  new <path>        Create a new rawfeed site"
