@@ -1,9 +1,6 @@
 ---
 ---
 
-{%- include assigned -%}
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
   /* details
@@ -18,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       function initDetails(){
         const starts = document.querySelectorAll('.details-start');
         starts.forEach(start => {
-          const summary = start.getAttribute('data-summary') || 'Detalhes';
+          const summary = start.getAttribute('data-summary') || 'Details';
 
           let end = start.nextSibling;
           while(end && !(end.nodeType === 1 && end.classList.contains('details-end'))){
