@@ -39,7 +39,7 @@
   border-bottom: 1px solid var(--text-color);
 }
 
-.header {
+.navigation {
   margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -102,13 +102,9 @@
     // margin: 0px 5px;
   }
 
-
-  // O contêiner que reage ao hover
-
-
   .avatar {
     &-wrapper {
-      // Define a perspectiva para o efeito 3D
+      // Define the perspective for the 3D effect.
       perspective: 1000px;
     }
 

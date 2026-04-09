@@ -33,27 +33,27 @@
 </div>
 <!-- modal avatar -->
 
-<header class="header" style="max-width: {{ header.width | default: "860" }}px !important; font-family: {{ default.font.style }} !important; font-size: {{ default.font.size }} !important; letter-spacing:{{ default.font.spacing }} !important;">
+<header class="navigation" style="max-width: {{ navbar.width | default: "860" }}px !important; font-family: {{ default.font.style }} !important; font-size: {{ default.font.size }} !important; letter-spacing:{{ default.font.spacing }} !important;">
   <div class="row ">
     <!-- column home -->
-    <div class="col-sm-3 d-flex flex-column justify-content-end header__column-home">
+    <div class="col-sm-3 d-flex flex-column justify-content-end navigation__column-home">
       {%- if index.layout == 'blog' -%}
-        <span>[{{ header.menu.home.emoji | with_class: 'spacer' -}}
+        <span>[{{ navbar.menu.home.emoji | with_class: 'spacer' -}}
           <a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="{{home_url}}">
-            {{- header.menu.blog.title | default: 'blog' | downcase -}}</a>&nbsp;]</span>
+            {{- navbar.menu.blog.title | default: 'blog' | downcase -}}</a>&nbsp;]</span>
       {%- else -%}
-        <span>[{{ header.menu.home.emoji | with_class: 'spacer' -}}
+        <span>[{{ navbar.menu.home.emoji | with_class: 'spacer' -}}
           <a class="{% if page.url == "/" or page.url == "/index.html" %}menu-active{% endif %}" href="{{home_url}}">
-            {{- header.menu.home.title | default: 'home' | downcase -}}</a>&nbsp;]</span>
+            {{- navbar.menu.home.title | default: 'home' | downcase -}}</a>&nbsp;]</span>
       {%- endif -%}
     </div>
     <!-- column home -->
 
     <!-- column description -->
     <div class="col-sm-6 d-flex flex-column justify-content-end">
-      <span class="title">{{ header.title | default: theme_name }}</span>
+      <span class="title">{{ navbar.title | default: theme_name }}</span>
       <small class="description">
-        {{ header.description | default: 'A minimal, batteries-included Jekyll CMS' }}
+        {{ navbar.description | default: 'A minimal, batteries-included Jekyll CMS' }}
       </small>
     </div>
     <!-- column description -->
@@ -61,14 +61,14 @@
     <!-- column avatar -->
     <div class="col-sm-3 d-flex justify-content-end avatar">
       {%- assign images_ = site.static_files | map: 'path' -%}
-      {%- assign avatar_path_light = header.avatar.image.front.light -%}
-      {%- assign avatar_path_dark = header.avatar.image.front.dark -%}
-      {%- assign avatar_path_back = header.avatar.image.back -%}
+      {%- assign avatar_path_light = navbar.avatar.image.front.light -%}
+      {%- assign avatar_path_dark = navbar.avatar.image.front.dark -%}
+      {%- assign avatar_path_back = navbar.avatar.image.back -%}
 
       {%- if images_ contains avatar_path_light and images_ contains avatar_path_dark and images_ contains avatar_path_back
       -%}
         <div class="avatar-wrapper">
-          <div class="avatar-flipper light-theme {% if header.avatar.open %}avatar-flipper__open-true{% endif %}{% if header.avatar.flip %} can-flip{% endif %}">
+          <div class="avatar-flipper light-theme {% if navbar.avatar.open %}avatar-flipper__open-true{% endif %}{% if navbar.avatar.flip %} can-flip{% endif %}">
             <div class="avatar-card">
               <div class="avatar-front">
                 <img
@@ -86,7 +86,7 @@
             </div>
           </div>
 
-          <div class="avatar-flipper dark-theme {% if header.avatar.open %} avatar-flipper__open-true{% endif %}{% if header.avatar.flip %} can-flip{% endif %}">
+          <div class="avatar-flipper dark-theme {% if navbar.avatar.open %} avatar-flipper__open-true{% endif %}{% if navbar.avatar.flip %} can-flip{% endif %}">
             <div class="avatar-card">
               <div class="avatar-front">
                 <img
@@ -122,18 +122,18 @@
     <div class="col-sm d-flex justify-content-center menu">
       {%- if index.layout == 'blog' -%}
         <div>
-          {{ header.menu.title }}&nbsp;»&nbsp;
+          {{ navbar.menu.title }}&nbsp;»&nbsp;
           <div class="menu-wrap-link">
-            {{ header.menu.blog.search.emoji | with_class: 'spacer' }}
+            {{ navbar.menu.blog.search.emoji | with_class: 'spacer' }}
             {%- if blog.search.enable -%}
-              <a id="blog-search__btn" href="{{search_url}}">{{ header.menu.blog.search.title | default: 'search' }}</a>
+              <a id="blog-search__btn" href="{{search_url}}">{{ navbar.menu.blog.search.title | default: 'search' }}</a>
               <strong class="separator">{{ menu_separator }}</strong>
             {%- endif -%}
           </div>
           <div class="menu-wrap-link">
-            {{ header.menu.blog.tags.emoji | with_class: 'spacer' -}}
+            {{ navbar.menu.blog.tags.emoji | with_class: 'spacer' -}}
             <a class="{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">
-              {{- header.menu.blog.tags.title | default: 'tags' -}}</a>
+              {{- navbar.menu.blog.tags.title | default: 'tags' -}}</a>
             <strong class="separator">{{ menu_separator }}</strong>
           </div>
           {%- assign sorted_pages = site.pages | sort: 'order' -%}
@@ -150,38 +150,38 @@
             {%- endif -%}
           {%- endfor -%}
           <div class="menu-wrap-link">
-            {{ header.menu.blog.feed.emoji | with_class: 'spacer' -}}
-            <a href="{{feed_url}}">{{ header.menu.blog.feed.title | default: 'feed' }}</a>
+            {{ navbar.menu.blog.feed.emoji | with_class: 'spacer' -}}
+            <a href="{{feed_url}}">{{ navbar.menu.blog.feed.title | default: 'feed' }}</a>
             <strong class="separator">{{ menu_separator }}</strong>
           </div>
         </div>
       {%- else -%}
         {%- if page.url contains '/blog/' -%}
           <div>
-            {{ header.menu.blog.title | replace: '/', '' | replace: 'ls ', '' }}&nbsp;»
+            {{ navbar.menu.blog.title | replace: '/', '' | replace: 'ls ', '' }}&nbsp;»
             <div class="menu-wrap-link">
-              {{ header.menu.blog.emoji | with_class: 'spacer' -}}
+              {{ navbar.menu.blog.emoji | with_class: 'spacer' -}}
               <a class="{% if page.url == "/blog/" or page.url == "/blog/index.html" or page.url contains "/blog/page/" %} menu-active{% endif %}" href="{{blog_url}}">
-                {{- header.menu.blog.subtitle -}}</a>
+                {{- navbar.menu.blog.subtitle -}}</a>
               <strong class="separator">{{ menu_separator }}</strong>
             </div>
             {%- if blog.search.enable -%}
               <span style="display: inline-block;">
-                {{- header.menu.blog.search.emoji | with_class: 'spacer' -}}
+                {{- navbar.menu.blog.search.emoji | with_class: 'spacer' -}}
                 <a id="blog-search__btn" href="{{search_url}}">
-                  {{- header.menu.blog.search.title | default: 'search' -}}</a>
+                  {{- navbar.menu.blog.search.title | default: 'search' -}}</a>
                 <strong class="separator">{{ menu_separator }}</strong>
               </span>
             {%- endif -%}
             <div class="menu-wrap-link">
-              {{ header.menu.blog.tags.emoji | with_class: 'spacer' -}}
+              {{ navbar.menu.blog.tags.emoji | with_class: 'spacer' -}}
               <a class="{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">
-                {{- header.menu.blog.tags.title | default: 'tags' -}}</a>
+                {{- navbar.menu.blog.tags.title | default: 'tags' -}}</a>
               <strong class="separator">{{ menu_separator }}</strong>
             </div>
             <div class="menu-wrap-link">
-              {{ header.menu.blog.feed.emoji | with_class: 'spacer' -}}
-              <a href="{{feed_url}}">{{ header.menu.blog.feed.title | default: 'feed' }}</a>
+              {{ navbar.menu.blog.feed.emoji | with_class: 'spacer' -}}
+              <a href="{{feed_url}}">{{ navbar.menu.blog.feed.title | default: 'feed' }}</a>
               <strong class="separator">{{ menu_separator }}</strong>
             </div>
           </div>
@@ -189,20 +189,20 @@
           <div>
             {%- assign published_pages = site.pages | where_exp: 'p', "p.path contains '_pages/' and p.published" -%}
             {%- if published_pages.size > 0 -%}
-              <span>{{ header.menu.title }}&nbsp;»</span>&nbsp;
+              <span>{{ navbar.menu.title }}&nbsp;»</span>&nbsp;
             {%- endif -%}
             {%- if site.pagination.enabled == true -%}
               {%- if blog_page -%}
                 <div class="menu-wrap-link">
-                  {{ header.menu.blog.emoji | with_class: 'spacer' -}}
-                  <a href="{{blog_url}}">{{ header.menu.blog.title | replace: 'ls ', '' }}</a>
+                  {{ navbar.menu.blog.emoji | with_class: 'spacer' -}}
+                  <a href="{{blog_url}}">{{ navbar.menu.blog.title | replace: 'ls ', '' }}</a>
                   <strong class="separator">{{ menu_separator }}</strong>
                 </div>
               {%- endif -%}
               {%- if pixels_page -%}
                 <div class="menu-wrap-link">
-                  {{ header.menu.pixels.emoji | with_class: 'spacer' -}}
-                  <a href="{{pixels_url}}">{{ header.menu.pixels.title }}</a>
+                  {{ navbar.menu.pixels.emoji | with_class: 'spacer' -}}
+                  <a href="{{pixels_url}}">{{ navbar.menu.pixels.title }}</a>
                   <strong class="separator">{{ menu_separator }}</strong>
                 </div>
               {%- endif -%}
@@ -222,14 +222,14 @@
             {%- else -%}
               {%- if blog_page -%}
                 <div class="menu-wrap-link">
-                  {{ header.menu.blog.emoji | with_class: 'spacer' -}}
-                  <a href="{{blog_url}}">{{ header.menu.blog.title | replace: '/', '' }}</a>
+                  {{ navbar.menu.blog.emoji | with_class: 'spacer' -}}
+                  <a href="{{blog_url}}">{{ navbar.menu.blog.title | replace: '/', '' }}</a>
                   <strong class="separator">{{ menu_separator }}</strong>
                 </div>
               {%- endif -%}
               {%- if pixels_page -%}
                 <div class="menu-wrap-link">
-                  {{ header.menu.pixels.emoji | with_class: 'spacer' -}}
+                  {{ navbar.menu.pixels.emoji | with_class: 'spacer' -}}
                   <a href="{{pixels_url}}">pixels</a>
                   <strong class="separator">{{ menu_separator }}</strong>
                 </div>
@@ -251,8 +251,8 @@
             {%- assign files_in_pub = site.static_files | where_exp: 'item', 'item.path contains pub_url' -%}
             {%- if files_in_pub.size > 0 -%}
               <div class="menu-wrap-link">
-                {{ header.menu.pub.emoji | with_class: 'spacer' -}}
-                <a href="{{ pub_url | relative_url }}">{{ header.menu.pub.title }}</a>
+                {{ navbar.menu.pub.emoji | with_class: 'spacer' -}}
+                <a href="{{ pub_url | relative_url }}">{{ navbar.menu.pub.title }}</a>
               </div>
             {%- endif -%}
           </div>
