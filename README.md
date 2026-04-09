@@ -34,6 +34,8 @@ iex (Invoke-WebRequest -Uri "https://rawfeed.github.io/install.ps1" -UseBasicPar
 
 # For developer
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines, issue and PR templates, and release process.
+
 After installing the requirements, prepare the environment as follows:
 
 ```shell

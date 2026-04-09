@@ -66,6 +66,8 @@ The current version is defined in `lib/rawfeed/core/version.rb` and referenced b
 
 4. Update the changelog and release notes.
 
+See [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) for stability criteria and the pre-release checklist.
+
 ## Changelog
 
 The project currently publishes a changelog at:
