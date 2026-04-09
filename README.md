@@ -74,6 +74,7 @@ The release workflow is documented in [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.m
 ## Changelog generation
 
 This repository includes a development tool to help generate changelogs from GitHub issues and tags.
+The project is configured in `.github_changelog_generator`.
 Use the following command after installing development dependencies:
 
 ```shell

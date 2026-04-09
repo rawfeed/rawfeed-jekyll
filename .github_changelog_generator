@@ -1,0 +1,7 @@
+user: rawfeed
+project: rawfeed-jekyll
+
+# Optional settings
+# future_release: "Unreleased"
+# no_issues: true
+# since_tag: "v0.4.0"

@@ -47,4 +47,5 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 group :development, :test do
   gem "rspec", "~> 3.12"
   gem "github_changelog_generator", "~> 1.8"
+  gem "faraday-retry", "~> 1.0"
 end
