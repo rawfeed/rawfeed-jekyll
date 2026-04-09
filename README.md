@@ -27,8 +27,8 @@
 | Required | Version | How to verify | How to install                    |
 | -------- | ------- | ------------- | --------------------------------- |
 | Ruby     | >= 3.0  | `ruby -v`     | [Ruby](https://www.ruby-lang.org) |
-| Gem      | >= 3.0  | `gem -v`      | Bundled with Ruby                |
-| Bundler  | >= 2.0  | `bundler -v`  | `gem install bundler`            |
+| Gem      | >= 3.0  | `gem -v`      | Bundled with Ruby                 |
+| Bundler  | >= 2.0  | `bundler -v`  | `gem install bundler`             |
 
 ## Install
 

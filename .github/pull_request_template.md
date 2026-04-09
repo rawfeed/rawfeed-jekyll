@@ -8,7 +8,7 @@ Describe what this pull request changes and why.
 - [ ] New feature
 - [ ] Documentation update
 - [ ] Refactor
-- [ ] Other: __________________
+- [ ] Other: ********\_\_********
 
 ## Checklist
 
