@@ -1,41 +1,55 @@
-# Release checklist para a versão 1.0.0
+# Release checklist for 1.0.0
 
-Este documento descreve os critérios de prontidão para um lançamento estável `1.0.0`.
+This file defines the release readiness criteria for `1.0.0`.
 
-## Critérios principais
+## Readiness criteria
 
-- [ ] O versionamento segue [SemVer](https://semver.org/) com `MAJOR.MINOR.PATCH`.
-- [ ] As mudanças são documentadas no changelog ou na página de release.
-- [ ] O código foi revisado e validado em pelo menos uma revisão de PR.
-- [ ] O build do gem funciona com `gem build rawfeed.gemspec`.
-- [ ] A biblioteca carrega corretamente com `require "rawfeed"`.
-- [ ] O projeto possui templates de issue e pull request.
-- [ ] O README e `CONTRIBUTING.md` estão atualizados.
-- [ ] O projeto possui um workflow de CI para verificar builds e dependências.
-- [ ] A licença está clara e visível.
+- [ ] Versioning follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PATCH`
+- [ ] `lib/rawfeed/core/version.rb` has been updated to the release version
+- [ ] `rawfeed.gemspec` metadata is correct
+- [ ] `CHANGELOG.md` includes a release entry for `1.0.0`
+- [ ] The code is reviewed, tested, and approved in a pull request
+- [ ] GitHub Actions CI passes on main and the release branch
+- [ ] The gem package builds successfully with `gem build rawfeed.gemspec`
+- [ ] The library loads successfully with `require "rawfeed"`
+- [ ] Issue and PR templates are available in `.github`
+- [ ] `README.md`, `CONTRIBUTING.md`, and `CODE_OF_CONDUCT.md` are up to date
+- [ ] License and project metadata are visible and correct
 
-## Itens de qualidade
+## Quality checks
 
-- [ ] Há documentação suficiente para colaboradores e mantenedores.
-- [ ] O projeto tem um processo de release definido.
-- [ ] Os recursos principais funcionam e não introduzem regressões.
-- [ ] As dependências são compatíveis com Ruby 3.x.
+- [ ] Documentation is sufficient for contributors and maintainers
+- [ ] Release process is defined and repeatable
+- [ ] Core functionality is stable and does not introduce regressions
+- [ ] Dependencies are compatible with Ruby 3.x
+- [ ] The public changelog is maintained in `CHANGELOG.md`
 
-## Passos para o lançamento 1.0.0
+## Release steps
 
-1. Atualizar `lib/rawfeed/core/version.rb` para `1.0.0`.
-2. Atualizar a URL do changelog ou notas de release se necessário.
-3. Atualizar o `README.md` e `CONTRIBUTING.md` com o novo status de release.
-4. Executar `gem build rawfeed.gemspec` e validar o artefato gerado.
-5. Criar um release no GitHub com as notas resumindo o que mudou.
-6. Publicar no RubyGems:
+1. Update `lib/rawfeed/core/version.rb` to `1.0.0`.
+2. Add or update the release entry in `CHANGELOG.md`.
+3. Ensure CI passes on the release branch.
+4. Build the gem:
+
+   ```bash
+   gem build rawfeed.gemspec
+   ```
+
+5. Verify the package loads:
+
+   ```bash
+   bundle exec ruby -Ilib -e 'require "rawfeed"; puts Rawfeed::VERSION'
+   ```
+
+6. Publish the gem:
 
    ```bash
    gem push rawfeed-1.0.0.gem
    ```
 
-7. Marcar a milestone ou tag de versão no repositório.
+7. Create a GitHub release and add release notes using `.github/release_template.md`.
+8. Tag the release and close the associated milestone or issue.
 
-## Observações
+## Notes
 
-A versão `1.0.0` deve ser usada quando o projeto estiver estável e pronto para uso em produção, com documentação e processo de contribuições claros.
+Version `1.0.0` is appropriate once the project is stable, well-documented, and ready for production use.

@@ -8,35 +8,33 @@
   <a href="https://rawfeed.github.io/rawfeed-jekyll" target="_blank">Documentation</a>
 </p>
 
+# rawfeed-jekyll
+
+**rawfeed-jekyll** is a lightweight Jekyll CMS and theme framework for Ruby 3.x. It provides a modern workflow for site creation, theme distribution, and gem-based package delivery.
+
+## Project resources
+
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- [CHANGELOG.md](CHANGELOG.md)
+- [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)
+- `.github/ISSUE_TEMPLATE/`
+- `.github/pull_request_template.md`
+- `.github/release_template.md`
+
 ## Requirements
 
 | Required | Version | How to verify | How to install                    |
 | -------- | ------- | ------------- | --------------------------------- |
 | Ruby     | >= 3.0  | `ruby -v`     | [Ruby](https://www.ruby-lang.org) |
-| Gem      | >= 3.0  | `gem -v`      | **Ruby** contains **Gem**         |
-| Bundler  | >= 2.0  | `bundler -v`  | `gem install bundler`             |
+| Gem      | >= 3.0  | `gem -v`      | Bundled with Ruby                |
+| Bundler  | >= 2.0  | `bundler -v`  | `gem install bundler`            |
 
-# Install
+## Install
 
-See: [https://rawfeed.github.io/rawfeed-jekyll/](https://rawfeed.github.io/rawfeed-jekyll/)
+See the full documentation at [https://rawfeed.github.io/rawfeed-jekyll/](https://rawfeed.github.io/rawfeed-jekyll/).
 
-<!-- ## Linux / macos
-
-```sh
-bash <(curl -fsSL https://rawfeed.github.io/install.sh)
-```
-
-## Windows
-
-```powershell
-iex (Invoke-WebRequest -Uri "https://rawfeed.github.io/install.ps1" -UseBasicParsing).Content
-``` -->
-
-# For developer
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines, issue and PR templates, and release process.
-
-After installing the requirements, prepare the environment as follows:
+## Developer setup
 
 ```shell
 git clone https://github.com/rawfeed/rawfeed-jekyll.git
@@ -46,55 +44,69 @@ rawfeed install
 bundle exec rawfeed serve
 ```
 
-> [!TIP]
-> You can use `direnv` to manage your environment variables through a `.envrc` file in the project root.
->
-> Linux / macos:
->
-> ```bash
-> echo "export RAWFEED_DEV_PATH=\"\$PWD\"" > .envrc
-> direnv allow
-> ```
->
-> Windows (PowerShell):
->
-> ```bash
-> "export RAWFEED_DEV_PATH=`"$PWD`"" | Out-File -Encoding utf8 .envrc
-> direnv allow
-> ```
+### Using direnv
 
-## Generate the gem
+```bash
+echo "export RAWFEED_DEV_PATH=\"\$PWD\"" > .envrc
+direnv allow
+```
 
-**(1)** - Compile the gem:
+## Contribution workflow
+
+This repository includes GitHub templates for issues and pull requests.
+
+- Bug reports: `.github/ISSUE_TEMPLATE/bug_report.md`
+- Feature requests: `.github/ISSUE_TEMPLATE/feature_request.md`
+- Pull requests: `.github/pull_request_template.md`
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the complete contributor workflow, release process, and code guidelines.
+
+## Release process
+
+The release workflow is documented in [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) and [CHANGELOG.md](CHANGELOG.md).
+
+- Version is defined in `lib/rawfeed/core/version.rb`
+- Package metadata is in `rawfeed.gemspec`
+- CI is configured in `.github/workflows/ci.yml`
+- Release notes are captured by `.github/release_template.md`
+
+## Build and publish
+
+Build the gem:
 
 ```shell
 gem build rawfeed.gemspec
 ```
 
-## Publish the gem
+Publish the gem:
 
 ```shell
 gem push rawfeed-<VERSION>.gem
 ```
 
-> Note: Option available only to the gem maintainer (William C. Canin) in [**RubyGems**](https://rubygems.org/).
+## Continuous integration
 
-# Changelog
+This repository includes GitHub Actions at `.github/workflows/ci.yml` that:
 
-See [here](https://rawfeed.github.io/rawfeed-jekyll/changelog/)
+- check out the repository
+- install Ruby and dependencies
+- validate that `rawfeed` loads successfully
+- build the gem package
 
-# License
+## Changelog
 
-The theme is available as open source under the terms of [this License](https://rawfeed.github.io/rawfeed-jekyll/license/).
+The project changelog is maintained in [CHANGELOG.md](CHANGELOG.md).
 
-# Donate
+## License
 
-Click on the image below to be redirected to the donation forms:
+This project is released under the terms of [this license](https://rawfeed.github.io/rawfeed-jekyll/license/).
+
+## Donate
+
+If you appreciate this project, consider supporting development.
 
 <div class="donate">
   <a href="https://williamcanin.github.io/donate/" target="_blank">
     <img width="160" height="100" src="https://williamcanin.github.io/assets/images/icons/donate.svg" alt="Donate"/>
   </a>
 </div>
-
-> It is very important that you make a donation to motivate further development of rawfeed-jekyll. :)

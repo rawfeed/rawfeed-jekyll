@@ -1,6 +1,17 @@
 # Contributing to rawfeed-jekyll
 
-Thank you for contributing to **rawfeed-jekyll**! This guide explains how to open issues, create pull requests, follow versioning, and keep the changelog up to date.
+Thank you for contributing to **rawfeed-jekyll**. This guide explains the repository workflow, issue and pull request expectations, versioning, changelog management, and release readiness.
+
+## GitHub templates
+
+This repository uses GitHub templates to standardize contributions:
+
+- Bug reports: `.github/ISSUE_TEMPLATE/bug_report.md`
+- Feature requests: `.github/ISSUE_TEMPLATE/feature_request.md`
+- Pull requests: `.github/pull_request_template.md`
+- Release notes: `.github/release_template.md`
+
+Use the template that best fits your contribution type.
 
 ## Contribution workflow
 
@@ -8,78 +19,83 @@ Thank you for contributing to **rawfeed-jekyll**! This guide explains how to ope
 2. Create a feature branch from `main`.
    - Example: `feature/add-new-component`
    - Example: `fix/avatar-flip`
-3. Keep each pull request focused on a single feature or fix.
+3. Keep each pull request focused on a single feature, bug fix, or documentation change.
 4. Push your branch to your fork and open a pull request against `main`.
 5. In the pull request description, include:
    - What the change does
    - Why it is needed
-   - Steps to reproduce or validate
-   - Screenshot or sample output for UI/content changes
+   - How to test or verify it
+   - Screenshots or examples for visual changes
 
 ## Pull request rules
 
 - Use descriptive branch names and commit messages.
 - Rebase or merge from `main` before requesting review if the branch is stale.
 - Keep the PR title clear and concise.
-- Add a changelog entry for any user-facing change.
-- Do not include unrelated changes in the same PR.
+- Add a changelog or release note entry for user-facing changes.
+- Avoid unrelated changes in the same PR.
 - Link the PR to an existing issue when applicable.
 
 ## Issue guidelines
 
 When opening a new issue, include:
 
-- A short title that summarizes the problem or request.
-- A clear description of the behavior you expect.
-- The actual behavior you observe.
-- Steps to reproduce the issue.
-- The environment or platform you are using.
-- Any relevant logs, screenshots, or examples.
+- A concise title
+- A clear description of the problem or request
+- Expected behavior
+- Actual behavior
+- Steps to reproduce
+- Environment details
+- Relevant logs or screenshots
 
-For feature requests, describe the use case and why it is valuable.
-For bug reports, include the minimal reproduction steps.
+For feature requests, explain the use case and how it improves the project.
+For bug reports, include minimal reproduction details.
 
 ## Versioning
 
-This project uses [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PATCH`
+This project follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PATCH`.
 
-- `MAJOR` when you make incompatible API changes.
-- `MINOR` when you add functionality in a backwards compatible manner.
-- `PATCH` when you make backwards compatible bug fixes.
+- `MAJOR` for incompatible API changes.
+- `MINOR` for backwards compatible additions.
+- `PATCH` for backwards compatible bug fixes.
 
-The current version is defined in `lib/rawfeed/core/version.rb` and referenced by `rawfeed.gemspec`.
+The project version is defined in `lib/rawfeed/core/version.rb` and referenced by `rawfeed.gemspec`.
 
-### Release process
+## Release process
+
+Before publishing a release, complete the tasks in [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md).
 
 1. Update `lib/rawfeed/core/version.rb` to the new version.
-2. Build the gem with:
+2. Add a changelog entry in `CHANGELOG.md`.
+3. Build the gem:
 
    ```bash
    gem build rawfeed.gemspec
    ```
 
-3. Publish the gem with:
+4. Verify the package loads:
+
+   ```bash
+   bundle exec ruby -Ilib -e 'require "rawfeed"; puts Rawfeed::VERSION'
+   ```
+
+5. Publish the gem:
 
    ```bash
    gem push rawfeed-<VERSION>.gem
    ```
 
-4. Update the changelog and release notes.
-
-See [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) for stability criteria and the pre-release checklist.
+6. Create a GitHub release using `.github/release_template.md` if needed.
 
 ## Changelog
 
-The project currently publishes a changelog at:
+The changelog is stored in `CHANGELOG.md`.
 
-- `https://rawfeed.github.io/rawfeed-jekyll/changelog/`
-
-Keep the changelog accurate by adding an entry for every release.
-Entries should summarize user-facing changes, bug fixes, and notable improvements.
+Keep entries clear and user-focused. Each release section should summarize important fixes, improvements, and changes.
 
 ## Development setup
 
-Follow the existing repository developer setup in `README.md`:
+Follow the repository setup from `README.md`:
 
 ```bash
 git clone https://github.com/rawfeed/rawfeed-jekyll.git
@@ -89,21 +105,25 @@ rawfeed install
 bundle exec rawfeed serve
 ```
 
-If you use `direnv`, add `export RAWFEED_DEV_PATH="$PWD"` to `.envrc`.
+If you use `direnv`, add:
+
+```bash
+export RAWFEED_DEV_PATH="$PWD"
+```
 
 ## Code quality and testing
 
-- Prefer clear, minimal changes.
-- Add tests for new behavior when possible.
-- If no tests exist for an area, document the expected behavior and validate manually.
-- Consider adding automated checks or CI in future contributions.
+- Prefer small, targeted changes.
+- Add tests when possible.
+- When tests do not exist, document expectations and validate manually.
+- Ensure CI passes before merging.
 
 ## Code of Conduct
 
 Please follow the project Code of Conduct in `CODE_OF_CONDUCT.md`.
 
-## Notes for maintainers
+## Maintainer notes
 
-- Review PRs for quality, clarity, and compatibility with the current Jekyll theme.
-- Keep the documentation up to date when major changes land.
-- Encourage contributors to open issues before implementing large features.
+- Review contributions for clarity and compatibility.
+- Keep documentation and release notes up to date.
+- Encourage contributors to open issues first for significant changes.

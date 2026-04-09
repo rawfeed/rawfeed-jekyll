@@ -1,26 +1,27 @@
-## Descrição
+## Summary
 
-Informe o que esta PR altera e por quê.
+Describe what this pull request changes and why.
 
-## Tipo de mudança
+## Type of change
 
-- [ ] Correção de bug
-- [ ] Nova funcionalidade
-- [ ] Atualização de documentação
-- [ ] Refatoração
-- [ ] Outro: ******\_\_\_******
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Documentation update
+- [ ] Refactor
+- [ ] Other: __________________
 
 ## Checklist
 
-- [ ] O código segue o estilo do projeto
-- [ ] A documentação foi atualizada, se necessário
-- [ ] A PR está vinculada a um issue, se aplicável
-- [ ] O build e o gem foram verificados localmente
+- [ ] Code follows project style and conventions
+- [ ] Documentation is updated if needed
+- [ ] The PR is linked to an issue when applicable
+- [ ] The gem build was verified locally
+- [ ] CI checks are passing
 
-## Como testar
+## Testing
 
-Explique os passos para validar a alteração.
+Describe how to test and verify the changes.
 
-## Observações
+## Notes
 
-Inclua qualquer informação adicional relevante.
+Include any additional information or caveats.
