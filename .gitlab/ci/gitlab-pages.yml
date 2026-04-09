@@ -1,0 +1,51 @@
+# --------------------------------Note-----------------------------------------
+
+# 1. This action will be copied to the end-user (production) project. It has no purpose for
+# development.
+
+# 2. Usage:
+# To enable this CI, create the .gitlab-ci.yml file in the project root and add the following content:
+
+# include:
+#   - local: .gitlab/ci/gitlab-pages.yml
+
+# ------------------------------------------------------------------------------
+
+### --- Dear user, uncomment this block if you want to publish the site on GitLab Pages.
+
+# image: node:20-alpine
+
+# cache:
+#   paths:
+#     - .bundle-cache/
+
+# stages:
+#   - build
+#   - deploy
+
+# # A job that installs dependencies and compiles the website
+# build_job:
+#   stage: build
+#   script:
+#     - apk add --no-cache ruby ruby-dev
+#     - gem install bundler
+#     # - bundle config set --local path '.bundle-cache'
+#     - bundle install
+#   artifacts:
+#     paths:
+#       - _site/
+#   only:
+#     - main
+
+# # A job that deploys compiled files to GitLab Pages
+# pages:
+#   stage: deploy
+#   script:
+#     - mv _site/ public/
+#   artifacts:
+#     paths:
+#       - public
+#   only:
+#     - main
+
+### --- Dear user, uncomment this block if you want to publish the site on GitLab Pages.
