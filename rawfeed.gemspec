@@ -36,7 +36,8 @@ Gem::Specification.new do |spec|
     # Specific files we want to include
     include_files = %w[
       Gemfile
-      .gitlab-ci.yml
+      .github/workflows/github-pages.yml
+      .gitlab/ci/gitlab-pages.yml
       .editorconfig
       .hidden
       .gitignore
