@@ -69,18 +69,18 @@ The release workflow is documented in [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.m
 - Package metadata is in `rawfeed.gemspec`
 - CI is configured in `.github/workflows/ci.yml`
 - Release notes are captured by `.github/release_template.md`
-- Changelog generation can be assisted by `cliff` when commit messages use Conventional Commits
+- Changelog automation can be done with `github_changelog_generator` in development
 
 ## Changelog generation
 
-This repo includes a `cliff` configuration file at `.cliff.yml`.
-Use the following command to regenerate `CHANGELOG.md` from commit history:
+This repository includes a development tool to help generate changelogs from GitHub issues and tags.
+Use the following command after installing development dependencies:
 
 ```shell
-bundle exec cliff changelog
+bundle exec github_changelog_generator
 ```
 
-If your commit messages follow Conventional Commits, `cliff` can keep the changelog aligned with your release workflow.
+When commit messages are not standardized, manual changelog editing is still recommended.
 
 ## Build and publish
 
