@@ -1,16 +1,24 @@
 <p align="center">
   <img src=".github/logo.png" alt="Rawfeed" width="150">
   <br>
-  <small>rawfeed-jekyll — A minimal, batteries-included Jekyll CMS</small>
+  <small>rawfeed-jekyll — A batteries-included Jekyll framework and CLI</small>
+  <br><br>
+  <a href="https://badge.fury.io/rb/rawfeed" target="_blank"><img src="https://badge.fury.io/rb/rawfeed.svg" alt="Gem Version"></a>
+  <a href="https://github.com/rawfeed/rawfeed-jekyll/actions/workflows/ci.yml" target="_blank"><img src="https://github.com/rawfeed/rawfeed-jekyll/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://rubygems.org/gems/rawfeed" target="_blank"><img src="https://img.shields.io/gem/dt/rawfeed?label=downloads" alt="RubyGems Downloads"></a>
+  <a href="https://rubygems.org/gems/rawfeed" target="_blank"><img src="https://img.shields.io/badge/ruby-%3E%3D%203.0-ruby" alt="Ruby >= 3.0"></a>
+  <a href="LICENSE" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License MIT"></a>
   <br>
-  <a href="https://badge.fury.io/rb/rawfeed" target="_blank"><img src="https://badge.fury.io/rb/rawfeed.svg" alt="Gem Version" height="18"></a>
-  <br>
+  <a href="https://github.com/rawfeed/rawfeed-jekyll/issues" target="_blank"><img src="https://img.shields.io/github/issues/rawfeed/rawfeed-jekyll" alt="GitHub Issues"></a>
+  <a href="https://github.com/rawfeed/rawfeed-jekyll/pulls" target="_blank"><img src="https://img.shields.io/github/issues-pr/rawfeed/rawfeed-jekyll" alt="GitHub Pull Requests"></a>
+  <a href="https://www.rubydoc.info/gems/rawfeed" target="_blank"><img src="https://img.shields.io/badge/docs-rubydoc-blue" alt="RubyDoc"></a>
+  <br><br>
   <a href="https://rawfeed.github.io/rawfeed-jekyll" target="_blank">Documentation</a>
 </p>
 
 # rawfeed-jekyll
 
-**rawfeed-jekyll** is a lightweight Jekyll CMS and theme framework for Ruby 3.x. It provides a modern workflow for site creation, theme distribution, and gem-based package delivery.
+**rawfeed-jekyll** is a batteries-included Jekyll framework and CLI for Ruby 3.x. It provides a modern workflow for site creation, theme distribution, content management, and gem-based package delivery.
 
 ## Project resources
 
