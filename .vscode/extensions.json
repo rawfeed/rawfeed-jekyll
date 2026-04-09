@@ -12,5 +12,9 @@
     "editorconfig.editorconfig", // EditorConfig
     "ecmel.vscode-html-css", // HTML & CSS Support
     "christian-kohler.path-intellisense",
+    "github.vscode-github-actions", // GitHub Actions
+    "github.copilot", // GitHub Copilot
+    "github.copilot-chat", // GitHub Copilot Chat
+    "github.copilot-labs", // GitHub Copilot Labs
   ]
 }
