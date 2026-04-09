@@ -7,7 +7,7 @@ if ENV["RAWFEED_DEV_PATH"] && File.directory?(ENV["RAWFEED_DEV_PATH"])
   gem "rawfeed", path: ENV["RAWFEED_DEV_PATH"]
 else
   ## --- To update rawfeed-jekyll, simply update the version here ---
-  gem "rawfeed", "~> 0.4.0"
+  gem "rawfeed", "~> 1.0.0"
 end
 
 # Core
@@ -15,10 +15,12 @@ gem "jekyll", ">= 4.0", "< 5.0"
 gem "rake", "~> 13.0"
 
 # Jekyll plugins
-gem "jekyll-sitemap", "~> 1.4"
-gem "jekyll-feed", "~> 0.17.0"
-gem "jekyll-archives", "~> 2.3.0"
-gem "jekyll-paginate-v2", "~> 3.0.0"
+group :jekyll_plugins do
+  gem "jekyll-sitemap", "~> 1.4"
+  gem "jekyll-feed", "~> 0.17.0"
+  gem "jekyll-archives", "~> 2.3.0"
+  gem "jekyll-paginate-v2", "~> 3.0.0"
+end
 
 # Utilities
 gem "colorize", "~> 1.1.0"
@@ -27,15 +29,6 @@ gem "rubyzip", "~> 2.3"
 
 # Build and minification
 gem "uglifier", "~> 4.2.0"
-
-group :development, :test do
-  gem "rspec", "~> 3.12"
-  gem "github_changelog_generator", "~> 2.0"
-end
-
-## Place your plugins here.
-# group :jekyll_plugins do
-# end
 
 # Windows and JRuby
 platforms :windows, :jruby do
@@ -49,3 +42,9 @@ gem "wdm", "~> 0.1.1", platforms: [:windows]
 # Lock `http_parser.rb` gem to `v0.6.x` on JRuby builds since newer versions of the gem
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
+
+# Development dependencies
+group :development, :test do
+  gem "rspec", "~> 3.12"
+  gem "github_changelog_generator", "~> 1.8"
+end
