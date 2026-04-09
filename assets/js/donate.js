@@ -3,7 +3,6 @@
 
 {%- include assigned -%}
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const donation = document.getElementById("donation");
   if (! donation) return;
@@ -18,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-// QR MODAL
+  // QR MODAL
   const qrModal = document.getElementById('qrModal');
   const qrModalImg = document.getElementById('qrModalImg');
 
@@ -27,5 +26,4 @@ document.addEventListener("DOMContentLoaded", () => {
       qrModalImg.src = this.dataset.qr;
     });
   });
-
 });
