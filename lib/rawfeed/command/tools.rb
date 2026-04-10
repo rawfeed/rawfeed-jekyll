@@ -2,11 +2,18 @@ require "open3"
 require_relative "../build"
 
 module Rawfeed
+  # Tooling utilities providing specific CLI build and helper commands.
+  # Handles asset minification, cache cleaning, and jekyll lifecycle wrapping.
   module Tools
+    # Triggers asset minification (HTML, JS, and image files) within the build site folder.
+    # @return [void]
     def self.minify
       Rawfeed::Build::Minifier.minify_all
     end
 
+    # Cleans the Jekyll cache or the entire generated project.
+    # @param args [Array<String>] Command line arguments (e.g., '--cache' or '--all').
+    # @return [void]
     def self.clean(*args)
       if args.include?("--cache")
         Rawfeed::Build::Cleaner.clean_jekyll_cache
@@ -21,6 +28,9 @@ module Rawfeed
       end
     end
 
+    # Prints the CLI help documentation to standard output.
+    # Exits cleanly.
+    # @return [void]
     def self.help
       begin
         puts "rawfeed-jekyll - A batteries-included Jekyll framework and CLI".bold
@@ -67,6 +77,8 @@ module Rawfeed
       end
     end
 
+    # Runs `bundle install` to install ruby dependencies for the generated site.
+    # @return [void]
     def self.install
       puts "Installing Ruby gems...".blue
       begin
@@ -79,6 +91,10 @@ module Rawfeed
       puts "Dependencies installed successfully!".green
     end
 
+    # Wraps the `jekyll build` command and passes along any specific arguments.
+    # Overrides help text to say "rawfeed" instead of "jekyll".
+    # @param args [Array<String>] Build arguments to pass to Jekyll.
+    # @return [void]
     def self.build(*args)
       if args.include?("--help")
         output, = Open3.capture2(*["bundle", "exec", "jekyll", "build", "--help"])
@@ -94,6 +110,10 @@ module Rawfeed
       end
     end
 
+    # Wraps the `jekyll serve` command and passes along any specific arguments.
+    # Overrides help text to say "rawfeed" instead of "jekyll".
+    # @param args [Array<String>] Serve arguments to pass to Jekyll.
+    # @return [void]
     def self.serve(*args)
       if args.include?("--help")
         output, = Open3.capture2(*["bundle", "exec", "jekyll", "serve", "--help"])

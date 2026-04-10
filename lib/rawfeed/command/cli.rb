@@ -6,7 +6,14 @@ require "colorize"
 require_relative "tools"
 
 module Rawfeed
+  # Command Line Interface (CLI) entry point for rawfeed-jekyll.
+  # This class handles routing of commands passed from the "rawfeed" executable.
   class CLI
+    # Parses and executes the CLI command.
+    # Exits the application if invalid commands are provided.
+    #
+    # @param args [Array<String>] The arguments passed from the shell.
+    # @return [void]
     def self.run(args)
       if args.empty?
         puts "Use: rawfeed help"
