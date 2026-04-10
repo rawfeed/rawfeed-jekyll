@@ -126,15 +126,12 @@
           <div class="menu-wrap-link">
             {{ navbar.menu.blog.search.emoji | with_class: 'spacer' }}
             {%- if blog.search.enable -%}
-              <a id="blog-search__btn" href="{{search_url}}">{{ navbar.menu.blog.search.title | default: 'search' }}</a>
-              <strong class="separator">{{ menu_separator }}</strong>
+              <a id="blog-search__btn" href="{{search_url}}">{{- navbar.menu.blog.search.title | default: 'search' -}}</a><strong class="separator">{{- menu_separator -}}</strong>
             {%- endif -%}
           </div>
           <div class="menu-wrap-link">
             {{ navbar.menu.blog.tags.emoji | with_class: 'spacer' -}}
-            <a class="{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">
-              {{- navbar.menu.blog.tags.title | default: 'tags' -}}</a>
-            <strong class="separator">{{ menu_separator }}</strong>
+            <a class="{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">{{- navbar.menu.blog.tags.title | default: 'tags' -}}</a><strong class="separator">{{- menu_separator -}}</strong>
           </div>
           {%- assign sorted_pages = site.pages | sort: 'order' -%}
           {%- for item in sorted_pages -%}
@@ -142,17 +139,14 @@
               {%- unless item.url contains '/tags/' or item.url contains '404.html' -%}
                 <div class="menu-wrap-link">
                   {{ item.emoji | with_class: 'spacer' -}}
-                  <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">
-                    {{- item.title | downcase -}}</a>
-                  <strong class="separator">{{ menu_separator }}</strong>
+                  <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">{{- item.title | downcase -}}</a><strong class="separator">{{- menu_separator -}}</strong>
                 </div>
               {%- endunless -%}
             {%- endif -%}
           {%- endfor -%}
           <div class="menu-wrap-link">
             {{ navbar.menu.blog.feed.emoji | with_class: 'spacer' -}}
-            <a href="{{feed_url}}">{{ navbar.menu.blog.feed.title | default: 'feed' }}</a>
-            <strong class="separator">{{ menu_separator }}</strong>
+            <a href="{{feed_url}}">{{- navbar.menu.blog.feed.title | default: 'feed' -}}</a><strong class="separator">{{- menu_separator -}}</strong>
           </div>
         </div>
       {%- else -%}
@@ -161,49 +155,40 @@
             {{ navbar.menu.blog.title | replace: '/', '' | replace: 'ls ', '' }}&nbsp;»
             <div class="menu-wrap-link">
               {{ navbar.menu.blog.emoji | with_class: 'spacer' -}}
-              <a class="{% if page.url == "/blog/" or page.url == "/blog/index.html" or page.url contains "/blog/page/" %} menu-active{% endif %}" href="{{blog_url}}">
-                {{- navbar.menu.blog.subtitle -}}</a>
-              <strong class="separator">{{ menu_separator }}</strong>
+              <a class="{% if page.url == "/blog/" or page.url == "/blog/index.html" or page.url contains "/blog/page/" %} menu-active{% endif %}" href="{{blog_url}}">{{- navbar.menu.blog.subtitle -}}</a><strong class="separator">{{- menu_separator -}}</strong>
             </div>
             {%- if blog.search.enable -%}
               <span style="display: inline-block;">
                 {{- navbar.menu.blog.search.emoji | with_class: 'spacer' -}}
-                <a id="blog-search__btn" href="{{search_url}}">
-                  {{- navbar.menu.blog.search.title | default: 'search' -}}</a>
-                <strong class="separator">{{ menu_separator }}</strong>
+                <a id="blog-search__btn" href="{{search_url}}">{{- navbar.menu.blog.search.title | default: 'search' -}}</a><strong class="separator">{{- menu_separator -}}</strong>
               </span>
             {%- endif -%}
             <div class="menu-wrap-link">
               {{ navbar.menu.blog.tags.emoji | with_class: 'spacer' -}}
-              <a class="{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">
-                {{- navbar.menu.blog.tags.title | default: 'tags' -}}</a>
-              <strong class="separator">{{ menu_separator }}</strong>
+              <a class="{% if page.url == "/blog/tags/" or page.url == "/blog/tags/index.html" %} menu-active{% endif %}" href="{{tags_url}}">{{- navbar.menu.blog.tags.title | default: 'tags' -}}</a><strong class="separator">{{- menu_separator -}}</strong>
             </div>
             <div class="menu-wrap-link">
               {{ navbar.menu.blog.feed.emoji | with_class: 'spacer' -}}
-              <a href="{{feed_url}}">{{ navbar.menu.blog.feed.title | default: 'feed' }}</a>
-              <strong class="separator">{{ menu_separator }}</strong>
+              <a href="{{feed_url}}">{{- navbar.menu.blog.feed.title | default: 'feed' -}}</a><strong class="separator">{{- menu_separator -}}</strong>
             </div>
           </div>
         {%- else -%}
           <div>
             {%- assign published_pages = site.pages | where_exp: 'p', "p.path contains '_pages/' and p.published" -%}
             {%- if published_pages.size > 0 -%}
-              <span>{{ navbar.menu.title }}&nbsp;»</span>&nbsp;
+              <span>{{ navbar.menu.title }}&nbsp;»&nbsp;</span>
             {%- endif -%}
             {%- if site.pagination.enabled == true -%}
               {%- if blog_page -%}
                 <div class="menu-wrap-link">
                   {{ navbar.menu.blog.emoji | with_class: 'spacer' -}}
-                  <a href="{{blog_url}}">{{ navbar.menu.blog.title | replace: 'ls ', '' }}</a>
-                  <strong class="separator">{{ menu_separator }}</strong>
+                  <a href="{{blog_url}}">{{- navbar.menu.blog.title | replace: 'ls ', '' -}}</a><strong class="separator">{{- menu_separator -}}</strong>
                 </div>
               {%- endif -%}
               {%- if pixels_page -%}
                 <div class="menu-wrap-link">
                   {{ navbar.menu.pixels.emoji | with_class: 'spacer' -}}
-                  <a href="{{pixels_url}}">{{ navbar.menu.pixels.title }}</a>
-                  <strong class="separator">{{ menu_separator }}</strong>
+                  <a href="{{pixels_url}}">{{- navbar.menu.pixels.title -}}</a><strong class="separator">{{- menu_separator -}}</strong>
                 </div>
               {%- endif -%}
               {%- assign sorted_pages = site.pages | sort: 'order' -%}
@@ -212,9 +197,7 @@
                   {%- unless item.url contains 'blog' or item.url contains '404.html' -%}
                     <div class="menu-wrap-link">
                       {{ item.emoji | with_class: 'spacer' -}}
-                      <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">
-                        {{- item.title | downcase -}}</a>
-                      <strong class="separator">{{ menu_separator }}</strong>
+                      <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">{{- item.title | downcase -}}</a><strong class="separator">{{- menu_separator -}}</strong>
                     </div>
                   {%- endunless -%}
                 {%- endif -%}
@@ -223,15 +206,13 @@
               {%- if blog_page -%}
                 <div class="menu-wrap-link">
                   {{ navbar.menu.blog.emoji | with_class: 'spacer' -}}
-                  <a href="{{blog_url}}">{{ navbar.menu.blog.title | replace: '/', '' }}</a>
-                  <strong class="separator">{{ menu_separator }}</strong>
+                  <a href="{{blog_url}}">{{- navbar.menu.blog.title | replace: '/', '' -}}</a><strong class="separator">{{- menu_separator -}}</strong>
                 </div>
               {%- endif -%}
               {%- if pixels_page -%}
                 <div class="menu-wrap-link">
                   {{ navbar.menu.pixels.emoji | with_class: 'spacer' -}}
-                  <a href="{{pixels_url}}">pixels</a>
-                  <strong class="separator">{{ menu_separator }}</strong>
+                  <a href="{{pixels_url}}">pixels</a><strong class="separator">{{- menu_separator -}}</strong>
                 </div>
               {%- endif -%}
               {%- assign sorted_pages = site.pages | sort: 'order' -%}
@@ -240,9 +221,7 @@
                   {%- unless item.url contains '/tags/' or item.url contains '404.html' -%}
                     <div class="menu-wrap-link">
                       {{ item.emoji | with_class: 'spacer' -}}
-                      <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">
-                        {{- item.title | downcase -}}</a>
-                      <strong class="separator">{{ menu_separator }}</strong>
+                      <a class="{% if page.url == item.url %}menu-active{% endif %}" href="{{ item.url | relative_url }}">{{- item.title | downcase -}}</a><strong class="separator">{{- menu_separator -}}</strong>
                     </div>
                   {%- endunless -%}
                 {%- endif -%}
