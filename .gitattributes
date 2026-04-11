@@ -1,0 +1,29 @@
+# Forces all text files in the repository to use LF.
+* text=auto eol=lf
+
+############################################
+# Linguist rules — make GitHub see Ruby gem
+############################################
+
+# Ignore generated / documentation / site stuff
+docs/** linguist-vendored
+site/** linguist-vendored
+assets/** linguist-vendored
+examples/** linguist-vendored
+_jekyll/** linguist-vendored
+
+# Ignore front-end files from language stats
+*.html linguist-vendored
+*.scss linguist-vendored
+*.css linguist-vendored
+*.js linguist-vendored
+
+# Tell Linguist what IS the project
+exe/** linguist-detectable
+lib/** linguist-detectable
+bin/** linguist-detectable
+*.gemspec linguist-detectable
+Rakefile linguist-detectable
+
+# Extra guarantee
+*.rb linguist-language=Ruby
