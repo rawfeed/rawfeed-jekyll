@@ -30,6 +30,7 @@ Update the target version at the top of each section before starting the release
 ## Release steps
 
 1. Create a release branch from `main`:
+
    ```bash
    git checkout -b release/<version>
    ```
@@ -37,12 +38,14 @@ Update the target version at the top of each section before starting the release
 2. Update `lib/rawfeed/core/version.rb` to the new version.
 
 3. Update the version reference in `Gemfile` if needed:
+
    ```ruby
    gem "rawfeed", "~> <version>"
    ```
 
 4. Add or update the release entry in `CHANGELOG.md`.
    If desired, generate a draft with:
+
    ```bash
    bundle exec github_changelog_generator
    ```
@@ -53,19 +56,22 @@ Update the target version at the top of each section before starting the release
 6. Ensure CI passes on the release branch and on the pull request.
 
 7. Build the gem:
-   ```bash
-   gem build rawfeed.gemspec
-   ```
+
+```sh
+gem build rawfeed.gemspec
+```
 
 8. Verify the package loads:
-   ```bash
-   bundle exec ruby -Ilib -e 'require "rawfeed"; puts Rawfeed::VERSION'
-   ```
+
+```sh
+bundle exec ruby -Ilib -e 'require "rawfeed"; puts Rawfeed::VERSION'
+```
 
 9. Publish the gem:
-   ```bash
-   gem push rawfeed-<version>.gem
-   ```
+
+```sh
+gem push rawfeed-<version>.gem
+```
 
 10. Create a GitHub release using `.github/release_template.md` as the release notes template.
 

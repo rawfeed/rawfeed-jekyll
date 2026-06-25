@@ -6,6 +6,7 @@ home:
     enable: true
     user: "rawfeed"
     hostname: "linux"
+    signal: "#"
     welcome: " type 'help'"
     error: ": command not found."
     no_socials: "No socials found"
