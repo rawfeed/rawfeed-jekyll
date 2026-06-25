@@ -82,13 +82,18 @@ module Rawfeed
     def self.install
       puts "Installing Ruby gems...".blue
       begin
-          system("bundle install")
+          success = system("bundle install")
       rescue Interrupt
         puts "\n[!] Approached by the user".yellow
         exit!
       end
 
-      puts "Dependencies installed successfully!".green
+      if success
+        puts "Dependencies installed successfully!".green
+      else
+        puts "[!] bundle install failed".red
+        exit 1
+      end
     end
 
     # Wraps the `jekyll build` command and passes along any specific arguments.

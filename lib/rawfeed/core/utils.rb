@@ -43,12 +43,10 @@ module Rawfeed
     # @param parameter [String] The strftime formatting string.
     # @return [String] The formatted time string.
     def self.datetime_generator(parameter)
-      begin
-        (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime(parameter)
-      rescue
-        puts "[x] Error - date format must be YYYY-MM-DD, please check you typed it correctly!".red
-        exit 1
-      end
+      (ENV['date'] ? Time.parse(ENV['date']) : Time.now).strftime(parameter)
+    rescue ArgumentError
+      puts "[x] Error - date format must be YYYY-MM-DD, please check you typed it correctly!".red
+      exit 1
     end
 
     # Prompts the user for a Yes/No confirmation.

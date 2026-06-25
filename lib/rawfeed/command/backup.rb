@@ -28,7 +28,7 @@ module Rawfeed
         exit 1
       end
 
-      backup_filename = "backup-#{Time.now.strftime('%Y-%m-%d_%H:%M:%S')}.zip"
+      backup_filename = "backup-#{Time.now.strftime('%Y-%m-%d_%H-%M-%S')}.zip"
       backup_path = File.join(destination, backup_filename)
 
       begin
@@ -112,7 +112,7 @@ module Rawfeed
       Dir.glob(File.join(folder_path, "**/**")).each do |file|
         next if File.directory?(file)
 
-        relative_path = File.join(zip_path, file.sub(folder_path, "").sub(/^\//, ""))
+        relative_path = File.join(zip_path, file.sub(Regexp.escape(folder_path), "").sub(/^\//, ""))
         zipfile.add(relative_path, file)
       end
     end

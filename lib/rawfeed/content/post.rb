@@ -9,7 +9,7 @@ module Rawfeed
       drafts = Dir.glob(File.join(Rawfeed::CONFIG['DRAFTS_DIR'], "*.#{Rawfeed::CONFIG['markdown_extension']}"))
 
       if drafts.empty?
-        puts "No files found in #{DRAFTS_DIR}".yellow
+        puts "No files found in #{Rawfeed::CONFIG['DRAFTS_DIR']}".yellow
         return
       end
 
@@ -66,7 +66,8 @@ module Rawfeed
 
       # Capture arguments in format --key=value
       args = {}
-      ARGV.each do |arg|
+      parsed_args = ARGV.dup
+      parsed_args.each do |arg|
         if arg =~ /--([^=]+)=(.*)/
           args[$1] = $2
         end
