@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const html = results.map(result => {
       const item = result.item;
       // Using existing template logic
-      return `<li><span class="blog-list__meta"><time datetime="${item.date}">${item.date}</time></span>&nbsp;»&nbsp; <a class="blog-list__link" href="{{ site.url }}${item.url}">${item.title}</a></li>`;
+      return `<li><span class="blog-list__meta"><time datetime="${item.date}">${item.date}</time></span>&nbsp;»&nbsp; <a class="blog-list__link" href="${item.url}">${item.title}</a></li>`;
     }).join('');
 
     searchResults.innerHTML = html;
