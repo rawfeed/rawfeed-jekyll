@@ -112,7 +112,7 @@ module Rawfeed
       Dir.glob(File.join(folder_path, "**/**")).each do |file|
         next if File.directory?(file)
 
-        relative_path = File.join(zip_path, file.sub(Regexp.escape(folder_path), "").sub(/^\//, ""))
+        relative_path = File.join(zip_path, file.sub(folder_path, "").sub(/^\//, ""))
         zipfile.add(relative_path, file)
       end
     end
