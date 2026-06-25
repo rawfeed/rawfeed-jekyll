@@ -13,13 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // ----------------------------------------------------------------------------------------------
     const btnMax = terminal.querySelector(".terminal-header__max");
 
-    let isFullscreen = false;
+    if (btnMax) {
+      let isFullscreen = false;
 
-    // maximize/restore
-    btnMax.addEventListener("click", () => {
-      isFullscreen = !isFullscreen;
-      terminal.classList.toggle("terminal-fullscreen", isFullscreen);
-    });
+      // maximize/restore
+      btnMax.addEventListener("click", () => {
+        isFullscreen = !isFullscreen;
+        terminal.classList.toggle("terminal-fullscreen", isFullscreen);
+      });
+    }
 
     // populate the terminal
     // ----------------------------------------------------------------------------------------------
@@ -39,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const prompt = document.createElement("span");
       prompt.className = "prompt";
-      prompt.textContent = "[{{ home.terminal.user }}@{{ home.terminal.hostname }} ~]$";
+      prompt.textContent = "[{{ home.terminal.user }}@{{ home.terminal.hostname }} ~]{{ home.terminal.signal }}";
 
       // wrapper para conter input, cursor e measure
       const wrapper = document.createElement("span");

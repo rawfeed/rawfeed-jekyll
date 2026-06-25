@@ -164,57 +164,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const chart_elements = document.querySelectorAll('[id^="chart-"]');
 
-  for (const ctx of chart_elements) {
-    const data = ctx.dataset;
+  if (typeof Chart === 'undefined') {
+    console.warn('Chart.js not loaded — skipping chart rendering');
+  } else {
+    for (const ctx of chart_elements) {
+      const data = ctx.dataset;
+      if (!data || !data.type || !data.labels || !data.data) {
+        console.warn('Chart element missing required data attributes — skipping');
+        continue;
+      }
 
-    new Chart(ctx, {
-      type: data.type,
-      data: {
-        labels: data.labels.split(","),
-        datasets: [
-          {
-            label: data.label,
-            data: data.data.split(",").map(Number),
-            borderColor: data.color,
-            backgroundColor: `${data.color}33`,
-            fill: true,
-            tension: 0.3,
-            borderWidth: 2,
-            pointRadius: 4,
-            pointHoverRadius: 6
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            labels: {
-              color: "#444444"
+      new Chart(ctx, {
+        type: data.type,
+        data: {
+          labels: data.labels.split(","),
+          datasets: [
+            {
+              label: data.label,
+              data: data.data.split(",").map(Number),
+              borderColor: data.color,
+              backgroundColor: `${data.color}33`,
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointHoverRadius: 6
             }
-          }
+          ]
         },
-        scales: {
-          x: {
-            ticks: {
-              color: "#131313"
-            },
-            grid: {
-              color: "#111111"
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                color: "#444444"
+              }
             }
           },
-          y: {
-            ticks: {
-              color: "#131313"
+          scales: {
+            x: {
+              ticks: {
+                color: "#131313"
+              },
+              grid: {
+                color: "#111111"
+              }
             },
-            grid: {
-              color: "#111111"
+            y: {
+              ticks: {
+                color: "#131313"
+              },
+              grid: {
+                color: "#111111"
+              }
             }
           }
         }
-      }
-    });
+      });
+    }
   }
 
 });

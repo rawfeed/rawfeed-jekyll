@@ -23,7 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".clickable-qr").forEach(img => {
     img.addEventListener("click", function() {
-      qrModalImg.src = this.dataset.qr;
+      if (qrModalImg) {
+        qrModalImg.src = this.dataset.qr;
+      }
     });
   });
 });

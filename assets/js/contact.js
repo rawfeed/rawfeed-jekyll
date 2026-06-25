@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // get modal
     function showModal(title, message, type = 'success') {
       const modalEl = document.getElementById('contactMessageModal');
+      if (!modalEl) return;
       const modalTitle = modalEl.querySelector('.modal-title');
       const modalBody = modalEl.querySelector('.modal-body');
       const modalContent = modalEl.querySelector('.modal-content');
@@ -38,8 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const recaptchaResponse = grecaptcha.getResponse();
-      if (!recaptchaResponse) {
+      if (typeof grecaptcha === 'undefined' || !grecaptcha.getResponse()) {
         showModal(
           "{{ contact.recaptcha.warning.title | default: 'Warning' }}",
           `{{ contact.recaptcha.warning.content | default: "Please tick the 'I'm not a robot' box." }}`,
@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const textarea = document.getElementById('textMessage');
+      if (!textarea) return;
       const text = textarea.value.trim();
       if (text.length < "{{ contact.message.characters.min }}" ) {
         showModal(

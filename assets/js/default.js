@@ -60,18 +60,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const topButton = document.getElementById("top-link");
   const scrollThreshold = 700;
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > scrollThreshold) {
-      topButton.classList.add("show");
-    } else {
-      topButton.classList.remove("show");
-    }
-  });
+  if (topButton) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > scrollThreshold) {
+        topButton.classList.add("show");
+      } else {
+        topButton.classList.remove("show");
+      }
+    });
 
-  topButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+    topButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 
   /* function Giscus
   --------------------------------------------------------------------------------------------------
@@ -115,39 +117,43 @@ document.addEventListener("DOMContentLoaded", () => {
   --------------------------------------------------------------------------------------------------
   */
   const toggleButton = document.getElementById('toggle-theme');
-  const icon = toggleButton.querySelector('i');
-  // const avatar = document.getElementById('avatarImage');
   const root = document.documentElement;
 
-  function setTheme(theme) {
-    root.setAttribute('data-theme', theme);
+  if (toggleButton) {
+    const icon = toggleButton.querySelector('i');
 
-    icon.classList.remove('fa-sun', 'fa-moon');
-    icon.classList.add(theme === 'dark' ? 'fa-sun' : 'fa-moon');
+    function setTheme(theme) {
+      root.setAttribute('data-theme', theme);
 
-    if (typeof setGiscusTheme === 'function') {
-      setGiscusTheme(theme);
+      if (icon) {
+        icon.classList.remove('fa-sun', 'fa-moon');
+        icon.classList.add(theme === 'dark' ? 'fa-sun' : 'fa-moon');
+      }
+
+      if (typeof setGiscusTheme === 'function') {
+        setGiscusTheme(theme);
+      }
+
+      // if (avatar) {
+      //   avatar.src = theme === 'light'
+      //     ? avatar.dataset.light
+      //     : avatar.dataset.dark;
+      // }
+
+      localStorage.setItem('theme', theme);
+
     }
 
-    // if (avatar) {
-    //   avatar.src = theme === 'light'
-    //     ? avatar.dataset.light
-    //     : avatar.dataset.dark;
-    // }
+    // boot with saved or light
+    setTheme(localStorage.getItem('theme') || 'light');
 
-    localStorage.setItem('theme', theme);
-
+    // change theme on click
+    toggleButton.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      setTheme(next);
+    });
   }
-
-  // boot with saved or light
-  setTheme(localStorage.getItem('theme') || 'light');
-
-  // change theme on click
-  toggleButton.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme');
-    const next = current === 'light' ? 'dark' : 'light';
-    setTheme(next);
-  });
 
 
   /* highlight code
@@ -174,19 +180,30 @@ document.addEventListener("DOMContentLoaded", () => {
     highlightBlock.parentNode.insertBefore(container, highlightBlock);
     container.appendChild(header);
     container.appendChild(highlightBlock);
+  });
 
-    // event copy
-    button.addEventListener("click", () => {
-      const codeElement = highlightBlock.querySelector("td.code");
-      const textToCopy = codeElement ? codeElement.innerText.trim() : highlightBlock.innerText.trim();
+  // event delegation for copy buttons (works even on cloned nodes inside <details>)
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".copy-btn");
+    if (!btn) return;
 
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        icon.className = "fa-solid fa-check";
-        setTimeout(() => (icon.className = "fa-solid fa-clipboard"), 2000);
-      }, () => {
-        icon.className = "fa-solid fa-xmark";
-        setTimeout(() => (icon.className = "fa-solid fa-clipboard"), 2000);
-      });
+    const container = btn.closest(".code-block-container");
+    if (!container) return;
+
+    const highlightBlock = container.querySelector(".highlight, figure.highlight");
+    if (!highlightBlock) return;
+
+    const codeElement = highlightBlock.querySelector("td.code");
+    const textToCopy = codeElement ? codeElement.innerText.trim() : highlightBlock.innerText.trim();
+
+    const icon = btn.querySelector("i");
+
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      icon.className = "fa-solid fa-check";
+      setTimeout(() => (icon.className = "fa-solid fa-clipboard"), 2000);
+    }, () => {
+      icon.className = "fa-solid fa-xmark";
+      setTimeout(() => (icon.className = "fa-solid fa-clipboard"), 2000);
     });
   });
 
