@@ -67,12 +67,12 @@
 
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
-        img-src 'self' data: {{ head.csp.img-src | join: ' ' }};
-        script-src 'self' 'unsafe-inline' {{ head.csp.script-src | join: ' ' }};
-        style-src 'self' 'unsafe-inline' {{ head.csp.style-src | join: ' ' }};
-        font-src 'self' {{ head.csp.font-src | join: ' ' }} data:;
-        connect-src 'self' {{ head.csp.connect-src | join: ' ' }};
-        frame-src {{ head.csp.frame-src | join: ' ' }};
+        img-src 'self' data: {{ head.csp["img-src"] | join: ' ' }};
+        script-src 'self' 'unsafe-inline' {{ head.csp["script-src"] | join: ' ' }};
+        style-src 'self' 'unsafe-inline' {{ head.csp["style-src"] | join: ' ' }};
+        font-src 'self' {{ head.csp["font-src"] | join: ' ' }} data:;
+        connect-src 'self' {{ head.csp["connect-src"] | join: ' ' }};
+        frame-src {{ head.csp["frame-src"] | join: ' ' }};
         object-src 'none';
         base-uri 'self';
         form-action 'self';

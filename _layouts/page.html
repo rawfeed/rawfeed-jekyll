@@ -9,7 +9,7 @@ layout: default
       {%- if page.date -%}
         <time
           class="dt-published"
-          datetime="{{ page.date | date_to_xmlschema }}"
+        datetime="{{ page.date | date_to_xmlschema }}"
           itemprop="datePublished">
           {%- if datelang -%}
             {% datelang page.date %}
