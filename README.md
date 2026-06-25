@@ -3,7 +3,7 @@
   <br>
   <small>rawfeed-jekyll — A batteries-included Jekyll framework and CLI</small>
   <br><br>
-  <a href="https://badge.fury.io/rb/rawfeed" target="_blank"><img src="https://badge.fury.io/rb/rawfeed.svg" alt="Gem Version"></a>
+  <a href="https://badge.fury.io/rb/rawfeed"><img src="https://badge.fury.io/rb/rawfeed.svg?icon=si%3Arubygems" alt="Gem Version" height="18"></a>
   <a href="https://github.com/rawfeed/rawfeed-jekyll/actions/workflows/ci.yml" target="_blank"><img src="https://github.com/rawfeed/rawfeed-jekyll/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://rubygems.org/gems/rawfeed" target="_blank"><img src="https://img.shields.io/gem/dt/rawfeed?label=downloads" alt="RubyGems Downloads"></a>
   <a href="https://rubygems.org/gems/rawfeed" target="_blank"><img src="https://img.shields.io/badge/ruby-%3E%3D%203.0-ruby" alt="Ruby >= 3.0"></a>
