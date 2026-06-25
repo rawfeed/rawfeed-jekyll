@@ -30,12 +30,8 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-
-      - name: Set RAWFEED_DEV_PATH
-        run: echo "RAWFEED_DEV_PATH=$PWD" >> $GITHUB_ENV
-
-      - name: Bundle - Install dependencies
-        run: bundle install --jobs 4 --retry 3
+        env:
+          RAWFEED_DEV_PATH: ${{ github.workspace }}
 
       - name: Log Ruby and bundler versions
         run: |
