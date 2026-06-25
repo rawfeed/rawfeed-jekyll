@@ -11,7 +11,8 @@ module Jekyll
       @layout_name = 'pub.html'
 
       self.process(@name)
-      theme_layouts = File.join(site.theme.root, "_layouts")
+      theme_root = site.theme&.root || File.join(site.source, "_layouts")
+      theme_layouts = File.join(theme_root, "_layouts")
       self.read_yaml(theme_layouts, "pub.html")
       # # Note: This is for _plugins/
       # self.read_yaml(File.join(base, '_layouts'), 'pub.html')
@@ -47,8 +48,9 @@ module Jekyll
 
       all_paths.each do |path|
         # It ignores files/directories that Jekyll already processes or ignores.
-        next if path.start_with?('_') || path.start_with?('.')
-        next if File.basename(path) == 'index.html'
+        basename = File.basename(path)
+        next if basename.start_with?('_') || basename.start_with?('.')
+        next if basename == 'index.html'
 
         # Specifies the parent directory (the one where the generated index.html file will be located).
         parent_dir = File.dirname(path)

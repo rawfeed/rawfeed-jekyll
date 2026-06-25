@@ -12,6 +12,10 @@ module Rawfeed
       QUALITY_WEBP = 75
       QUALITY_AVIF = 50
 
+      def self.shell_escape(path)
+        "'#{path.to_s.gsub("'", "'\\\\''")}'"
+      end
+
       def self.minify_images
         begin
           require "mini_magick"
@@ -75,7 +79,7 @@ module Rawfeed
 
             # 1. Compress original to JPEG
             temp_jpeg = "#{file}.temp.jpg"
-            cmd_jpeg = "#{converter} '#{file}' -quality #{QUALITY_JPEG} -strip '#{temp_jpeg}' 2>/dev/null"
+            cmd_jpeg = "#{converter} #{shell_escape(file)} -quality #{QUALITY_JPEG} -strip #{shell_escape(temp_jpeg)} 2>/dev/null"
             system(cmd_jpeg)
 
             if File.exist?(temp_jpeg) && File.size(temp_jpeg) > 0
@@ -86,12 +90,12 @@ module Rawfeed
 
               # Create WebP version
               webp_path = File.join(dir, "#{basename}.webp")
-              cmd_webp = "#{converter} '#{file}' -quality #{QUALITY_WEBP} '#{webp_path}' 2>/dev/null"
+              cmd_webp = "#{converter} #{shell_escape(file)} -quality #{QUALITY_WEBP} #{shell_escape(webp_path)} 2>/dev/null"
               system(cmd_webp)
 
               # Create AVIF version
               avif_path = File.join(dir, "#{basename}.avif")
-              cmd_avif = "#{converter} '#{file}' -quality #{QUALITY_AVIF} '#{avif_path}' 2>/dev/null"
+              cmd_avif = "#{converter} #{shell_escape(file)} -quality #{QUALITY_AVIF} #{shell_escape(avif_path)} 2>/dev/null"
               system(cmd_avif)
 
               # Display progress
