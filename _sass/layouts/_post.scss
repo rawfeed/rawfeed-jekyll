@@ -93,5 +93,20 @@
     margin: 40px 0px;
     font-size: 1.2rem;
   }
+
+  &-tags {
+    .tag-list {
+      list-style: none;
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+
+      &__item {
+        list-style: none;
+        display: inline;
+      }
+    }
+  }
 }
 
