@@ -81,6 +81,7 @@ Gem::Specification.new do |spec|
 
   # utilities
   spec.add_runtime_dependency "logger", "~> 1.4"
+  spec.add_runtime_dependency "rubyzip", "~> 2.3"
 
   # Jekyll and related gems are specified in the Gemfile created by the installer.
   # They are only needed when running Jekyll commands (serve, build) on the created site.
