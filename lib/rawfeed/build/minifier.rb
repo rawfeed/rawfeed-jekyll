@@ -52,9 +52,10 @@ module Rawfeed
           html_files.each do |file|
             content = File.read(file)
             # Simple HTML minification: remove comments, collapse whitespace
+            # Preserves whitespace inside <pre>, <code>, <textarea>, <svg>
             minified = content
-              .gsub(/<!--.*?-->/m, "")  # Remove comments
-              .gsub(/\s+/, " ")         # Collapse whitespace
+              .gsub(/<!--.*?-->/m, "")
+              .gsub(/(<(pre|code|textarea|svg)\b[^>]*>.*?<\/\2>)|(\s+)/mi) { $1 || " " }
               .strip
             File.write(file, minified)
           end
