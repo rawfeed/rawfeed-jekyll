@@ -13,6 +13,8 @@ jobs:
   test:
     name: Ruby ${{ matrix.ruby }}
     runs-on: ubuntu-latest
+    env:
+      RAWFEED_DEV_PATH: ${{ github.workspace }}
 
     strategy:
       fail-fast: false
@@ -29,8 +31,6 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-        env:
-          RAWFEED_DEV_PATH: ${{ github.workspace }}
 
       - name: Log Ruby and bundler versions
         run: |
