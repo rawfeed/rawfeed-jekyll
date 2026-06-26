@@ -97,20 +97,101 @@ Keep entries clear and user-focused. Each release section should summarize impor
 
 ## Development setup
 
-Follow the repository setup from `README.md`:
+### System dependencies
+
+Install Ruby and the required development tools for your distribution before proceeding.
+
+**Arch Linux**
+
+```bash
+sudo pacman -S ruby ruby-lsp rubocop
+```
+
+**Fedora**
+
+```bash
+sudo dnf install ruby ruby-devel rubygems
+gem install ruby-lsp rubocop
+```
+
+> On Fedora, `ruby-lsp` and `rubocop` are not available as native packages and must be installed via `gem install`.
+
+After installing, verify the tools are available:
+
+```bash
+ruby --version
+ruby-lsp --version
+rubocop --version
+bundle --version
+```
+
+### Editor (VS Code)
+
+Install the [Ruby LSP extension](https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-lsp) (`Shopify.ruby-lsp`).
+
+Add the following to your workspace or user `settings.json`:
+
+```json
+{
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "none"
+  }
+}
+```
+
+> Using `"none"` is correct when Ruby is installed system-wide (via `pacman` or `dnf`) rather than through a version manager such as `rbenv` or `asdf`.
+
+### Project setup
 
 ```bash
 git clone https://github.com/rawfeed/rawfeed-jekyll.git
 cd rawfeed-jekyll
 export RAWFEED_DEV_PATH="$PWD"
+bundle install
 rawfeed install
 bundle exec rawfeed serve
 ```
 
-If you use `direnv`, add:
+If you use `direnv`, add the following to your `.envrc`:
 
 ```bash
 export RAWFEED_DEV_PATH="$PWD"
+```
+
+## Continuous integration
+
+CI runs on pull requests to `main` and on pushes to `main` or `release/**` branches.
+
+The CI job performs:
+
+- `bundle install` with Bundler cache
+- Library loading validation via `bundle exec ruby -Ilib -e 'require "rawfeed"'`
+- `bundle exec rspec` for test coverage
+- `bundle exec rawfeed build --destination .site_build` to ensure the theme builds cleanly
+- `gem build rawfeed.gemspec` to verify package creation
+
+## Changelog generation
+
+The project uses `github_changelog_generator` to help generate changelogs from GitHub issues and tags. Configuration is in `.github_changelog_generator` using `key=value` pairs (one per line).
+
+```bash
+bundle exec github_changelog_generator
+```
+
+If you prefer a manual approach, edit `CHANGELOG.md` directly.
+
+## Build and publish
+
+Build the gem package:
+
+```bash
+bundle exec rake build
+```
+
+Publish the gem to RubyGems:
+
+```bash
+gem push rawfeed-<VERSION>.gem
 ```
 
 ## Code quality and testing

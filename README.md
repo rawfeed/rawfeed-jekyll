@@ -42,85 +42,14 @@
 
 See the full documentation at [https://rawfeed.github.io/rawfeed-jekyll/](https://rawfeed.github.io/rawfeed-jekyll/).
 
-## Developer setup
+## Contributing
 
-```shell
-git clone https://github.com/rawfeed/rawfeed-jekyll.git
-cd rawfeed-jekyll
-export RAWFEED_DEV_PATH="$PWD"
-bundle install
-bundle exec rawfeed serve
-```
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the complete guide covering:
 
-> [!TIP]
->
-> ### Using direnv
->
-> ```bash
-> echo "export RAWFEED_DEV_PATH=\"\$PWD\"" > .envrc
-> direnv allow
-> ```
-
-## Contribution workflow
-
-This repository includes GitHub templates for issues and pull requests.
-
-- Bug reports: `.github/ISSUE_TEMPLATE/bug_report.md`
-- Feature requests: `.github/ISSUE_TEMPLATE/feature_request.md`
-- Pull requests: `.github/pull_request_template.md`
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the complete contributor workflow, release process, and code guidelines.
-
-## Release process
-
-The release workflow is documented in [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) and [CHANGELOG.md](CHANGELOG.md).
-
-- Version is defined in `lib/rawfeed/core/version.rb`
-- Package metadata is in `rawfeed.gemspec`
-- CI is configured in `.github/workflows/ci.yml`
-- Release notes are captured by `.github/release_template.md`
-- Release branches should follow `release/<version>` and use `RELEASE_CHECKLIST.md` as the release branch base
-- Changelog automation can be done with `github_changelog_generator` in development
-
-## Continuous integration
-
-This repository uses GitHub Actions to run the complete release workflow on pull requests to `main` and on pushes to `main` or `release/**` branches.
-
-The CI job performs:
-
-- `bundle install` with Bundler cache
-- library loading validation via `bundle exec ruby -Ilib -e 'require "rawfeed"'
-- `bundle exec rspec` for test coverage
-- `bundle exec rawfeed build --destination .site_build` to ensure the theme builds cleanly
-- `gem build rawfeed.gemspec` to verify package creation
-
-## Changelog generation
-
-This repository includes a development tool to help generate changelogs from GitHub issues and tags.
-The project is configured in `.github_changelog_generator`, which uses `key=value` pairs (one per line) — **not** the CLI `--flag value` format.
-By default, the tool generates or updates `CHANGELOG.md` in the repository root.
-
-Use the following command after installing development dependencies:
-
-```shell
-bundle exec github_changelog_generator
-```
-
-If you prefer a manual approach, keep editing `CHANGELOG.md` by hand.
-
-## Build and publish
-
-Build the gem package:
-
-```shell
-bundle exec rake build
-```
-
-Publish the gem to RubyGems:
-
-```shell
-gem push rawfeed-<VERSION>.gem
-```
+- Development environment setup (Arch Linux, Fedora, VS Code)
+- Contribution workflow and pull request rules
+- Release process and versioning
+- CI, changelog generation, and build instructions
 
 ## Changelog
 
