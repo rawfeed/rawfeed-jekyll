@@ -123,12 +123,45 @@ jobs:
         run: |
           VERSION="${{ steps.version.outputs.VERSION }}"
           TAG="v${VERSION}"
+          REPO="${{ github.repository }}"
+          BASE="${{ github.server_url }}/$REPO"
+
           if git rev-parse "$TAG" >/dev/null 2>&1; then
             echo "Tag $TAG already exists, skipping GitHub Release."
-          else
-            gh release create "$TAG" \
-              --title "rawfeed v${VERSION}" \
-              --repo "${{ github.repository }}" \
-              --generate-notes \
-              rawfeed-*.gem
+            exit 0
           fi
+
+          NOTES=$(gh api "repos/$REPO/releases/generate-notes" \
+            --field tag_name="$TAG" \
+            --field target_commitish="${{ github.sha }}" \
+            --jq '.body')
+
+          printf '%s\n' \
+            '## Summary' \
+            '' \
+            "rawfeed v${VERSION} is now available. See the [CHANGELOG](${BASE}/blob/main/CHANGELOG.md) for details." \
+            '' \
+            '### Upgrade' \
+            '' \
+            'To upgrade an existing site, update your `Gemfile`:' \
+            '' \
+            '```ruby' \
+            "gem \"rawfeed\", \"~> ${VERSION}\"" \
+            '```' \
+            '' \
+            'Then run:' \
+            '' \
+            '```bash' \
+            'bundle install' \
+            '```' \
+            '' \
+            '---' \
+            '' \
+            "${NOTES}" \
+            > /tmp/release-body.md
+
+          gh release create "$TAG" \
+            --title "rawfeed v${VERSION}" \
+            --repo "$REPO" \
+            --notes-file /tmp/release-body.md \
+            rawfeed-*.gem
