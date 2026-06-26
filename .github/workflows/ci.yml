@@ -4,13 +4,14 @@ on:
   push:
     branches:
       - main
+      - test-ci
   pull_request:
     branches:
       - main
 
 jobs:
   test:
-    name: Ruby ${{ matrix.ruby }}
+    name: Test (Ruby ${{ matrix.ruby }})
     runs-on: ubuntu-latest
     env:
       RAWFEED_DEV_PATH: ${{ github.workspace }}
@@ -22,8 +23,7 @@ jobs:
           - "3.4"
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Ruby ${{ matrix.ruby }}
         uses: ruby/setup-ruby@v1
@@ -31,19 +31,104 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
-      - name: Log Ruby and bundler versions
-        run: |
-          ruby --version
-          bundle --version
+      - name: Check Ruby syntax
+        run: ruby -c lib/rawfeed.rb
 
-      - name: Validate Ruby load
-        run: bundle exec ruby -Ilib -e 'require "rawfeed"; puts Rawfeed::VERSION'
+      - name: Validate gem loads
+        run: bundle exec ruby -Ilib -e 'require "rawfeed"; puts "rawfeed v#{Rawfeed::VERSION} loaded"'
 
-      - name: Run tests
+      - name: Run RSpec tests
         run: bundle exec rspec
 
-      - name: Build rawfeed site
+      - name: Build site with theme
         run: bundle exec rawfeed build --destination .site_build
 
-      - name: Build gem rawfeed
+      - name: Build gem package
         run: gem build rawfeed.gemspec
+
+      - name: Test backup command
+        env:
+          GEM_LIB: ${{ github.workspace }}/lib
+        run: |
+          mkdir -p /tmp/test-backup-site/_posts /tmp/test-backup-site/_pages
+          echo "post" > /tmp/test-backup-site/_posts/hello.md
+          echo "page" > /tmp/test-backup-site/_pages/about.md
+          cp Gemfile Gemfile.lock /tmp/test-backup-site/
+          cd /tmp/test-backup-site
+          bundle install --jobs 4 --retry 3 --quiet
+          bundle exec ruby -e "
+            \$LOAD_PATH.unshift(ENV['GEM_LIB'])
+            require 'rawfeed/command/backup'
+            Rawfeed::Backup.site('-d', '/tmp')
+          "
+          ls -1 /tmp/backup-*.zip
+          echo "Backup test passed"
+
+      - name: Test rawfeed new creates a valid site
+        run: |
+          bundle exec rawfeed new /tmp/test-new-site --force
+          cd /tmp/test-new-site
+          sed -i "/^gem \"rawfeed\",/c\gem \"rawfeed\", path: \"${{ github.workspace }}\"" Gemfile
+          bundle install --jobs 4 --retry 3
+          bundle exec rawfeed build
+          echo "rawfeed new test passed"
+
+  release:
+    name: Publish to RubyGems and GitHub
+    needs: [test]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+
+      - name: Get version and check if already published
+        id: version
+        run: |
+          VERSION=$(ruby -Ilib -e 'require "rawfeed/core/version"; puts Rawfeed::VERSION')
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          if gem search "^rawfeed$" --exact --remote | grep -q "$VERSION"; then
+            echo "ALREADY_PUBLISHED=true" >> $GITHUB_OUTPUT
+            echo "Version $VERSION already exists on RubyGems, skipping publish."
+          else
+            echo "ALREADY_PUBLISHED=false" >> $GITHUB_OUTPUT
+            echo "Version $VERSION not found on RubyGems, will publish."
+          fi
+
+      - name: Build gem
+        run: gem build rawfeed.gemspec
+
+      - name: Push to RubyGems
+        if: steps.version.outputs.ALREADY_PUBLISHED == 'false'
+        uses: rubygems/release-gem@v1
+        with:
+          api-key: ${{ secrets.RUBYGEMS_API_KEY }}
+
+      - name: Create GitHub Release
+        if: steps.version.outputs.ALREADY_PUBLISHED == 'false'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.version.outputs.VERSION }}"
+          TAG="v${VERSION}"
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists, skipping GitHub Release."
+          else
+            gh release create "$TAG" \
+              --title "rawfeed v${VERSION}" \
+              --repo "${{ github.repository }}" \
+              --generate-notes \
+              rawfeed-*.gem
+          fi
