@@ -1,0 +1,13 @@
+.git
+.bundle-cache
+.bundle
+.jekyll-cache
+_site
+.site_build
+vendor
+pkg
+tmp
+node_modules
+.hidden
+.envrc
+.rspec_status
