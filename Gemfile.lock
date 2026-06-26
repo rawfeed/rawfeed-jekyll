@@ -9,6 +9,7 @@ PATH
       jekyll-paginate-v2 (~> 3.0.0)
       jekyll-sitemap (~> 1.4)
       logger (~> 1.4)
+      rubyzip (~> 2.3)
 
 GEM
   remote: https://rubygems.org/
