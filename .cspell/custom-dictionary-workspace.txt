@@ -9,6 +9,7 @@ endif
 datelang
 unshift
 rubygems
+webp
 autoplay
 referrerpolicy
 noscript
