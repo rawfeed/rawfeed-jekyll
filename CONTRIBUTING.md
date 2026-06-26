@@ -104,13 +104,13 @@ Install Ruby and the required development tools for your distribution before pro
 **Arch Linux**
 
 ```bash
-sudo pacman -S ruby ruby-lsp rubocop
+sudo pacman -S ruby ruby-lsp rubocop git-cliff
 ```
 
 **Fedora**
 
 ```bash
-sudo dnf install ruby ruby-devel rubygems
+sudo dnf install ruby ruby-devel rubygems git-cliff
 gem install ruby-lsp rubocop
 ```
 

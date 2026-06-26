@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - test-ci
   pull_request:
     branches:
       - main
@@ -115,6 +114,25 @@ jobs:
         uses: rubygems/release-gem@v1
         with:
           api-key: ${{ secrets.RUBYGEMS_API_KEY }}
+
+      - name: Generate CHANGELOG
+        if: steps.version.outputs.ALREADY_PUBLISHED == 'false'
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --verbose
+        env:
+          OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
+
+      - name: Commit CHANGELOG
+        if: steps.version.outputs.ALREADY_PUBLISHED == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git diff --staged --quiet || git commit -m "chore: update CHANGELOG for v${{ steps.version.outputs.VERSION }} [skip ci]"
+          git push
 
       - name: Create GitHub Release
         if: steps.version.outputs.ALREADY_PUBLISHED == 'false'
