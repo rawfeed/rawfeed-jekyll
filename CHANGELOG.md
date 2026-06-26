@@ -2,7 +2,11 @@
 
 ## [v1.0.1](https://github.com/rawfeed/rawfeed-jekyll/tree/v1.0.1) (2026-06-25)
 
-[Full Changelog](https://github.com/rawfeed/rawfeed-jekyll/compare/v0.3.1...v1.0.1)
+[Full Changelog](https://github.com/rawfeed/rawfeed-jekyll/compare/v1.0.0...v1.0.1)
+
+## [v1.0.0](https://github.com/rawfeed/rawfeed-jekyll/tree/v1.0.0) (2026-06-25)
+
+[Full Changelog](https://github.com/rawfeed/rawfeed-jekyll/compare/v0.3.1...v1.0.0)
 
 ## [v0.3.1](https://github.com/rawfeed/rawfeed-jekyll/tree/v0.3.1) (2026-04-04)
 
