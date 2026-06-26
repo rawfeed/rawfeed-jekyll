@@ -26,6 +26,9 @@
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.cursorStyle": "underline",
   "terminal.integrated.tabs.enabled": true,
+  "terminal.integrated.env.linux": {
+    "PATH": "${env:GEM_BIN}:${env:PATH}"
+  },
 
   // ================= WORKBENCH =================
   "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-auto",
