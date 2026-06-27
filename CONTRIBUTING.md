@@ -264,14 +264,6 @@ The CI job performs:
 - `bundle exec rawfeed build --destination .site_build` to ensure the theme builds cleanly
 - `gem build rawfeed.gemspec` to verify package creation
 
-## Changelog generation
-
-The project uses `github_changelog_generator` to help generate changelogs from GitHub issues and tags. Configuration is in `.github_changelog_generator` using `key=value` pairs (one per line).
-
-```bash
-bundle exec github_changelog_generator
-```
-
 If you prefer a manual approach, edit `CHANGELOG.md` directly.
 
 ## Build and publish
