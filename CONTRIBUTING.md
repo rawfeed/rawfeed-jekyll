@@ -101,13 +101,13 @@ Keep entries clear and user-focused. Each release section should summarize impor
 
 Install Ruby and the required development tools for your distribution before proceeding.
 
-**Arch Linux**
+Arch Linux:
 
 ```bash
 sudo pacman -S ruby ruby-lsp rubocop git-cliff
 ```
 
-**Fedora**
+Fedora:
 
 ```bash
 sudo dnf install ruby ruby-devel rubygems git-cliff
@@ -157,6 +157,100 @@ If you use `direnv`, add the following to your `.envrc`:
 ```bash
 export RAWFEED_DEV_PATH="$PWD"
 ```
+
+## Developing with Docker
+
+If you prefer not to install Ruby locally, you can develop rawfeed entirely inside Docker.
+
+### Requirements
+
+- [Docker](https://docs.docker.com/get-docker/) 24+
+- [Docker Compose](https://docs.docker.com/compose/install/) v2+
+
+### Starting the development environment
+
+Clone the repository and start the container:
+
+```bash
+git clone https://github.com/williamcanin/rawfeed-jekyll.git
+cd rawfeed-jekyll
+docker compose up
+```
+
+The site will be available at `http://localhost:4000` with LiveReload active on port `35729` —
+any file change is picked up automatically without restarting the container.
+
+To rebuild the image after changing `Gemfile` or `rawfeed.gemspec`:
+
+```bash
+docker compose up --build
+```
+
+### Running commands inside the container
+
+You can run any `bundle exec` command without entering the container:
+
+```bash
+# Run the test suite
+docker compose run --rm rawfeed bundle exec rspec
+
+# Build the gem package
+docker compose run --rm rawfeed gem build rawfeed.gemspec
+
+# Open an interactive shell
+docker compose run --rm rawfeed bash
+```
+
+### Stopping
+
+```bash
+docker compose down
+```
+
+To also remove the gem cache volume (full clean):
+
+```bash
+docker compose down -v
+```
+
+---
+
+## Developing with VS Code via Docker (Dev Containers)
+
+VS Code can open the project directly inside the container through the
+[Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension,
+giving you a full editor experience (IntelliSense, debugging, terminal) without anything installed on your host besides Docker.
+
+Requirements:
+
+- [VS Code](https://code.visualstudio.com/)
+- [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+- Docker running
+
+### Setup
+
+The repository already includes a `.devcontainer/devcontainer.json` configuration.
+To open the project inside the container:
+
+1. Open VS Code
+2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS) and run **Dev Containers: Reopen in Container**
+3. VS Code will build the image and reopen the workspace inside the container
+4. Open the integrated terminal (`Ctrl+` ` ``) — you are now inside the container
+
+From that terminal, all commands work exactly as they would locally:
+
+```bash
+bundle exec rspec
+bundle exec rawfeed serve --host 0.0.0.0 --livereload
+```
+
+The site will be forwarded automatically to `http://localhost:4000` on your host.
+
+### Rebuilding the container
+
+If you change `Gemfile`, `rawfeed.gemspec`, or `.devcontainer/devcontainer.json`, rebuild with:
+
+`Ctrl+Shift+P` → **Dev Containers: Rebuild Container**
 
 ## Continuous integration
 

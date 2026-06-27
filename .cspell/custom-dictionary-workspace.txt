@@ -6,6 +6,8 @@ enddetails
 figcaption
 endfor
 endif
+livereload
+rubocop
 orhun
 datelang
 unshift
