@@ -62,12 +62,17 @@ sass:
 exclude:
   - .bundle-cache
   - Gemfile
+  - Rakefile
   - Gemfile.lock
   - README.md
+  - RELEASE_CHECKLIST.md
+  - CHANGELOG.md
+  - CONTRIBUTING.md
 
   # files below: developer mode
   - node_modules
   - docs
+  - spec
   - exe
   - rawfeed.gemspec
   - CODE_OF_CONDUCT.md
