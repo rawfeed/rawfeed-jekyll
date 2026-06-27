@@ -67,15 +67,20 @@ jobs:
         run: |
           bundle exec rawfeed new /tmp/test-new-site --force
           cd /tmp/test-new-site
-          sed -i "/^gem \"rawfeed\",/c\gem \"rawfeed\", path: \"${{ github.workspace }}\"" Gemfile
+          cat > Gemfile << 'GEMFILE'
+          source "https://rubygems.org"
+          gem "rawfeed", path: "${{ github.workspace }}"
+          GEMFILE
+          rm -f Gemfile.lock
+          bundle config set frozen false
           bundle install --jobs 4 --retry 3
           bundle exec rawfeed build
           echo "rawfeed new test passed"
 
   release:
-    name: Publish to RubyGems and GitHub
+    name: GitHub Release and CHANGELOG
     needs: [test]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/test-ci') && github.event_name == 'push'
     runs-on: ubuntu-latest
 
     permissions:
@@ -91,51 +96,39 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.4"
-          bundler-cache: true
+          bundler-cache: false
 
-      - name: Get version and check if already published
+      - name: Install dependencies
+        env:
+          RAWFEED_DEV_PATH: ${{ github.workspace }}
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Get version and check if already released
         id: version
         run: |
           VERSION=$(ruby -Ilib -e 'require "rawfeed/core/version"; puts Rawfeed::VERSION')
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-          if gem search "^rawfeed$" --exact --remote | grep -q "$VERSION"; then
-            echo "ALREADY_PUBLISHED=true" >> $GITHUB_OUTPUT
-            echo "Version $VERSION already exists on RubyGems, skipping publish."
+          TAG="v${VERSION}"
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "ALREADY_RELEASED=true" >> $GITHUB_OUTPUT
+            echo "Tag $TAG already exists, skipping release."
           else
-            echo "ALREADY_PUBLISHED=false" >> $GITHUB_OUTPUT
-            echo "Version $VERSION not found on RubyGems, will publish."
+            echo "ALREADY_RELEASED=false" >> $GITHUB_OUTPUT
+            echo "Tag $TAG not found, will create release."
           fi
 
       - name: Build gem
+        if: steps.version.outputs.ALREADY_RELEASED == 'false'
         run: gem build rawfeed.gemspec
 
       - name: Push to RubyGems
-        if: steps.version.outputs.ALREADY_PUBLISHED == 'false'
+        if: steps.version.outputs.ALREADY_RELEASED == 'false'
         uses: rubygems/release-gem@v1
         with:
           api-key: ${{ secrets.RUBYGEMS_API_KEY }}
 
-      - name: Generate CHANGELOG
-        if: steps.version.outputs.ALREADY_PUBLISHED == 'false'
-        uses: orhun/git-cliff-action@v4
-        with:
-          config: cliff.toml
-          args: --verbose
-        env:
-          OUTPUT: CHANGELOG.md
-          GITHUB_REPO: ${{ github.repository }}
-
-      - name: Commit CHANGELOG
-        if: steps.version.outputs.ALREADY_PUBLISHED == 'false'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add CHANGELOG.md
-          git diff --staged --quiet || git commit -m "chore: update CHANGELOG for v${{ steps.version.outputs.VERSION }} [skip ci]"
-          git push
-
       - name: Create GitHub Release
-        if: steps.version.outputs.ALREADY_PUBLISHED == 'false'
+        if: steps.version.outputs.ALREADY_RELEASED == 'false'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -143,11 +136,6 @@ jobs:
           TAG="v${VERSION}"
           REPO="${{ github.repository }}"
           BASE="${{ github.server_url }}/$REPO"
-
-          if git rev-parse "$TAG" >/dev/null 2>&1; then
-            echo "Tag $TAG already exists, skipping GitHub Release."
-            exit 0
-          fi
 
           NOTES=$(gh api "repos/$REPO/releases/generate-notes" \
             --field tag_name="$TAG" \
@@ -183,3 +171,26 @@ jobs:
             --repo "$REPO" \
             --notes-file /tmp/release-body.md \
             rawfeed-*.gem
+
+      - name: Generate CHANGELOG
+        if: steps.version.outputs.ALREADY_RELEASED == 'false'
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --verbose --tag v${{ steps.version.outputs.VERSION }}
+        env:
+          OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit CHANGELOG
+        if: steps.version.outputs.ALREADY_RELEASED == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash
+          git pull --rebase
+          git stash pop
+          git add CHANGELOG.md
+          git diff --staged --quiet || git commit -m "chore: update CHANGELOG for v${{ steps.version.outputs.VERSION }} [skip ci]"
+          git push
