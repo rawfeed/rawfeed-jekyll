@@ -1,0 +1,37 @@
+{
+  "name": "rawfeed-jekyll",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "rawfeed",
+  "workspaceFolder": "/srv/jekyll",
+
+  "forwardPorts": [4000, 35729],
+  "portsAttributes": {
+    "4000": { "label": "Jekyll site", "onAutoForward": "openBrowser" },
+    "35729": { "label": "LiveReload" }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rebornix.Ruby",
+        "castwide.solargraph",
+        "shopify.ruby-lsp",
+        "sibiraj-s.vscode-scss-formatter",
+        "yzhang.markdown-all-in-one",
+        "davidanson.vscode-markdownlint",
+        "github.vscode-github-actions"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        "ruby.useBundler": true,
+        "ruby.lint": { "rubocop": true },
+        "[ruby]": {
+          "editor.defaultFormatter": "castwide.solargraph"
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "bundle install"
+}

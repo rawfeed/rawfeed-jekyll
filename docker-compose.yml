@@ -1,0 +1,17 @@
+services:
+  rawfeed:
+    build: .
+    volumes:
+      - .:/srv/jekyll
+      - bundle_cache:/usr/local/bundle
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    environment:
+      RAWFEED_DEV_PATH: /srv/jekyll
+      JEKYLL_ENV: development
+    stdin_open: true
+    tty: true
+
+volumes:
+  bundle_cache:
