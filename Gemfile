@@ -2,33 +2,16 @@
 
 source "https://rubygems.org"
 
+# Utilities
+gem "rubyzip", "~> 2.3"
+
 ## [ rawfeed ] Do not modify this block unless you know what you are doing.
 if ENV["RAWFEED_DEV_PATH"] && File.directory?(ENV["RAWFEED_DEV_PATH"])
   gem "rawfeed", path: ENV["RAWFEED_DEV_PATH"]
 else
   ## --- To update rawfeed-jekyll, simply update the version here ---
-  gem "rawfeed", "~> 1.0.0"
+  gem "rawfeed", "~> 1.0.2"
 end
-
-# Core
-gem "jekyll", ">= 4.0", "< 5.0"
-gem "rake", "~> 13.0"
-
-# Jekyll plugins
-group :jekyll_plugins do
-  gem "jekyll-sitemap", "~> 1.4"
-  gem "jekyll-feed", "~> 0.17.0"
-  gem "jekyll-archives", "~> 2.3.0"
-  gem "jekyll-paginate-v2", "~> 3.0.0"
-end
-
-# Utilities
-gem "colorize", "~> 1.1.0"
-gem "logger", "~> 1.4"
-gem "rubyzip", "~> 2.3"
-
-# Build and minification
-gem "uglifier", "~> 4.2.0"
 
 # Windows and JRuby
 platforms :windows, :jruby do
@@ -46,6 +29,5 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 # Development dependencies
 group :development, :test do
   gem "rspec", "~> 3.12"
-  gem "github_changelog_generator", "~> 1.8"
   gem "faraday-retry", "~> 1.0"
 end

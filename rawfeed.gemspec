@@ -71,8 +71,8 @@ Gem::Specification.new do |spec|
 
   # Core dependencies for the CLI to work
   spec.add_runtime_dependency "colorize", "~> 1.1.0"
-
   spec.add_runtime_dependency "jekyll", ">= 4.0", "< 5.0"
+
   # Jekyll plugins
   spec.add_runtime_dependency "jekyll-sitemap", "~> 1.4"
   spec.add_runtime_dependency "jekyll-feed", "~> 0.17.0"
@@ -80,8 +80,9 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jekyll-paginate-v2", "~> 3.0.0"
 
   # utilities
+  spec.add_runtime_dependency "rake", "~> 13.0"
+  spec.add_runtime_dependency "uglifier", "~> 4.2.0"
   spec.add_runtime_dependency "logger", "~> 1.4"
-  spec.add_runtime_dependency "rubyzip", "~> 2.3"
 
   # Jekyll and related gems are specified in the Gemfile created by the installer.
   # They are only needed when running Jekyll commands (serve, build) on the created site.
