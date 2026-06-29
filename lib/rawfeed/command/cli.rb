@@ -103,8 +103,12 @@ module Rawfeed
         end
       when "pixels"
         case task
-        when "enable"  then Rawfeed::Layout.pixels_index(true)
-        when "disable" then Rawfeed::Layout.pixels_index(false)
+        when "enable"  then
+          Rawfeed::Layout.pixels_index(true)
+          Rawfeed::Layout::change_yml("defaults", "published", true, "_pixels")
+        when "disable" then
+          Rawfeed::Layout.pixels_index(false)
+          Rawfeed::Layout::change_yml("defaults", "published", false, "_pixels")
         else
           puts "Unknown pixels task: #{task}"
         end
