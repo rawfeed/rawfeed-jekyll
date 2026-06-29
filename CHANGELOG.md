@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [v1.0.3] - 2026-06-29
+
+### Bug Fixes
+
+- Add change_yml call to pixels:enable/disable for _config.yml published state ([`d6f0788`](https://github.com/rawfeed/rawfeed-jekyll/commit/d6f07880fec0eab1ff44215e7310decce3599742))
+
 ## [v1.0.2] - 2026-06-27
 
 ### Bug Fixes
