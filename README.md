@@ -1,7 +1,10 @@
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD041 -->
+
 <p align="center">
-  <img src=".github/logo.png" alt="Rawfeed" width="150">
+  <img src="https://raw.githubusercontent.com/rawfeed/assets/refs/heads/main/logo/logo.png" alt="Rawfeed" width="150">
   <br>
-  <small>rawfeed-jekyll — A batteries-included Jekyll framework and CLI</small>
+  <small>rawfeed-jekyll — A raw Jekyll theme for minimalists.</small>
   <br><br>
   <a href="https://badge.fury.io/rb/rawfeed"><img src="https://badge.fury.io/rb/rawfeed.svg?icon=si%3Arubygems" alt="Gem Version" height="18"></a>
   <a href="https://github.com/rawfeed/rawfeed-jekyll/actions/workflows/ci.yml" target="_blank"><img src="https://github.com/rawfeed/rawfeed-jekyll/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
