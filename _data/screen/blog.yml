@@ -6,13 +6,6 @@ blog:
   date_label: Date
   post_label: Post
   empty: No posts found.
-  search:
-    enable: true
-    placeholder: "type here to search for a post or Esc to exit"
-    button_clean:
-      text: "clean"
-    results: "results"
-    no_results: "No results found"
   pagination:
     newer_text: "newer posts"
     counter: ["page", "of"]

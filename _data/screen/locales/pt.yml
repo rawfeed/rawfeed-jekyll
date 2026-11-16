@@ -310,12 +310,6 @@ blog:
   post_label: Publicação
   empty: Nenhuma publicação encontrada.
   subtitle: posts
-  search:
-    placeholder: digite para buscar um post ou pressione Esc para sair
-    button_clean:
-      text: limpar
-    results: resultados
-    no_results: Nenhum resultado encontrado
   pagination:
     newer_text: posts mais recentes
     counter: [página, de]

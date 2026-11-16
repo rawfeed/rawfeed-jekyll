@@ -78,9 +78,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jekyll-paginate-v2", "~> 3.0.0"
 
   # utilities
-  spec.add_runtime_dependency "rake", "~> 13.0"
   spec.add_runtime_dependency "terser", "~> 1.2"
-  spec.add_runtime_dependency "logger", "~> 1.4"
 
   # Jekyll and related gems are specified in the Gemfile created by the installer.
   # They are only needed when running Jekyll commands (serve, build) on the created site.

@@ -32,6 +32,7 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
 # Development dependencies
 group :development, :test do
+  gem "rake", "~> 13.0"
   gem "rspec", "~> 3.12"
   gem "faraday-retry", "~> 1.0"
 end

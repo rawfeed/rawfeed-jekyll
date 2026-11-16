@@ -8,8 +8,6 @@ PATH
       jekyll-feed (~> 0.17.0)
       jekyll-paginate-v2 (~> 3.0.0)
       jekyll-sitemap (~> 1.4)
-      logger (~> 1.4)
-      rake (~> 13.0)
       terser (~> 1.2)
 
 GEM
@@ -123,6 +121,7 @@ DEPENDENCIES
   faraday-retry (~> 1.0)
   http_parser.rb (~> 0.6.0)
   jekyll-polyglot (~> 1.14)
+  rake (~> 13.0)
   rawfeed!
   rspec (~> 3.12)
   rubyzip (~> 2.3)
