@@ -1,0 +1,32 @@
+{
+  "name": "rawfeed",
+  "version": "2.0.0",
+  "private": true,
+  "description": "npm command aliases for the Rawfeed Jekyll Ruby CLI",
+  "scripts": {
+    "install": "bundle install",
+    "help": "bundle exec rawfeed help",
+    "serve": "bundle exec rawfeed clean --all && bundle exec rawfeed serve --host 127.0.0.1 --port 4000 --drafts --livereload",
+    "build": "bundle exec rawfeed clean --all && bundle exec rawfeed build && bundle exec rawfeed minify",
+    "create:draft": "bundle exec rawfeed create:draft",
+    "create:page": "bundle exec rawfeed create:page",
+    "create:pixel": "bundle exec rawfeed create:pixel",
+    "post:draft": "bundle exec rawfeed post:draft",
+    "restore:resume": "bundle exec rawfeed restore:resume",
+    "restore:donate": "bundle exec rawfeed restore:donate",
+    "restore:contact": "bundle exec rawfeed restore:contact",
+    "restore:licenses": "bundle exec rawfeed restore:licenses",
+    "list:posts": "bundle exec rawfeed list:posts",
+    "home:about": "bundle exec rawfeed home:about",
+    "home:blog": "bundle exec rawfeed home:blog",
+    "blog:enable": "bundle exec rawfeed blog:enable",
+    "blog:disable": "bundle exec rawfeed blog:disable",
+    "pixels:enable": "bundle exec rawfeed pixels:enable",
+    "pixels:disable": "bundle exec rawfeed pixels:disable",
+    "minify": "bundle exec rawfeed minify",
+    "backup": "bundle exec rawfeed backup",
+    "clean": "bundle exec rawfeed clean",
+    "clean:cache": "bundle exec rawfeed clean --cache",
+    "clean:all": "bundle exec rawfeed clean --all"
+  }
+}

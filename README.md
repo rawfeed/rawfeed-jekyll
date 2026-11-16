@@ -124,3 +124,26 @@ responses and aliases supplied by `_data/screen/interface.yml`.
 The classic terminal is always available; `home.terminal.enable` is no longer used.
 On mobile, the application fills the dynamic viewport and uses touch-sized controls.
 Animations respect the operating system reduced-motion preference.
+
+### Browser terminal commands
+
+The browser terminal is configured in `_data/screen/interface.yml` and
+`_data/screen/home.yml`. Built-in commands include `help`, `ls`, `open`,
+`projects`, `socials`, `contact`, `theme`, `lang`, `about`, `date`, `find`,
+`clear`, `shred`, `home`, `scan`, `boot`, `echo`, `whoami`, `neofetch`, and
+`exit`. Use `find "words"` to search the same localized page and post index as
+Home search. Add command aliases or fixed custom responses in the interface
+YAML; these are browser commands and do not execute operating-system commands.
+
+### Ruby CLI
+
+The `rawfeed` executable provides site scaffolding and Ruby-side content tools:
+`rawfeed new`, `build`, `serve`, `backup`, `clean`, `minify`, content generators,
+layout toggles, and restore commands. The browser terminal commands above belong
+to generated sites and are separate from this Ruby CLI.
+`rawfeed minify` uses Terser for modern JavaScript and needs an ExecJS-compatible
+JavaScript runtime; ImageMagick is required only for image minification.
+Sites created by `rawfeed new` also include npm aliases for the Ruby CLI, so
+the documented commands such as `npm run serve`, `npm run create:draft`, and
+`npm run clean:cache` remain available. Run `npm run help` for the available
+Rawfeed commands.

@@ -31,7 +31,7 @@ jobs:
           bundler-cache: true
 
       - name: Check Ruby syntax
-        run: ruby -c lib/rawfeed.rb
+        run: find lib exe -type f -name '*.rb' -print0 | xargs -0 -n1 ruby -c
 
       - name: Validate gem loads
         run: bundle exec ruby -Ilib -e 'require "rawfeed"; puts "rawfeed v#{Rawfeed::VERSION} loaded"'
@@ -44,6 +44,15 @@ jobs:
 
       - name: Build gem package
         run: gem build rawfeed.gemspec
+
+      - name: Verify gem package contents
+        run: |
+          ruby -Ilib -rrubygems/package -rrawfeed/core/version -e '
+            files = Gem::Package.new("rawfeed-#{Rawfeed::VERSION}.gem").contents
+            required = %w[lib/rawfeed/plugin/localization.rb pt/index.md pt/_posts/2025-09-20-welcome-to-jekyll.md _data/screen/locales/pt.yml assets/js/prototype.js package.json .github/workflows/github-pages.yml.disabled]
+            missing = required - files
+            abort "Gem is missing: #{missing.join(", ")}" unless missing.empty?
+          '
 
       - name: Test backup command
         env:

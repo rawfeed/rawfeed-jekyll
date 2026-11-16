@@ -10,11 +10,11 @@ module Rawfeed
 
       def self.minify_javascript
         begin
-          require "uglifier"
+          require "terser"
         rescue LoadError
-          puts "[!] Error: uglifier gem is required for minify feature".red
-          puts "    Install it with: gem install uglifier".yellow
-          puts "    Or add to your Gemfile: gem 'uglifier', '~> 4.2.0'".yellow
+          puts "[!] Error: terser gem is required for minify feature".red
+          puts "    Install it with: gem install terser".yellow
+          puts "    Or add to your Gemfile: gem 'terser'".yellow
           exit 1
         end
 
@@ -29,7 +29,7 @@ module Rawfeed
         begin
           js_files.each do |file|
             content = File.read(file)
-            minified = Uglifier.compile(content, harmony: true)
+            minified = Terser.compile(content)
             File.write(file, minified)
           end
           puts "JavaScript minified successfully!".green

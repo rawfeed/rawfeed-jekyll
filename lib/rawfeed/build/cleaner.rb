@@ -8,15 +8,10 @@ module Rawfeed
     class Cleaner
       JEKYLL_CACHE_PATHS = [
         ".jekyll-metadata",
-        ".jekyll-cache",
-        "_site"
+        ".jekyll-cache"
       ].freeze
 
-      PROJECT_PATHS = [
-        ".jekyll-metadata",
-        ".jekyll-cache",
-        "_site"
-      ].freeze
+      PROJECT_PATHS = (JEKYLL_CACHE_PATHS + ["_site"]).freeze
 
       def self.clean_jekyll_cache
         puts "Cleaning Jekyll cache...".yellow

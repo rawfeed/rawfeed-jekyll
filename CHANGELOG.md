@@ -1,6 +1,21 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [v2.0.0] - 2026-11-16
+
+### Features
+
+- Rework the Jekyll theme into a configurable, keyboard-driven TUI with universal search, terminal commands, project pages, and responsive layouts.
+- Add localized Markdown pages and posts, locale-aware interface data, and a configurable language selector.
+- Add Home profile timeline, environment, contact, project, and writing panels with YAML-driven content.
+- Add npm command aliases to generated sites and propagate Jekyll build/serve failures to the calling shell.
+
+### Ruby and Packaging
+
+- Include the Portuguese starter content and locale files in the gem and copy them when creating a new site.
+- Include the npm command manifest in the gem and generated starter sites.
+- Make gem file discovery independent of Git's tracked-file list and publish complete RubyGems metadata.
+
 ## [v1.0.3] - 2026-06-29
 
 ### Bug Fixes

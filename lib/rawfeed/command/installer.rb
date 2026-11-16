@@ -63,12 +63,13 @@ module Rawfeed
       # --- files and folders to copy ---
       items_to_copy = [
         [File.join(gem_dir, "Gemfile"), "Gemfile"],
+        [File.join(gem_dir, "package.json"), "package.json"],
         [File.join(gem_dir, "_config.yml"), "_config.yml"],
         [File.join(gem_dir, "index.md"), "index.md"],
         [File.join(gem_dir, "404.html"), "404.html"],
         [File.join(gem_dir, ".gitignore"), ".gitignore"],
         [File.join(gem_dir, ".gitlab/ci/gitlab-pages.yml"), ".gitlab/ci/gitlab-pages.yml"],
-        [File.join(gem_dir, ".github/workflows/github-pages.yml"), ".github/workflows/github-pages.yml"],
+        [File.join(gem_dir, ".github/workflows/github-pages.yml.disabled"), ".github/workflows/github-pages.yml"],
         [File.join(gem_dir, ".editorconfig"), ".editorconfig"],
         [File.join(gem_dir, ".hidden"), ".hidden"],
         [File.join(gem_dir, "robots.txt"), "robots.txt"],
@@ -77,6 +78,7 @@ module Rawfeed
         [File.join(gem_dir, "_posts"), "_posts"],
         [File.join(gem_dir, "_pages"), "_pages"],
         [File.join(gem_dir, "_pixels"), "_pixels"],
+        [File.join(gem_dir, "pt"), "pt"],
         [File.join(gem_dir, "blog"), "blog"],
         [File.join(gem_dir, "pixels"), "pixels"],
         [File.join(gem_dir, "assets/images"), "assets/images"]
@@ -129,7 +131,7 @@ module Rawfeed
     #     gem "rubyzip", "~> 2.3"
 
     #     # Build and minification
-    #     gem "uglifier", "~> 4.2.0"
+    #     gem "terser", "~> 1.2"
 
     #     ## Place your plugins here.
     #     # group :jekyll_plugins do

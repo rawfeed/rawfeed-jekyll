@@ -23,6 +23,13 @@ RSpec.describe Rawfeed::Tools do
       expect { described_class.build("--help") }
         .to output(/rawfeed build/).to_stdout
     end
+
+    it "returns a failure exit status when Jekyll build fails" do
+      allow(Kernel).to receive(:system).and_return(false)
+
+      expect { described_class.build("--destination", "_site") }
+        .to raise_error(SystemExit) { |error| expect(error.status).to eq(1) }
+    end
   end
 
   describe ".serve" do
@@ -33,6 +40,13 @@ RSpec.describe Rawfeed::Tools do
 
       expect { described_class.serve("--help") }
         .to output(/rawfeed serve/).to_stdout
+    end
+
+    it "returns a failure exit status when Jekyll serve fails" do
+      allow(Kernel).to receive(:system).and_return(false)
+
+      expect { described_class.serve("--port", "4000") }
+        .to raise_error(SystemExit) { |error| expect(error.status).to eq(1) }
     end
   end
 

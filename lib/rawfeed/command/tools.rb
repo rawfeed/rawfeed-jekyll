@@ -43,13 +43,13 @@ module Rawfeed
         puts "  build [OPTIONS]   Build the site"
         puts "  serve [OPTIONS]   Run local development server"
         puts "  minify            Minify JS, HTML and images in _site/"
-        puts "                    (requires ImageMagick for image minification)"
+        puts "                    (requires a JavaScript runtime and ImageMagick for images)"
         puts "  backup            Create a backup of your site"
         puts "                    Options:"
         puts "                      -d, --destination PATH  Save backup to a specific directory"
         puts "                      -a, --append PATH       Add extra files/folders to backup"
-        puts "  clean --cache     Clean Jekyll cache"
-        puts "  clean --all       Clean entire project"
+        puts "  clean --cache     Clean Jekyll cache and metadata"
+        puts "  clean --all       Clean cache and generated site"
         puts "\nContent Generators:".bold
         puts "  create:draft      Create a draft for a post"
         puts "  create:page       Create a page"
@@ -107,7 +107,11 @@ module Rawfeed
       else
         begin
           cmd = ["bundle", "exec", "jekyll", "build"] + args
-          system(*cmd)
+          unless Kernel.system(*cmd)
+            status = $?
+            exit(status.exitstatus) if status&.exitstatus&.positive?
+            exit 1
+          end
         rescue Interrupt
           puts "\n[!] Approached by the user".yellow
           exit!
@@ -126,7 +130,11 @@ module Rawfeed
       else
         begin
           cmd = ["bundle", "exec", "jekyll", "serve"] + args
-          system(*cmd)
+          unless Kernel.system(*cmd)
+            status = $?
+            exit(status.exitstatus) if status&.exitstatus&.positive?
+            exit 1
+          end
         rescue Interrupt
           puts "\n[!] Approached by the user".yellow
           exit!

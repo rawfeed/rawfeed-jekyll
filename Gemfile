@@ -14,7 +14,7 @@ if ENV["RAWFEED_DEV_PATH"] && File.directory?(ENV["RAWFEED_DEV_PATH"])
   gem "rawfeed", path: ENV["RAWFEED_DEV_PATH"]
 else
   ## --- To update rawfeed-jekyll, simply update the version here ---
-  gem "rawfeed", "~> 1.0.3"
+  gem "rawfeed", "~> 2.0.0"
 end
 
 # Windows and JRuby

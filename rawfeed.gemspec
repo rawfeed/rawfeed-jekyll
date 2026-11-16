@@ -8,16 +8,14 @@ Gem::Specification.new do |spec|
   spec.authors       = ["William C. Canin"]
   spec.email         = ["hello.williamcanin@gmail.com"]
 
-  spec.summary         = "A batteries-included Jekyll framework and CLI"
+  spec.summary         = "A multilingual Jekyll theme and Ruby CLI with a configurable TUI"
+  spec.description     = "Create Jekyll sites with a configurable terminal-style interface, multilingual Markdown, search, projects, and Ruby CLI tools."
   spec.homepage        = "https://rawfeed.github.io/rawfeed-jekyll"
   spec.license         = "MIT"
 
   spec.required_ruby_version = ">= 3.0.0"
 
-  # Note: The files will only be inside the gem after "git commit"
-  spec.files = `git ls-files -z`.split("\x0").select do |f|
-    # Directories we want to include (everything inside)
-    include_dirs = %w[
+  include_dirs = %w[
       lib
       exe
       assets
@@ -31,12 +29,13 @@ Gem::Specification.new do |spec|
       _pixels
       _pages
       _posts
+      pt
     ]
 
-    # Specific files we want to include
-    include_files = %w[
+  include_files = %w[
       Gemfile
-      .github/workflows/github-pages.yml
+      package.json
+      .github/workflows/github-pages.yml.disabled
       .gitlab/ci/gitlab-pages.yml
       .editorconfig
       .hidden
@@ -49,20 +48,19 @@ Gem::Specification.new do |spec|
       robots.txt
     ]
 
-    # Checks if it starts with any directory
-    matches_dir = include_dirs.any? { |d| f.start_with?("#{d}/") }
-
-    # Checks if it is a specific file (we can accept optional extension)
-    matches_file = include_files.any? do |file|
-      f == file || f =~ /^#{Regexp.escape(file)}\.(txt|md|markdown)$/i
+  spec.files = Dir.chdir(__dir__) do
+    files = include_dirs.flat_map do |directory|
+      Dir.glob(File.join(directory, "**", "*"), File::FNM_DOTMATCH).select { |path| File.file?(path) }
     end
-
-    matches_dir || matches_file
+    files.concat(include_files.select { |path| File.file?(path) })
+    files.concat(Dir.glob("README.{md,markdown,txt}").select { |path| File.file?(path) })
+    files.uniq.sort
   end
   spec.require_paths = ["lib"]
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
   spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["documentation_uri"] = "https://rawfeed.github.io/rawfeed-jekyll/"
   spec.metadata["changelog_uri"]  = "https://rawfeed.github.io/rawfeed-jekyll/changelog/"
 
   # Executables
@@ -81,7 +79,7 @@ Gem::Specification.new do |spec|
 
   # utilities
   spec.add_runtime_dependency "rake", "~> 13.0"
-  spec.add_runtime_dependency "uglifier", "~> 4.2.0"
+  spec.add_runtime_dependency "terser", "~> 1.2"
   spec.add_runtime_dependency "logger", "~> 1.4"
 
   # Jekyll and related gems are specified in the Gemfile created by the installer.
