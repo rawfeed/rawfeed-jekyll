@@ -1,70 +1,116 @@
 ---
 layout: default
 ---
-{%- include assigned -%}
 
-  {%- if home.terminal.enable and page.url == '/' -%}
-  <div class="d-flex justify-content-center align-items-center mb-5 home home-terminal">
-    <div id="terminal" class="terminal">
-      <div class="terminal-header">
-        <div class="terminal-header__btn terminal-header__close" title="close"></div>
-        <div class="terminal-header__btn terminal-header__min" title="minimize"></div>
-        <div class="terminal-header__btn terminal-header__max" title="maximize"></div>
-        <div class="terminal-header__title">{{ home.terminal.user }}@{{ home.terminal.hostname }}</div>
-      </div>
-
-      <div id="screen" class="terminal-screen">
-        <div id="home-content" style="display:none !important;">
-          {{ content }}
-          {{ socials.description.terminal.about.description | markdownify }}
-        </div>
-
-        <div id="terminal-screen--socials" style="display:none">
-          {%- assign menu_separator = default.separator -%}
-          {%- assign links = socials.links -%}
-          {%- for item in links -%}
-            <a
-              class="socials-link"
-              title="{{ item.title }}"
-              href="{{ item.url }}"
-              target="_blank">{{ item.title }}</a>
-            <strong class="separator">{{ menu_separator }}</strong>
-          {%- endfor -%}
-        </div>
-      </div>
+{% include assigned %}
+<section class="hello">
+  <div class="hello-heading">
+    {% include layout/avatar.html %}
+    <h1 class="rf-banner">
+      {{ interface.banner | default: navbar.title | default: site_title | escape
+      }}
+    </h1>
+  </div>
+  <div class="hello-copy">
+    <div class="pl">
+      <span class="pr"
+        >{{ home.terminal.user | default: theme_name }}@{{
+        home.terminal.hostname | default: 'web' }}:~$</span
+      >
+      <span class="cur">{{ home.terminal.welcome | default: 'welcome' }}</span>
+    </div>
+    <div class="rf-prose">
+      {{ content }}
     </div>
   </div>
-
-  <!-- For responsive/mobile (disable terminal) - -->
-  <div class="home-text">
-    <div class="container home">
-      <div class="row">
-        <div class="content" style="{%- if page.text_center -%} text-align: center; {%- endif -%}">
-          {{ content }}
-          {{ socials.description.text | markdownify }}
-        </div>
-      </div>
-    </div>
-    {%- include markdown/socials pos="center" -%}
-  </div>
-
-{%- else -%}
-  <div class="home">
-    <div class="row">
-      <div class="content" style="{%- if page.text_center -%} text-align: center; {%- endif -%}">
-        {{ content }}
-        {{ socials.description.text | markdownify }}
-      </div>
-    </div>
-  </div>
-{%- endif -%}
-
-{%- if home.terminal.enable == false -%}
-  {%- if page.url == '/' and socials.enable -%}
-    {%- if page.text_center -%}
-      {%- include markdown/socials pos="center" -%}
-    {%- else -%}
-      {%- include markdown/socials pos="left" -%}
+</section>
+<div class="search" role="search"><label class="search-l" for="rf-home-search"><span data-ui="search">{{ interface.labels.search | escape }}</span>:</label><input id="rf-home-search" data-index="{{ '/assets/json/site_search.json' | localized_url: site.active_lang, site.default_lang, site.baseurl }}" type="search" autocomplete="off" placeholder="{{ interface.labels.search_placeholder | escape }}"><span class="sr-only" id="rf-home-count" aria-live="polite"></span></div>
+<div class="grid rf-home-grid">
+  {%- assign profile_config = home.profile -%}
+  <section class="panel rf-profile-card">
+    <h2 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-user" /></svg>{{ profile_config.title | escape }}</h2>
+    <p class="pd">{{ profile_config.description | escape }}</p>
+    <hr class="rule" />
+    <ul class="menu">
+      {%- for item in profile_config.links -%}
+        {%- assign profile_path = item.url | localized_url: site.active_lang, site.default_lang, site.baseurl -%}
+        {%- assign about_page = site.pages | where_exp: 'candidate', "candidate.url contains '/about/'" | first -%}
+        {%- if item.slug != 'about' or about_page -%}
+          <li><a class="item" href="{{ profile_path }}"><svg class="ic" aria-hidden="true"><use href="#i-{{ item.icon | default: 'file' }}" /></svg><span class="lbl">{{ item.title | escape }}</span></a></li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </section>
+  {%- assign projects_page = site.pages | where: 'url', '/projects/' | first -%}
+  {%- assign projects_data = site.data.screen.projects.projects | localize: locale_data.projects -%}
+  {%- assign project_limit = home.projects.visible_limit | default: 5 | plus: 0 -%}
+  {%- if projects_page and projects_data.size > 0 -%}
+  <section class="panel rf-projects-card">
+    <h2 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-grid" /></svg>{{ home.projects.title | escape }}</h2>
+    <p class="pd">{{ home.projects.description | escape }}</p>
+    <hr class="rule" />
+    <ul class="menu">
+      {%- for project in projects_data limit:project_limit -%}
+        <li><a class="item" href="{{ projects_page.url | localized_url: site.active_lang, site.default_lang, site.baseurl }}?project={{ project.slug | url_encode }}"><svg class="ic" aria-hidden="true"><use href="#i-{{ project.icon | default: 'file' }}" /></svg><span class="lbl">{{ project.name | escape }}</span></a></li>
+      {%- endfor -%}
+    </ul>
+    {%- if projects_data.size > project_limit -%}
+      <a class="item rf-view-all" href="{{ projects_page.url | localized_url: site.active_lang, site.default_lang, site.baseurl }}"><span class="lbl">{{ home.projects.view_all | default: 'View All' | escape }}</span><svg class="ic" aria-hidden="true"><use href="#i-right" /></svg></a>
     {%- endif -%}
+  </section>
   {%- endif -%}
-{%- endif -%}
+  {% if site.posts.size > 0 %}
+  <section class="panel">
+    <h2 class="ph">
+      <svg class="ic ph-ic" aria-hidden="true"><use href="#i-file" /></svg>
+      {{ home.weblog.title | default: navbar.menu.blog.title | escape }}
+    </h2>
+    <p class="pd">{{ home.weblog.subtitle | default: navbar.menu.blog.subtitle | escape }}</p>
+    <hr class="rule" />
+    <ul class="menu">
+      {% assign weblog_limit = home.weblog.posts_limit | default: 5 | plus: 0 %}
+      {% for post in site.posts limit:weblog_limit %}
+      <li>
+        <a class="item" href="{{ post.url | localized_url: site.active_lang, site.default_lang, site.baseurl }}"
+          ><svg class="ic" aria-hidden="true"><use href="#i-file" /></svg
+          ><span class="lbl">{{ post.title | escape }}</span></a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+    <a class="item rf-view-all" href="{{ blog_url }}"><span class="lbl" data-ui="view_all">{{ home.weblog.view_all | default: 'View All' | escape }}</span><svg class="ic" aria-hidden="true"><use href="#i-right" /></svg></a>
+  </section>
+  {% endif %}
+  {%- assign contact_page = site.pages | where_exp: 'candidate', "candidate.path contains 'contact.md'" | first -%}
+  {% if socials.enable or contact_page %}
+  <section class="panel rf-contact-card">
+    <h2 class="ph">
+      <svg class="ic ph-ic" aria-hidden="true"><use href="#i-mail" /></svg>{{
+      socials.title | default: 'Contact' | escape }}
+    </h2>
+    <p class="pd">{{ socials.card_description | default: 'Where to find me' | escape }}</p>
+    <hr class="rule" />
+    <ul class="menu">
+      {%- if contact_page -%}
+        <li><a class="item" href="{{ '/contact/' | localized_url: site.active_lang, site.default_lang, site.baseurl }}"><svg class="ic" aria-hidden="true"><use href="#i-mail" /></svg><span class="lbl">{{ home.contact.send_message | default: 'Send Message' | escape }}</span></a></li>
+      {%- endif -%}
+      {% if socials.enable %}{% for link in socials.links %}
+      <li>
+        <a
+          class="item"
+          href="{{ link.url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><svg class="ic" aria-hidden="true"><use href="#i-{{ link.icon | default: 'ext' }}" /></svg
+          ><span class="lbl">{{ link.title | escape }}</span><svg class="ext" aria-hidden="true"><use href="#i-ext" /></svg></a
+        >
+      </li>
+      {% endfor %}
+      {% endif %}
+    </ul>
+  </section>
+  {% endif %}
+</div>
+
+<section id="rf-home-results" class="panel" hidden><ul class="menu"></ul></section>
+<div class="dock rf-home-settings"><button type="button" class="item" data-rf="settings"><svg class="ic" aria-hidden="true"><use href="#i-gear"/></svg><span data-ui="settings">{{ interface.labels.settings | escape }}</span></button></div>

@@ -1,7 +1,7 @@
 {%- include assigned -%}
 
   <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
   <meta charset="utf-8">
   {%- if page.url == '/' -%}
     <title>
@@ -24,8 +24,8 @@
   <meta property="og:locale" content="{{ default.lang | replace: "-", "_" | default: "en_US" }}">
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:description" content="{{ page.description | capitalize | default: navbar.description | strip_html | truncate: 50 }}">
-  <link rel="canonical" href="{{ page.url | prepend: site.url }}">
-  <meta property="og:url" content="{{ page.url | prepend: site.url }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
   <meta property="og:site_name" content="{{ site_title }}">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
@@ -56,7 +56,7 @@
         "description": "{{ page.description | default: navbar.description | strip_html | truncate: 160 | escape }}",
         "headline": "{{ page.title | default: site_title | escape }}",
         "name": "{{ site_title }}",
-        "url": "{{ page.url | prepend: site.url }}"
+        "url": "{{ page.url | absolute_url }}"
       }
   </script>
   <!-- SEO -->
@@ -123,6 +123,7 @@
   <link rel="stylesheet" href="{{ '/assets/vendors/bootstrap-5.2.3/css/bootstrap.min.css' | relative_url }}">
 
   {%- comment -%} fixes FOUC/flicker in firefox {%- endcomment -%}
+  <script>document.documentElement.dataset.theme = {{ interface.theme | default: 'dark' | jsonify }};</script>
   <script src="{{ '/assets/js/theme_load.js' | relative_url }}"></script>
 
   {%- comment -%} load theme {%- endcomment -%}

@@ -2,3 +2,8 @@
 pub:
   path:
     title: "Index of"
+  items_label: Directory contents
+  name_label: Name
+  date_label: Modified
+  size_label: Size
+  empty: This directory is empty.

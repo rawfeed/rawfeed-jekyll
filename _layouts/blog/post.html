@@ -75,7 +75,7 @@ layout: default
         <strong>[{{ "tags" | with_class: "spacer" }}]:</strong>
         {%- for tag in tags -%}
           <li class="tag-list__item">
-            <a class="tag-list__link" href="{{ '/blog/tags/' | append: tag | relative_url }}">
+            <a class="tag-list__link" href="{{ '/blog/tags/' | append: tag | localized_url: site.active_lang, site.default_lang, site.baseurl }}">
               {{ tag }}
             </a>
           </li>
@@ -117,9 +117,9 @@ layout: default
               {%- else -%}
                 <span class="related-posts-list__meta">{{ post.date | date: "%b %-d, %Y" }}</span>&nbsp;»&nbsp;
               {%- endif -%}
-              <a class="related-posts-list__link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              <a class="related-posts-list__link" href="{{ post.url | localized_url: site.active_lang, site.default_lang, site.baseurl }}">{{ post.title }}</a>
               {%- if post.draft -%}
-                <span class="draft-badge">[&nbsp;this is a draft&nbsp;]</span>
+                <span class="draft-badge">[&nbsp;{{ interface.labels.draft | default: 'draft' | escape }}&nbsp;]</span>
               {%- endif -%}
             </li>
           {%- endfor -%}

@@ -3,30 +3,24 @@ layout: default
 ---
 {%- include assigned -%}
 
-{%- assign menu_separator = default.separator -%}
+{%- assign tags = site.tags | sort -%}
+<div id="blog-tags" class="blog rf-blog rf-tag-index">
+  <header class="rf-blog-heading">
+    <h1 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-book" /></svg>{{ page.title | default: blog.post.tags.title | default: 'Tags' | escape }}</h1>
+    {%- if page.description -%}<div class="pd rf-blog-description">{{ page.description | markdownify }}</div>{%- endif -%}
+    <p class="rf-blog-count"><span>{{ blog.post.tags.title | default: 'tags' | escape }}</span><strong>{{ tags.size }}</strong></p>
+  </header>
 
-<div class="container tags{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
-  {%- if page.description -%}
-    <div class="row">
-      <div class="tags__description">
-        <span>»&nbsp;</span>
-        {{ page.description }}</div>
-    </div>
-  {%- endif -%}
-
-  <div class="row">
-    <h1 class="tags__title">[&nbsp;tags&nbsp;]</h1>
-    <ul class="tags__list">
-      {%- assign tags = site.tags | sort -%}
+  <div class="rf-tag-cards">
       {%- for tag in tags -%}
         {%- assign tag_name = tag[0] -%}
-        <li class="tags__list__item">
-          <a class="tags__list__link" href="{{ '/blog/tags/' | append: tag_name | relative_url }}">
-            {{ tag_name }}
-          </a>
-        </li>
-        <strong>{{ menu_separator }}</strong>
+        {%- assign tag_posts = tag[1] -%}
+        <section class="panel rf-tag-card">
+          <h2 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-book" /></svg>{{ tag_name | escape }}</h2>
+          <p class="pd">{{ tag_posts.size }} posts</p>
+          <hr class="rule" />
+          <ul class="menu"><li><a class="tags__list__link item" href="{{ '/blog/tags/' | append: tag_name | localized_url: site.active_lang, site.default_lang, site.baseurl }}"><svg class="ic" aria-hidden="true"><use href="#i-file" /></svg><span class="lbl">View posts</span><svg class="ext" aria-hidden="true"><use href="#i-right" /></svg></a></li></ul>
+        </section>
       {%- endfor -%}
-    </ul>
   </div>
 </div>

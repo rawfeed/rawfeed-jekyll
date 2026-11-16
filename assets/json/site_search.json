@@ -1,0 +1,6 @@
+---
+layout: none
+---
+[
+{% assign documents = site.pages | concat: site.posts | concat: site.pixels %}{% assign comma = '' %}{% for document in documents %}{% unless document.url contains '/blog/tags/' %}{% if document.title and document.published != false and document.layout != 'blog/tags' and document.layout != 'blog/posts_by_tag' %}{{ comma }}{"title":{{ document.title | jsonify }},"url":{{ document.url | localized_url: site.active_lang, site.default_lang, site.baseurl | jsonify }},"text":{{ document.content | strip_html | strip_newlines | jsonify }}}{% assign comma = ',' %}{% endif %}{% endunless %}{% endfor %}
+]

@@ -3,6 +3,9 @@
 # section: [blog]
 blog:
   subtitle: "posts"
+  date_label: Date
+  post_label: Post
+  empty: No posts found.
   search:
     enable: true
     placeholder: "type here to search for a post or Esc to exit"

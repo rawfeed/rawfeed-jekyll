@@ -2,6 +2,8 @@
 # note: if you want more, just add more "title" and "url".
 socials:
   enable: true
+  title: Contact
+  card_description: Where to find me
   description:
     text: |
       These are my social networks:
@@ -13,8 +15,10 @@ socials:
         description: |
           Click on a link and go directly to my social network:
   links:
-    - title: github
+    - title: GitHub
+      icon: branch
       url: https://github.com/rawfeed/rawfeed-jekyll
 
-    - title: rubygems
+    - title: RubyGems
+      icon: archive
       url: https://rubygems.org/gems/rawfeed

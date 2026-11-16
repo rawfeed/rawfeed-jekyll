@@ -9,6 +9,9 @@ comments: true
 tags: [example, codeblocks, style, include, chart, ruby, html, rust, raw]
 toc:
   enable: true
+lang: en
+page_id: content-styles-and-codeblocks
+permalink: /blog/content-styles-and-codeblocks/
 ---
 
 > Note: This post create with command: `bundle exec rawfeed create:draft`

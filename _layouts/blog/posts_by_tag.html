@@ -1,27 +1,26 @@
 ---
 layout: default
 ---
-
 {%- include assigned -%}
 
-<div class="container posts_by_tag{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
-  <div class="row">
-    <h1 class="posts_by_tag__title">
-      <span>[&nbsp;{{ blog.post.posts_by_tags.title }}:&nbsp;</span>
-      {{ page.title }}<span>&nbsp;]</span>
-    </h1>
+<div id="blog" class="blog rf-blog rf-blog-tag">
+  <header class="rf-blog-heading">
+    <h1 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-book" /></svg>{{ page.title | escape }}</h1>
+    <p class="rf-blog-count"><span>{{ blog.post.posts_by_tags.title | default: 'Posts' | escape }}</span><strong>{{ page.posts.size }}</strong></p>
+  </header>
 
-    <ul class="row posts_by_tag__list">
+  <section id="posts" class="panel rf-blog-listing" aria-label="{{ page.title | escape }}">
+    <div class="rf-blog-columns" aria-hidden="true"><span>#</span><span>{{ blog.date_label | default: 'Date' | escape }}</span><span>{{ blog.post_label | default: 'Post' | escape }}</span></div>
+    <ul class="menu blog-list">
       {%- for post in page.posts -%}
-        <li class="posts_by_tag__list__item">
-          <span class="posts_by_tag__list__meta">{%- datelang post.date -%}</span>&nbsp;»&nbsp;
-          <a class="posts_by_tag__list__link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          {%- if post.draft -%}
-            <span class="draft-badge">[&nbsp;this is a draft&nbsp;]</span>
-          {%- endif -%}
+        <li class="blog-list__item">
+          <span class="rf-blog-number">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+          <time class="blog-list__meta" datetime="{{ post.date | date_to_xmlschema }}">{%- if datelang -%}{% datelang post.date %}{%- else -%}{{ post.date | date: '%Y-%m-%d' }}{%- endif -%}</time>
+          <a class="blog-list__link item" href="{{ post.url | localized_url: site.active_lang, site.default_lang, site.baseurl }}"><svg class="ic" aria-hidden="true"><use href="#i-file" /></svg><span class="lbl">{{ post.title | escape }}</span><svg class="ext" aria-hidden="true"><use href="#i-right" /></svg></a>
+          {%- if post.draft -%}<span class="draft-badge">[&nbsp;{{ interface.labels.draft | default: 'draft' | escape }}&nbsp;]</span>{%- endif -%}
         </li>
       {%- endfor -%}
     </ul>
-
-  </div>
+    <p class="rf-tag-back"><a class="item" href="{{ '/blog/tags/' | localized_url: site.active_lang, site.default_lang, site.baseurl }}"><svg class="ic" aria-hidden="true"><use href="#i-left" /></svg><span class="lbl">{{ blog.post.tags.title | default: 'All tags' | escape }}</span></a></p>
+  </section>
 </div>

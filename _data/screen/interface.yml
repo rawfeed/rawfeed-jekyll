@@ -1,0 +1,191 @@
+# Shared TUI configuration. Text and behavior can be customized without editing JS.
+interface:
+  theme: dark
+  clock: true
+  search_limit: 50
+  boot_duration: 1850
+  shred_pass_duration: 850
+  shred_hold_duration: 420
+  shred_fade_duration: 520
+  shred_line_height: 18
+  shred_char_width: 7.8
+  effects:
+    scan: false
+    boot: true
+  shortcuts:
+    menu: m
+    search: '/'
+    settings: s
+    terminal: ':'
+    help: '?'
+    quit: q
+  labels:
+    menu: Navigation
+    language: Language
+    switch_language: Switch language
+    theme_toggle: Toggle theme
+    search: Search
+    settings: Settings
+    terminal: Terminal
+    help: Help
+    quit: Quit
+    close: Close
+    back_close: Back / close
+    theme: Theme
+    dark: Dark
+    light: Light
+    effects: Effects
+    scan: Scanlines
+    boot: Boot animation
+    tools: Tools
+    shred: Shred effect
+    replay: Replay boot
+    social: Social
+    items: Items
+    open_terminal: Open terminal
+    shortcuts: Keyboard shortcuts
+    command: Command
+    classic_terminal: Classic terminal
+    minimize: Minimize
+    maximize: Maximize
+    theme_usage: Use theme light or theme dark.
+    socials_empty: See the home page for social links.
+    search_placeholder: Search pages and posts…
+    search_loading: Loading…
+    search_unavailable: Search unavailable. Try again.
+    search_results: results
+    terminal_find_usage: 'Usage: find "text"'
+    terminal_find_empty: 'No results for "{query}".'
+    terminal_welcome: Type help to see available commands.
+    terminal_unknown: Command not found. Type help.
+    page_not_found: Page not found. Use ls.
+    reduced_motion: Effects disabled by reduced motion preference.
+    boot_message: initializing interface…
+    quit_title: Leave the interface?
+    quit_message: Open the terminal to keep exploring.
+    cancel: Cancel
+    back_to_top: Back to top
+    skip_to_content: Skip to content
+    using: Using the
+    theme_for: theme for
+    keyboard_shortcuts: Keyboard shortcuts
+    contact_disabled_title: "Warning: contact form disabled"
+    contact_disabled_intro: "To enable the email form, follow these steps:"
+    contact_disabled_step1: Copy the script below and add it to
+    contact_disabled_note1: Remember to change the constants
+    contact_disabled_note2: After editing the script in Google Apps Script, redeploy it.
+    contact_disabled_step2: Create a
+    contact_disabled_recaptcha_suffix: on Google and add the key
+    private_key: PRIVATE
+    contact_disabled_step3: Copy the reCAPTCHA
+    public_key: PUBLIC
+    contact_disabled_config: URL and key to
+    resume_sample_warning: "WARNING: This is sample data. Edit"
+    resume_sample_suffix: with your information.
+    draft: draft
+  # Add commands with static responses. Built-in commands can also be overridden.
+  commands:
+    greet: Welcome to the Rawfeed Jekyll terminal.
+  command_help:
+    help: Show all commands and descriptions
+    ls: List configured pages, posts, and pixels
+    open: Open a page by slug or URL
+    projects: List projects from this YAML file
+    socials: Show configured social links
+    contact: Open the configured contact page
+    theme: Set dark/light or toggle the current theme
+    lang: Change to a supported language code
+    about: Show the home page introduction
+    date: Print the current date and time
+    clear: Clear terminal output
+    find: Search pages and posts; show matching links
+    shred: Run the screen wipe effect
+    home: Navigate to the home page
+    scan: Toggle scanlines
+    boot: Replay the startup animation
+    echo: Print supplied text
+    whoami: Print the configured terminal user
+    neofetch: Show theme, language, and page count
+    exit: Close the terminal
+  # Map an alternative typed command to a built-in or configured command.
+  # Example: today: date
+  command_aliases: {}
+  projects:
+    - name: rawfeed-jekyll
+      url: https://rawfeed.github.io/rawfeed-jekyll/
+      description: Jekyll theme and CLI
+  social_links: []
+  banner: rawfeed
+  language: en
+  languages:
+    en: EN
+    pt: PT-BR
+  translations:
+    pt:
+      menu: Navegação
+      search: Buscar
+      settings: Configurações
+      terminal: Terminal
+      help: Ajuda
+      quit: Sair
+      close: Fechar
+      back_close: Voltar / fechar
+      terminal_find_usage: 'Uso: find "texto"'
+      terminal_find_empty: 'Nenhum resultado para "{query}".'
+      minimize: Minimizar
+      maximize: Maximizar
+      theme: Tema
+      dark: Escuro
+      light: Claro
+      effects: Efeitos
+      scan: Linhas de varredura
+      boot: Animação de entrada
+      tools: Ferramentas
+      shred: Efeito shred
+      replay: Rever animação
+      social: Redes sociais
+      search_placeholder: Buscar páginas e posts…
+      search_loading: Carregando…
+      search_unavailable: Busca indisponível. Tente novamente.
+      search_results: resultados
+      terminal_welcome: Digite help para ver os comandos disponíveis.
+      terminal_unknown: Comando não encontrado. Digite help.
+      page_not_found: Página não encontrada. Use ls.
+      reduced_motion: Efeitos desativados pela preferência de movimento reduzido.
+      boot_message: iniciando interface…
+      quit_title: Sair da interface?
+      quit_message: Abra o terminal para continuar explorando.
+      cancel: Cancelar
+
+  help:
+    - action: menu
+      description: Open navigation menu
+    - keys: '↑ / ↓ · j / k'
+      description: Select item
+    - keys: '← / → · h / l'
+      description: Change panel
+    - keys: Home / End
+      description: First / last item
+    - keys: Enter
+      description: Open selection
+    - action: search
+      description: Search pages and posts
+    - action: settings
+      description: Settings
+    - action: terminal
+      description: Terminal (also Ctrl+K)
+    - action: help
+      description: Help
+    - keys: Esc
+      description: Close dialog or return home
+  boot_lines:
+    - type: prompt
+      text: '{user}@{hostname}:~$ ./profile'
+    - type: ok
+      text: loading pages
+    - type: ok
+      text: applying {theme} theme
+    - type: ok
+      text: binding keyboard shortcuts
+    - type: ok
+      text: opening the interface

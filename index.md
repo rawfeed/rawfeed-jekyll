@@ -4,12 +4,15 @@ author: "William C. Canin"
 text_center: true
 published: true
 permalink: / # do not change
+lang: en
+page_id: home
 ---
 
-Hello, Welcome to rawfeed!
+I think about hacking, digital well-being and Linux.
+{: .lede }
 
-This is the space for your presentation. Do it right! 😃
+I build system tools, automation and security software in Rust, Python and Ruby. I’ve been coding since 2010 and defending open source since 2008.
+{: .sub }
 
-This is the **rawfeed** theme for [Jekyll](https://jekyllrb.com){:target="\_blank"}, feel free to modify it.
-
-You can see more customization details in [rawfeed doc](https://rawfeed.github.io/rawfeed-jekyll){:target="\_blank"}.
+Use the arrow keys and Enter, or click. Press ? to see the shortcuts.
+{: .tip }

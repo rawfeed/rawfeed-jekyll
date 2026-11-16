@@ -1,0 +1,7 @@
+---
+layout: none
+---
+{
+  "interface": {{ site.data.screen.interface.interface | jsonify }},
+  "locales": {{ site.data.screen.locales | jsonify }}
+}

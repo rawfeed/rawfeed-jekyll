@@ -1,57 +1,30 @@
-{%- include assigned -%}
-
-{%- if maintenance.enable != true -%}
-  {%- assign current_path = page.permalink | default: '/' -%}
-
-  <!doctype html>
-  <html
-    id="top"
-    lang="{{ default.lang | default: 'en-US' }}"
-    data-theme="light">
-    <!-- head -->
-    {%- include layout/head.html -%}
-    <!-- head -->
-    <body style="font-family: {{ default.font.style }} !important;">
-      <div class="container-fluid">
-        <div class="row">
-          <main class="col-sm pub">
-            <h1 class="pub-path">
-              {{ pub.path.title | default: 'Index of' }}
-              {{ current_path }}
-            </h1>
-            <hr>
-            {%- for item in page.directory_contents -%}
-              <div class="row pub-line">
-                <div class="col-sm">
-                  {%- if item.type == 'directory' -%}
-                    <a href="{{ item.url | relative_url }}">{{ item.name }}/</a>
-                  {%- elsif item.type == 'parent' -%}
-                    <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
-                  {%- else -%}
-                    <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
-                  {%- endif -%}
-                </div>
-
-                <div class="col-sm">
-                  {%- if item.date -%}
-                    <span class="date">{{ item.date | date: '%Y-%m-%d %H:%M' }}</span>
-                  {%- endif -%}
-                </div>
-
-                <div class="col-sm">
-                  {%- if item.type == 'file' -%}
-                    <span class="size">{{ item.size | divided_by: 1024.0 | round: 2 }} KB</span>
-                  {%- endif -%}
-                </div>
-              </div>
-            {%- endfor -%}
-            <hr>
-          </main>
-        </div>
-      </div>
-      {%- include layout/footer.html -%}
-    </body>
-  </html>
-{%- else -%}
-  {%- include layout/maintenance.html -%}
-{%- endif -%}
+---
+layout: default
+---
+{% include assigned %}
+{% assign current_path = page.permalink | default: '/' %}
+{%- assign pub_items = page.directory_contents | default: empty -%}
+<div class="pub rf-pub">
+  <h1 class="scr-h sr-only">{{ pub.path.title | default: 'Index of' }} {{ current_path | escape }}</h1>
+  <section class="panel rf-pub-panel" aria-label="{{ pub.path.title | default: 'Index of' }} {{ current_path | escape }}">
+    <header class="rf-pub-header">
+      <h2 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-archive" /></svg><span>{{ pub.path.title | default: 'Index of' | escape }}</span><code>{{ current_path | escape }}</code></h2>
+      <p class="pd">{{ pub.items_label | default: 'Directory contents' | escape }} <strong>{{ pub_items.size }}</strong></p>
+    </header>
+    <div class="rf-pub-columns" aria-hidden="true"><span>{{ pub.name_label | default: 'Name' | escape }}</span><span>{{ pub.date_label | default: 'Modified' | escape }}</span><span>{{ pub.size_label | default: 'Size' | escape }}</span></div>
+    <ul class="menu rf-pub-list">
+      {%- for item in pub_items -%}
+        <li class="rf-pub-row">
+          <a class="item rf-pub-link" href="{{ item.url | relative_url }}">
+            <svg class="ic" aria-hidden="true"><use href="{% if item.type == 'directory' %}#i-archive{% elsif item.type == 'parent' %}#i-left{% else %}#i-file{% endif %}" /></svg>
+            <span class="lbl">{{ item.name | escape }}{% if item.type == 'directory' %}/{% endif %}</span>
+            <time>{% if item.date %}{{ item.date | date: '%Y-%m-%d %H:%M' }}{% endif %}</time>
+            <span class="rf-pub-size">{% if item.type == 'file' %}{{ item.size | divided_by: 1024.0 | round: 2 }} KB{% else %}—{% endif %}</span>
+          </a>
+        </li>
+      {%- else -%}
+        <li class="rf-pub-empty">{{ pub.empty | default: 'This directory is empty.' | escape }}</li>
+      {%- endfor -%}
+    </ul>
+  </section>
+</div>

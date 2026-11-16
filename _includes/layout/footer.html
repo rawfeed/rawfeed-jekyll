@@ -6,16 +6,6 @@
 -->
 {%- include assigned -%}
 
-{%- if footer.top_button.enable -%}
-  <a
-    id="top-link"
-    href="#top"
-    class="top-link"
-    aria-label="back to top">
-    {{ footer.top_button.icon }}
-  </a>
-{%- endif -%}
-
 <footer class="fixed-bottom footer">
   <!-- line footer content -->
   <div class="row footer-wrapper">
@@ -29,7 +19,7 @@
           {%- if since -%}-{%- endif -%}
           {{ year }}&nbsp;
           {%- if footer.copyright.message -%}-&nbsp;{{ footer.copyright.message }}&nbsp;{%- endif -%}
-          |&nbsp;<a href="{{  footer.licenses.page_url | relative_url  }}">{{ footer.licenses.title }}</a>
+          |&nbsp;<a href="{{ footer.licenses.page_url | localized_url: site.active_lang, site.default_lang, site.baseurl }}">{{ footer.licenses.title }}</a>
         </div>
       </div>
     {%- endif -%}
@@ -46,12 +36,12 @@
     <!-- column made-by -->
     <div class="col-md footer-made-by-wrap">
       <div class="footer-made-by">
-        Using the
+        {{ interface.labels.using | default: 'Using the' }}
         <a
           href="{{ project_url }}"
           target="_blank"
           rel="noopener noreferrer">{{ theme_name }}</a>
-        theme for
+        {{ interface.labels.theme_for | default: 'theme for' }}
         <a
           href="https://jekyllrb.com"
           target="_blank"

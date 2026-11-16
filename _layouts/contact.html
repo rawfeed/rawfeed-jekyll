@@ -29,7 +29,7 @@ layout: default
               type="button"
               class="btn-close"
               data-bs-dismiss="modal"
-              aria-label="Close"></button>
+              aria-label="{{ interface.labels.close | default: 'Close' | escape }}"></button>
           </div>
           <div class="modal-body"></div>
         </div>
@@ -95,13 +95,13 @@ layout: default
 {%- else -%}
 
   <div class="contact-disabled{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
-    <h1 style="background-color: yellow;color: black;padding: 10px">Warning: Email form disabled</h1>
-    <p>To use the email submission form, you need to:</p>
-    <p>1 - Copy the script below and implement it in
+    <h1 style="background-color: yellow;color: black;padding: 10px">{{ interface.labels.contact_disabled_title | default: 'Warning: Email form disabled' }}</h1>
+    <p>{{ interface.labels.contact_disabled_intro | default: 'To use the email submission form, you need to:' }}</p>
+    <p>1 - {{ interface.labels.contact_disabled_step1 | default: 'Copy the script below and implement it in' }}
       <a href="https://script.google.com" target="_blank">Google Apps Script</a>:</p>
     <blockquote>
-      <p>Note1: Don't forget to change the constants: TO_ADDRESS, SITE, LOGO_URL, MINIMUM_MESSAGE.</p>
-      <p>Note2: Without editing the script in Google Apps Script, you will need to redeploy it.</p>
+      <p>{{ interface.labels.contact_disabled_note1 | default: "Note: Don't forget to change the constants" }}: TO_ADDRESS, SITE, LOGO_URL, MINIMUM_MESSAGE.</p>
+      <p>{{ interface.labels.contact_disabled_note2 | default: 'Without editing the script in Google Apps Script, you will need to redeploy it.' }}</p>
     </blockquote>
 
     {% highlight javascript linenos %}
@@ -272,18 +272,18 @@ layout: default
   }
         {% endhighlight %}
 
-        <p>2 - Create a
-          <a href="https://console.cloud.google.com/security/recaptcha" target="_blank">reCaptcha</a>
-          on Google and add the reCaptcha
-          <strong>PRIVATE</strong>
+        <p>2 - {{ interface.labels.contact_disabled_step2 | default: 'Create a reCAPTCHA on Google and add the' }}
+          <a href="https://console.cloud.google.com/security/recaptcha" target="_blank">reCAPTCHA</a>
+          {{ interface.labels.contact_disabled_recaptcha_suffix | default: 'on Google and add the key' }}
+          <strong>{{ interface.labels.private_key | default: 'PRIVATE' }}</strong>
           key to the
           <strong>Google Apps Script</strong>
           script property.</p>
-        <p>3 - Copy the reCaptcha
-          <strong>PUBLIC</strong>
+        <p>3 - {{ interface.labels.contact_disabled_step3 | default: 'Copy the reCAPTCHA' }}
+          <strong>{{ interface.labels.public_key | default: 'PUBLIC' }}</strong>
           key and the
           <strong>Google Apps Script</strong>
-          URL and place them in
+          {{ interface.labels.contact_disabled_config | default: 'URL and place them in' }}
           <strong>_config.yml:</strong>
         </p>
 

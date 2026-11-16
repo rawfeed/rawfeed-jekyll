@@ -1,4 +1,1 @@
-(function() {
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-})();
+(() => { let theme = document.documentElement.dataset.theme || 'dark'; try { theme = localStorage.getItem('theme') || theme; } catch (_) {} document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark'; })();

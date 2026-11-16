@@ -3,30 +3,32 @@
 {%- comment -%} URLS {%- endcomment -%}
 
 {%- assign project_url = 'https://rawfeed.github.io/rawfeed-jekyll' -%}
-{%- assign home_url = '/' | relative_url -%}
-{%- assign blog_url = '/blog/' | relative_url -%}
-{%- assign pixels_url = '/pixels/' | relative_url -%}
-{%- assign search_url = '/blog/?search=open' | relative_url -%}
-{%- assign tags_url = '/blog/tags/' | relative_url -%}
-{%- assign feed_url = '/feed.xml' | relative_url -%}
+{%- assign home_url = '/' | localized_url: site.active_lang, site.default_lang, site.baseurl -%}
+{%- assign blog_url = '/blog/' | localized_url: site.active_lang, site.default_lang, site.baseurl -%}
+{%- assign pixels_url = '/pixels/' | localized_url: site.active_lang, site.default_lang, site.baseurl -%}
+{%- assign search_url = '/blog/?search=open' | localized_url: site.active_lang, site.default_lang, site.baseurl -%}
+{%- assign tags_url = '/blog/tags/' | localized_url: site.active_lang, site.default_lang, site.baseurl -%}
+{%- assign feed_url = '/feed.xml' | localized_url: site.active_lang, site.default_lang, site.baseurl -%}
 {%- assign pub_url = '/pub/' -%}
 
 {%- comment -%} SCREEN {%- endcomment -%}
 
+{%- assign active_language = site.active_lang | default: site.default_lang | default: 'en' -%}
+{%- assign locale_data = site.data.screen.locales[active_language] -%}
 {%- assign generic = site.data.generic -%}
-{%- assign blog = site.data.screen.blog.blog -%}
-{%- assign contact = site.data.screen.contact.contact -%}
-{%- assign donate = site.data.screen.donate.donate -%}
-{%- assign footer = site.data.screen.footer.footer -%}
-{%- assign head = site.data.screen.head.head -%}
-{%- assign home = site.data.screen.home.home -%}
-{%- assign maintenance = site.data.screen.maintenance.maintenance -%}
-{%- assign navbar = site.data.screen.navbar.navbar -%}
-{%- assign page_data = site.data.screen.page.page -%}
-{%- assign pixels = site.data.screen.pixels.pixels -%}
-{%- assign pub = site.data.screen.pub.pub -%}
-{%- assign resume = site.data.screen.resume -%}
-{%- assign socials = site.data.screen.socials.socials -%}
+{%- assign blog = site.data.screen.blog.blog | localize: locale_data.blog -%}
+{%- assign contact = site.data.screen.contact.contact | localize: locale_data.contact -%}
+{%- assign donate = site.data.screen.donate.donate | localize: locale_data.donate -%}
+{%- assign footer = site.data.screen.footer.footer | localize: locale_data.footer -%}
+{%- assign head = site.data.screen.head.head | localize: locale_data.head -%}
+{%- assign home = site.data.screen.home.home | localize: locale_data.home -%}
+{%- assign maintenance = site.data.screen.maintenance.maintenance | localize: locale_data.maintenance -%}
+{%- assign navbar = site.data.screen.navbar.navbar | localize: locale_data.navbar -%}
+{%- assign page_data = site.data.screen.page.page | localize: locale_data.page -%}
+{%- assign pixels = site.data.screen.pixels.pixels | localize: locale_data.pixels -%}
+{%- assign pub = site.data.screen.pub.pub | localize: locale_data.pub -%}
+{%- assign resume = site.data.screen.resume | localize: locale_data.resume -%}
+{%- assign socials = site.data.screen.socials.socials | localize: locale_data.socials -%}
 
 {%- comment -%} VALUES {%- endcomment -%}
 
@@ -34,3 +36,5 @@
 {%- assign default = site.data.generic.default -%}
 {%- assign site_title = site.data.generic.title -%}
 {%- assign author = site.data.generic.author -%}
+
+{%- assign interface = site.data.screen.interface.interface | localize: locale_data.interface -%}

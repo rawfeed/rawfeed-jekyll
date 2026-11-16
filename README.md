@@ -71,3 +71,56 @@ If you appreciate this project, consider supporting development.
     <img width="160" height="100" src="https://williamcanin.github.io/assets/images/icons/donate.svg" alt="Donate"/>
   </a>
 </div>
+
+## TUI appearance and configuration
+
+The interface uses the `example-v2` design. Its reference styles live in
+`_sass/tui/_reference.scss`; Jekyll-specific adaptations live in
+`_sass/tui/_jekyll.scss`. Both compile through `assets/css/style.scss`.
+The JetBrains Mono font is served locally from `assets/fonts/`.
+
+Customize `_data/screen/interface.yml` to set the banner, initial theme,
+clock, search limit, effects, boot duration, keyboard shortcuts, labels,
+languages, translations, command aliases, and custom terminal responses.
+Preferences selected by a visitor persist in their browser and take precedence
+over the initial theme, language, and effects. Reduced motion disables animations.
+Use `commands` to add or override terminal responses and `command_aliases` to
+rename built-in commands, for example `date: today`.
+
+Existing `_data/screen/` files continue to supply navigation, home, social,
+blog, contact, donation, maintenance, and resume content. The shared layout
+also supplies the same appearance and interactions to newly generated pages.
+Jekyll Polyglot builds localized Markdown pages and posts. To add a locale,
+add its code to `languages` in `_config.yml`, add a label under
+`interface.languages` in `_data/screen/interface.yml`, then create
+`_data/screen/locales/<code>.yml`. Put only the strings that differ in that
+file; nested YAML values are merged with the default data, and omitted values
+fall back to the default language. Screen data includes navigation, home,
+projects, weblog, contact, donation, resume, maintenance, and system messages,
+so adding another language does not require JavaScript or template changes.
+The selector labels, browser language shortcut, and terminal language command
+read the configured language codes and locale data.
+
+For a page, create a matching file beneath the locale directory. For example,
+`pt/_pages/contact.md` pairs with `_pages/contact.md`; use the same
+`permalink: /contact/` and set `lang: pt`. To translate a post, copy its
+dated source into `pt/_posts/`, translate its title, description, and Markdown,
+then set the same `page_id` and `permalink` as the original and set
+`lang: pt`. The example pair is `_posts/2025-09-20-welcome-to-jekyll.md` and
+`pt/_posts/2025-09-20-welcome-to-jekyll.md`. If URLs differ by language, give
+both translations the same `page_id`. The default language remains at the root;
+other locales use their language prefix. Untranslated Markdown falls back to
+the default-language version.
+The terminal is a browser interface and does not execute shell commands.
+
+For local development against this checkout, use
+`RAWFEED_DEV_PATH="$PWD" bundle exec jekyll serve`.
+
+Search is available exclusively on the home page. The search shortcut from other
+pages returns to the home search field. The classic terminal is the only terminal;
+its prompt and built-in help use `_data/screen/home.yml`, with optional custom
+responses and aliases supplied by `_data/screen/interface.yml`.
+
+The classic terminal is always available; `home.terminal.enable` is no longer used.
+On mobile, the application fills the dynamic viewport and uses touch-sized controls.
+Animations respect the operating system reduced-motion preference.

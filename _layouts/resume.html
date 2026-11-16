@@ -1,20 +1,7 @@
-{%- include assigned -%}
-
-{%- if maintenance.enable != true -%}
-  <!doctype html>
-  <html
-    id="top"
-    lang="{{ default.lang | default: 'en-US' }}"
-    data-theme="light">
-    <!-- head -->
-    {%- include layout/head.html -%}
-    <!-- head -->
-    <body>
-      <div class="container-fluid">
-        <!-- header -->
-        {%- include layout/navbar.html -%}
-        <!-- header -->
-
+---
+layout: default
+---
+{% include assigned %}
         {%- if resume.full_name == 'John A. Doe' -%}
           <div class="row">
             <p style="
@@ -26,14 +13,14 @@
                 margin: 0 auto;
                 margin-bottom: 20px
               ">
-              WARNING: This is sample data. Edit the
-              <strong>_data/resume.yml</strong>
-              file with your information.
+              {{ interface.labels.resume_sample_warning | default: 'WARNING: This is sample data. Edit the' }}
+              <strong>_data/screen/resume.yml</strong>
+              {{ interface.labels.resume_sample_suffix | default: 'file with your information.' }}
             </p>
           </div>
         {%- endif -%}
 
-        <main class="resume{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}" style="max-width: {{ default.width | default: '860' }}px !important;">
+        <div class="resume{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
           <!-- button print -->
           {%- if resume.buttons.print.enable -%}
             <div class="resume-header">
@@ -51,7 +38,7 @@
                 <h1 class="resume-content__name">{{ resume.full_name }}</h1>
               </div>
             </div>
-            <div class="row">
+            <div class="row rf-resume-grid">
               <div class="col-sm-4 resume-content__sidebar">
                 {%- if resume.photo.space -%}
                   <div class="photo"></div>
@@ -314,19 +301,4 @@
             </div>
           </div>
         <!-- resume content -->
-        </main>
-      </div>
-
-      {%- include layout/footer.html -%}
-    </body>
-
-    <!-- Scripts -->
-    <script src="{{ '/assets/vendors/bootstrap-5.2.3/js/bootstrap.bundle.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/resume.js' | relative_url }}"></script>
-  <!-- Scripts -->
-  </html>
-
-{%- else -%}
-  {%- include layout/maintenance.html -%}
-{%- endif -%}
+        </div>

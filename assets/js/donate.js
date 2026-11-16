@@ -25,7 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
     img.addEventListener("click", function() {
       if (qrModalImg) {
         qrModalImg.src = this.dataset.qr;
+        qrModal.showModal();
       }
     });
   });
 });
+
+document.addEventListener('click', e => {const d=document.getElementById('qrModal');if(d && e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});

@@ -1,0 +1,501 @@
+# Locale overlay: omitted keys intentionally fall back to the default YAML.
+interface:
+  banner: rawfeed
+  labels:
+    menu: Navegação
+    language: Idioma
+    switch_language: Mudar idioma
+    theme_toggle: Alternar tema
+    search: Buscar
+    settings: Configurações
+    terminal: Terminal
+    help: Ajuda
+    quit: Sair
+    close: Fechar
+    back_close: Voltar / fechar
+    theme: Tema
+    dark: Escuro
+    light: Claro
+    effects: Efeitos
+    scan: Linhas de varredura
+    boot: Animação de inicialização
+    tools: Ferramentas
+    shred: Efeito de limpeza
+    replay: Rever animação
+    social: Redes sociais
+    items: Itens
+    open_terminal: Abrir terminal
+    shortcuts: Atalhos de teclado
+    command: Comando
+    classic_terminal: Terminal clássico
+    minimize: Minimizar
+    maximize: Maximizar
+    theme_usage: Use theme light ou theme dark.
+    socials_empty: Veja a página inicial para acessar as redes sociais.
+    search_placeholder: Buscar páginas e posts…
+    search_loading: Carregando…
+    search_unavailable: Busca indisponível. Tente novamente.
+    search_results: resultados
+    terminal_find_usage: 'Uso: find "texto"'
+    terminal_find_empty: 'Nenhum resultado para "{query}".'
+    terminal_welcome: Digite help para ver os comandos disponíveis.
+    terminal_unknown: Comando não encontrado. Digite help.
+    page_not_found: Página não encontrada. Use ls.
+    reduced_motion: Efeitos desativados pela preferência de movimento reduzido.
+    boot_message: inicializando a interface…
+    quit_title: Sair da interface?
+    quit_message: Abra o terminal para continuar explorando.
+    cancel: Cancelar
+    view_all: Ver todos
+    copy_success: Comando copiado.
+    copy_error: Não foi possível copiar o comando.
+    commit_loading: Carregando último commit…
+    commit_error: Último commit indisponível
+    back_to_top: Voltar ao topo
+    skip_to_content: Ir para o conteúdo
+    using: Usando o tema
+    theme_for: para
+    keyboard_shortcuts: Atalhos de teclado
+    contact_disabled_title: "Aviso: formulário de contato desativado"
+    contact_disabled_intro: "Para ativar o formulário de e-mail, siga estas etapas:"
+    contact_disabled_step1: Copie o script abaixo e adicione-o ao
+    contact_disabled_note1: Lembre-se de alterar as constantes
+    contact_disabled_note2: Depois de editar o script no Google Apps Script, publique-o novamente.
+    contact_disabled_step2: Crie um
+    contact_disabled_recaptcha_suffix: no Google e adicione a chave
+    private_key: PRIVADA
+    contact_disabled_step3: Copie a chave
+    public_key: PÚBLICA
+    contact_disabled_config: URL e a chave em
+    resume_sample_warning: "AVISO: Estes são dados de exemplo. Edite o arquivo"
+    resume_sample_suffix: com suas informações.
+    draft: rascunho
+  command_help:
+    help: Mostrar todos os comandos e descrições
+    ls: Listar páginas, posts e pixels configurados
+    open: Abrir uma página pelo slug ou URL
+    projects: Listar projetos deste arquivo YAML
+    socials: Mostrar links de redes sociais configurados
+    contact: Abrir a página de contato
+    theme: Definir tema claro/escuro ou alternar o tema atual
+    lang: Alterar o idioma da interface
+    about: Mostrar a apresentação da página inicial
+    date: Mostrar a data e a hora atuais
+    clear: Limpar a saída do terminal
+    find: Buscar páginas e posts e exibir os links encontrados
+    shred: Executar o efeito de limpeza da tela
+    home: Abrir a página inicial
+    scan: Alternar as linhas de varredura
+    boot: Reproduzir a animação de inicialização
+    echo: Exibir o texto informado
+    whoami: Mostrar o usuário do terminal
+    neofetch: Mostrar tema, idioma e número de páginas
+    exit: Fechar o terminal
+  translations:
+    pt:
+      menu: Navegação
+      language: Idioma
+      switch_language: Mudar idioma
+      theme_toggle: Alternar tema
+      search: Buscar
+      settings: Configurações
+      terminal: Terminal
+      help: Ajuda
+      quit: Sair
+      close: Fechar
+      theme: Tema
+      dark: Escuro
+      light: Claro
+      effects: Efeitos
+      scan: Linhas de varredura
+      boot: Animação de inicialização
+      tools: Ferramentas
+      shred: Efeito de limpeza
+      replay: Rever animação
+      social: Redes sociais
+      items: Itens
+      open_terminal: Abrir terminal
+      shortcuts: Atalhos de teclado
+      command: Comando
+      classic_terminal: Terminal clássico
+      minimize: Minimizar
+      maximize: Maximizar
+      theme_usage: Use theme light ou theme dark.
+      socials_empty: Veja a página inicial para acessar as redes sociais.
+      search_placeholder: Buscar páginas e posts…
+      search_loading: Carregando…
+      search_unavailable: Busca indisponível. Tente novamente.
+      search_results: resultados
+      terminal_welcome: Digite help para ver os comandos disponíveis.
+      terminal_unknown: Comando não encontrado. Digite help.
+      page_not_found: Página não encontrada. Use ls.
+      reduced_motion: Efeitos desativados pela preferência de movimento reduzido.
+      boot_message: inicializando a interface…
+      quit_title: Sair da interface?
+      quit_message: Abra o terminal para continuar explorando.
+      cancel: Cancelar
+      view_all: Ver todos
+      copy_success: Comando copiado.
+      copy_error: Não foi possível copiar o comando.
+      commit_loading: Carregando último commit…
+      commit_error: Último commit indisponível
+      view_all: Ver todos
+      back_to_top: Voltar ao topo
+      skip_to_content: Ir para o conteúdo
+      using: Usando o tema
+      theme_for: para
+      keyboard_shortcuts: Atalhos de teclado
+      contact_disabled_title: "Aviso: formulário de contato desativado"
+      contact_disabled_intro: "Para ativar o formulário de e-mail, siga estas etapas:"
+      contact_disabled_step1: Copie o script abaixo e adicione-o ao
+      contact_disabled_note1: Lembre-se de alterar as constantes
+      contact_disabled_note2: Depois de editar o script no Google Apps Script, publique-o novamente.
+      contact_disabled_step2: Crie um
+      contact_disabled_recaptcha_suffix: no Google e adicione a chave
+      private_key: PRIVADA
+      contact_disabled_step3: Copie a chave
+      public_key: PÚBLICA
+      contact_disabled_config: URL e a chave em
+      resume_sample_warning: "AVISO: Estes são dados de exemplo. Edite o arquivo"
+      resume_sample_suffix: com suas informações.
+      draft: rascunho
+  languages:
+    en: EN
+    pt: PT-BR
+  help:
+    - description: Abrir o menu de navegação
+    - description: Selecionar item
+    - description: Mudar de painel
+    - description: Primeiro / último item
+    - description: Abrir seleção
+    - description: Buscar páginas e posts
+    - description: Configurações
+    - description: Terminal (também Ctrl+K)
+    - description: Ajuda
+    - description: Fechar diálogo ou voltar à página inicial
+navbar:
+  description: Um framework Jekyll completo e uma CLI
+  menu:
+    title: menu
+    home:
+      title: /início
+    blog:
+      title: weblog
+      subtitle: posts
+      search:
+        title: busca
+      tags:
+        title: tags
+      feed:
+        title: feed
+    pixels:
+      title: pixels
+    pub:
+      title: arquivos
+home:
+  weblog:
+    title: Escrita
+    subtitle: Guias e textos
+    view_all: Ver todos
+  contact:
+    send_message: Enviar mensagem
+  profile:
+    title: Perfil
+    description: Quem sou e como trabalho
+    links:
+      - slug: trajectory
+        title: Trajetória
+      - slug: environment
+        title: Ambiente
+      - slug: about
+        title: Sobre
+    environment:
+      title: Ambiente
+      description: O que uso no dia a dia
+      user: william
+      hostname: arch
+      details:
+        - label: OS
+        - label: WM
+        - label: Linguagens
+        - label: Site
+          value: Jekyll + rawfeed (tema meu)
+    trajectory:
+      title: Trajetória
+      description: De 2008 até hoje
+      events:
+        - text: Conheci o Linux e comecei a apoiar o código aberto.
+        - text: Comecei a criar (e apagar) código.
+        - text: Concluí a graduação em Análise e Desenvolvimento de Sistemas.
+        - text: Rust, Python e JavaScript no Arch Linux com Hyprland.
+          current: true
+  projects:
+    title: Projetos
+    description: Ferramentas de sistema, automação e segurança
+    view_all: Ver todos os projetos
+    repository_label: Abrir repositório
+    repository_field_label: Repositório
+    actions_label: Ações
+    copy_label: Copiar comando
+    back_label: Voltar aos projetos
+    command_label: Comando para clonar
+    summary_label: Visão geral
+    category_label: Categoria
+    commit_label: Commit
+    technology_label: Tecnologia
+    commit_loading: Carregando último commit…
+    commit_error: Último commit indisponível
+    commit_api_error: Data do commit indisponível
+    open_site_label: Abrir site
+    copy_success_message: Comando copiado.
+    copy_error_message: Não foi possível copiar o comando.
+  terminal:
+    no_socials: Nenhuma rede social configurada
+    help:
+      description: |-
+        Use os comandos abaixo:
+      commands:
+        title: "Comandos:"
+        description: "Descrição:"
+      menu: |-
+        help               Mostrar os comandos disponíveis
+        ls                 Listar páginas deste site
+        open <page>        Abrir uma página pelo slug
+        projects           Mostrar os projetos configurados
+        socials            Mostrar os links de redes sociais
+        contact            Abrir a página de contato
+        theme [dark|light] Definir ou alternar o tema
+        lang <code>        Alterar o idioma
+        about              Mostrar a apresentação da página inicial
+        date               Mostrar data e hora atuais
+        find "texto"        Buscar páginas e posts
+        clear              Limpar o terminal
+        shred              Executar o efeito de limpeza
+        home               Voltar à página inicial
+        exit               Fechar o terminal
+    error: ": comando não encontrado."
+projects:
+  - slug: argvus
+    category: Desktop
+    description: Um ambiente desktop completo focado no Hyprland e criado para desenvolvedores.
+  - slug: tildr
+    category: Gerenciador de dotfiles
+    description: Gerencie e reproduza declarativamente seu diretório pessoal.
+  - slug: dotctrl
+    category: Gerenciador de dotfiles
+    description: Um gerenciador de dotfiles para sistemas Unix.
+  - slug: smog
+    category: Privacidade
+    description: Sobrescreve arquivos, diretórios e volumes com ruído ilegível.
+  - slug: shred-extension-rs
+    category: Privacidade
+    description: Uma extensão leve para excluir arquivos com segurança no Nautilus e Thunar.
+  - slug: seedctl
+    category: Criptografia
+    description: Um gerador de carteiras de criptomoedas multichain.
+  - slug: rs2f
+    category: Segurança
+    description: Ferramentas online para auditoria de senhas e autenticação de dois fatores.
+  - slug: backdour
+    category: Segurança
+    description: Projeto multiplataforma de pesquisa em segurança com servidor C2 PostgreSQL.
+  - slug: rawfeed-jekyll
+    category: Web
+    description: Um tema Jekyll com interface de terminal e carregamento rápido.
+  - slug: jektify
+    category: Web
+    description: Um plugin Spotify para adicionar faixas, playlists, álbuns e artistas a sites Jekyll.
+blog:
+  date_label: Data
+  post_label: Publicação
+  empty: Nenhuma publicação encontrada.
+  subtitle: posts
+  search:
+    placeholder: digite para buscar um post ou pressione Esc para sair
+    button_clean:
+      text: limpar
+    results: resultados
+    no_results: Nenhum resultado encontrado
+  pagination:
+    newer_text: posts mais recentes
+    counter: [página, de]
+    older_text: posts mais antigos
+  post:
+    reading_time:
+      message: [Leia este post em aproximadamente, Leia este post em menos de]
+      minutes_label: [minuto, minutos]
+    author: Publicado por
+    related_posts:
+      title: posts relacionados
+    updated_on: Post atualizado em
+    comments:
+      title: comentários
+    posts_by_tags:
+      title: posts por tag
+contact:
+  name:
+    placeholder: nome e sobrenome
+  email:
+    placeholder: seu melhor endereço de e-mail
+    help: Nunca compartilharemos seu e-mail.
+  message:
+    placeholder: escreva sua mensagem aqui
+    status: enviando… aguarde
+    characters:
+      warning:
+        title: Aviso
+        content: A mensagem precisa ter pelo menos 50 caracteres.
+    success:
+      title: Mensagem enviada
+      content: Sua mensagem foi enviada com sucesso!
+    error:
+      title: Erro
+      content: Ocorreu um erro ao enviar sua mensagem.
+  button:
+    text: enviar!
+  recaptcha:
+    warning:
+      title: Aviso
+      content: Marque a caixa "Não sou um robô".
+    fail: A verificação falhou. Recarregue a página e tente novamente.
+    error: Ocorreu um erro ao enviar a mensagem. Tente novamente.
+donate:
+  title: Apoie o projeto
+  description: Se este projeto ajuda você, considere apoiá-lo
+  input:
+    label:
+      address: Endereço
+  copy_button:
+    text: Copiar
+    clicked: Copiado!
+  services:
+    - description: Faça sua doação usando PIX. Use a chave abaixo.
+    - description: Doação com cartão pelo serviço `Buy Me a Coffee`.
+    - description: Doe de forma rápida e segura usando seu saldo ou cartão vinculado ao PayPal.
+    - description: Faça uma doação anônima em Bitcoin usando um endereço Lightning.
+    - description: Faça uma doação anônima em Bitcoin usando um endereço on-chain (Binance).
+footer:
+  licenses:
+    title: Licenças
+  message: |-
+    Sua frase de impacto!
+maintenance:
+  title: Em manutenção
+  subtitle: |-
+    Estamos fazendo uma manutenção, ainda sem previsão de retorno.
+    Desculpe pelo transtorno :/
+page:
+  toc:
+    title: Índice
+  updated_on: Página atualizada em
+  error:
+    title: Erro 404
+    message: |-
+      Este conteúdo não existe ou foi removido pelo autor.
+pixels:
+  title: pixels
+  collection_label: Coleção de imagens
+  empty: Nenhuma imagem foi publicada ainda.
+pub:
+  path:
+    title: Índice de
+  items_label: Conteúdo do diretório
+  name_label: Nome
+  date_label: Modificado
+  size_label: Tamanho
+  empty: Este diretório está vazio.
+resume:
+  buttons:
+    print:
+      text: imprimir
+  sidebar:
+    contact:
+      caption: Contato
+    personal_details:
+      caption: Dados pessoais
+      items:
+        - title: Nascimento
+        - title: Cidade
+        - title: Estado
+        - title: Nacionalidade
+        - title: CNH
+    languages:
+      caption: Idiomas
+      names:
+        - value: Inglês
+        - value: Português
+        - value: Espanhol
+    education:
+      caption: Formação
+    skills:
+      caption: Competências
+      section:
+        - group: Sistema operacional
+        - group: Programação
+        - group: Frameworks
+        - group: DevOps
+        - group: Outros
+  body:
+    summary:
+      caption: Resumo
+      content: |-
+        Engenheiro de Software e pesquisador sênior com **8 anos de experiência** em todo o ciclo de desenvolvimento de sistemas. Experiência com linguagens de alto desempenho (**Rust**, **C++**, **Python**) e frameworks front-end (**React**). Foco em otimização de sistemas, com **redução de latência de 20%** em novos módulos e pesquisa aplicada na Microsoft.
+    experience:
+      caption: Experiência
+      section:
+        - role: Engenheiro de Software
+          description: Otimização de backend e infraestrutura
+          details: |-
+            - Desenvolvi e lancei o **Module X**, reduzindo a **latência em 20%** no backend e aumentando a **satisfação dos usuários (KPIs)**.
+            - Aprimorei o pipeline **CI/CD** para **Go** e **C++** com **Kubernetes** e **Docker**, acelerando as implantações em **15%**.
+            - Liderei a migração de **microsserviços legados** para **TypeScript** e **Angular**, criando uma arquitetura mais escalável e fácil de manter.
+        - role: Pesquisador
+          details: |-
+            - Conduzi pesquisa e desenvolvimento do **algoritmo Y** com **Python** e **TensorFlow**, reduzindo a taxa de erro em **10%**.
+            - Publiquei dois artigos sobre modelos de **Machine Learning** e Processamento de Linguagem Natural (**NLP**).
+            - Colaborei na implantação de modelos **Keras** e **Matlab** em produção, alcançando milhões de usuários.
+    certificates:
+      caption: Certificados
+      section:
+        - period:
+            hours: 20 horas
+        - period:
+            hours: 19 horas
+    publications:
+      caption: Publicações
+      section:
+        - title: Apresentação dos recursos do chip F47X1
+          conference: Conferência Tech Central Park, 2016
+    projects:
+      caption: Projetos
+      section:
+        - title: Suporte ao chip F47X1 no kernel Linux
+          details: |-
+            - Implementei o suporte ao chip F47X1 para reconhecer aplicativos macOS com conexão plug-and-play via USB 3.1.
+        - title: Ferramenta de reconhecimento facial no Gemini
+          details: |-
+            - Com um grupo de quatro pessoas, pesquisei a nova versão do Gemini e o reconhecimento facial em dispositivos móveis.
+    volunteering:
+      caption: Voluntariado
+      section:
+        - role: Professor de IA
+          company: Escola de Engenharia Seeds of Tomorrow
+          details: |-
+            - Liderei uma turma de estudantes de **Engenharia da Computação** em um curso moderno de **IA**, com mais de **170 horas** de aulas.
+    markdown:
+      caption: Observações
+      content: |-
+        - Liderei uma turma de estudantes de **Engenharia da Computação** em um curso moderno de **IA**, com mais de **170 horas** de aulas.
+socials:
+  title: Contato
+  card_description: Onde me encontrar
+  description:
+    text: |-
+      Estas são minhas redes sociais:
+    terminal:
+      about:
+        description: |-
+          Para ver outros links, use o comando "socials".
+      command:
+        description: |-
+          Clique em um link para acessar minha rede social:

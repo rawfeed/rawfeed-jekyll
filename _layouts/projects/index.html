@@ -1,0 +1,59 @@
+---
+layout: default
+---
+{%- include assigned -%}
+{%- assign project_data = site.data.screen.projects.projects | localize: locale_data.projects -%}
+<div class="rf-project-page" id="rf-project-page" data-copy-success="{{ home.projects.copy_success_message | escape }}" data-copy-error="{{ home.projects.copy_error_message | escape }}" data-commit-error="{{ home.projects.commit_api_error | escape }}">
+  <section class="rf-project-index" id="rf-project-index">
+    <header class="rf-project-header">
+      <p class="pd">{{ home.projects.description | escape }}</p>
+      <h1 class="ph">{{ home.projects.title | escape }}</h1>
+    </header>
+    <ul class="menu rf-project-list">
+      {%- for project in project_data -%}
+        <li><a class="item" href="{{ page.url | localized_url: site.active_lang, site.default_lang, site.baseurl }}?project={{ project.slug | url_encode }}"><svg class="ic" aria-hidden="true"><use href="#i-{{ project.icon | default: 'file' }}" /></svg><span class="lbl">{{ project.name | escape }}</span><span class="rf-project-category">{{ project.category | escape }}</span></a></li>
+      {%- endfor -%}
+    </ul>
+  </section>
+  {%- for project in project_data -%}
+  {%- assign project_type = project.project_type | default: 'git' -%}
+  {%- capture generated_command -%}{%- if project_type == 'web' -%}xdg-open {{ project.url }}{%- else -%}git clone {{ project.repository }}{%- endif -%}{%- endcapture -%}
+  {%- assign project_command = project.command | default: generated_command -%}
+  <article class="rf-project-detail" data-project-detail="{{ project.slug | escape }}" data-project-name="{{ project.name | escape }}" data-project-type="{{ project_type | escape }}" data-project-repository="{{ project.repository | escape }}" data-project-provider="{{ project.provider | escape }}" data-project-commit-api="{{ project.commit_api | escape }}" hidden>
+    <header class="rf-project-header">
+      <p class="pd">{{ project.category | escape }}</p>
+      <h1 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-{{ project.icon | default: 'file' }}" /></svg>{{ project.name | escape }}</h1>
+    </header>
+    <div class="rf-project-columns">
+      <section class="panel">
+        <h2 class="ph">{{ home.projects.summary_label | escape }}</h2>
+        <hr class="rule" />
+        <p class="rf-project-description">{{ project.description | escape }}</p>
+        <dl class="kv">
+          <div><dt>{{ home.projects.category_label | escape }}</dt><dd>{{ project.category | escape }}</dd></div>
+          {%- if project_type == 'git' -%}<div data-project-commit-row><dt>{{ home.projects.commit_label | escape }}</dt><dd><time data-project-commit>{{ home.projects.commit_loading | escape }}</time></dd></div>{%- endif -%}
+          <div><dt>{{ home.projects.technology_label | escape }}</dt><dd>{{ project.technology | escape }}</dd></div>
+        </dl>
+      </section>
+      <section class="panel">
+        <h2 class="ph">{{ home.projects.actions_label | escape }}</h2>
+        <hr class="rule" />
+        <ul class="menu">
+          {%- if project_type == 'web' -%}
+          <li><a class="item" href="{{ project.url | escape }}" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-ext" /></svg><span class="lbl">{{ home.projects.open_site_label | escape }}</span></a></li>
+          {%- else -%}
+          <li><a class="item" href="{{ project.repository | escape }}" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-ext" /></svg><span class="lbl">{{ home.projects.repository_label | escape }}</span></a></li>
+          {%- endif -%}
+          <li><button type="button" class="item" data-copy-text="{{ project_command | strip | escape }}"><svg class="ic" aria-hidden="true"><use href="#i-file" /></svg><span class="lbl">{{ home.projects.copy_label | escape }}</span></button></li>
+          <li><a class="item" href="{{ page.url | localized_url: site.active_lang, site.default_lang, site.baseurl }}"><svg class="ic" aria-hidden="true"><use href="#i-left" /></svg><span class="lbl">{{ home.projects.back_label | escape }}</span></a></li>
+        </ul>
+      </section>
+    </div>
+    <fieldset class="rf-project-command">
+      <legend>{{ home.projects.command_label | escape }}</legend>
+      <p><span class="rf-project-prompt">$</span> <code>{{ project_command | strip | escape }}</code></p>
+      <button type="button" class="item" data-copy-text="{{ project_command | strip | escape }}">{{ home.projects.copy_label | escape }}</button>
+    </fieldset>
+  </article>
+  {%- endfor -%}
+</div>

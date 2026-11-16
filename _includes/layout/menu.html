@@ -1,0 +1,64 @@
+{%- include assigned -%}
+<ul class="menu">
+  <li>
+    <a class="item" href="{{ home_url }}"
+      ><svg class="ic" aria-hidden="true"><use href="#i-home" /></svg
+      ><span class="lbl"
+        >{{ navbar.menu.home.title | default: 'Home' }}</span
+      ></a
+    >
+  </li>
+  {% for setting in site.defaults %}{% if setting.scope.path == '_posts' %}{%
+  assign show_blog = setting.values.published %}{% endif %}{% if
+  setting.scope.path == '_pixels' %}{% assign show_pixels =
+  setting.values.published %}{% endif %}{% endfor %} {% if show_blog != false %}
+  <li>
+    <a class="item" href="{{ blog_url }}"
+      ><svg class="ic" aria-hidden="true"><use href="#i-file" /></svg
+      ><span class="lbl">{{ navbar.menu.blog.title }}</span></a
+    >
+  </li>
+  <li>
+    <a class="item" href="{{ tags_url }}"
+      ><svg class="ic" aria-hidden="true"><use href="#i-book" /></svg
+      ><span class="lbl">{{ navbar.menu.blog.tags.title }}</span></a
+    >
+  </li>
+  <li>
+    <a class="item" href="{{ feed_url }}"
+      ><svg class="ic" aria-hidden="true"><use href="#i-wave" /></svg
+      ><span class="lbl">{{ navbar.menu.blog.feed.title }}</span></a
+    >
+  </li>
+  {% endif %} {% if show_pixels %}
+  <li>
+    <a class="item" href="{{ pixels_url }}"
+      ><svg class="ic" aria-hidden="true"><use href="#i-grid" /></svg
+      ><span class="lbl">{{ navbar.menu.pixels.title }}</span></a
+    >
+  </li>
+  {% endif %} {% assign entries = site.pages | sort: 'order' %}{% for entry in
+  entries %}{% if entry.in_menu and entry.published != false %}
+  <li>
+    <a
+      class="item"
+      href="{{ entry.url | localized_url: site.active_lang, site.default_lang, site.baseurl }}"
+      {% if entry.url == page.url %}
+      aria-current="page"
+      {%
+      endif
+      %}
+      ><svg class="ic" aria-hidden="true"><use href="#i-file" /></svg
+      ><span class="lbl">{{ entry.title | escape }}</span></a
+    >
+  </li>
+  {% endif %}{% endfor %} {% assign files = site.static_files | where_exp: 'f',
+  'f.path contains pub_url' %}{% if files.size > 0 %}
+  <li>
+    <a class="item" href="{{ pub_url | relative_url }}"
+      ><svg class="ic" aria-hidden="true"><use href="#i-archive" /></svg
+      ><span class="lbl">{{ navbar.menu.pub.title }}</span></a
+    >
+  </li>
+  {% endif %}
+</ul>

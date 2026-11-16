@@ -61,8 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const scrollThreshold = 700;
 
   if (topButton) {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > scrollThreshold) {
+    const scrollPane = document.getElementById('content') || window;
+    scrollPane.addEventListener("scroll", () => {
+      if ((scrollPane.scrollTop || window.scrollY) > scrollThreshold) {
         topButton.classList.add("show");
       } else {
         topButton.classList.remove("show");
@@ -71,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     topButton.addEventListener("click", (e) => {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      scrollPane.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
@@ -120,14 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
 
   if (toggleButton) {
-    const icon = toggleButton.querySelector('i');
+    const icon = toggleButton.querySelector('use');
 
     function setTheme(theme) {
       root.setAttribute('data-theme', theme);
 
       if (icon) {
-        icon.classList.remove('fa-sun', 'fa-moon');
-        icon.classList.add(theme === 'dark' ? 'fa-sun' : 'fa-moon');
+        icon.setAttribute('href', theme === 'dark' ? '#i-sun' : '#i-moon');
       }
 
       if (typeof setGiscusTheme === 'function') {
@@ -140,12 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {
       //     : avatar.dataset.dark;
       // }
 
-      localStorage.setItem('theme', theme);
+      try { localStorage.setItem('theme', theme); } catch (_) {}
 
     }
 
     // boot with saved or light
-    setTheme(localStorage.getItem('theme') || 'light');
+    setTheme(root.dataset.theme || 'dark');
 
     // change theme on click
     toggleButton.addEventListener('click', () => {

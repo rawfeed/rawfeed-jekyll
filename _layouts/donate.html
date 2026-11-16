@@ -63,8 +63,8 @@ layout: default
                   src="{{ service.qrcode | relative_url }}"
                   class="img-fluid clickable-qr donation__qr"
                   alt="QR {{ service.name }}"
-                  data-bs-toggle="modal"
-                  data-bs-target="#qrModal"
+
+
                   data-qr="{{ service.qrcode | relative_url }}">
               {%- endif -%}
             </div>
@@ -99,14 +99,4 @@ layout: default
   </div>
 </div>
 
-<!-- QR Modal -->
-<div
-  class="modal fade"
-  id="qrModal"
-  tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content bg-transparent border-0 text-center">
-      <img id="qrModalImg" class="img-fluid rounded shadow">
-    </div>
-  </div>
-</div>
+<dialog id="qrModal" class="rf-dialog" aria-label="QR Code"><button type="button" class="item" data-close>{{ interface.labels.close }}</button><img id="qrModalImg" alt="QR Code"></dialog>

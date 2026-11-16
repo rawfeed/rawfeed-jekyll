@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const idCounts = {};
     const offset = 20;
+    const scrollPane = document.getElementById('content') || document.documentElement;
 
     const stack = [{ level: 0, ul: tocList }];
 
@@ -82,8 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       a.addEventListener('click', (e) => {
         e.preventDefault();
-        window.scrollTo({
-          top: h.getBoundingClientRect().top + window.scrollY - offset,
+        scrollPane.scrollTo({
+          top: h.getBoundingClientRect().top - scrollPane.getBoundingClientRect().top + scrollPane.scrollTop - offset,
           behavior: 'smooth'
         });
         history.replaceState(null, '', `#${h.id}`);
@@ -115,17 +116,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Active link highlighting
     const links = tocList.querySelectorAll('a');
     const onScroll = () => {
-      const fromTop = window.scrollY + offset + 1;
+      const fromTop = scrollPane.getBoundingClientRect().top + offset + 1;
       let current = headings[0];
       for (const h of headings) {
-        if (h.offsetTop <= fromTop) current = h;
+        if (h.getBoundingClientRect().top <= fromTop) current = h;
       }
       for (const l of links) {
         l.classList.toggle('active', l.getAttribute('href') === `#${current.id}`);
       }
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    scrollPane.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
 

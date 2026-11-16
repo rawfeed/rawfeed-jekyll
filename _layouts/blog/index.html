@@ -11,43 +11,34 @@ layout: default
   {%- endfor -%}
 {%- endif -%}
 
-<div id="blog" class="blog{% if default.background_focus %} background_focus{% endif %} {% if default.rounding %} rounding{% endif %}">
-  {%- include layout/blog_search.html -%}
+<div id="blog" class="blog rf-blog">
+  <header class="rf-blog-heading">
+    <h1 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-file" /></svg>{{ page.title | default: blog.subtitle | escape }}</h1>
+    {%- if page.description -%}<div class="pd rf-blog-description">{{ page.description | markdownify }}</div>{%- endif -%}
+    <p class="rf-blog-count"><span>{{ blog.subtitle | default: 'posts' | escape }}</span><strong>{{ count_posts | strip }}</strong></p>
+  </header>
 
-  <div id="posts" class="row">
-    {%- if page.description -%}
-      <div class="blog-description">
-        <span>»&nbsp;</span>
-        {{ page.description | markdownify }}</div>
-    {%- endif -%}
-    {%- if page.title -%}
-      <h2 class="blog-subtitle">[&nbsp;{{ blog.subtitle | default: 'posts' }}:&nbsp;&nbsp;{{ count_posts }}&nbsp;]</h2>
-    {%- endif -%}
-
+  <section id="posts" class="panel rf-blog-listing" aria-label="{{ page.title | default: blog.subtitle | escape }}">
+    <div class="rf-blog-columns" aria-hidden="true"><span>#</span><span>{{ blog.date_label | default: 'Date' | escape }}</span><span>{{ blog.post_label | default: 'Post' | escape }}</span></div>
     {%- if site.posts.size > 0 -%}
-      <ul class="row blog-list">
+      <ul class="menu blog-list">
         {%- if page.pagination.enabled == true and site.pagination.enabled == true -%}
           {%- assign posts = paginator.posts -%}
         {%- else -%}
           {%- assign posts = site.posts -%}
         {%- endif -%}
-
         {%- for post in posts -%}
           <li class="blog-list__item">
-            {%- if datelang -%}
-              <span class="blog-list__meta">{% datelang post.date %}</span>&nbsp;»&nbsp;
-            {%- else -%}
-              <span class="blog-list__meta">{{ post.date | date: '%b %-d, %Y' }}</span>&nbsp;»&nbsp;
-            {%- endif -%}
-            <a class="blog-list__link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-            {%- if post.draft -%}
-              <span class="draft-badge">[&nbsp;this is a draft&nbsp;]</span>
-            {%- endif -%}
+            <span class="rf-blog-number">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+            <time class="blog-list__meta" datetime="{{ post.date | date_to_xmlschema }}">{%- if datelang -%}{% datelang post.date %}{%- else -%}{{ post.date | date: '%Y-%m-%d' }}{%- endif -%}</time>
+            <a class="blog-list__link item" href="{{ post.url | localized_url: site.active_lang, site.default_lang, site.baseurl }}"><svg class="ic" aria-hidden="true"><use href="#i-file" /></svg><span class="lbl">{{ post.title | escape }}</span><svg class="ext" aria-hidden="true"><use href="#i-right" /></svg></a>
+            {%- if post.draft -%}<span class="draft-badge">[&nbsp;{{ interface.labels.draft | default: 'draft' | escape }}&nbsp;]</span>{%- endif -%}
           </li>
         {%- endfor -%}
       </ul>
+    {%- else -%}
+      <p class="nores">{{ blog.empty | default: 'No posts found.' | escape }}</p>
     {%- endif -%}
-
     {%- include layout/paginator.html -%}
-  </div>
+  </section>
 </div>

@@ -9,6 +9,9 @@ comments: true
 tags: [example, codeblocks, ruby, html, rust, raw]
 toc:
   enable: true
+lang: en
+page_id: post-codeblocks
+permalink: /blog/this-post-demonstrates-post-codeblocks/
 ---
 
 > Note: This post create with command: `bundle exec rawfeed create:draft`

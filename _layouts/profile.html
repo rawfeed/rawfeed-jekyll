@@ -1,0 +1,37 @@
+---
+layout: default
+---
+{%- include assigned -%}
+{%- assign profile = home.profile -%}
+<div class="rf-profile-page">
+  {%- if page.profile_section == 'trajectory' -%}
+    <header class="rf-profile-header"><p class="pd">{{ profile.trajectory.description | escape }}</p><h1 class="ph">{{ profile.trajectory.title | escape }}</h1></header>
+    <section class="panel rf-profile-environment rf-timeline" aria-label="{{ profile.trajectory.title | escape }}">
+      <h2 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-clock" /></svg>{{ profile.trajectory.title | escape }}</h2>
+      <hr class="rule" />
+      <ol class="rf-timeline-list">
+        {%- for event in profile.trajectory.events -%}
+          <li{% if event.current %} class="now"{% endif %}><time>{{ event.year | escape }}</time><p>{{ event.text | escape }}</p></li>
+        {%- endfor -%}
+      </ol>
+    </section>
+  {%- else -%}
+    <div class="rf-profile-page--environment">
+      <h1 class="scr-h">{{ profile.environment.title | escape }}</h1>
+      <section class="panel rf-profile-environment" aria-label="{{ profile.environment.title | escape }}">
+        <h2 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-terminal" /></svg>{{ profile.environment.title | escape }}</h2>
+        <p class="pd">{{ profile.environment.description | escape }}</p>
+        <hr class="rule dashed" />
+        <div class="neo">
+          <svg class="mark" aria-hidden="true" viewBox="0 0 16 16"><use href="#i-wave" /></svg>
+          <div class="rf-environment-content">
+            <p class="neo-h"><span class="neo-user">{{ profile.environment.user | escape }}</span>@<span class="neo-user">{{ profile.environment.hostname | escape }}</span></p>
+            <hr class="rule dashed" />
+            <dl class="kv">{%- for detail in profile.environment.details -%}<div><dt>{{ detail.label | escape }}</dt><dd>{{ detail.value | escape }}</dd></div>{%- endfor -%}</dl>
+            <div class="swatches" aria-hidden="true">{%- for swatch in profile.environment.swatches -%}<i class="swatch-{{ swatch | escape }}"></i>{%- endfor -%}</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  {%- endif -%}
+</div>

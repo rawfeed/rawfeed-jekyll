@@ -1,75 +1,34 @@
-{%- include assigned -%}
-
-{%- if maintenance.enable != true -%}
-
-  {%- for _ in site.pixels -%}{%- capture count_pixels -%} {{ count_pixels | plus: 1 }} {%- endcapture -%}
-  {%- endfor -%}
-
-  <!DOCTYPE html>
-  <html
-    id="top"
-    lang="{{ default.lang | default: 'en-US' }}"
-    data-theme="light">
-
-    <!-- head -->
-    {%- include layout/head.html -%}
-    <!-- head -->
-    <body style="font-family: {{ default.font.style }} !important; font-size: {{ default.font.size }} !important; letter-spacing: {{ default.font.spacing }} !important;">
-
-      <div class="container-fluid">
-        {%- include layout/navbar.html -%}
-
-        <div class="default" style="max-width: {{ pixels.layout.width | default: "860" }}px !important;">
-          <main class="pixels{% if default.background_focus %} background_focus{% endif %}{% if default.rounding %} rounding{% endif %}">
-            <div class="row">
-              {%- if page.description -%}
-                <div class="pixels-description">
-                  <span>»&nbsp;</span>
-                  {{ page.description | markdownify }}</div>
-              {%- endif -%}
-            </div>
-
-            <div class="row d-flex justify-content-center">
-              {%- if pixels.title -%}
-                <h1 class="pixels-title">[&nbsp;{{ pixels.title | default: "pixels" }}:&nbsp;&nbsp;{{ count_pixels }}&nbsp;]</h1>
-              {%- endif -%}
-            </div>
-
-            <div class="pixels-grid">
-              {%- for item in site.pixels -%}
-                {%- if item.image.path -%}
-                  <a href="{{ item.url | relative_url }}">
-                    <div class="pixels-item{% if default.rounding %} rounding{% endif %}">
-                      <div class="pixels-overlay-card">
-                        <img src="{{ item.image.path | relative_url }}" alt="{{ item.title }}">
-                        <div class="overlay">
-                          <div class="text-center overlay-content">
-                            <small class="date">{% datelang item.date %}</small>
-                            <p class="mb-0 desc">{{ item.content | strip_html | truncate: 50 }}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                {%- endif -%}
-              {%- endfor -%}
-            </div>
-
-          </main>
-        </div>
+---
+layout: default
+---
+{% include assigned %}
+{% assign count_pixels = site.pixels.size %}
+<div class="pixels rf-pixels">
+  <h1 class="scr-h sr-only">{{ pixels.title | default: page.title | escape }}</h1>
+  <section class="panel rf-pixels-panel" aria-label="{{ pixels.title | default: page.title | escape }}">
+    <header class="rf-pixels-header">
+      <h2 class="ph"><svg class="ic ph-ic" aria-hidden="true"><use href="#i-grid" /></svg>{{ pixels.title | default: page.title | escape }}<span class="rf-pixels-count">{{ count_pixels }}</span></h2>
+      {%- if page.description -%}<div class="pd rf-pixels-description">{{ page.description | markdownify }}</div>{%- endif -%}
+      <p class="rf-pixels-status"><span class="rf-status-dot"></span>{{ pixels.collection_label | default: 'Image collection' | escape }}</p>
+    </header>
+    {%- if count_pixels > 0 -%}
+      <div class="pixels-grid rf-pixels-grid">
+        {%- for item in site.pixels -%}
+          {%- if item.image.path -%}
+            <a class="rf-pixel-card" href="{{ item.url | localized_url: site.active_lang, site.default_lang, site.baseurl }}" aria-label="{{ item.title | escape }}">
+              <div class="rf-pixel-frame">
+                <img src="{{ item.image.path | relative_url }}" alt="{{ item.title | escape }}" loading="lazy">
+                <span class="rf-pixel-index">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+                <span class="rf-pixel-open"><svg class="ic" aria-hidden="true"><use href="#i-ext" /></svg></span>
+              </div>
+              <div class="rf-pixel-meta"><span class="lbl">{{ item.title | escape }}</span><time>{% datelang item.date %}</time></div>
+              {%- if item.content -%}<p class="rf-pixel-summary">{{ item.content | strip_html | truncate: 90 | escape }}</p>{%- endif -%}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
-
-      {%- include layout/footer.html -%}
-
-    </body>
-
-    <!-- Scripts -->
-    <script src="{{ '/assets/vendors/bootstrap-5.2.3/js/bootstrap.bundle.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/default.js' | relative_url }}"></script>
-  <!-- Scripts -->
-
-  </html>
-
-{%- else -%}
-  {%- include layout/maintenance.html -%}
-{%- endif -%}
+    {%- else -%}
+      <p class="nores">{{ pixels.empty | default: 'No images have been published yet.' | escape }}</p>
+    {%- endif -%}
+  </section>
+</div>

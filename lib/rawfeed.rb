@@ -36,4 +36,5 @@ if defined?(Jekyll)
   require_relative "rawfeed/plugin/pub"
   require_relative "rawfeed/plugin/reading_time"
   require_relative "rawfeed/plugin/with_class"
+  require_relative "rawfeed/plugin/localization"
 end

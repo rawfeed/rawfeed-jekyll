@@ -2,6 +2,10 @@
 
 source "https://rubygems.org"
 
+group :jekyll_plugins do
+  gem "jekyll-polyglot", "~> 1.14"
+end
+
 # Utilities
 gem "rubyzip", "~> 2.3"
 

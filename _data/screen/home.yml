@@ -2,12 +2,83 @@
 
 # section: [home]
 home:
+  weblog:
+    title: Writing
+    subtitle: Guides and posts
+    posts_limit: 5
+    view_all: View All
+  contact:
+    send_message: Send Message
+  profile:
+    title: Profile
+    description: Who I am and how I work
+    links:
+      - slug: trajectory
+        title: Trajectory
+        icon: clock
+        url: /trajectory/
+      - slug: environment
+        title: Environment
+        icon: terminal
+        url: /environment/
+      - slug: about
+        title: About
+        icon: user
+        url: /about/
+    environment:
+      title: Environment
+      description: What I use every day
+      user: william
+      hostname: arch
+      details:
+        - label: OS
+          value: Arch Linux
+        - label: WM
+          value: Hyprland
+        - label: Languages
+          value: Rust, Python, JavaScript, Ruby
+        - label: Site
+          value: Jekyll + rawfeed (my theme)
+      swatches: [bar, dim, text, blue, green, ember]
+    trajectory:
+      title: Trajectory
+      description: From 2008 to today
+      events:
+        - year: 2008
+          text: Discovered Linux and began supporting open source.
+        - year: 2010
+          text: Started creating (and deleting) code.
+        - year: 2014
+          text: Graduated in Systems Analysis and Development.
+        - year: Today
+          text: Rust, Python and JavaScript on Arch Linux with Hyprland.
+          current: true
+  projects:
+    title: Projects
+    description: System tools, automation and security
+    visible_limit: 5
+    view_all: View All projects
+    repository_label: Open repository
+    repository_field_label: Repository
+    actions_label: Actions
+    copy_label: Copy command
+    back_label: Back to projects
+    command_label: Clone command
+    summary_label: Overview
+    category_label: Category
+    commit_label: Commit
+    technology_label: Technology
+    commit_loading: Loading latest commit…
+    commit_error: Latest commit unavailable
+    commit_api_error: Commit date unavailable
+    open_site_label: Open website
+    copy_success_message: Command copied.
+    copy_error_message: Could not copy command.
   terminal:
-    enable: true
     user: "rawfeed"
     hostname: "linux"
     signal: "#"
-    welcome: " type 'help'"
+    welcome: "whoami"
     error: ": command not found."
     no_socials: "No socials found"
     help:
@@ -17,8 +88,18 @@ home:
         title: "Commands:"
         description: "Description:"
       menu: |
-        about ------------- A brief summary about 'rawfeed'
-        socials ----------- Links to my active social networks
-        clear ------------- Clear the terminal screen (or press Esc)
-        date -------------- Print the system date and time
-        help -------------- Print this menu
+        help               Show available commands
+        ls                 List pages available on this site
+        open <page>        Navigate to a page by slug
+        projects           Show configured projects
+        socials            Show configured social links
+        contact            Open the contact page
+        theme [dark|light] Set or toggle the color theme
+        lang <code>        Change interface language
+        about              Show the home page introduction
+        date               Print the current date and time
+        find "text"         Search posts and pages
+        clear              Clear the terminal output
+        shred              Play the screen shred effect
+        home               Return to the home page
+        exit               Close the terminal

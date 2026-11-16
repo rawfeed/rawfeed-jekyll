@@ -3,5 +3,7 @@
 # section: [pixels]
 pixels:
   title: "pixels"
+  collection_label: Image collection
+  empty: No images have been published yet.
   layout:
     width: 860 # default: 860

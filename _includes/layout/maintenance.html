@@ -1,10 +1,5 @@
 {% include assigned %}
-
-<!doctype html>
-<html lang="{{ default.lang | default: 'en-US' }}" data-theme="light">
-  {%- include layout/head.html -%}
-  <body>
-    <div class="mt-4 maintenance" style="font-family: {{ default.font.style }} !important; font-size: {{ default.font.size }} !important; letter-spacing:{{ default.font.spacing }} !important;">
+<!doctype html><html lang="{{ default.lang | default: 'en-US' }}" data-theme="dark">{% include layout/head.html %}<body><div class="wall" aria-hidden="true"></div><div class="container-fluid win"><header class="tbar"><p class="ttl"><span class="brand">{{ site_title | escape }}</span></p></header><main class="content" id="content">    <div class="panel maintenance">
       <div class="container">
         {%- if maintenance.gif != '' -%}
           <div class="row">
@@ -24,6 +19,4 @@
         </div>
       </div>
     </div>
-    {%- include layout/footer.html -%}
-  </body>
-</html>
+</main>{% include layout/footer.html %}</div></body></html>

@@ -1,0 +1,70 @@
+<!-- modal avatar -->
+<div class="modal fade" id="avatarModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-transparent border-0 shadow-none">
+      <div class="modal-body d-flex justify-content-center">
+        <img
+          id="modalAvatar"
+          class="avatar-img{% if default.rounding %} rounding{% endif %}"
+          src=""
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal avatar -->
+<div class="rf-avatar">
+  {%- assign images_ = site.static_files | map: 'path' -%} {%- assign
+  avatar_path_light = navbar.avatar.image.front.light -%} {%- assign
+  avatar_path_dark = navbar.avatar.image.front.dark -%} {%- assign
+  avatar_path_back = navbar.avatar.image.back -%} {%- if images_ contains
+  avatar_path_light and images_ contains avatar_path_dark and images_ contains
+  avatar_path_back -%}
+  <div class="avatar-wrapper">
+    <div
+      class="avatar-flipper light-theme {% if navbar.avatar.open %}avatar-flipper__open-true{% endif %}{% if navbar.avatar.flip %} can-flip{% endif %}"
+    >
+      <div class="avatar-card">
+        <div class="avatar-front">
+          <img
+            id="avatarImgLight"
+            class="avatar-img{% if default.rounding %} rounding{% endif %}"
+            src="{{ avatar_path_light | relative_url }}"
+            alt="{{ site_title }}"
+          />
+        </div>
+        <div class="avatar-back">
+          <img
+            class="avatar-img{% if default.rounding %} rounding{% endif %}"
+            src="{{ avatar_path_back | relative_url }}"
+            alt="{{ site_title }}"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="avatar-flipper dark-theme {% if navbar.avatar.open %} avatar-flipper__open-true{% endif %}{% if navbar.avatar.flip %} can-flip{% endif %}"
+    >
+      <div class="avatar-card">
+        <div class="avatar-front">
+          <img
+            id="avatarImgDark"
+            class="avatar-img{% if default.rounding %} rounding{% endif %}"
+            src="{{ avatar_path_dark | relative_url }}"
+            alt="{{ site_title }}"
+          />
+        </div>
+        <div class="avatar-back">
+          <img
+            class="avatar-img{% if default.rounding %} rounding{% endif %}"
+            src="{{ avatar_path_back | relative_url }}"
+            alt="{{ site_title }}"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  {%- endif -%}
+</div>

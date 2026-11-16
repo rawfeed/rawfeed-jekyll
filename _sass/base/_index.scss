@@ -37,23 +37,6 @@ body {
   }
 }
 
-/* Switch between terminal and simple mode on the home screen */
-body[data-terminal-enabled="false"] .home-terminal {
-  display: none !important;
-}
-
-body[data-terminal-enabled="false"] .home-simple {
-  display: block !important;
-}
-
-body[data-layout="mobile"] .home-terminal {
-  display: none !important;
-}
-
-body[data-layout="mobile"] .home-simple {
-  display: block !important;
-}
-
 .disabled {
   display: none !important;
 }

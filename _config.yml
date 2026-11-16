@@ -1,5 +1,5 @@
 # [ important!!! ] the base hostname & protocol for your site, e.g. http://example.com
-url: ""
+url: "https://rawfeed.github.io"
 
 # the subpath of your site, e.g. /blog
 baseurl: ""
@@ -8,11 +8,25 @@ baseurl: ""
 
 theme: rawfeed
 plugins:
+  - jekyll-polyglot
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-archives
   - jekyll-paginate-v2
   - rawfeed
+# Add a locale here and provide Markdown documents with matching lang/page_id.
+languages: [en, pt]
+default_lang: en
+lang_from_path: true
+parallel_localization: false
+serial_default_lang: true
+exclude_from_localization:
+  - assets/css
+  - assets/js
+  - assets/fonts
+  - assets/vendors
+  - sitemap.xml
+  - feed.xml
 collections:
   pixels:
     output: true
@@ -40,7 +54,7 @@ defaults:
       path: "_pixels"
       type: "pixels"
     values:
-      published: true
+      published: false
 jekyll-archives:
   enabled:
     - tags

@@ -1,0 +1,94 @@
+# Home project list and project detail content. Edit this file to add or update projects.
+# project_type: git reads repository metadata and clones it; web opens url with xdg-open.
+# GitHub, GitLab, Bitbucket and Gitea/Codeberg commit APIs are detected automatically.
+# Set provider or commit_api for self-hosted/other Git services.
+projects:
+  - slug: argvus
+    name: Argvus
+    project_type: web
+    icon: desktop
+    category: Desktop
+    description: A complete desktop environment focused on Hyprland and built for developers.
+    technology: Rust
+    url: https://argvus.github.io
+
+  - slug: tildr
+    name: Tildr
+    project_type: git
+    icon: home
+    category: Dotfiles manager
+    technology: Rust
+    description: Manage and reproduce your home directory declaratively.
+    repository: https://github.com/orbitbits/tildr
+
+  - slug: dotctrl
+    name: Dotctrl
+    project_type: git
+    icon: archive
+    category: Dotfiles manager
+    technology: Python
+    description: A command line dotfiles manager for Unix systems.
+    repository: https://github.com/snakypy/dotctrl
+
+  - slug: smog
+    name: Smog
+    project_type: git
+    icon: grid
+    category: Privacy
+    technology: Rust
+    description: Securely overwrites files, directories and volumes with unreadable noise.
+    repository: https://github.com/orbitbits/smog
+
+  - slug: shred-extension-rs
+    name: shred-extension-rs
+    project_type: git
+    icon: trash
+    category: Privacy
+    technology: Rust
+    description: A lightweight file manager extension for securely deleting files in Nautilus and Thunar.
+    repository: https://github.com/williamcanin/shred-extension-rs
+
+  - slug: seedctl
+    name: SeedCTL
+    project_type: git
+    icon: wallet
+    category: Cryptography
+    technology: Rust
+    description: A multichain cryptocurrency wallet generator.
+    repository: https://github.com/orbitbits/seedctl
+
+  - slug: rs2f
+    name: RS2F
+    project_type: git
+    icon: target
+    category: Security
+    technology: Rust
+    description: Online account password auditing and two factor authentication tools written in Rust.
+    repository: https://github.com/williamcanin/rs2f
+
+  - slug: backdour
+    name: Backdour
+    project_type: git
+    icon: bug
+    category: Security
+    technology: Rust
+    description: A cross platform Rust security research project with a PostgreSQL C2 server.
+    repository: https://github.com/williamcanin/backdour
+
+  - slug: rawfeed-jekyll
+    name: rawfeed-jekyll
+    project_type: git
+    icon: file
+    category: Web
+    technology: Ruby, Sass, JavaScript
+    description: A Jekyll theme focused on a terminal interface and fast loading.
+    repository: https://github.com/rawfeed/rawfeed-jekyll
+
+  - slug: jektify
+    name: Jektify
+    project_type: git
+    icon: music
+    category: Web
+    technology: Ruby, JavaScript
+    description: A Spotify plugin for adding tracks, playlists, albums and artists to Jekyll sites.
+    repository: https://github.com/jektify/jektify

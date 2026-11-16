@@ -1,0 +1,164 @@
+<div class="fbar">
+  <p class="fstat" id="rf-status" role="status" aria-live="polite">
+    {{ page.title | default: site_title | escape }}
+  </p>
+  <nav class="rf-hints" aria-label="{{ interface.labels.keyboard_shortcuts | default: 'Keyboard shortcuts' | escape }}">
+    <button type="button" class="hint" data-rf="menu">
+      <span class="k">{{ interface.shortcuts.menu | escape }}</span>
+      <span data-ui="menu">{{ interface.labels.menu | escape }}</span>
+    </button>
+    <span class="hint"
+      ><span class="k">↑/↓</span>
+      <span data-ui="items">{{ interface.labels.items | escape }}</span></span
+    ><button type="button" class="hint" data-rf="search">
+      <span class="k">{{ interface.shortcuts.search | escape }}</span>
+      <span data-ui="search"
+        >{{ interface.labels.search | escape }}</span
+      ></button
+    ><button type="button" class="hint" data-rf="settings">
+      <span class="k">{{ interface.shortcuts.settings | escape }}</span>
+      <span data-ui="settings"
+        >{{ interface.labels.settings | escape }}</span
+      ></button
+    ><button type="button" class="hint" data-rf="help">
+      <span class="k">{{ interface.shortcuts.help | escape }}</span>
+      <span data-ui="help">{{ interface.labels.help | escape }}</span></button
+    ><button type="button" class="hint" data-rf="terminal">
+      <span class="k">{{ interface.shortcuts.terminal | escape }}</span>
+      <span data-ui="terminal"
+        >{{ interface.labels.terminal | escape }}</span
+      ></button
+    ><button type="button" class="hint" data-rf="back" aria-keyshortcuts="Escape" aria-label="{{ interface.labels.back_close | default: 'Back or close screen' | escape }}">
+      <span class="k">Esc</span>
+      <span data-ui="back_close">{{ interface.labels.back_close | default: 'Back / close' | escape }}</span></button
+  </nav>
+</div>
+<dialog class="rf-dialog" id="rf-menu" aria-labelledby="rf-menu-title" tabindex="-1">
+  <h2 class="ph" id="rf-menu-title">{{ navbar.menu.title }}</h2>
+  <hr class="rule" />
+  {% include layout/menu.html %}<button class="item" type="button" data-close>
+    Esc · <span data-ui="close">{{ interface.labels.close | escape }}</span>
+  </button>
+</dialog>
+
+<dialog class="rf-dialog" id="rf-settings" aria-labelledby="rf-settings-title">
+  <h2 class="ph" id="rf-settings-title">
+    <span data-ui="settings">{{ interface.labels.settings | escape }}</span>
+  </h2>
+  <hr class="rule" />
+  <p class="pd" data-motion-notice hidden>{{ interface.labels.reduced_motion | escape }}</p>
+  <div class="grid g2">
+    <section class="panel">
+      <h3 class="ph">
+        <span data-ui="theme">{{ interface.labels.theme | escape }}</span>
+      </h3>
+      <hr class="rule" />
+      <button
+        type="button"
+        class="item"
+        data-theme-choice="dark"
+        aria-pressed="false"
+      >
+        <span class="mk radio"></span
+        ><span data-ui="dark"
+          >{{ interface.labels.dark | escape }}</span
+        ></button
+      ><button
+        type="button"
+        class="item"
+        data-theme-choice="light"
+        aria-pressed="false"
+      >
+        <span class="mk radio"></span
+        ><span data-ui="light">{{ interface.labels.light | escape }}</span>
+      </button>
+    </section>
+    <section class="panel">
+      <h3 class="ph">
+        <span data-ui="effects">{{ interface.labels.effects | escape }}</span>
+      </h3>
+      <hr class="rule" />
+      <button
+        type="button"
+        class="item"
+        data-setting="scan"
+        aria-pressed="false"
+      >
+        <span class="mk check"></span
+        ><span data-ui="scan"
+          >{{ interface.labels.scan | escape }}</span
+        ></button
+      ><button
+        type="button"
+        class="item"
+        data-setting="boot"
+        aria-pressed="true"
+      >
+        <span class="mk check"></span
+        ><span data-ui="boot">{{ interface.labels.boot | escape }}</span>
+      </button>
+    </section>
+    <section class="panel">
+      <h3 class="ph">
+        <span data-ui="tools">{{ interface.labels.tools | escape }}</span>
+      </h3>
+      <hr class="rule" />
+      <button type="button" class="item" data-rf="terminal">
+        <span data-ui="open_terminal"
+          >{{ interface.labels.open_terminal | escape }}</span
+        ></button
+      ><button type="button" class="item" data-effect="shred">
+        <span data-ui="shred"
+          >{{ interface.labels.shred | escape }}</span
+        ></button
+      ><button type="button" class="item" data-effect="replay">
+        <span data-ui="replay">{{ interface.labels.replay | escape }}</span>
+      </button>
+    </section>
+  </div>
+  <button class="item" type="button" data-close>
+    Esc · <span data-ui="close">{{ interface.labels.close | escape }}</span>
+  </button>
+</dialog>
+<dialog class="rf-dialog" id="rf-help" aria-labelledby="rf-help-title">
+  <h2 class="ph" id="rf-help-title">
+    {{ interface.labels.shortcuts | escape }}
+  </h2>
+  <hr class="rule" />
+  <dl class="rf-shortcuts">
+    {% for shortcut in interface.help %}
+    <dt>
+      {% if shortcut.action %}{{ interface.shortcuts[shortcut.action] | escape
+      }}{% else %}{{ shortcut.keys | escape }}{% endif %}
+    </dt>
+    <dd>{{ shortcut.description | escape }}</dd>
+    {% endfor %}
+  </dl>
+  <button class="item" type="button" data-close>
+    Esc · <span data-ui="close">{{ interface.labels.close | escape }}</span>
+  </button>
+</dialog>
+<dialog class="rf-terminal-window" id="rf-terminal" aria-label="{{ interface.labels.terminal | escape }}">{% include layout/home-terminal.html %}</dialog>
+<dialog class="rf-dialog" id="rf-quit" aria-labelledby="rf-quit-title">
+  <h2 class="ph" id="rf-quit-title">
+    <span data-ui="quit_title">{{ interface.labels.quit_title | escape }}</span>
+  </h2>
+  <p class="pd">
+    <span data-ui="quit_message"
+      >{{ interface.labels.quit_message | escape }}</span
+    >
+  </p>
+  <button class="item" type="button" data-rf="terminal">
+    <span data-ui="open_terminal"
+      >{{ interface.labels.open_terminal | escape }}</span
+    ></button
+  ><button class="item" type="button" data-close>
+    <span data-ui="cancel">{{ interface.labels.cancel | escape }}</span>
+  </button>
+</dialog>
+<div class="boot" id="rf-boot" aria-hidden="true" hidden>
+  <pre
+    class="boot-out"
+  >{{ site_title }} · <span data-ui="boot_message">{{ interface.labels.boot_message | escape }}</span></pre>
+</div>
+<pre class="rf-wipe" id="rf-wipe" aria-hidden="true"></pre>

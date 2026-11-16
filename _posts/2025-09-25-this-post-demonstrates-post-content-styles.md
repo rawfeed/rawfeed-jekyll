@@ -9,6 +9,9 @@ comments: true
 tags: [example, style, include, chart]
 toc:
   enable: true
+lang: en
+page_id: post-content-styles
+permalink: /blog/this-post-demonstrates-post-content-styles/
 ---
 
 > Note: This post create with command: `bundle exec rawfeed create:draft`

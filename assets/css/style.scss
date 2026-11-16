@@ -1,5 +1,6 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
 ---
 
 @use "main";
+@use "tui/reference";
+@use "tui/jekyll";
